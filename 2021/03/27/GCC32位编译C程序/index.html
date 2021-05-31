@@ -16,7 +16,7 @@
 <meta property="og:description" content="怎么在GCC下用32位模式编译C程序？">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-03-27T12:28:20.000Z">
-<meta property="article:modified_time" content="2021-05-29T16:37:58.924Z">
+<meta property="article:modified_time" content="2021-05-31T15:20:57.151Z">
 <meta property="article:author" content="LemontreeN">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -222,10 +222,10 @@
       
         <h2 id="怎么在GCC下用32位模式编译C程序？"><a href="#怎么在GCC下用32位模式编译C程序？" class="headerlink" title="怎么在GCC下用32位模式编译C程序？"></a>怎么在GCC下用32位模式编译C程序？</h2><span id="more"></span>
 
-<p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可</p>
-<p>如 gcc -m32 hello.c -o hello.out</p>
+<p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可<br>如 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -m32 hello.c -o hello.out</span><br></pre></td></tr></table></figure>
 <p>若报错，输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
 
 <p>获得所需包再重新编译即可</p>
 
@@ -311,7 +311,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/04/14/GDB&/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/04/14/GDB%E5%A4%87%E5%BF%98%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -490,7 +490,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">Visual Studio</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,6 +499,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
