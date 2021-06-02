@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lemontreen.github.io">
-  <title>xshell和xftp配合ubuntu虚拟机的使用 | ~LemontreeN的Blog~</title>
+  <title>Visual Studio备忘录 | ~LemontreeN的Blog~</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如何安装并部署xshell和xftp">
+  <meta name="description" content="getopt()函数：123456#include &lt;unistd.h&gt;extern char *optarg;extern int optind;extern int opterr;extern int optopt;extern int getopt(int argc, char * const argv[], const char *optstring); 用途：解析命令行参数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xshell和xftp配合ubuntu虚拟机的使用">
-<meta property="og:url" content="https://lemontreen.github.io/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:title" content="Visual Studio备忘录">
+<meta property="og:url" content="https://lemontreen.github.io/2021/06/02/Linux%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="~LemontreeN的Blog~">
-<meta property="og:description" content="如何安装并部署xshell和xftp">
+<meta property="og:description" content="getopt()函数：123456#include &lt;unistd.h&gt;extern char *optarg;extern int optind;extern int opterr;extern int optopt;extern int getopt(int argc, char * const argv[], const char *optstring); 用途：解析命令行参数">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-21T05:35:20.000Z">
-<meta property="article:modified_time" content="2021-05-29T14:55:00.936Z">
+<meta property="article:published_time" content="2021-06-02T08:31:22.000Z">
+<meta property="article:modified_time" content="2021-06-02T11:39:57.809Z">
 <meta property="article:author" content="LemontreeN">
-<meta property="article:tag" content="XFTP">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="C">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="~LemontreeN的Blog~" type="application/atom+xml">
@@ -168,14 +169,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-xshell和xftp的安装" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Linux一些指令笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      xshell和xftp配合ubuntu虚拟机的使用
+      Visual Studio备忘录
     </h1>
   
 
@@ -190,8 +191,8 @@
   </a>
   
         
-        <a href="/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/" class="archive-article-date">
-  	<time datetime="2021-03-21T05:35:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-21</time>
+        <a href="/2021/06/02/Linux%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-06-02T08:31:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-02</time>
 </a>
         <!-- 开始添加字数统计-->
         
@@ -200,7 +201,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">26字</span>
+        <span class="post-count">3.3k字</span>
       </span>
     </span>
 
@@ -209,7 +210,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">12分</span>
       </span>
     </span>
 </div>
@@ -220,8 +221,99 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
-<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a target="_blank" rel="noopener" href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4>
+        <span id="more"></span>
+<h4 id="getopt-函数："><a href="#getopt-函数：" class="headerlink" title="getopt()函数："></a>getopt()函数：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">extern char *optarg;</span><br><span class="line">extern int optind;</span><br><span class="line">extern int opterr;</span><br><span class="line">extern int optopt;</span><br><span class="line">extern int getopt(int argc, char * const argv[], const char *optstring);</span><br></pre></td></tr></table></figure>
+<p>用途：解析命令行参数<br>举个例子：cp -a -b hello -c123 src dst<br>optarg: -b的optarg是hello，-c的optarg是123，optarg就是选项后面跟着的参数；<br>optind  : 下一个要处理的参数的下标(argv)；每次getopt后，这个索引就会指向argv里当前分析的字符串的下一个索引，因此argv[optind]就能得到下个字符串，<br>opterr  : 如果将opterr设为0，则getopt不输出错误信息，否则报错，形如（e2fsck: invalid option – ‘x’）<br>optopt  : 当命令行选项字符不包括在optstring中或者选项缺少必要的参数时，该选项存储在optopt中<br>optstring:待处理的字符串</p>
+<p>此函数会返回在argv 中下一个的选项字母，此字母会对应参数optstring 中的字母。如果选项字符串里的字母后接着冒号“:”，则表示还有相关的参数，全局变量optarg 即会指向此额外参数。如果getopt()找不到符合的参数则会印出错信息，并将全局变量optopt设为“?”字符，如果不希望getopt()印出错信息，则只要将全局变量opterr设为0即可。 </p>
+<p>optstring中的指定的内容的意义（例如getopt(argc, argv, “ab:c::d::”);）<br>1.单个字符，表示选项<br>2.单个字符后接一个冒号：表示该选项后必须跟一个参数。参数紧跟在选项后或者以空格隔开。该参数的指针赋给optarg。<br>3.单个字符后跟两个冒号，表示该选项后可以跟一个参数(可以没有)，如果有参数，则参数必须紧跟在选项后不能以空格隔开。该参数的指针赋给optarg。(这个特性是GNU的扩张)。</p>
+<p>getopt处理以’-’开头的命令行参数，如optstring=”ab:c::d::”,命令行为getopt.exe -a -b host -ckeke -d haha<br>在这个命令行参数中，host是b的参数，keke是c的参数，但haha并不是d的参数，因为haha和d中间有空格隔开。</p>
+<p>还要注意的是默认情况下getopt会重新排列命令行参数的顺序，所以到最后所有不包含选项的命令行参数都排到最后。<br>例如 getopt.exe -a ima -b host -ckeke -d haha<br>因为a和d没有参数所以ima和haha是没有选项的命令行参数，会放到最后<br>所以最后命令行参数的顺序是： -a -b host -ckeke -d ima haha  </p>
+<h4 id="sigfillset-函数"><a href="#sigfillset-函数" class="headerlink" title="sigfillset()函数"></a>sigfillset()函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;signal.h&gt;</span><br><span class="line">int sigfillset(sigset_t * set);</span><br><span class="line">函数说明：sigfillset()用来将参数set信号集初始化, 然后把所有的信号加入到此信号集里.</span><br><span class="line">返回值：执行成功则返回0, 如果有错误则返回-1。</span><br><span class="line">附加说明：EFAULT 参数set 指针地址无法存取。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> sigemptyset 函数初始化信号集合set,将set 设置为空.</span><br><span class="line"></span><br><span class="line">sigfillset 也初始化信号集合,只是将信号集合设置为所有信号的集合.</span><br><span class="line"></span><br><span class="line">sigaddset 将信号signo 加入到信号集合之中,</span><br><span class="line"></span><br><span class="line">sigdelset 将信号从信号集合中删除.</span><br><span class="line"></span><br><span class="line">sigismember 查询信号是否在信号集合之中.</span><br></pre></td></tr></table></figure>
+<h4 id="sigprocmask-函数"><a href="#sigprocmask-函数" class="headerlink" title="sigprocmask()函数"></a>sigprocmask()函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;signal.h&gt;</span><br><span class="line">int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);</span><br><span class="line">参数：</span><br><span class="line">how：用于指定信号修改的方式，可能选择有三种：</span><br><span class="line">SIG_BLOCK   &#x2F;&#x2F;加入信号到进程屏蔽。</span><br><span class="line">SIG_UNBLOCK &#x2F;&#x2F;从进程屏蔽里将信号删除。</span><br><span class="line">SIG_SETMASK &#x2F;&#x2F;将set的值设定为新的进程屏蔽。</span><br><span class="line">set：为指向信号集的指针，在此专指新设的信号集，如果仅想读取现在的屏蔽值，可将其置为NULL。</span><br><span class="line">oldset：也是指向信号集的指针，在此存放原来的信号集。</span><br></pre></td></tr></table></figure>
+<p>返回说明：<br>函数说明：<br>一个进程的信号屏蔽字规定了当前阻塞而不能递送给该进程的信号集。sigprocmask()可以用来检测或改变信号屏蔽字，其操作依参数how来决定，如果参数oldset不是NULL指针，那么信号屏蔽字会由此指针返回。如果set是一个非空指针，则参数how指示如何修改当前信号屏蔽字。每个进程都有一个用来描述哪些信号递送到进程时将被阻塞的信号集，该信号集中的所有信号在递送到进程后都将被阻塞。<br>成功执行时，返回0。失败返回-1，errno被设为EINVAL。<br>sigprocmask(SIG_BLOCK, &amp;newmask, &amp;oldmask);//将newmask中的SIGINT阻塞掉，并保存当前信号屏蔽字到Oldmask<br>sigprocmask(SIG_SETMASK, &amp;oldmask, NULL);//恢复被屏蔽的信号SIGINT</p>
+<p>sigprocmask(SIG_BLOCK, &amp;newmask, NULL); //阻塞<br>sigprocmask(SIG_UNBLOCK, &amp;newmask, NULL);//取消阻塞<br>注意事项：sigprocmask()函数只为单线程的进程定义的，在多线程中要使用pthread_sigmask变量，在使用之前需要声明和初始化。</p>
+<h4 id="kill-函数"><a href="#kill-函数" class="headerlink" title="kill()函数"></a>kill()函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys&#x2F;types.h&gt;</span><br><span class="line">#include &lt;signal.h&gt;</span><br><span class="line">int kill(pid_t pid, int sig);</span><br></pre></td></tr></table></figure>
+<p>参数：<br>pid：可能选择有以下四种</p>
+<ol>
+<li>pid大于零时，pid是信号欲送往的进程的标识。</li>
+<li>pid等于零时，信号将送往所有与调用kill()的那个进程属同一个使用组的进程。</li>
+<li>pid等于-1时，信号将送往所有调用进程有权给其发送信号的进程，除了进程1(init)。</li>
+<li>pid小于-1时，信号将送往以-pid为组标识的进程。</li>
+</ol>
+<p>sig：准备发送的信号代码，假如其值为零则没有任何信号送出，但是系统会执行错误检查，通常会利用sig值为零来检验某个进程是否仍在执行。</p>
+<p>返回值说明： 成功执行时，返回0。失败返回-1，errno被设为以下的某个值 EINVAL：指定的信号码无效（参数 sig 不合法） EPERM；权限不够无法传送信号给指定进程 ESRCH：参数 pid 所指定的进程或进程组不存在<br>sig的值有：</p>
+<ol>
+<li><p>SIGHUP<br>本信号在用户终端连接(正常或非正常)结束时发出, 通常是在终端的控制进程结束时, 通知同一session内的各个作业, 这时它们与控制终端不再关联。<br>登录Linux时，系统会分配给登录用户一个终端(Session)。在这个终端运行的所有程序，包括前台进程组和后台进程组，一般都属于这个 Session。当用户退出Linux登录时，前台进程组和后台有对终端输出的进程将会收到SIGHUP信号。这个信号的默认操作为终止进程，因此前台进程组和后台有终端输出的进程就会中止。不过可以捕获这个信号，比如wget能捕获SIGHUP信号，并忽略它，这样就算退出了Linux登录，wget也能继续下载。<br>此外，对于与终端脱离关系的守护进程，这个信号用于通知它重新读取配置文件。</p>
+</li>
+<li><p>SIGINT<br>程序终止(interrupt)信号, 在用户键入INTR字符(通常是Ctrl-C)时发出，用于通知前台进程组终止进程。</p>
+</li>
+<li><p>SIGQUIT<br>和SIGINT类似, 但由QUIT字符(通常是Ctrl-)来控制. 进程在因收到SIGQUIT退出时会产生core文件, 在这个意义上类似于一个程序错误信号。</p>
+</li>
+<li><p>SIGILL<br>执行了非法指令. 通常是因为可执行文件本身出现错误, 或者试图执行数据段. 堆栈溢出时也有可能产生这个信号。</p>
+</li>
+<li><p>SIGTRAP<br>由断点指令或其它trap指令产生. 由debugger使用。</p>
+</li>
+<li><p>SIGABRT<br>调用abort函数生成的信号。</p>
+</li>
+<li><p>SIGBUS<br>非法地址, 包括内存地址对齐(alignment)出错。比如访问一个四个字长的整数, 但其地址不是4的倍数。它与SIGSEGV的区别在于后者是由于对合法存储地址的非法访问触发的(如访问不属于自己存储空间或只读存储空间)。</p>
+</li>
+<li><p>SIGFPE<br>在发生致命的算术运算错误时发出. 不仅包括浮点运算错误, 还包括溢出及除数为0等其它所有的算术的错误。</p>
+</li>
+<li><p>SIGKILL<br>用来立即结束程序的运行. 本信号不能被阻塞、处理和忽略。如果管理员发现某个进程终止不了，可尝试发送这个信号。</p>
+</li>
+<li><p>SIGUSR1<br>留给用户使用</p>
+</li>
+<li><p>SIGSEGV<br>试图访问未分配给自己的内存, 或试图往没有写权限的内存地址写数据.</p>
+</li>
+<li><p>SIGUSR2<br>留给用户使用</p>
+</li>
+<li><p>SIGPIPE<br>管道破裂。这个信号通常在进程间通信产生，比如采用FIFO(管道)通信的两个进程，读管道没打开或者意外终止就往管道写，写进程会收到SIGPIPE信号。此外用Socket通信的两个进程，写进程在写Socket的时候，读进程已经终止。</p>
+</li>
+<li><p>SIGALRM<br>时钟定时信号, 计算的是实际的时间或时钟时间. alarm函数使用该信号.</p>
+</li>
+<li><p>SIGTERM<br>程序结束(terminate)信号, 与SIGKILL不同的是该信号可以被阻塞和处理。通常用来要求程序自己正常退出，shell命令kill缺省产生这个信号。如果进程终止不了，我们才会尝试SIGKILL。</p>
+</li>
+<li><p>SIGCHLD<br>子进程结束时, 父进程会收到这个信号。<br>如果父进程没有处理这个信号，也没有等待(wait)子进程，子进程虽然终止，但是还会在内核进程表中占有表项，这时的子进程称为僵尸进程。这种情况我们应该避免(父进程或者忽略SIGCHILD信号，或者捕捉它，或者wait它派生的子进程，或者父进程先终止，这时子进程的终止自动由init进程来接管)。</p>
+</li>
+<li><p>SIGCONT<br>让一个停止(stopped)的进程继续执行. 本信号不能被阻塞. 可以用一个handler来让程序在由stopped状态变为继续执行时完成特定的工作. 例如, 重新显示提示符</p>
+</li>
+<li><p>SIGSTOP<br>停止(stopped)进程的执行. 注意它和terminate以及interrupt的区别:该进程还未结束, 只是暂停执行. 本信号不能被阻塞, 处理或忽略.</p>
+</li>
+<li><p>SIGTSTP<br>停止进程的运行, 但该信号可以被处理和忽略. 用户键入SUSP字符时(通常是Ctrl-Z)发出这个信号</p>
+</li>
+<li><p>SIGTTIN<br>当后台作业要从用户终端读数据时, 该作业中的所有进程会收到SIGTTIN信号. 缺省时这些进程会停止执行.</p>
+</li>
+<li><p>SIGTTOU<br>类似于SIGTTIN, 但在写终端(或修改终端模式)时收到.</p>
+</li>
+<li><p>SIGURG<br>有”紧急”数据或out-of-band数据到达socket时产生.</p>
+</li>
+<li><p>SIGXCPU<br>超过CPU时间资源限制. 这个限制可以由getrlimit/setrlimit来读取/改变。</p>
+</li>
+<li><p>SIGXFSZ<br>当进程企图扩大文件以至于超过文件大小资源限制。</p>
+</li>
+<li><p>SIGVTALRM<br>虚拟时钟信号. 类似于SIGALRM, 但是计算的是该进程占用的CPU时间.</p>
+</li>
+<li><p>SIGPROF<br>类似于SIGALRM/SIGVTALRM, 但包括该进程用的CPU时间以及系统调用的时间.</p>
+</li>
+<li><p>SIGWINCH<br>窗口大小改变时发出.</p>
+</li>
+<li><p>SIGIO<br>文件描述符准备就绪, 可以开始进行输入/输出操作.</p>
+</li>
+<li><p>SIGPWR<br>Power failure</p>
+</li>
+<li><p>SIGSYS<br>非法的系统调用。  </p>
+</li>
+</ol>
+<p>在以上列出的信号中，程序不可捕获、阻塞或忽略的信号有：SIGKILL,SIGSTOP<br>不能恢复至默认动作的信号有：SIGILL,SIGTRAP<br>默认会导致进程流产的信号有：SIGABRT,SIGBUS,SIGFPE,SIGILL,SIGIOT,SIGQUIT,SIGSEGV,SIGTRAP,SIGXCPU,SIGXFSZ<br>默认会导致进程退出的信号有：SIGALRM,SIGHUP,SIGINT,SIGKILL,SIGPIPE,SIGPOLL,SIGPROF,SIGSYS,SIGTERM,SIGUSR1,SIGUSR2,SIGVTALRM<br>默认会导致进程停止的信号有：SIGSTOP,SIGTSTP,SIGTTIN,SIGTTOU<br>默认进程忽略的信号有：SIGCHLD,SIGPWR,SIGURG,SIGWINCH<br>kill、killall<br>这两个命令是用来向进程发送信号的。kill 命令需要进程号作为参数，而 killall 需要进程名称。<br>另外，还可以在这两个命令后附加要发送信号序号作为参数。默认情况下，它们都向相关进程发送信号 15 (TERM)。例如，如果你想要终止 PID 为 785 的进程，请输入以下命令：<br>$ kill 785<br>如果您要向它发送信号 19 (STOP)，请输入：<br>$ kill -19 785<br>假设您知道想要终止的进程的命令名称。您可以通过该名称来终止它，而不用再使用 ps 找出该进程的进程号：<br>$ killall -9 mozilla</p>
+<h4 id="errno"><a href="#errno" class="headerlink" title="errno"></a>errno</h4><p><code>#include &lt;errno.h&gt;</code>  记录系统的最后一次错误代码，为int型<br>查看数字对应的错误：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/errno/11040395?fr=aladdin">https://baike.baidu.com/item/errno/11040395?fr=aladdin</a> (百度百科)</p>
+<h4 id="WIF"><a href="#WIF" class="headerlink" title="WIF"></a>WIF</h4><ol>
+<li>WIFEXITED(status)<br>这个宏用来指出子进程是否为正常退出的，如果是，它会返回一个非零值。<br>例如子进程调用exit(7)，则<code>WIFEXITED(status)</code>返回值为7</li>
+<li>WIFSIGNALED(status)<br>非0 表明进程异常终止。</li>
+<li>WIFSTOPPED(status)<br>非0 表明进程处于暂停状态，此时可通过WSTOPSIG(status)获取使得进程暂停的信号编号 </li>
+<li>WIFCONTINUED(status)<br>非0表示暂停后已经继续运行。<h4 id="waitpid-函数"><a href="#waitpid-函数" class="headerlink" title="waitpid()函数"></a>waitpid()函数</h4>未完待续. . .</li>
+</ol>
+
       
 
       
@@ -234,7 +326,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">XFTP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C</a>
         		</li>
       		
 		</ul>
@@ -290,7 +386,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lemontreen.github.io/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lemontreen.github.io/2021/06/02/Linux%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,15 +400,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          hexo遇到的一些问题
-        
-      </div>
-    </a>
   
+    <a href="/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Visual Studio备忘录</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -337,7 +429,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2xshell%E5%92%8Cxftp"><span class="toc-number">1.</span> <span class="toc-text">如何安装并部署xshell和xftp</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E5%B7%A5%E5%85%B7-xshell-xftp"><span class="toc-number">1.1.</span> <span class="toc-text">需要工具: xshell xftp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80-https-www-netsarang-com-zh-xshell-download"><span class="toc-number">1.2.</span> <span class="toc-text">下载地址: https:&#x2F;&#x2F;www.netsarang.com&#x2F;zh&#x2F;xshell-download&#x2F;</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#getopt-%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">getopt()函数：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sigfillset-%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">sigfillset()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sigprocmask-%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">sigprocmask()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#kill-%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">kill()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#errno"><span class="toc-number">5.</span> <span class="toc-text">errno</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WIF"><span class="toc-number">6.</span> <span class="toc-text">WIF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#waitpid-%E5%87%BD%E6%95%B0"><span class="toc-number">7.</span> <span class="toc-text">waitpid()函数</span></a></li></ol>
                     </div>
                 </span>
             </div>
