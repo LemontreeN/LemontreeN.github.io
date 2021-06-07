@@ -16,7 +16,7 @@
 <meta property="og:description" content="记录一些Java重要内容">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-02T14:01:22.000Z">
-<meta property="article:modified_time" content="2021-06-06T06:51:12.483Z">
+<meta property="article:modified_time" content="2021-06-07T13:06:23.762Z">
 <meta property="article:author" content="LemontreeN">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -200,7 +200,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">561字</span>
+        <span class="post-count">572字</span>
       </span>
     </span>
 
@@ -236,13 +236,22 @@
 <li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
 </ol>
 <h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
-<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><ol>
-<li>String<br>String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
-在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是<strong>生成了一个新的实例，将a指向了这个新的实例</strong>，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收</li>
-<li>StringBuffer<br>StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure></li>
-<li>StringBuilder<br>StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。不同的是：<strong>StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。</strong><h4 id="Queue的用法"><a href="#Queue的用法" class="headerlink" title="Queue的用法:"></a>Queue的用法:</h4><a target="_blank" rel="noopener" href="https://www.runoob.com/java/data-queue.html">https://www.runoob.com/java/data-queue.html</a></li>
-</ol>
-
+<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><details>
+<summary>"String、StringBuffer、StringBuilder区别"</summary>
+<pre><code>
+1. String
+String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
+在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是**生成了一个新的实例，将a指向了这个新的实例**，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收
+2. StringBuffer
+StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure>
+3. StringBuilder
+StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。不同的是：**StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。**
+</code></pre>
+<details>
+#### Queue的用法:
+https://www.runoob.com/java/data-queue.html
       
 
       
@@ -363,7 +372,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#HashMap%EF%BC%9Ahttps-www-runoob-com-java-java-hashmap-html"><span class="toc-number">1.</span> <span class="toc-text">HashMap：https:&#x2F;&#x2F;www.runoob.com&#x2F;java&#x2F;java-hashmap.html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Iterator%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">Iterator：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">String、StringBuffer、StringBuilder区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Queue%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">Queue的用法:</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#HashMap%EF%BC%9Ahttps-www-runoob-com-java-java-hashmap-html"><span class="toc-number">1.</span> <span class="toc-text">HashMap：https:&#x2F;&#x2F;www.runoob.com&#x2F;java&#x2F;java-hashmap.html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Iterator%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">Iterator：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">String、StringBuffer、StringBuilder区别</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -520,15 +529,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,15 +553,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">vscode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">XFTP</a>
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+                <a href="javascript:void(0)" class="js-tag color5">XFTP</a>
               </li>
              
               <li class="article-tag-list-item">
