@@ -4684,7 +4684,7 @@ _:future,
   z-index: 22;
 }
 #vcomment textarea {
-  background: url("https://raw.githubusercontent.com/LemontreeN/picSources/master/20210608152128.png") 100% 100% no-repeat;
+  background: url("https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/20210608152128.png") 100% 100% no-repeat;
 }
 #vcomment textarea:focus {
   background-image: none;
