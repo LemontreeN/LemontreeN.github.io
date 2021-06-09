@@ -136,6 +136,35 @@
       </tags>
   </entry>
   <entry>
+    <title>git备忘录</title>
+    <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.email&#x3D;&quot;此处填邮箱&quot;</span><br><span class="line">git config --global user.name&#x3D;&quot;此处用用户名&quot;&#x2F;&#x2F;这两步为第一次使用git需要</span><br></pre></td></tr></table></figure>
+<p>在要上传的目录初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>添加要上传的文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .(此为添加所有文件,把‘.’改为文件名即可自己挑选文件)</span><br></pre></td></tr></table></figure>
+<p>提交</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;此处为版本等附加信息&quot;</span><br></pre></td></tr></table></figure>
+<p>添加远程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin &quot;此处为仓库URL地址&quot;</span><br></pre></td></tr></table></figure>
+<p>推送</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><p>查看git配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<p>查看git全局配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+<p>查看git远程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote show</span><br></pre></td></tr></table></figure>
+<p>删除git远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
+<p>其余随使用逐渐添加，未完待续</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java</title>
     <url>/2021/06/02/Java/</url>
     <content><![CDATA[<p>记录一些Java重要内容</p>
@@ -175,35 +204,6 @@ StringBuilder类也代表可变字符串对象。实际上，StringBuilder和Str
 https://www.runoob.com/java/data-queue.html]]></content>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git备忘录</title>
-    <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.email&#x3D;&quot;此处填邮箱&quot;</span><br><span class="line">git config --global user.name&#x3D;&quot;此处用用户名&quot;&#x2F;&#x2F;这两步为第一次使用git需要</span><br></pre></td></tr></table></figure>
-<p>在要上传的目录初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>添加要上传的文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .(此为添加所有文件,把‘.’改为文件名即可自己挑选文件)</span><br></pre></td></tr></table></figure>
-<p>提交</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;此处为版本等附加信息&quot;</span><br></pre></td></tr></table></figure>
-<p>添加远程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin &quot;此处为仓库URL地址&quot;</span><br></pre></td></tr></table></figure>
-<p>推送</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><p>查看git配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-<p>查看git全局配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
-<p>查看git远程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote show</span><br></pre></td></tr></table></figure>
-<p>删除git远程仓库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
-<p>其余随使用逐渐添加，未完待续</p>
-]]></content>
-      <tags>
-        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -354,6 +354,16 @@ Power failure
       </tags>
   </entry>
   <entry>
+    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
+    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
+<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
+]]></content>
+      <tags>
+        <tag>XFTP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vscode上Git的配置和使用</title>
     <url>/2021/03/26/Vscode%E4%B8%8AGit%E7%9A%84%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h4 id="需要的工具：Vscode-和-Git"><a href="#需要的工具：Vscode-和-Git" class="headerlink" title="需要的工具：Vscode  和  Git"></a>需要的工具：Vscode  和  Git</h4><span id="more"></span>
@@ -430,16 +440,6 @@ Power failure
 ]]></content>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
-    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
-<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
-]]></content>
-      <tags>
-        <tag>XFTP</tag>
       </tags>
   </entry>
   <entry>

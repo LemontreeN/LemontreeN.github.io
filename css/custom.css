@@ -5,7 +5,8 @@
   /* 字体文件路径 */
 
   font-family:'Candy' ;  
-  src:url('/fonts/Candy.ttf'); 
+  /* src:url('/fonts/Candy.ttf');  */
+  src:url('https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/Candy.ttf'); 
   font-display : swap;
 }
 
