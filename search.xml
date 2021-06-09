@@ -19,6 +19,22 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux_GCC下用32位模式编译C程序</title>
+    <url>/2021/03/27/GCC32%E4%BD%8D%E7%BC%96%E8%AF%91C%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<h2 id="怎么在GCC下用32位模式编译C程序？"><a href="#怎么在GCC下用32位模式编译C程序？" class="headerlink" title="怎么在GCC下用32位模式编译C程序？"></a>怎么在GCC下用32位模式编译C程序？</h2><span id="more"></span>
+
+<p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可<br>如 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gcc -m32 hello.c -o hello.out</span><br></pre></td></tr></table></figure>
+<p>若报错，输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
+
+<p>获得所需包再重新编译即可</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GDB</title>
     <url>/2021/04/14/GDB%E5%A4%87%E5%BF%98%E5%BD%95/</url>
     <content><![CDATA[<h3 id="GDB使用方式"><a href="#GDB使用方式" class="headerlink" title="GDB使用方式"></a>GDB使用方式</h3><span id="more"></span>
@@ -55,22 +71,6 @@
 ]]></content>
       <tags>
         <tag>GDB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux_GCC下用32位模式编译C程序</title>
-    <url>/2021/03/27/GCC32%E4%BD%8D%E7%BC%96%E8%AF%91C%E7%A8%8B%E5%BA%8F/</url>
-    <content><![CDATA[<h2 id="怎么在GCC下用32位模式编译C程序？"><a href="#怎么在GCC下用32位模式编译C程序？" class="headerlink" title="怎么在GCC下用32位模式编译C程序？"></a>怎么在GCC下用32位模式编译C程序？</h2><span id="more"></span>
-
-<p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可<br>如 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gcc -m32 hello.c -o hello.out</span><br></pre></td></tr></table></figure>
-<p>若报错，输入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
-
-<p>获得所需包再重新编译即可</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -138,6 +138,36 @@
       </tags>
   </entry>
   <entry>
+    <title>git</title>
+    <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="Git使用方式"><a href="#Git使用方式" class="headerlink" title="Git使用方式"></a>Git使用方式</h2><span id="more"></span>
+<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.email&#x3D;&quot;此处填邮箱&quot;</span><br><span class="line">git config --global user.name&#x3D;&quot;此处用用户名&quot;&#x2F;&#x2F;这两步为第一次使用git需要</span><br></pre></td></tr></table></figure>
+<p>在要上传的目录初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>添加要上传的文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .(此为添加所有文件,把‘.’改为文件名即可自己挑选文件)</span><br></pre></td></tr></table></figure>
+<p>提交</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;此处为版本等附加信息&quot;</span><br></pre></td></tr></table></figure>
+<p>添加远程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin &quot;此处为仓库URL地址&quot;</span><br></pre></td></tr></table></figure>
+<p>推送</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><p>查看git配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<p>查看git全局配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+<p>查看git远程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote show</span><br></pre></td></tr></table></figure>
+<p>删除git远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
+<p>其余随使用逐渐添加，未完待续</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java</title>
     <url>/2021/06/02/Java/</url>
     <content><![CDATA[<p>记录一些Java重要内容</p>
@@ -184,6 +214,7 @@ https://www.runoob.com/java/data-queue.html]]></content>
     <url>/2021/06/02/Linux%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>记录一些Linux重要指令</p>
 <span id="more"></span>
+<h4 id="chmod命令用法"><a href="#chmod命令用法" class="headerlink" title="chmod命令用法"></a>chmod命令用法</h4><p><a href="https://www.runoob.com/linux/linux-comm-chmod.html">https://www.runoob.com/linux/linux-comm-chmod.html</a></p>
 <h4 id="getopt-函数："><a href="#getopt-函数：" class="headerlink" title="getopt()函数："></a>getopt()函数：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">extern char *optarg;</span><br><span class="line">extern int optind;</span><br><span class="line">extern int opterr;</span><br><span class="line">extern int optopt;</span><br><span class="line">extern int getopt(int argc, char * const argv[], const char *optstring);</span><br></pre></td></tr></table></figure>
 <p>用途：解析命令行参数<br>举个例子：cp -a -b hello -c123 src dst<br>optarg: -b的optarg是hello，-c的optarg是123，optarg就是选项后面跟着的参数；<br>optind  : 下一个要处理的参数的下标(argv)；每次getopt后，这个索引就会指向argv里当前分析的字符串的下一个索引，因此argv[optind]就能得到下个字符串，<br>opterr  : 如果将opterr设为0，则getopt不输出错误信息，否则报错，形如（e2fsck: invalid option – ‘x’）<br>optopt  : 当命令行选项字符不包括在optstring中或者选项缺少必要的参数时，该选项存储在optopt中<br>optstring:待处理的字符串</p>
 <p>此函数会返回在argv 中下一个的选项字母，此字母会对应参数optstring 中的字母。如果选项字符串里的字母后接着冒号“:”，则表示还有相关的参数，全局变量optarg 即会指向此额外参数。如果getopt()找不到符合的参数则会印出错信息，并将全局变量optopt设为“?”字符，如果不希望getopt()印出错信息，则只要将全局变量opterr设为0即可。 </p>
@@ -317,33 +348,33 @@ Power failure
       </tags>
   </entry>
   <entry>
-    <title>git</title>
-    <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="Git使用方式"><a href="#Git使用方式" class="headerlink" title="Git使用方式"></a>Git使用方式</h2><span id="more"></span>
-<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.email&#x3D;&quot;此处填邮箱&quot;</span><br><span class="line">git config --global user.name&#x3D;&quot;此处用用户名&quot;&#x2F;&#x2F;这两步为第一次使用git需要</span><br></pre></td></tr></table></figure>
-<p>在要上传的目录初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>添加要上传的文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .(此为添加所有文件,把‘.’改为文件名即可自己挑选文件)</span><br></pre></td></tr></table></figure>
-<p>提交</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;此处为版本等附加信息&quot;</span><br></pre></td></tr></table></figure>
-<p>添加远程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin &quot;此处为仓库URL地址&quot;</span><br></pre></td></tr></table></figure>
-<p>推送</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><p>查看git配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-<p>查看git全局配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
-<p>查看git远程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote show</span><br></pre></td></tr></table></figure>
-<p>删除git远程仓库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
-<p>其余随使用逐渐添加，未完待续</p>
+    <title>Visual Studio备忘录</title>
+    <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<p>Visual Studio</p>
+<span id="more"></span>
+<p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
 ]]></content>
       <tags>
-        <tag>git</tag>
+        <tag>Visual Studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo遇到的一些问题</title>
+    <url>/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="此文章为使用hexo过程中遇到的问题"><a href="#此文章为使用hexo过程中遇到的问题" class="headerlink" title="此文章为使用hexo过程中遇到的问题"></a>此文章为使用hexo过程中遇到的问题</h2><span id="more"></span>
+<h2 id="问题1-Error-Spwan-failed"><a href="#问题1-Error-Spwan-failed" class="headerlink" title="问题1: Error: Spwan failed"></a>问题1: Error: Spwan failed</h2><h4 id="有时在把本地文件用hexo-d推到远端时会发生如下情况"><a href="#有时在把本地文件用hexo-d推到远端时会发生如下情况" class="headerlink" title="有时在把本地文件用hexo d推到远端时会发生如下情况"></a>有时在把本地文件用hexo d推到远端时会发生如下情况</h4><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222237.png"><br>解决方式:<br>删除.deploy_git和public文件夹,然后输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>即可</p>
+<h2 id="问题2-ERROR-Deployer-not-found-git"><a href="#问题2-ERROR-Deployer-not-found-git" class="headerlink" title="问题2: ERROR Deployer not found: git"></a>问题2: ERROR Deployer not found: git</h2><p>如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222246.png"><br>解决方式：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+<p>即可</p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -407,42 +438,19 @@ Power failure
       </tags>
   </entry>
   <entry>
-    <title>Visual Studio备忘录</title>
-    <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<p>Visual Studio</p>
-<span id="more"></span>
-<p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
+    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
+    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
+<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
 ]]></content>
       <tags>
-        <tag>Visual Studio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo遇到的一些问题</title>
-    <url>/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="此文章为使用hexo过程中遇到的问题"><a href="#此文章为使用hexo过程中遇到的问题" class="headerlink" title="此文章为使用hexo过程中遇到的问题"></a>此文章为使用hexo过程中遇到的问题</h2><span id="more"></span>
-<h2 id="问题1-Error-Spwan-failed"><a href="#问题1-Error-Spwan-failed" class="headerlink" title="问题1: Error: Spwan failed"></a>问题1: Error: Spwan failed</h2><h4 id="有时在把本地文件用hexo-d推到远端时会发生如下情况"><a href="#有时在把本地文件用hexo-d推到远端时会发生如下情况" class="headerlink" title="有时在把本地文件用hexo d推到远端时会发生如下情况"></a>有时在把本地文件用hexo d推到远端时会发生如下情况</h4><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222237.png"><br>解决方式:<br>删除.deploy_git和public文件夹,然后输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>即可</p>
-<h2 id="问题2-ERROR-Deployer-not-found-git"><a href="#问题2-ERROR-Deployer-not-found-git" class="headerlink" title="问题2: ERROR Deployer not found: git"></a>问题2: ERROR Deployer not found: git</h2><p>如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222246.png"><br>解决方式：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>即可</p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
+        <tag>XFTP</tag>
       </tags>
   </entry>
   <entry>
     <title>各种教程和参考</title>
     <url>/2021/06/07/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E6%95%99%E7%A8%8B%E5%92%8C%E5%8F%82%E8%80%83/</url>
-    <content><![CDATA[<p>记录贴：各种教程参考大杂烩</p>
-<span id="more"></span>
-
-<h4 id="nvm-nodejs版本管理工具-使用方式："><a href="#nvm-nodejs版本管理工具-使用方式：" class="headerlink" title="nvm(nodejs版本管理工具)使用方式："></a>nvm(nodejs版本管理工具)使用方式：</h4><p><a href="https://www.cnblogs.com/gaozejie/p/10689742.html">https://www.cnblogs.com/gaozejie/p/10689742.html</a></p>
+    <content><![CDATA[<h4 id="nvm-nodejs版本管理工具-使用方式："><a href="#nvm-nodejs版本管理工具-使用方式：" class="headerlink" title="nvm(nodejs版本管理工具)使用方式："></a>nvm(nodejs版本管理工具)使用方式：</h4><p><a href="https://www.cnblogs.com/gaozejie/p/10689742.html">https://www.cnblogs.com/gaozejie/p/10689742.html</a></p>
 <h4 id="磁盘扩容："><a href="#磁盘扩容：" class="headerlink" title="磁盘扩容："></a>磁盘扩容：</h4><ol>
 <li>磁盘未使用过<br>直接搜索磁盘管理，点击创建并格式化硬盘分区<br>删除释放空间的磁盘，重新分区即可</li>
 <li>磁盘已使用<br>使用Diskgenius：<a href="https://www.diskgenius.cn/">https://www.diskgenius.cn/</a></li>
@@ -455,16 +463,6 @@ Power failure
       <tags>
         <tag>hexo</tag>
         <tag>nvm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
-    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
-<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
-]]></content>
-      <tags>
-        <tag>XFTP</tag>
       </tags>
   </entry>
   <entry>
