@@ -1,12 +1,25 @@
 @font-face{
-  font-family:'Cat' ;  /* 字体名自定义即可 */
-  src:url('/fonts/Cat.ttf'); /* 字体文件路径 */
+  /* font-family:'Cat' ;   */
+  /* 字体名自定义即可 */
+  /* src:url('/fonts/Cat.ttf');  */
+  /* 字体文件路径 */
+  /* font-family:'zzaw' ;   */
+  /* src:url('/fonts/zzaw.ttf');  */
+  font-family:'Candy' ;  
+  src:url('/fonts/Candy.ttf'); 
   font-display : swap;
 }
 
-h1#site-title {
+/* h1#site-title {
   font-family: 'Cat', sans-serif;
 }
 h1#post-title {
   font-family: 'Cat', sans-serif;
+} */
+
+h1#site-title {
+  font-family: 'Candy', sans-serif;
+}
+h1#post-title {
+  font-family: 'Candy', sans-serif;
 }
