@@ -1,12 +1,12 @@
 @font-face{
-  font-family:'Candyhome' ;  /* 字体名自定义即可 */
-  src:url('/fonts/Candy.ttf'); /* 字体文件路径 */
+  font-family:'Cat' ;  /* 字体名自定义即可 */
+  src:url('/fonts/Cat.ttf'); /* 字体文件路径 */
   font-display : swap;
 }
 
 h1#site-title {
-  font-family: 'Candyhome', sans-serif;
+  font-family: 'Cat', sans-serif;
 }
 h1#post-title {
-  font-family: 'Candyhome', sans-serif;
+  font-family: 'Cat', sans-serif;
 }
