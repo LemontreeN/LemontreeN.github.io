@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Eclipse</title>
-    <url>/2021/06/05/Eclipse/</url>
-    <content><![CDATA[<h4 id="如何查看一个函数被谁调用？"><a href="#如何查看一个函数被谁调用？" class="headerlink" title="如何查看一个函数被谁调用？"></a>如何查看一个函数被谁调用？</h4><ol>
-<li>双击选中该方法，<strong>Ctrl+Alt+H</strong> </li>
-<li>选中该方法，Ctrl+H(全局搜索)<h4 id="如何使用Eclemma"><a href="#如何使用Eclemma" class="headerlink" title="如何使用Eclemma?"></a>如何使用Eclemma?</h4></li>
-<li>下载Eclemma<br>Eclipse-&gt;帮助(Help)-&gt;Eclpise Marketplace-&gt;查询Eclemma-&gt;Install&gt;重启</li>
-<li>使用<br>重启后可以发现上面多了一个图标<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Eclipse/20210605144033.png"><br>点击该图标运行Junit即可，结果如下图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Eclipse/20210605144047.png"></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>Eclipse</tag>
-        <tag>Eclemma</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux_GCC下用32位模式编译C程序</title>
     <url>/2021/03/27/GCC32%E4%BD%8D%E7%BC%96%E8%AF%91C%E7%A8%8B%E5%BA%8F/</url>
     <content><![CDATA[<h2 id="怎么在GCC下用32位模式编译C程序？"><a href="#怎么在GCC下用32位模式编译C程序？" class="headerlink" title="怎么在GCC下用32位模式编译C程序？"></a>怎么在GCC下用32位模式编译C程序？</h2><span id="more"></span>
@@ -30,6 +14,22 @@
 ]]></content>
       <tags>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Eclipse</title>
+    <url>/2021/06/05/Eclipse/</url>
+    <content><![CDATA[<h4 id="如何查看一个函数被谁调用？"><a href="#如何查看一个函数被谁调用？" class="headerlink" title="如何查看一个函数被谁调用？"></a>如何查看一个函数被谁调用？</h4><ol>
+<li>双击选中该方法，<strong>Ctrl+Alt+H</strong> </li>
+<li>选中该方法，Ctrl+H(全局搜索)<h4 id="如何使用Eclemma"><a href="#如何使用Eclemma" class="headerlink" title="如何使用Eclemma?"></a>如何使用Eclemma?</h4></li>
+<li>下载Eclemma<br>Eclipse-&gt;帮助(Help)-&gt;Eclpise Marketplace-&gt;查询Eclemma-&gt;Install&gt;重启</li>
+<li>使用<br>重启后可以发现上面多了一个图标<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Eclipse/20210605144033.png"><br>点击该图标运行Junit即可，结果如下图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Eclipse/20210605144047.png"></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>Eclipse</tag>
+        <tag>Eclemma</tag>
       </tags>
   </entry>
   <entry>
@@ -343,6 +343,17 @@ Power failure
       </tags>
   </entry>
   <entry>
+    <title>Visual Studio备忘录</title>
+    <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<p>Visual Studio</p>
+<span id="more"></span>
+<p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
+]]></content>
+      <tags>
+        <tag>Visual Studio</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vscode上Git的配置和使用</title>
     <url>/2021/03/26/Vscode%E4%B8%8AGit%E7%9A%84%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h4 id="需要的工具：Vscode-和-Git"><a href="#需要的工具：Vscode-和-Git" class="headerlink" title="需要的工具：Vscode  和  Git"></a>需要的工具：Vscode  和  Git</h4><span id="more"></span>
@@ -403,17 +414,6 @@ Power failure
       </tags>
   </entry>
   <entry>
-    <title>Visual Studio备忘录</title>
-    <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<p>Visual Studio</p>
-<span id="more"></span>
-<p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
-]]></content>
-      <tags>
-        <tag>Visual Studio</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo遇到的一些问题</title>
     <url>/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h2 id="此文章为使用hexo过程中遇到的问题"><a href="#此文章为使用hexo过程中遇到的问题" class="headerlink" title="此文章为使用hexo过程中遇到的问题"></a>此文章为使用hexo过程中遇到的问题</h2><span id="more"></span>
@@ -430,6 +430,16 @@ Power failure
 ]]></content>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
+    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
+<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
+]]></content>
+      <tags>
+        <tag>XFTP</tag>
       </tags>
   </entry>
   <entry>
@@ -463,16 +473,6 @@ Power failure
       <tags>
         <tag>图床</tag>
         <tag>Picgo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
-    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
-<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
-]]></content>
-      <tags>
-        <tag>XFTP</tag>
       </tags>
   </entry>
 </search>
