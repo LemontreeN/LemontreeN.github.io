@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Linux_GCC下用32位模式编译C程序</title>
-    <url>/2021/03/27/GCC32%E4%BD%8D%E7%BC%96%E8%AF%91C%E7%A8%8B%E5%BA%8F/</url>
-    <content><![CDATA[<h2 id="怎么在GCC下用32位模式编译C程序？"><a href="#怎么在GCC下用32位模式编译C程序？" class="headerlink" title="怎么在GCC下用32位模式编译C程序？"></a>怎么在GCC下用32位模式编译C程序？</h2><span id="more"></span>
-
-<p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可<br>如 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gcc -m32 hello.c -o hello.out</span><br></pre></td></tr></table></figure>
-<p>若报错，输入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
-
-<p>获得所需包再重新编译即可</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Eclipse</title>
     <url>/2021/06/05/Eclipse/</url>
     <content><![CDATA[<h4 id="如何查看一个函数被谁调用？"><a href="#如何查看一个函数被谁调用？" class="headerlink" title="如何查看一个函数被谁调用？"></a>如何查看一个函数被谁调用？</h4><ol>
@@ -30,6 +14,22 @@
         <tag>Java</tag>
         <tag>Eclipse</tag>
         <tag>Eclemma</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux_GCC下用32位模式编译C程序</title>
+    <url>/2021/03/27/GCC32%E4%BD%8D%E7%BC%96%E8%AF%91C%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<h2 id="怎么在GCC下用32位模式编译C程序？"><a href="#怎么在GCC下用32位模式编译C程序？" class="headerlink" title="怎么在GCC下用32位模式编译C程序？"></a>怎么在GCC下用32位模式编译C程序？</h2><span id="more"></span>
+
+<p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可<br>如 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gcc -m32 hello.c -o hello.out</span><br></pre></td></tr></table></figure>
+<p>若报错，输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
+
+<p>获得所需包再重新编译即可</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -101,6 +101,48 @@
       </tags>
   </entry>
   <entry>
+    <title>Java</title>
+    <url>/2021/06/02/Java/</url>
+    <content><![CDATA[<p>记录一些Java重要内容</p>
+<span id="more"></span>
+<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
+<ol>
+<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
+</ol>
+<ul>
+<li>key: 键</li>
+<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
+</ul>
+<ol start="2">
+<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
+<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
+<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
+</ol>
+<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
+<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><details>
+<summary>"String、StringBuffer、StringBuilder区别"</summary>
+<pre><code>
+1. String
+String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
+在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是**生成了一个新的实例，将a指向了这个新的实例**，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收
+2. StringBuffer
+StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，
+通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。
+一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure>
+3. StringBuilder
+StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。 
+不同的是：**StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。**
+</code></pre>
+<details>
+#### Queue的用法:
+https://www.runoob.com/java/data-queue.html]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo搭建教程</title>
     <url>/2021/03/21/Hexo%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<p> 今天学习用hexo部署博客,记录一下过程</p>
@@ -162,48 +204,6 @@
 ]]></content>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java</title>
-    <url>/2021/06/02/Java/</url>
-    <content><![CDATA[<p>记录一些Java重要内容</p>
-<span id="more"></span>
-<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
-<ol>
-<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
-</ol>
-<ul>
-<li>key: 键</li>
-<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
-</ul>
-<ol start="2">
-<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
-<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
-<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
-</ol>
-<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
-<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><details>
-<summary>"String、StringBuffer、StringBuilder区别"</summary>
-<pre><code>
-1. String
-String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
-在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是**生成了一个新的实例，将a指向了这个新的实例**，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收
-2. StringBuffer
-StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，
-通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。
-一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure>
-3. StringBuilder
-StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。 
-不同的是：**StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。**
-</code></pre>
-<details>
-#### Queue的用法:
-https://www.runoob.com/java/data-queue.html]]></content>
-      <tags>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
