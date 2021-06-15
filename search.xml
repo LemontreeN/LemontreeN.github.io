@@ -17,22 +17,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux_GCC下用32位模式编译C程序</title>
-    <url>/2021/03/27/GCC32%E4%BD%8D%E7%BC%96%E8%AF%91C%E7%A8%8B%E5%BA%8F/</url>
-    <content><![CDATA[<h2 id="怎么在GCC下用32位模式编译C程序？"><a href="#怎么在GCC下用32位模式编译C程序？" class="headerlink" title="怎么在GCC下用32位模式编译C程序？"></a>怎么在GCC下用32位模式编译C程序？</h2><span id="more"></span>
-
-<p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可<br>如 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gcc -m32 hello.c -o hello.out</span><br></pre></td></tr></table></figure>
-<p>若报错，输入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
-
-<p>获得所需包再重新编译即可</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GDB</title>
     <url>/2021/04/14/GDB%E5%A4%87%E5%BF%98%E5%BD%95/</url>
     <content><![CDATA[<h3 id="GDB使用方式"><a href="#GDB使用方式" class="headerlink" title="GDB使用方式"></a>GDB使用方式</h3><span id="more"></span>
@@ -72,6 +56,22 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux_GCC下用32位模式编译C程序</title>
+    <url>/2021/03/27/GCC32%E4%BD%8D%E7%BC%96%E8%AF%91C%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<h2 id="怎么在GCC下用32位模式编译C程序？"><a href="#怎么在GCC下用32位模式编译C程序？" class="headerlink" title="怎么在GCC下用32位模式编译C程序？"></a>怎么在GCC下用32位模式编译C程序？</h2><span id="more"></span>
+
+<p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可<br>如 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gcc -m32 hello.c -o hello.out</span><br></pre></td></tr></table></figure>
+<p>若报错，输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
+
+<p>获得所需包再重新编译即可</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git备忘录</title>
     <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
     <content><![CDATA[<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
@@ -98,48 +98,6 @@
 ]]></content>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java</title>
-    <url>/2021/06/02/Java/</url>
-    <content><![CDATA[<p>记录一些Java重要内容</p>
-<span id="more"></span>
-<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
-<ol>
-<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
-</ol>
-<ul>
-<li>key: 键</li>
-<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
-</ul>
-<ol start="2">
-<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
-<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
-<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
-</ol>
-<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
-<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><details>
-<summary>"String、StringBuffer、StringBuilder区别"</summary>
-<pre><code>
-1. String
-String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
-在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是**生成了一个新的实例，将a指向了这个新的实例**，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收
-2. StringBuffer
-StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，
-通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。
-一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure>
-3. StringBuilder
-StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。 
-不同的是：**StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。**
-</code></pre>
-<details>
-#### Queue的用法:
-https://www.runoob.com/java/data-queue.html]]></content>
-      <tags>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -343,6 +301,48 @@ Power failure
       </tags>
   </entry>
   <entry>
+    <title>Java</title>
+    <url>/2021/06/02/Java/</url>
+    <content><![CDATA[<p>记录一些Java重要内容</p>
+<span id="more"></span>
+<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
+<ol>
+<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
+</ol>
+<ul>
+<li>key: 键</li>
+<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
+</ul>
+<ol start="2">
+<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
+<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
+<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
+</ol>
+<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
+<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><details>
+<summary>"String、StringBuffer、StringBuilder区别"</summary>
+<pre><code>
+1. String
+String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
+在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是**生成了一个新的实例，将a指向了这个新的实例**，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收
+2. StringBuffer
+StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，
+通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。
+一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure>
+3. StringBuilder
+StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。 
+不同的是：**StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。**
+</code></pre>
+<details>
+#### Queue的用法:
+https://www.runoob.com/java/data-queue.html]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Visual Studio备忘录</title>
     <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
     <content><![CDATA[<p>Visual Studio</p>
@@ -414,22 +414,19 @@ Power failure
       </tags>
   </entry>
   <entry>
-    <title>hexo遇到的一些问题</title>
-    <url>/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="此文章为使用hexo过程中遇到的问题"><a href="#此文章为使用hexo过程中遇到的问题" class="headerlink" title="此文章为使用hexo过程中遇到的问题"></a>此文章为使用hexo过程中遇到的问题</h2><span id="more"></span>
-<h2 id="问题1-Error-Spwan-failed"><a href="#问题1-Error-Spwan-failed" class="headerlink" title="问题1: Error: Spwan failed"></a>问题1: Error: Spwan failed</h2><h4 id="有时在把本地文件用hexo-d推到远端时会发生如下情况"><a href="#有时在把本地文件用hexo-d推到远端时会发生如下情况" class="headerlink" title="有时在把本地文件用hexo d推到远端时会发生如下情况"></a>有时在把本地文件用hexo d推到远端时会发生如下情况</h4><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222237.png"><br>解决方式:<br>删除.deploy_git和public文件夹,然后输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>即可</p>
-<h2 id="问题2-ERROR-Deployer-not-found-git"><a href="#问题2-ERROR-Deployer-not-found-git" class="headerlink" title="问题2: ERROR Deployer not found: git"></a>问题2: ERROR Deployer not found: git</h2><p>如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222246.png"><br>解决方式：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>即可</p>
-]]></content>
+    <title>如何在gitee上做一个图床</title>
+    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？"><a href="#如何在gitee上部署一个图床给自己markdown文本使用？" class="headerlink" title="如何在gitee上部署一个图床给自己markdown文本使用？"></a>如何在gitee上部署一个图床给自己markdown文本使用？</h3><p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况<br>gitee缺点：图片需要小于1M外链才能访问，本人已经换了github图床<br>但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见本文末尾<br><strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
+<h4 id="需要工具-PicGo-以及-gitee-账号"><a href="#需要工具-PicGo-以及-gitee-账号" class="headerlink" title="需要工具: PicGo 以及 gitee 账号"></a>需要工具: PicGo 以及 gitee 账号</h4><h4 id="1-下载PicGo"><a href="#1-下载PicGo" class="headerlink" title="1.下载PicGo"></a>1.下载PicGo</h4><p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a>  </p>
+<h4 id="2-创建一个仓库和密钥"><a href="#2-创建一个仓库和密钥" class="headerlink" title="2.创建一个仓库和密钥"></a>2.创建一个仓库和密钥</h4><p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png"><br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png"></p>
+<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects"><a href="#创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects" class="headerlink" title="创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects"></a>创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png"><br>生成的令牌只会显示一次，务必记好!!!!</p>
+<h4 id="3-配置PicGo"><a href="#3-配置PicGo" class="headerlink" title="3.配置PicGo"></a>3.配置PicGo</h4><p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png"><br>然后重启PicGo 在插件设置中找到gitee<br>repo: 填写用户名/仓库名<br>branch: master<br>token: 填写刚刚的访问令牌<br>path: 想上传到gitee的目录<br>customPath和customURL不用填写<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png"><br>点击确定和设为默认图床</p>
+<p> ！！大功告成！！  </p>
+<h4 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4.使用方式"></a>4.使用方式</h4><p>直接将图片拖拽到上传区即可<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png"><br>此时在文档中ctrl+v即可粘贴URL<br>此时去gitee仓库即可看到<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png"><br>PicgoCDN加速设置方法：<br><a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
+<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241"><a href="#参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241" class="headerlink" title="参考及鸣谢：https://blog.csdn.net/disilll/article/details/103962241"></a>参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>]]></content>
       <tags>
-        <tag>hexo</tag>
+        <tag>图床</tag>
+        <tag>Picgo</tag>
       </tags>
   </entry>
   <entry>
@@ -460,19 +457,22 @@ Power failure
       </tags>
   </entry>
   <entry>
-    <title>如何在gitee上做一个图床</title>
-    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？"><a href="#如何在gitee上部署一个图床给自己markdown文本使用？" class="headerlink" title="如何在gitee上部署一个图床给自己markdown文本使用？"></a>如何在gitee上部署一个图床给自己markdown文本使用？</h3><p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况<br>gitee缺点：图片需要小于1M外链才能访问，本人已经换了github图床<br>但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见本文末尾<br><strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
-<h4 id="需要工具-PicGo-以及-gitee-账号"><a href="#需要工具-PicGo-以及-gitee-账号" class="headerlink" title="需要工具: PicGo 以及 gitee 账号"></a>需要工具: PicGo 以及 gitee 账号</h4><h4 id="1-下载PicGo"><a href="#1-下载PicGo" class="headerlink" title="1.下载PicGo"></a>1.下载PicGo</h4><p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a>  </p>
-<h4 id="2-创建一个仓库和密钥"><a href="#2-创建一个仓库和密钥" class="headerlink" title="2.创建一个仓库和密钥"></a>2.创建一个仓库和密钥</h4><p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png"><br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png"></p>
-<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects"><a href="#创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects" class="headerlink" title="创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects"></a>创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png"><br>生成的令牌只会显示一次，务必记好!!!!</p>
-<h4 id="3-配置PicGo"><a href="#3-配置PicGo" class="headerlink" title="3.配置PicGo"></a>3.配置PicGo</h4><p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png"><br>然后重启PicGo 在插件设置中找到gitee<br>repo: 填写用户名/仓库名<br>branch: master<br>token: 填写刚刚的访问令牌<br>path: 想上传到gitee的目录<br>customPath和customURL不用填写<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png"><br>点击确定和设为默认图床</p>
-<p> ！！大功告成！！  </p>
-<h4 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4.使用方式"></a>4.使用方式</h4><p>直接将图片拖拽到上传区即可<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png"><br>此时在文档中ctrl+v即可粘贴URL<br>此时去gitee仓库即可看到<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png"><br>PicgoCDN加速设置方法：<br><a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
-<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241"><a href="#参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241" class="headerlink" title="参考及鸣谢：https://blog.csdn.net/disilll/article/details/103962241"></a>参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>]]></content>
+    <title>hexo遇到的一些问题</title>
+    <url>/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="此文章为使用hexo过程中遇到的问题"><a href="#此文章为使用hexo过程中遇到的问题" class="headerlink" title="此文章为使用hexo过程中遇到的问题"></a>此文章为使用hexo过程中遇到的问题</h2><span id="more"></span>
+<h2 id="问题1-Error-Spwan-failed"><a href="#问题1-Error-Spwan-failed" class="headerlink" title="问题1: Error: Spwan failed"></a>问题1: Error: Spwan failed</h2><h4 id="有时在把本地文件用hexo-d推到远端时会发生如下情况"><a href="#有时在把本地文件用hexo-d推到远端时会发生如下情况" class="headerlink" title="有时在把本地文件用hexo d推到远端时会发生如下情况"></a>有时在把本地文件用hexo d推到远端时会发生如下情况</h4><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222237.png"><br>解决方式:<br>删除.deploy_git和public文件夹,然后输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>即可</p>
+<h2 id="问题2-ERROR-Deployer-not-found-git"><a href="#问题2-ERROR-Deployer-not-found-git" class="headerlink" title="问题2: ERROR Deployer not found: git"></a>问题2: ERROR Deployer not found: git</h2><p>如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222246.png"><br>解决方式：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+<p>即可</p>
+]]></content>
       <tags>
-        <tag>图床</tag>
-        <tag>Picgo</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
