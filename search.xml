@@ -101,6 +101,48 @@
       </tags>
   </entry>
   <entry>
+    <title>Java</title>
+    <url>/2021/06/02/Java/</url>
+    <content><![CDATA[<p>记录一些Java重要内容</p>
+<span id="more"></span>
+<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
+<ol>
+<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
+</ol>
+<ul>
+<li>key: 键</li>
+<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
+</ul>
+<ol start="2">
+<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
+<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
+<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
+</ol>
+<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
+<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><details>
+<summary>"String、StringBuffer、StringBuilder区别"</summary>
+<pre><code>
+1. String
+String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
+在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是**生成了一个新的实例，将a指向了这个新的实例**，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收
+2. StringBuffer
+StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，
+通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。
+一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure>
+3. StringBuilder
+StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。 
+不同的是：**StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。**
+</code></pre>
+<details>
+#### Queue的用法:
+https://www.runoob.com/java/data-queue.html]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo搭建教程</title>
     <url>/2021/03/21/Hexo%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<p> 今天学习用hexo部署博客,记录一下过程</p>
@@ -165,58 +207,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java</title>
-    <url>/2021/06/02/Java/</url>
-    <content><![CDATA[<p>记录一些Java重要内容</p>
-<span id="more"></span>
-<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
-<ol>
-<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
-</ol>
-<ul>
-<li>key: 键</li>
-<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
-</ul>
-<ol start="2">
-<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
-<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
-<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
-</ol>
-<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
-<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><details>
-<summary>"String、StringBuffer、StringBuilder区别"</summary>
-<pre><code>
-1. String
-String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
-在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是**生成了一个新的实例，将a指向了这个新的实例**，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收
-2. StringBuffer
-StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，
-通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。
-一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure>
-3. StringBuilder
-StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。 
-不同的是：**StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。**
-</code></pre>
-<details>
-#### Queue的用法:
-https://www.runoob.com/java/data-queue.html]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown</title>
-    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
-<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux指令</title>
     <url>/2021/06/02/Linux%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>记录一些Linux重要指令</p>
@@ -243,75 +233,7 @@ https://www.runoob.com/java/data-queue.html]]></content>
 </ol>
 <p>sig：准备发送的信号代码，假如其值为零则没有任何信号送出，但是系统会执行错误检查，通常会利用sig值为零来检验某个进程是否仍在执行。</p>
 <p>返回值说明： 成功执行时，返回0。失败返回-1，errno被设为以下的某个值 EINVAL：指定的信号码无效（参数 sig 不合法） EPERM；权限不够无法传送信号给指定进程 ESRCH：参数 pid 所指定的进程或进程组不存在  </p>
-<details>
-<summary>sig的值有(点击展开)</summary>
-<pre>
-1. SIGHUP
-本信号在用户终端连接(正常或非正常)结束时发出, 通常是在终端的控制进程结束时, 通知同一session内的各个作业, 这时它们与控制终端不再关联。  
-登录Linux时，系统会分配给登录用户一个终端(Session)。在这个终端运行的所有程序，包括前台进程组和后台进程组，一般都属于这个 Session。当用户退出Linux登录时，前台进程组和后台有对终端输出的进程将会收到SIGHUP信号。这个信号的默认操作为终止进程，因此前台进程组和后台有终端输出的进程就会中止。不过可以捕获这个信号，比如wget能捕获SIGHUP信号，并忽略它，这样就算退出了Linux登录，wget也能继续下载。  
-此外，对于与终端脱离关系的守护进程，这个信号用于通知它重新读取配置文件。
-2. SIGINT
-程序终止(interrupt)信号, 在用户键入INTR字符(通常是Ctrl-C)时发出，用于通知前台进程组终止进程。
-3. SIGQUIT
-和SIGINT类似, 但由QUIT字符(通常是Ctrl-\)来控制. 进程在因收到SIGQUIT退出时会产生core文件, 在这个意义上类似于一个程序错误信号。
-4. SIGILL
-执行了非法指令. 通常是因为可执行文件本身出现错误, 或者试图执行数据段. 堆栈溢出时也有可能产生这个信号。
-5. SIGTRAP
-由断点指令或其它trap指令产生. 由debugger使用。
-6. SIGABRT
-调用abort函数生成的信号。
-7. SIGBUS
-非法地址, 包括内存地址对齐(alignment)出错。比如访问一个四个字长的整数, 但其地址不是4的倍数。它与SIGSEGV的区别在于后者是由于对合法存储地址的非法访问触发的(如访问不属于自己存储空间或只读存储空间)。
-8. SIGFPE
-在发生致命的算术运算错误时发出. 不仅包括浮点运算错误, 还包括溢出及除数为0等其它所有的算术的错误。
-9. SIGKILL
-用来立即结束程序的运行. 本信号不能被阻塞、处理和忽略。如果管理员发现某个进程终止不了，可尝试发送这个信号。
-10. SIGUSR1
-留给用户使用
-11. SIGSEGV
-试图访问未分配给自己的内存, 或试图往没有写权限的内存地址写数据.
-12. SIGUSR2
-留给用户使用
-13. SIGPIPE
-管道破裂。这个信号通常在进程间通信产生，比如采用FIFO(管道)通信的两个进程，读管道没打开或者意外终止就往管道写，写进程会收到SIGPIPE信号。此外用Socket通信的两个进程，写进程在写Socket的时候，读进程已经终止。
-14. SIGALRM
-时钟定时信号, 计算的是实际的时间或时钟时间. alarm函数使用该信号.
-15. SIGTERM
-程序结束(terminate)信号, 与SIGKILL不同的是该信号可以被阻塞和处理。通常用来要求程序自己正常退出，shell命令kill缺省产生这个信号。如果进程终止不了，我们才会尝试SIGKILL。
-17. SIGCHLD
-子进程结束时, 父进程会收到这个信号。
-如果父进程没有处理这个信号，也没有等待(wait)子进程，子进程虽然终止，但是还会在内核进程表中占有表项，这时的子进程称为僵尸进程。这种情况我们应该避免(父进程或者忽略SIGCHILD信号，或者捕捉它，或者wait它派生的子进程，或者父进程先终止，这时子进程的终止自动由init进程来接管)。
-18. SIGCONT
-让一个停止(stopped)的进程继续执行. 本信号不能被阻塞. 可以用一个handler来让程序在由stopped状态变为继续执行时完成特定的工作. 例如, 重新显示提示符
-19. SIGSTOP
-停止(stopped)进程的执行. 注意它和terminate以及interrupt的区别:该进程还未结束, 只是暂停执行. 本信号不能被阻塞, 处理或忽略.
-20. SIGTSTP
-停止进程的运行, 但该信号可以被处理和忽略. 用户键入SUSP字符时(通常是Ctrl-Z)发出这个信号
-21. SIGTTIN
-当后台作业要从用户终端读数据时, 该作业中的所有进程会收到SIGTTIN信号. 缺省时这些进程会停止执行.
-22. SIGTTOU
-类似于SIGTTIN, 但在写终端(或修改终端模式)时收到.
-23. SIGURG
-有”紧急”数据或out-of-band数据到达socket时产生.
-24. SIGXCPU
-超过CPU时间资源限制. 这个限制可以由getrlimit/setrlimit来读取/改变。
-25. SIGXFSZ
-当进程企图扩大文件以至于超过文件大小资源限制。
-26. SIGVTALRM
-虚拟时钟信号. 类似于SIGALRM, 但是计算的是该进程占用的CPU时间.
-27. SIGPROF
-类似于SIGALRM/SIGVTALRM, 但包括该进程用的CPU时间以及系统调用的时间.
-28. SIGWINCH
-窗口大小改变时发出.
-29. SIGIO
-文件描述符准备就绪, 可以开始进行输入/输出操作.
-30. SIGPWR
-Power failure
-31. SIGSYS
-非法的系统调用。  
-</pre>
-</details>
-
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. SIGHUP</span><br><span class="line">本信号在用户终端连接(正常或非正常)结束时发出, 通常是在终端的控制进程结束时, 通知同一session内的各个作业, 这时它们与控制终端不再关联。  </span><br><span class="line">登录Linux时，系统会分配给登录用户一个终端(Session)。在这个终端运行的所有程序，包括前台进程组和后台进程组，一般都属于这个 Session。当用户退出Linux登录时，前台进程组和后台有对终端输出的进程将会收到SIGHUP信号。这个信号的默认操作为终止进程，因此前台进程组和后台有终端输出的进程就会中止。不过可以捕获这个信号，比如wget能捕获SIGHUP信号，并忽略它，这样就算退出了Linux登录，wget也能继续下载。  </span><br><span class="line">此外，对于与终端脱离关系的守护进程，这个信号用于通知它重新读取配置文件。</span><br><span class="line">2. SIGINT</span><br><span class="line">程序终止(interrupt)信号, 在用户键入INTR字符(通常是Ctrl-C)时发出，用于通知前台进程组终止进程。</span><br><span class="line">3. SIGQUIT</span><br><span class="line">和SIGINT类似, 但由QUIT字符(通常是Ctrl-\)来控制. 进程在因收到SIGQUIT退出时会产生core文件, 在这个意义上类似于一个程序错误信号。</span><br><span class="line">4. SIGILL</span><br><span class="line">执行了非法指令. 通常是因为可执行文件本身出现错误, 或者试图执行数据段. 堆栈溢出时也有可能产生这个信号。</span><br><span class="line">5. SIGTRAP</span><br><span class="line">由断点指令或其它trap指令产生. 由debugger使用。</span><br><span class="line">6. SIGABRT</span><br><span class="line">调用abort函数生成的信号。</span><br><span class="line">7. SIGBUS</span><br><span class="line">非法地址, 包括内存地址对齐(alignment)出错。比如访问一个四个字长的整数, 但其地址不是4的倍数。它与SIGSEGV的区别在于后者是由于对合法存储地址的非法访问触发的(如访问不属于自己存储空间或只读存储空间)。</span><br><span class="line">8. SIGFPE</span><br><span class="line">在发生致命的算术运算错误时发出. 不仅包括浮点运算错误, 还包括溢出及除数为0等其它所有的算术的错误。</span><br><span class="line">9. SIGKILL</span><br><span class="line">用来立即结束程序的运行. 本信号不能被阻塞、处理和忽略。如果管理员发现某个进程终止不了，可尝试发送这个信号。</span><br><span class="line">10. SIGUSR1</span><br><span class="line">留给用户使用</span><br><span class="line">11. SIGSEGV</span><br><span class="line">试图访问未分配给自己的内存, 或试图往没有写权限的内存地址写数据.</span><br><span class="line">12. SIGUSR2</span><br><span class="line">留给用户使用</span><br><span class="line">13. SIGPIPE</span><br><span class="line">管道破裂。这个信号通常在进程间通信产生，比如采用FIFO(管道)通信的两个进程，读管道没打开或者意外终止就往管道写，写进程会收到SIGPIPE信号。此外用Socket通信的两个进程，写进程在写Socket的时候，读进程已经终止。</span><br><span class="line">14. SIGALRM</span><br><span class="line">时钟定时信号, 计算的是实际的时间或时钟时间. alarm函数使用该信号.</span><br><span class="line">15. SIGTERM</span><br><span class="line">程序结束(terminate)信号, 与SIGKILL不同的是该信号可以被阻塞和处理。通常用来要求程序自己正常退出，shell命令kill缺省产生这个信号。如果进程终止不了，我们才会尝试SIGKILL。</span><br><span class="line">17. SIGCHLD</span><br><span class="line">子进程结束时, 父进程会收到这个信号。</span><br><span class="line">如果父进程没有处理这个信号，也没有等待(wait)子进程，子进程虽然终止，但是还会在内核进程表中占有表项，这时的子进程称为僵尸进程。这种情况我们应该避免(父进程或者忽略SIGCHILD信号，或者捕捉它，或者wait它派生的子进程，或者父进程先终止，这时子进程的终止自动由init进程来接管)。</span><br><span class="line">18. SIGCONT</span><br><span class="line">让一个停止(stopped)的进程继续执行. 本信号不能被阻塞. 可以用一个handler来让程序在由stopped状态变为继续执行时完成特定的工作. 例如, 重新显示提示符</span><br><span class="line">19. SIGSTOP</span><br><span class="line">停止(stopped)进程的执行. 注意它和terminate以及interrupt的区别:该进程还未结束, 只是暂停执行. 本信号不能被阻塞, 处理或忽略.</span><br><span class="line">20. SIGTSTP</span><br><span class="line">停止进程的运行, 但该信号可以被处理和忽略. 用户键入SUSP字符时(通常是Ctrl-Z)发出这个信号</span><br><span class="line">21. SIGTTIN</span><br><span class="line">当后台作业要从用户终端读数据时, 该作业中的所有进程会收到SIGTTIN信号. 缺省时这些进程会停止执行.</span><br><span class="line">22. SIGTTOU</span><br><span class="line">类似于SIGTTIN, 但在写终端(或修改终端模式)时收到.</span><br><span class="line">23. SIGURG</span><br><span class="line">有”紧急”数据或out-of-band数据到达socket时产生.</span><br><span class="line">24. SIGXCPU</span><br><span class="line">超过CPU时间资源限制. 这个限制可以由getrlimit&#x2F;setrlimit来读取&#x2F;改变。</span><br><span class="line">25. SIGXFSZ</span><br><span class="line">当进程企图扩大文件以至于超过文件大小资源限制。</span><br><span class="line">26. SIGVTALRM</span><br><span class="line">虚拟时钟信号. 类似于SIGALRM, 但是计算的是该进程占用的CPU时间.</span><br><span class="line">27. SIGPROF</span><br><span class="line">类似于SIGALRM&#x2F;SIGVTALRM, 但包括该进程用的CPU时间以及系统调用的时间.</span><br><span class="line">28. SIGWINCH</span><br><span class="line">窗口大小改变时发出.</span><br><span class="line">29. SIGIO</span><br><span class="line">文件描述符准备就绪, 可以开始进行输入&#x2F;输出操作.</span><br><span class="line">30. SIGPWR</span><br><span class="line">Power failure</span><br><span class="line">31. SIGSYS</span><br><span class="line">非法的系统调用。</span><br></pre></td></tr></table></figure>
 
 
 <p>在以上列出的信号中，程序不可捕获、阻塞或忽略的信号有：SIGKILL,SIGSTOP<br>不能恢复至默认动作的信号有：SIGILL,SIGTRAP<br>默认会导致进程流产的信号有：SIGABRT,SIGBUS,SIGFPE,SIGILL,SIGIOT,SIGQUIT,SIGSEGV,SIGTRAP,SIGXCPU,SIGXFSZ<br>默认会导致进程退出的信号有：SIGALRM,SIGHUP,SIGINT,SIGKILL,SIGPIPE,SIGPOLL,SIGPROF,SIGSYS,SIGTERM,SIGUSR1,SIGUSR2,SIGVTALRM<br>默认会导致进程停止的信号有：SIGSTOP,SIGTSTP,SIGTTIN,SIGTTOU<br>默认进程忽略的信号有：SIGCHLD,SIGPWR,SIGURG,SIGWINCH<br>kill、killall<br>这两个命令是用来向进程发送信号的。kill 命令需要进程号作为参数，而 killall 需要进程名称。<br>另外，还可以在这两个命令后附加要发送信号序号作为参数。默认情况下，它们都向相关进程发送信号 15 (TERM)。例如，如果你想要终止 PID 为 785 的进程，请输入以下命令：<br>$ kill 785<br>如果您要向它发送信号 19 (STOP)，请输入：<br>$ kill -19 785<br>假设您知道想要终止的进程的命令名称。您可以通过该名称来终止它，而不用再使用 ps 找出该进程的进程号：<br>$ killall -9 mozilla</p>
@@ -351,6 +273,16 @@ Power failure
 ]]></content>
       <tags>
         <tag>Visual Studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown</title>
+    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
+<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -414,6 +346,35 @@ Power failure
       </tags>
   </entry>
   <entry>
+    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
+    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
+<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
+]]></content>
+      <tags>
+        <tag>XFTP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo遇到的一些问题</title>
+    <url>/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="此文章为使用hexo过程中遇到的问题"><a href="#此文章为使用hexo过程中遇到的问题" class="headerlink" title="此文章为使用hexo过程中遇到的问题"></a>此文章为使用hexo过程中遇到的问题</h2><span id="more"></span>
+<h2 id="问题1-Error-Spwan-failed"><a href="#问题1-Error-Spwan-failed" class="headerlink" title="问题1: Error: Spwan failed"></a>问题1: Error: Spwan failed</h2><h4 id="有时在把本地文件用hexo-d推到远端时会发生如下情况"><a href="#有时在把本地文件用hexo-d推到远端时会发生如下情况" class="headerlink" title="有时在把本地文件用hexo d推到远端时会发生如下情况"></a>有时在把本地文件用hexo d推到远端时会发生如下情况</h4><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222237.png"><br>解决方式:<br>删除.deploy_git和public文件夹,然后输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>即可</p>
+<h2 id="问题2-ERROR-Deployer-not-found-git"><a href="#问题2-ERROR-Deployer-not-found-git" class="headerlink" title="问题2: ERROR Deployer not found: git"></a>问题2: ERROR Deployer not found: git</h2><p>如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222246.png"><br>解决方式：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+<p>即可</p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>各种教程和参考</title>
     <url>/2021/06/07/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E6%95%99%E7%A8%8B%E5%92%8C%E5%8F%82%E8%80%83/</url>
     <content><![CDATA[<h4 id="nvm-nodejs版本管理工具-使用方式："><a href="#nvm-nodejs版本管理工具-使用方式：" class="headerlink" title="nvm(nodejs版本管理工具)使用方式："></a>nvm(nodejs版本管理工具)使用方式：</h4><p><a href="https://www.cnblogs.com/gaozejie/p/10689742.html">https://www.cnblogs.com/gaozejie/p/10689742.html</a></p>
@@ -444,35 +405,6 @@ Power failure
       <tags>
         <tag>图床</tag>
         <tag>Picgo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo遇到的一些问题</title>
-    <url>/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="此文章为使用hexo过程中遇到的问题"><a href="#此文章为使用hexo过程中遇到的问题" class="headerlink" title="此文章为使用hexo过程中遇到的问题"></a>此文章为使用hexo过程中遇到的问题</h2><span id="more"></span>
-<h2 id="问题1-Error-Spwan-failed"><a href="#问题1-Error-Spwan-failed" class="headerlink" title="问题1: Error: Spwan failed"></a>问题1: Error: Spwan failed</h2><h4 id="有时在把本地文件用hexo-d推到远端时会发生如下情况"><a href="#有时在把本地文件用hexo-d推到远端时会发生如下情况" class="headerlink" title="有时在把本地文件用hexo d推到远端时会发生如下情况"></a>有时在把本地文件用hexo d推到远端时会发生如下情况</h4><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222237.png"><br>解决方式:<br>删除.deploy_git和public文件夹,然后输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>即可</p>
-<h2 id="问题2-ERROR-Deployer-not-found-git"><a href="#问题2-ERROR-Deployer-not-found-git" class="headerlink" title="问题2: ERROR Deployer not found: git"></a>问题2: ERROR Deployer not found: git</h2><p>如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222246.png"><br>解决方式：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>即可</p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
-    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
-<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
-]]></content>
-      <tags>
-        <tag>XFTP</tag>
       </tags>
   </entry>
 </search>
