@@ -33,35 +33,6 @@
       </tags>
   </entry>
   <entry>
-    <title>git备忘录</title>
-    <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.email&#x3D;&quot;此处填邮箱&quot;</span><br><span class="line">git config --global user.name&#x3D;&quot;此处用用户名&quot;&#x2F;&#x2F;这两步为第一次使用git需要</span><br></pre></td></tr></table></figure>
-<p>在要上传的目录初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>添加要上传的文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .(此为添加所有文件,把‘.’改为文件名即可自己挑选文件)</span><br></pre></td></tr></table></figure>
-<p>提交</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;此处为版本等附加信息&quot;</span><br></pre></td></tr></table></figure>
-<p>添加远程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin &quot;此处为仓库URL地址&quot;</span><br></pre></td></tr></table></figure>
-<p>推送</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><p>查看git配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-<p>查看git全局配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
-<p>查看git远程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote show</span><br></pre></td></tr></table></figure>
-<p>删除git远程仓库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
-<p>其余随使用逐渐添加，未完待续</p>
-]]></content>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GDB</title>
     <url>/2021/04/14/GDB%E5%A4%87%E5%BF%98%E5%BD%95/</url>
     <content><![CDATA[<h3 id="GDB使用方式"><a href="#GDB使用方式" class="headerlink" title="GDB使用方式"></a>GDB使用方式</h3><span id="more"></span>
@@ -162,6 +133,35 @@
 ]]></content>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git备忘录</title>
+    <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.email&#x3D;&quot;此处填邮箱&quot;</span><br><span class="line">git config --global user.name&#x3D;&quot;此处用用户名&quot;&#x2F;&#x2F;这两步为第一次使用git需要</span><br></pre></td></tr></table></figure>
+<p>在要上传的目录初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>添加要上传的文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .(此为添加所有文件,把‘.’改为文件名即可自己挑选文件)</span><br></pre></td></tr></table></figure>
+<p>提交</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;此处为版本等附加信息&quot;</span><br></pre></td></tr></table></figure>
+<p>添加远程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin &quot;此处为仓库URL地址&quot;</span><br></pre></td></tr></table></figure>
+<p>推送</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><p>查看git配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<p>查看git全局配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+<p>查看git远程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote show</span><br></pre></td></tr></table></figure>
+<p>删除git远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
+<p>其余随使用逐渐添加，未完待续</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -333,16 +333,6 @@ Power failure
       </tags>
   </entry>
   <entry>
-    <title>Markdown</title>
-    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
-<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Visual Studio备忘录</title>
     <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
     <content><![CDATA[<p>Visual Studio</p>
@@ -351,6 +341,16 @@ Power failure
 ]]></content>
       <tags>
         <tag>Visual Studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown</title>
+    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
+<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -433,6 +433,16 @@ Power failure
       </tags>
   </entry>
   <entry>
+    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
+    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
+<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
+]]></content>
+      <tags>
+        <tag>XFTP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>各种教程和参考</title>
     <url>/2021/06/07/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E6%95%99%E7%A8%8B%E5%92%8C%E5%8F%82%E8%80%83/</url>
     <content><![CDATA[<h4 id="nvm-nodejs版本管理工具-使用方式："><a href="#nvm-nodejs版本管理工具-使用方式：" class="headerlink" title="nvm(nodejs版本管理工具)使用方式："></a>nvm(nodejs版本管理工具)使用方式：</h4><p><a href="https://www.cnblogs.com/gaozejie/p/10689742.html">https://www.cnblogs.com/gaozejie/p/10689742.html</a></p>
@@ -447,16 +457,6 @@ Power failure
       <tags>
         <tag>hexo</tag>
         <tag>nvm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
-    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
-<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
-]]></content>
-      <tags>
-        <tag>XFTP</tag>
       </tags>
   </entry>
   <entry>
