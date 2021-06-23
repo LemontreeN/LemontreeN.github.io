@@ -207,6 +207,17 @@ https://www.runoob.com/java/data-queue.html]]></content>
       </tags>
   </entry>
   <entry>
+    <title>Visual Studio备忘录</title>
+    <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<p>Visual Studio</p>
+<span id="more"></span>
+<p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
+]]></content>
+      <tags>
+        <tag>Visual Studio</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux指令</title>
     <url>/2021/06/02/Linux%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>记录一些Linux重要指令</p>
@@ -335,27 +346,6 @@ https://www.runoob.com/java/data-queue.html]]></content>
       </tags>
   </entry>
   <entry>
-    <title>Visual Studio备忘录</title>
-    <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<p>Visual Studio</p>
-<span id="more"></span>
-<p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
-]]></content>
-      <tags>
-        <tag>Visual Studio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
-    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
-<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
-]]></content>
-      <tags>
-        <tag>XFTP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo遇到的一些问题</title>
     <url>/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h2 id="此文章为使用hexo过程中遇到的问题"><a href="#此文章为使用hexo过程中遇到的问题" class="headerlink" title="此文章为使用hexo过程中遇到的问题"></a>此文章为使用hexo过程中遇到的问题</h2><span id="more"></span>
@@ -372,6 +362,32 @@ https://www.runoob.com/java/data-queue.html]]></content>
 ]]></content>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
+    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
+<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
+]]></content>
+      <tags>
+        <tag>XFTP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在gitee上做一个图床</title>
+    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？"><a href="#如何在gitee上部署一个图床给自己markdown文本使用？" class="headerlink" title="如何在gitee上部署一个图床给自己markdown文本使用？"></a>如何在gitee上部署一个图床给自己markdown文本使用？</h3><p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况<br>gitee缺点：图片需要小于1M外链才能访问，本人已经换了github图床<br>但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见本文末尾<br><strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
+<h4 id="需要工具-PicGo-以及-gitee-账号"><a href="#需要工具-PicGo-以及-gitee-账号" class="headerlink" title="需要工具: PicGo 以及 gitee 账号"></a>需要工具: PicGo 以及 gitee 账号</h4><h4 id="1-下载PicGo"><a href="#1-下载PicGo" class="headerlink" title="1.下载PicGo"></a>1.下载PicGo</h4><p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a>  </p>
+<h4 id="2-创建一个仓库和密钥"><a href="#2-创建一个仓库和密钥" class="headerlink" title="2.创建一个仓库和密钥"></a>2.创建一个仓库和密钥</h4><p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png"><br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png"></p>
+<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects"><a href="#创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects" class="headerlink" title="创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects"></a>创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png"><br>生成的令牌只会显示一次，务必记好!!!!</p>
+<h4 id="3-配置PicGo"><a href="#3-配置PicGo" class="headerlink" title="3.配置PicGo"></a>3.配置PicGo</h4><p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png"><br>然后重启PicGo 在插件设置中找到gitee<br>repo: 填写用户名/仓库名<br>branch: master<br>token: 填写刚刚的访问令牌<br>path: 想上传到gitee的目录<br>customPath和customURL不用填写<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png"><br>点击确定和设为默认图床</p>
+<p> ！！大功告成！！  </p>
+<h4 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4.使用方式"></a>4.使用方式</h4><p>直接将图片拖拽到上传区即可<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png"><br>此时在文档中ctrl+v即可粘贴URL<br>此时去gitee仓库即可看到<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png"><br>PicgoCDN加速设置方法：<br><a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
+<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241"><a href="#参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241" class="headerlink" title="参考及鸣谢：https://blog.csdn.net/disilll/article/details/103962241"></a>参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>]]></content>
+      <tags>
+        <tag>图床</tag>
+        <tag>Picgo</tag>
       </tags>
   </entry>
   <entry>
@@ -392,22 +408,6 @@ https://www.runoob.com/java/data-queue.html]]></content>
       </tags>
   </entry>
   <entry>
-    <title>如何在gitee上做一个图床</title>
-    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？"><a href="#如何在gitee上部署一个图床给自己markdown文本使用？" class="headerlink" title="如何在gitee上部署一个图床给自己markdown文本使用？"></a>如何在gitee上部署一个图床给自己markdown文本使用？</h3><p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况<br>gitee缺点：图片需要小于1M外链才能访问，本人已经换了github图床<br>但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见本文末尾<br><strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
-<h4 id="需要工具-PicGo-以及-gitee-账号"><a href="#需要工具-PicGo-以及-gitee-账号" class="headerlink" title="需要工具: PicGo 以及 gitee 账号"></a>需要工具: PicGo 以及 gitee 账号</h4><h4 id="1-下载PicGo"><a href="#1-下载PicGo" class="headerlink" title="1.下载PicGo"></a>1.下载PicGo</h4><p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a>  </p>
-<h4 id="2-创建一个仓库和密钥"><a href="#2-创建一个仓库和密钥" class="headerlink" title="2.创建一个仓库和密钥"></a>2.创建一个仓库和密钥</h4><p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png"><br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png"></p>
-<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects"><a href="#创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects" class="headerlink" title="创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects"></a>创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png"><br>生成的令牌只会显示一次，务必记好!!!!</p>
-<h4 id="3-配置PicGo"><a href="#3-配置PicGo" class="headerlink" title="3.配置PicGo"></a>3.配置PicGo</h4><p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png"><br>然后重启PicGo 在插件设置中找到gitee<br>repo: 填写用户名/仓库名<br>branch: master<br>token: 填写刚刚的访问令牌<br>path: 想上传到gitee的目录<br>customPath和customURL不用填写<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png"><br>点击确定和设为默认图床</p>
-<p> ！！大功告成！！  </p>
-<h4 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4.使用方式"></a>4.使用方式</h4><p>直接将图片拖拽到上传区即可<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png"><br>此时在文档中ctrl+v即可粘贴URL<br>此时去gitee仓库即可看到<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png"><br>PicgoCDN加速设置方法：<br><a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
-<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241"><a href="#参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241" class="headerlink" title="参考及鸣谢：https://blog.csdn.net/disilll/article/details/103962241"></a>参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>]]></content>
-      <tags>
-        <tag>图床</tag>
-        <tag>Picgo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HIT CSAPP大作业</title>
     <url>/2021/06/23/CSAPP/</url>
     <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/20210623144315.png"></p>
@@ -421,7 +421,7 @@ https://www.runoob.com/java/data-queue.html]]></content>
 </thead>
 <tbody><tr>
 <td align="center">题目</td>
-<td align="center">程序人生-Hello’s P2P</td>
+<td align="center">程序人生Hello’s P2P</td>
 </tr>
 <tr>
 <td align="center">专业</td>
