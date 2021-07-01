@@ -17,45 +17,6 @@
       </tags>
   </entry>
   <entry>
-    <title>GDB</title>
-    <url>/2021/04/14/GDB%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="GDB使用方式"><a href="#GDB使用方式" class="headerlink" title="GDB使用方式"></a>GDB使用方式</h3><span id="more"></span>
-<p>使用条件：目标为可执行文件<br>注意事项：仅使用 gcc（或 g++）命令编译生成的可执行文件，是无法借助 GDB 进行调试的。<br>原因：使用 GDB 调试某个可执行文件，该文件中必须包含必要的调试信息（比如各行代码所在的行号、包含程序中所有变量名称的列表（又称为符号表）等）</p>
-<p>那么，如何生成符合 GDB 调试要求的可执行文件呢？很简单，只需要使用 gcc -g 选项编译源文件，即可生成满足 GDB 要求的可执行文件。<br>即可使用 GDB 进行调试。</p>
-<p>值得一提的是，GCC 编译器支持 -O（等于同 -O1，优化生成的目标文件）和 -g 一起参与编译。GCC 编译过程对进行优化的程度可分为 5 个等级，分别为 O0~O4，O0 表示不优化（默认选项），从 O1 ~ O4 优化级别越来越高，O4 最高。<br>所谓优化，例如省略掉代码中从未使用过的变量、直接将常量表达式用结果值代替等等，这些操作会缩减目标文件所包含的代码量，提高最终生成的可执行文件的运行效率。</p>
-<p>而相对于 -O -g 选项，对 GDB 调试器更友好的是 -Og 选项，-Og 对代码所做的优化程序介于 O0 ~ O1 之间，真正可做到“在保持快速编译和良好调试体验的同时，提供较为合理的优化级别”。</p>
-<h3 id="GDB命令"><a href="#GDB命令" class="headerlink" title="GDB命令"></a>GDB命令</h3><p>（gdb）help：查看命令帮助，具体命令查询在gdb中输入help + 命令,简写h</p>
-<p>（gdb）run：重新开始运行文件（run-text：加载文本文件，run-bin：加载二进制文件）,简写r</p>
-<p>（gdb）start：单步执行，运行程序，停在第一执行语句</p>
-<p>（gdb）list：查看原代码（list-n,从第n行开始查看代码。list+ 函数名：查看具体函数）,简写l</p>
-<p>（gdb）set：设置变量的值</p>
-<p>（gdb）next：单步调试（逐过程，函数直接执行）,简写n</p>
-<p>（gdb）step：单步调试（逐语句：跳入自定义函数内部执行）,简写s</p>
-<p>（gdb）backtrace：查看函数的调用的栈帧和层级关系,简写bt</p>
-<p>（gdb）frame：切换函数的栈帧,简写f</p>
-<p>（gdb）info：查看函数内部局部变量的数值,简写i</p>
-<p>（gdb）finish：结束当前函数，返回到函数调用点</p>
-<p>（gdb）continue：继续运行,运行到下一个断点,简写c</p>
-<p>（gdb）print：打印值及地址,简写p</p>
-<p>（gdb）quit：退出gdb,简写q</p>
-<p>（gdb）break+num：在第num行设置断点,简写b</p>
-<p> 也可以b+函数名or地址</p>
-<p>（gdb）info breakpoints：查看当前设置的所有断点</p>
-<p>（gdb）delete breakpoints num：删除第num个断点,简写d</p>
-<p>（gdb）display：追踪查看具体变量值</p>
-<p>（gdb）undisplay：取消追踪观察变量</p>
-<p>（gdb）watch：被设置观察点的变量发生修改时，打印显示</p>
-<p>（gdb）i watch：显示观察点</p>
-<p>（gdb）enable breakpoints：启用断点</p>
-<p>（gdb）disable breakpoints：禁用断点</p>
-<p>（gdb）x：查看内存x/20xw 显示20个单元，16进制，4字节每单元</p>
-<p>（gdb）run argv[1] argv[2]：调试时命令行传参</p>
-]]></content>
-      <tags>
-        <tag>GDB</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux_GCC下用32位模式编译C程序</title>
     <url>/2021/03/27/GCC32%E4%BD%8D%E7%BC%96%E8%AF%91C%E7%A8%8B%E5%BA%8F/</url>
     <content><![CDATA[<h2 id="怎么在GCC下用32位模式编译C程序？"><a href="#怎么在GCC下用32位模式编译C程序？" class="headerlink" title="怎么在GCC下用32位模式编译C程序？"></a>怎么在GCC下用32位模式编译C程序？</h2><span id="more"></span>
@@ -69,6 +30,35 @@
 ]]></content>
       <tags>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git备忘录</title>
+    <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.email&#x3D;&quot;此处填邮箱&quot;</span><br><span class="line">git config --global user.name&#x3D;&quot;此处用用户名&quot;&#x2F;&#x2F;这两步为第一次使用git需要</span><br></pre></td></tr></table></figure>
+<p>在要上传的目录初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>添加要上传的文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .(此为添加所有文件,把‘.’改为文件名即可自己挑选文件)</span><br></pre></td></tr></table></figure>
+<p>提交</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;此处为版本等附加信息&quot;</span><br></pre></td></tr></table></figure>
+<p>添加远程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin &quot;此处为仓库URL地址&quot;</span><br></pre></td></tr></table></figure>
+<p>推送</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><p>查看git配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<p>查看git全局配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+<p>查看git远程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote show</span><br></pre></td></tr></table></figure>
+<p>删除git远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
+<p>其余随使用逐渐添加，未完待续</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -136,32 +126,42 @@
       </tags>
   </entry>
   <entry>
-    <title>git备忘录</title>
-    <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.email&#x3D;&quot;此处填邮箱&quot;</span><br><span class="line">git config --global user.name&#x3D;&quot;此处用用户名&quot;&#x2F;&#x2F;这两步为第一次使用git需要</span><br></pre></td></tr></table></figure>
-<p>在要上传的目录初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>添加要上传的文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .(此为添加所有文件,把‘.’改为文件名即可自己挑选文件)</span><br></pre></td></tr></table></figure>
-<p>提交</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;此处为版本等附加信息&quot;</span><br></pre></td></tr></table></figure>
-<p>添加远程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin &quot;此处为仓库URL地址&quot;</span><br></pre></td></tr></table></figure>
-<p>推送</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><p>查看git配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-<p>查看git全局配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
-<p>查看git远程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote show</span><br></pre></td></tr></table></figure>
-<p>删除git远程仓库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
-<p>其余随使用逐渐添加，未完待续</p>
+    <title>GDB</title>
+    <url>/2021/04/14/GDB%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="GDB使用方式"><a href="#GDB使用方式" class="headerlink" title="GDB使用方式"></a>GDB使用方式</h3><span id="more"></span>
+<p>使用条件：目标为可执行文件<br>注意事项：仅使用 gcc（或 g++）命令编译生成的可执行文件，是无法借助 GDB 进行调试的。<br>原因：使用 GDB 调试某个可执行文件，该文件中必须包含必要的调试信息（比如各行代码所在的行号、包含程序中所有变量名称的列表（又称为符号表）等）</p>
+<p>那么，如何生成符合 GDB 调试要求的可执行文件呢？很简单，只需要使用 gcc -g 选项编译源文件，即可生成满足 GDB 要求的可执行文件。<br>即可使用 GDB 进行调试。</p>
+<p>值得一提的是，GCC 编译器支持 -O（等于同 -O1，优化生成的目标文件）和 -g 一起参与编译。GCC 编译过程对进行优化的程度可分为 5 个等级，分别为 O0~O4，O0 表示不优化（默认选项），从 O1 ~ O4 优化级别越来越高，O4 最高。<br>所谓优化，例如省略掉代码中从未使用过的变量、直接将常量表达式用结果值代替等等，这些操作会缩减目标文件所包含的代码量，提高最终生成的可执行文件的运行效率。</p>
+<p>而相对于 -O -g 选项，对 GDB 调试器更友好的是 -Og 选项，-Og 对代码所做的优化程序介于 O0 ~ O1 之间，真正可做到“在保持快速编译和良好调试体验的同时，提供较为合理的优化级别”。</p>
+<h3 id="GDB命令"><a href="#GDB命令" class="headerlink" title="GDB命令"></a>GDB命令</h3><p>（gdb）help：查看命令帮助，具体命令查询在gdb中输入help + 命令,简写h</p>
+<p>（gdb）run：重新开始运行文件（run-text：加载文本文件，run-bin：加载二进制文件）,简写r</p>
+<p>（gdb）start：单步执行，运行程序，停在第一执行语句</p>
+<p>（gdb）list：查看原代码（list-n,从第n行开始查看代码。list+ 函数名：查看具体函数）,简写l</p>
+<p>（gdb）set：设置变量的值</p>
+<p>（gdb）next：单步调试（逐过程，函数直接执行）,简写n</p>
+<p>（gdb）step：单步调试（逐语句：跳入自定义函数内部执行）,简写s</p>
+<p>（gdb）backtrace：查看函数的调用的栈帧和层级关系,简写bt</p>
+<p>（gdb）frame：切换函数的栈帧,简写f</p>
+<p>（gdb）info：查看函数内部局部变量的数值,简写i</p>
+<p>（gdb）finish：结束当前函数，返回到函数调用点</p>
+<p>（gdb）continue：继续运行,运行到下一个断点,简写c</p>
+<p>（gdb）print：打印值及地址,简写p</p>
+<p>（gdb）quit：退出gdb,简写q</p>
+<p>（gdb）break+num：在第num行设置断点,简写b</p>
+<p> 也可以b+函数名or地址</p>
+<p>（gdb）info breakpoints：查看当前设置的所有断点</p>
+<p>（gdb）delete breakpoints num：删除第num个断点,简写d</p>
+<p>（gdb）display：追踪查看具体变量值</p>
+<p>（gdb）undisplay：取消追踪观察变量</p>
+<p>（gdb）watch：被设置观察点的变量发生修改时，打印显示</p>
+<p>（gdb）i watch：显示观察点</p>
+<p>（gdb）enable breakpoints：启用断点</p>
+<p>（gdb）disable breakpoints：禁用断点</p>
+<p>（gdb）x：查看内存x/20xw 显示20个单元，16进制，4字节每单元</p>
+<p>（gdb）run argv[1] argv[2]：调试时命令行传参</p>
 ]]></content>
       <tags>
-        <tag>git</tag>
+        <tag>GDB</tag>
       </tags>
   </entry>
   <entry>
@@ -183,25 +183,21 @@
 <li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
 </ol>
 <h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
-<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><details>
-<summary>"String、StringBuffer、StringBuilder区别"</summary>
-<pre><code>
-1. String
-String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
-在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是**生成了一个新的实例，将a指向了这个新的实例**，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收
-2. StringBuffer
-StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，
-通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。
-一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure>
-3. StringBuilder
-StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。 
-不同的是：**StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。**
-</code></pre>
-<details>
-#### Queue的用法:
-https://www.runoob.com/java/data-queue.html]]></content>
+<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><ol>
+<li>String<br>String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
+在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是<strong>生成了一个新的实例，将a指向了这个新的实例</strong>，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收</li>
+<li>StringBuffer<br>StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，<br>通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。<br>一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure></li>
+<li>StringBuilder<br>StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。<br>不同的是：<strong>StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。</strong></li>
+</ol>
+<h4 id="Queue的用法"><a href="#Queue的用法" class="headerlink" title="Queue的用法:"></a>Queue的用法:</h4><p><a href="https://www.runoob.com/java/data-queue.html">https://www.runoob.com/java/data-queue.html</a></p>
+<h4 id="关于日期格式的判断"><a href="#关于日期格式的判断" class="headerlink" title="关于日期格式的判断"></a>关于日期格式的判断</h4><blockquote>
+<p>日期格式为2020-01-03，若格式为2020/01/03，可修改为yyyy/MM/dd,注意MM为大写<br>完整类型 yyyy-MM-dd HH:mm:ss</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.text.ParseException;</span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line">public class Parser &#123;</span><br><span class="line"></span><br><span class="line">	&#x2F;**</span><br><span class="line">	 * 检查读入的日期是否符合要求</span><br><span class="line">	 * @param S 读入的待判断的日期字符串</span><br><span class="line">	 * @return 符合要求返回true,否则返回false</span><br><span class="line">	 *&#x2F;</span><br><span class="line">	public boolean checkInput(String S) &#123;</span><br><span class="line">		boolean convertSuccess &#x3D; true;</span><br><span class="line">		SimpleDateFormat format &#x3D; new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);&#x2F;&#x2F;yyyy&#x2F;MM&#x2F;dd</span><br><span class="line">		try &#123;</span><br><span class="line">			format.setLenient(false);&#x2F;&#x2F; 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007&#x2F;02&#x2F;29会被接受，并转换成2007&#x2F;03&#x2F;01</span><br><span class="line">			format.parse(S);</span><br><span class="line">		&#125; catch (ParseException e) &#123;</span><br><span class="line">			convertSuccess &#x3D; false;</span><br><span class="line">		&#125;</span><br><span class="line">		return convertSuccess;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关于Scanner异常：java-util-NoSuchElementException-No-line-found"><a href="#关于Scanner异常：java-util-NoSuchElementException-No-line-found" class="headerlink" title="关于Scanner异常：java.util.NoSuchElementException: No line found"></a>关于Scanner异常：java.util.NoSuchElementException: No line found</h4><p>可能是同时开启了多个Scanner指向同一位置，如</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Scanner sc1&#x3D;new Scanner(System.in);</span><br><span class="line">Scanner sc2&#x3D;new Scanner(System.in);</span><br></pre></td></tr></table></figure>
+<p>当关闭其中一个Scanner时，System.in也会关闭，导致另一个Scanner异常</p>
+]]></content>
       <tags>
         <tag>Java</tag>
       </tags>
@@ -265,27 +261,6 @@ https://www.runoob.com/java/data-queue.html]]></content>
       </tags>
   </entry>
   <entry>
-    <title>Markdown</title>
-    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
-<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Visual Studio备忘录</title>
-    <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<p>Visual Studio</p>
-<span id="more"></span>
-<p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
-]]></content>
-      <tags>
-        <tag>Visual Studio</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vscode上Git的配置和使用</title>
     <url>/2021/03/26/Vscode%E4%B8%8AGit%E7%9A%84%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h4 id="需要的工具：Vscode-和-Git"><a href="#需要的工具：Vscode-和-Git" class="headerlink" title="需要的工具：Vscode  和  Git"></a>需要的工具：Vscode  和  Git</h4><span id="more"></span>
@@ -343,6 +318,27 @@ https://www.runoob.com/java/data-queue.html]]></content>
       <tags>
         <tag>git</tag>
         <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown</title>
+    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
+<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Visual Studio备忘录</title>
+    <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<p>Visual Studio</p>
+<span id="more"></span>
+<p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
+]]></content>
+      <tags>
+        <tag>Visual Studio</tag>
       </tags>
   </entry>
   <entry>
