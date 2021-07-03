@@ -33,32 +33,102 @@
       </tags>
   </entry>
   <entry>
-    <title>git备忘录</title>
-    <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.email&#x3D;&quot;此处填邮箱&quot;</span><br><span class="line">git config --global user.name&#x3D;&quot;此处用用户名&quot;&#x2F;&#x2F;这两步为第一次使用git需要</span><br></pre></td></tr></table></figure>
-<p>在要上传的目录初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>添加要上传的文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .(此为添加所有文件,把‘.’改为文件名即可自己挑选文件)</span><br></pre></td></tr></table></figure>
-<p>提交</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;此处为版本等附加信息&quot;</span><br></pre></td></tr></table></figure>
-<p>添加远程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin &quot;此处为仓库URL地址&quot;</span><br></pre></td></tr></table></figure>
-<p>推送</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><p>查看git配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-<p>查看git全局配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
-<p>查看git远程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote show</span><br></pre></td></tr></table></figure>
-<p>删除git远程仓库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
-<p>其余随使用逐渐添加，未完待续</p>
+    <title>GDB</title>
+    <url>/2021/04/14/GDB%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="GDB使用方式"><a href="#GDB使用方式" class="headerlink" title="GDB使用方式"></a>GDB使用方式</h3><span id="more"></span>
+<p>使用条件：目标为可执行文件<br>注意事项：仅使用 gcc（或 g++）命令编译生成的可执行文件，是无法借助 GDB 进行调试的。<br>原因：使用 GDB 调试某个可执行文件，该文件中必须包含必要的调试信息（比如各行代码所在的行号、包含程序中所有变量名称的列表（又称为符号表）等）</p>
+<p>那么，如何生成符合 GDB 调试要求的可执行文件呢？很简单，只需要使用 gcc -g 选项编译源文件，即可生成满足 GDB 要求的可执行文件。<br>即可使用 GDB 进行调试。</p>
+<p>值得一提的是，GCC 编译器支持 -O（等于同 -O1，优化生成的目标文件）和 -g 一起参与编译。GCC 编译过程对进行优化的程度可分为 5 个等级，分别为 O0~O4，O0 表示不优化（默认选项），从 O1 ~ O4 优化级别越来越高，O4 最高。<br>所谓优化，例如省略掉代码中从未使用过的变量、直接将常量表达式用结果值代替等等，这些操作会缩减目标文件所包含的代码量，提高最终生成的可执行文件的运行效率。</p>
+<p>而相对于 -O -g 选项，对 GDB 调试器更友好的是 -Og 选项，-Og 对代码所做的优化程序介于 O0 ~ O1 之间，真正可做到“在保持快速编译和良好调试体验的同时，提供较为合理的优化级别”。</p>
+<h3 id="GDB命令"><a href="#GDB命令" class="headerlink" title="GDB命令"></a>GDB命令</h3><p>（gdb）help：查看命令帮助，具体命令查询在gdb中输入help + 命令,简写h</p>
+<p>（gdb）run：重新开始运行文件（run-text：加载文本文件，run-bin：加载二进制文件）,简写r</p>
+<p>（gdb）start：单步执行，运行程序，停在第一执行语句</p>
+<p>（gdb）list：查看原代码（list-n,从第n行开始查看代码。list+ 函数名：查看具体函数）,简写l</p>
+<p>（gdb）set：设置变量的值</p>
+<p>（gdb）next：单步调试（逐过程，函数直接执行）,简写n</p>
+<p>（gdb）step：单步调试（逐语句：跳入自定义函数内部执行）,简写s</p>
+<p>（gdb）backtrace：查看函数的调用的栈帧和层级关系,简写bt</p>
+<p>（gdb）frame：切换函数的栈帧,简写f</p>
+<p>（gdb）info：查看函数内部局部变量的数值,简写i</p>
+<p>（gdb）finish：结束当前函数，返回到函数调用点</p>
+<p>（gdb）continue：继续运行,运行到下一个断点,简写c</p>
+<p>（gdb）print：打印值及地址,简写p</p>
+<p>（gdb）quit：退出gdb,简写q</p>
+<p>（gdb）break+num：在第num行设置断点,简写b</p>
+<p> 也可以b+函数名or地址</p>
+<p>（gdb）info breakpoints：查看当前设置的所有断点</p>
+<p>（gdb）delete breakpoints num：删除第num个断点,简写d</p>
+<p>（gdb）display：追踪查看具体变量值</p>
+<p>（gdb）undisplay：取消追踪观察变量</p>
+<p>（gdb）watch：被设置观察点的变量发生修改时，打印显示</p>
+<p>（gdb）i watch：显示观察点</p>
+<p>（gdb）enable breakpoints：启用断点</p>
+<p>（gdb）disable breakpoints：禁用断点</p>
+<p>（gdb）x：查看内存x/20xw 显示20个单元，16进制，4字节每单元</p>
+<p>（gdb）run argv[1] argv[2]：调试时命令行传参</p>
 ]]></content>
       <tags>
-        <tag>git</tag>
+        <tag>GDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java</title>
+    <url>/2021/06/02/Java/</url>
+    <content><![CDATA[<p>记录一些Java重要内容</p>
+<span id="more"></span>
+<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
+<ol>
+<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
+</ol>
+<ul>
+<li>key: 键</li>
+<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
+</ul>
+<ol start="2">
+<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
+<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
+<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
+</ol>
+<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
+<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><ol>
+<li>String<br>String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
+在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是<strong>生成了一个新的实例，将a指向了这个新的实例</strong>，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收</li>
+<li>StringBuffer<br>StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，<br>通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。<br>一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure></li>
+<li>StringBuilder<br>StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。<br>不同的是：<strong>StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。</strong></li>
+</ol>
+<h4 id="Queue的用法"><a href="#Queue的用法" class="headerlink" title="Queue的用法:"></a>Queue的用法:</h4><p><a href="https://www.runoob.com/java/data-queue.html">https://www.runoob.com/java/data-queue.html</a></p>
+<h4 id="关于日期格式的判断"><a href="#关于日期格式的判断" class="headerlink" title="关于日期格式的判断"></a>关于日期格式的判断</h4><blockquote>
+<p>日期格式为2020-01-03，若格式为2020/01/03，可修改为yyyy/MM/dd,注意MM为大写<br>完整类型 yyyy-MM-dd HH:mm:ss<br>@return 若解析成功，返回对应的Date类型,解析失败返回null</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.text.ParseException;</span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class Parser &#123;</span><br><span class="line">	public Date checkInput(String S) &#123;</span><br><span class="line">		Date date &#x3D; null;</span><br><span class="line">		SimpleDateFormat format &#x3D; new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span><br><span class="line">		try &#123;</span><br><span class="line">			format.setLenient(false);</span><br><span class="line">			&#x2F;&#x2F; 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007&#x2F;02&#x2F;29会被接受，并转换成2007&#x2F;03&#x2F;01</span><br><span class="line">			date &#x3D; format.parse(S);</span><br><span class="line">		&#125; catch (ParseException e) &#123;</span><br><span class="line">			return null;</span><br><span class="line">		&#125;</span><br><span class="line">		return date;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关于Scanner异常：java-util-NoSuchElementException-No-line-found"><a href="#关于Scanner异常：java-util-NoSuchElementException-No-line-found" class="headerlink" title="关于Scanner异常：java.util.NoSuchElementException: No line found"></a>关于Scanner异常：java.util.NoSuchElementException: No line found</h4><p>可能是同时开启了多个Scanner指向同一位置，如</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Scanner sc1&#x3D;new Scanner(System.in);</span><br><span class="line">Scanner sc2&#x3D;new Scanner(System.in);</span><br></pre></td></tr></table></figure>
+<p>当关闭其中一个Scanner时，System.in也会关闭，导致另一个Scanner异常</p>
+<h4 id="Java随机数生成"><a href="#Java随机数生成" class="headerlink" title="Java随机数生成"></a>Java随机数生成</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int Random() &#123;</span><br><span class="line">		int i &#x3D; IDs.size();</span><br><span class="line">		int min &#x3D; 1, max &#x3D; 1000;</span><br><span class="line">		int random &#x3D; (int) (Math.random() * (max - min) + min);&#x2F;&#x2F;生成min到max的随机数</span><br><span class="line">		return random % i;&#x2F;&#x2F;生成0到i-1的随机数</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关于ArrayList排序器"><a href="#关于ArrayList排序器" class="headerlink" title="关于ArrayList排序器"></a>关于ArrayList排序器</h4><blockquote>
+<p>单一参数排序<br>例如对进程表Processes中所有进程号进行排序</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Collections.sort(Processes, new Comparator&lt;Process&gt;() &#123;</span><br><span class="line">				@Override</span><br><span class="line">				public int compare(Process o1, Process o2) &#123;</span><br><span class="line">					if (o1.number &gt;&#x3D; o2.number) &#123;</span><br><span class="line">						return 1;</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">						return -1;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>多参数排序<br>例如优先按照进程号，其次按照进程剩余时间大小排序<br>TODO</p>
+</blockquote>
+<h4 id="关于-split-Illegal-repetition-near-index-1-报错"><a href="#关于-split-Illegal-repetition-near-index-1-报错" class="headerlink" title="关于 split:Illegal repetition near index 1 报错"></a>关于 split:Illegal repetition near index 1 报错</h4><blockquote>
+<p>关于Split用法：<a href="https://www.runoob.com/java/java-string-split.html">https://www.runoob.com/java/java-string-split.html</a><br>发生原因：split中的某些字符需要转义</p>
+</blockquote>
+<p>例如<code>strs=s.split(&quot;&#123;&quot;);</code><br>需改为<code>strs=s.split(&quot;\\&#123;&#125;&quot;);</code></p>
+<h4 id="关于正则表达式匹配"><a href="#关于正则表达式匹配" class="headerlink" title="关于正则表达式匹配"></a>关于正则表达式匹配</h4><blockquote>
+<p>软件构造实验Lab3的一些收获<br>以软件构造Lab3的文本举例<br>正则表达式匹配速查：<a href="https://www.runoob.com/java/java-regular-expressions.html">https://www.runoob.com/java/java-regular-expressions.html</a></p>
+</blockquote>
+<p>希望匹配如下文本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Employee&#123; </span><br><span class="line">ZhangSan&#123;Manger,139-0451-0000&#125;</span><br><span class="line">LiSi&#123;Secretary,151-0101-0000&#125;</span><br><span class="line">WangWu&#123;Associate Dean,177-2021-0301&#125;</span><br><span class="line">ZhaoLiua&#123;Professor,138-1920-3912&#125;</span><br><span class="line">ZhaoLiub&#123;Lecturer,138-1921-3912&#125;</span><br><span class="line">ZhaoLiuc&#123;Professor,138-1922-3912&#125;</span><br><span class="line">ZhaoLiud&#123;Lecturer,198-1920-3912&#125;</span><br><span class="line">ZhaoLiue&#123;Professor,178-1920-3912&#125;</span><br><span class="line">ZhaoLiuf&#123;Lecturer,138-1929-3912&#125;</span><br><span class="line">ZhaoLiug&#123;Professor,138-1920-0000&#125;</span><br><span class="line">ZhaoLiuh&#123;AssciateProfessor,138-1929-0000&#125;</span><br><span class="line">ZhaoLiui&#123;Professor,138-1920-0200&#125;</span><br><span class="line">ZhaoLiuj&#123;AssciateProfessor,138-1920-0044&#125;</span><br><span class="line">ZhaoLiuk&#123;Professor,188-1920-0000&#125;</span><br><span class="line">&#125;</span><br><span class="line">Period&#123;2021-01-10,2021-03-06&#125;</span><br><span class="line">Roster&#123; </span><br><span class="line">ZhangSan&#123;2021-01-10,2021-01-11&#125;</span><br><span class="line">LiSi&#123;2021-01-12,2021-01-20&#125;</span><br><span class="line">WangWu&#123;2021-01-21,2021-01-21&#125;</span><br><span class="line">ZhaoLiua&#123;2021-01-22,2021-01-22&#125;</span><br><span class="line">ZhaoLiub&#123;2021-01-23,2021-01-29&#125;</span><br><span class="line">ZhaoLiuc&#123;2021-01-30,2021-01-31&#125;</span><br><span class="line">ZhaoLiud&#123;2021-02-01,2021-02-08&#125;</span><br><span class="line">ZhaoLiue&#123;2021-02-09,2021-02-15&#125;</span><br><span class="line">ZhaoLiuf&#123;2021-02-16,2021-02-24&#125;</span><br><span class="line">ZhaoLiug&#123;2021-02-25,2021-02-28&#125;</span><br><span class="line">ZhaoLiuh&#123;2021-03-01,2021-03-01&#125;</span><br><span class="line">ZhaoLiui&#123;2021-03-02,2021-03-04&#125;</span><br><span class="line">ZhaoLiuj&#123;2021-03-05,2021-03-05&#125;</span><br><span class="line">ZhaoLiuk&#123;2021-03-06,2021-03-06&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>则可以构造6个模式串进行匹配</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Pattern pattern1 &#x3D; Pattern.compile(&quot;(Period)\\&#123;(2021-[01][0-9]-[0123][0-9],2021-[01][0-9]-[0123][0-9])\\&#125;&quot;);</span><br><span class="line">&#x2F;&#x2F; 匹配&quot;Period&#123;2021-01-10,2021-03-06&#125;&quot;</span><br><span class="line"></span><br><span class="line">Pattern pattern2 &#x3D; Pattern.compile(&quot;(\\D*)\\&#123;(\\D*),([0-9]&#123;3&#125;-[0-9]&#123;4&#125;-[0-9]&#123;4&#125;)\\&#125;&quot;);</span><br><span class="line">&#x2F;&#x2F; 匹配&quot;ZhangSan&#123;Manger,139-0451-0000&#125;&quot;</span><br><span class="line"></span><br><span class="line">Pattern pattern3 &#x3D; Pattern.compile(&quot;(\\D*)\\&#123;([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9]),([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9])\\&#125;&quot;);</span><br><span class="line">&#x2F;&#x2F; 匹配&quot;ZhangSan&#123;2021-01-10,2021-01-11&#125;&quot;</span><br><span class="line"></span><br><span class="line">Pattern pattern4 &#x3D; Pattern.compile(&quot;(Employee)\\&#123; &quot;);</span><br><span class="line">&#x2F;&#x2F; 匹配&quot;Employee&#123; &quot;</span><br><span class="line"></span><br><span class="line">Pattern pattern5 &#x3D; Pattern.compile(&quot;(Roster)\\&#123; &quot;);</span><br><span class="line">&#x2F;&#x2F; 匹配&quot;Roster&#123; &quot;</span><br><span class="line"></span><br><span class="line">Pattern pattern6 &#x3D; Pattern.compile(&quot;\\&#125;&quot;);</span><br><span class="line">&#x2F;&#x2F; 匹配&quot;&#125;&quot;</span><br></pre></td></tr></table></figure>
+<p>之后利用捕获组match.group()得到可用信息并进行处理即可</p>
+<p>举例： 若文本为String str=”ZhangSan{Manger,139-0451-0000}”<br>则该行文本匹配模式串2,并会产生3个捕获组:<br>分别为ZhangSan / Manager / 139-0451-0000<br>由此得到了一个员工的信息</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -126,83 +196,6 @@
       </tags>
   </entry>
   <entry>
-    <title>GDB</title>
-    <url>/2021/04/14/GDB%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="GDB使用方式"><a href="#GDB使用方式" class="headerlink" title="GDB使用方式"></a>GDB使用方式</h3><span id="more"></span>
-<p>使用条件：目标为可执行文件<br>注意事项：仅使用 gcc（或 g++）命令编译生成的可执行文件，是无法借助 GDB 进行调试的。<br>原因：使用 GDB 调试某个可执行文件，该文件中必须包含必要的调试信息（比如各行代码所在的行号、包含程序中所有变量名称的列表（又称为符号表）等）</p>
-<p>那么，如何生成符合 GDB 调试要求的可执行文件呢？很简单，只需要使用 gcc -g 选项编译源文件，即可生成满足 GDB 要求的可执行文件。<br>即可使用 GDB 进行调试。</p>
-<p>值得一提的是，GCC 编译器支持 -O（等于同 -O1，优化生成的目标文件）和 -g 一起参与编译。GCC 编译过程对进行优化的程度可分为 5 个等级，分别为 O0~O4，O0 表示不优化（默认选项），从 O1 ~ O4 优化级别越来越高，O4 最高。<br>所谓优化，例如省略掉代码中从未使用过的变量、直接将常量表达式用结果值代替等等，这些操作会缩减目标文件所包含的代码量，提高最终生成的可执行文件的运行效率。</p>
-<p>而相对于 -O -g 选项，对 GDB 调试器更友好的是 -Og 选项，-Og 对代码所做的优化程序介于 O0 ~ O1 之间，真正可做到“在保持快速编译和良好调试体验的同时，提供较为合理的优化级别”。</p>
-<h3 id="GDB命令"><a href="#GDB命令" class="headerlink" title="GDB命令"></a>GDB命令</h3><p>（gdb）help：查看命令帮助，具体命令查询在gdb中输入help + 命令,简写h</p>
-<p>（gdb）run：重新开始运行文件（run-text：加载文本文件，run-bin：加载二进制文件）,简写r</p>
-<p>（gdb）start：单步执行，运行程序，停在第一执行语句</p>
-<p>（gdb）list：查看原代码（list-n,从第n行开始查看代码。list+ 函数名：查看具体函数）,简写l</p>
-<p>（gdb）set：设置变量的值</p>
-<p>（gdb）next：单步调试（逐过程，函数直接执行）,简写n</p>
-<p>（gdb）step：单步调试（逐语句：跳入自定义函数内部执行）,简写s</p>
-<p>（gdb）backtrace：查看函数的调用的栈帧和层级关系,简写bt</p>
-<p>（gdb）frame：切换函数的栈帧,简写f</p>
-<p>（gdb）info：查看函数内部局部变量的数值,简写i</p>
-<p>（gdb）finish：结束当前函数，返回到函数调用点</p>
-<p>（gdb）continue：继续运行,运行到下一个断点,简写c</p>
-<p>（gdb）print：打印值及地址,简写p</p>
-<p>（gdb）quit：退出gdb,简写q</p>
-<p>（gdb）break+num：在第num行设置断点,简写b</p>
-<p> 也可以b+函数名or地址</p>
-<p>（gdb）info breakpoints：查看当前设置的所有断点</p>
-<p>（gdb）delete breakpoints num：删除第num个断点,简写d</p>
-<p>（gdb）display：追踪查看具体变量值</p>
-<p>（gdb）undisplay：取消追踪观察变量</p>
-<p>（gdb）watch：被设置观察点的变量发生修改时，打印显示</p>
-<p>（gdb）i watch：显示观察点</p>
-<p>（gdb）enable breakpoints：启用断点</p>
-<p>（gdb）disable breakpoints：禁用断点</p>
-<p>（gdb）x：查看内存x/20xw 显示20个单元，16进制，4字节每单元</p>
-<p>（gdb）run argv[1] argv[2]：调试时命令行传参</p>
-]]></content>
-      <tags>
-        <tag>GDB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java</title>
-    <url>/2021/06/02/Java/</url>
-    <content><![CDATA[<p>记录一些Java重要内容</p>
-<span id="more"></span>
-<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
-<ol>
-<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
-</ol>
-<ul>
-<li>key: 键</li>
-<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
-</ul>
-<ol start="2">
-<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
-<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
-<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
-</ol>
-<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
-<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><ol>
-<li>String<br>String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String a &#x3D; &quot;123&quot;;</span><br><span class="line">a &#x3D; &quot;456&quot;;</span><br><span class="line">&#x2F;&#x2F; 打印出来的a为456</span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
-在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是<strong>生成了一个新的实例，将a指向了这个新的实例</strong>，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收</li>
-<li>StringBuffer<br>StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，<br>通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。<br>一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">StringBuffer b &#x3D; new StringBuffer(&quot;123&quot;);</span><br><span class="line">b.append(&quot;456&quot;);</span><br><span class="line">&#x2F;&#x2F; b打印结果为：123456</span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure></li>
-<li>StringBuilder<br>StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。<br>不同的是：<strong>StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。</strong></li>
-</ol>
-<h4 id="Queue的用法"><a href="#Queue的用法" class="headerlink" title="Queue的用法:"></a>Queue的用法:</h4><p><a href="https://www.runoob.com/java/data-queue.html">https://www.runoob.com/java/data-queue.html</a></p>
-<h4 id="关于日期格式的判断"><a href="#关于日期格式的判断" class="headerlink" title="关于日期格式的判断"></a>关于日期格式的判断</h4><blockquote>
-<p>日期格式为2020-01-03，若格式为2020/01/03，可修改为yyyy/MM/dd,注意MM为大写<br>完整类型 yyyy-MM-dd HH:mm:ss</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.text.ParseException;</span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line">public class Parser &#123;</span><br><span class="line"></span><br><span class="line">	&#x2F;**</span><br><span class="line">	 * 检查读入的日期是否符合要求</span><br><span class="line">	 * @param S 读入的待判断的日期字符串</span><br><span class="line">	 * @return 符合要求返回true,否则返回false</span><br><span class="line">	 *&#x2F;</span><br><span class="line">	public boolean checkInput(String S) &#123;</span><br><span class="line">		boolean convertSuccess &#x3D; true;</span><br><span class="line">		SimpleDateFormat format &#x3D; new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);&#x2F;&#x2F;yyyy&#x2F;MM&#x2F;dd</span><br><span class="line">		try &#123;</span><br><span class="line">			format.setLenient(false);&#x2F;&#x2F; 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007&#x2F;02&#x2F;29会被接受，并转换成2007&#x2F;03&#x2F;01</span><br><span class="line">			format.parse(S);</span><br><span class="line">		&#125; catch (ParseException e) &#123;</span><br><span class="line">			convertSuccess &#x3D; false;</span><br><span class="line">		&#125;</span><br><span class="line">		return convertSuccess;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="关于Scanner异常：java-util-NoSuchElementException-No-line-found"><a href="#关于Scanner异常：java-util-NoSuchElementException-No-line-found" class="headerlink" title="关于Scanner异常：java.util.NoSuchElementException: No line found"></a>关于Scanner异常：java.util.NoSuchElementException: No line found</h4><p>可能是同时开启了多个Scanner指向同一位置，如</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Scanner sc1&#x3D;new Scanner(System.in);</span><br><span class="line">Scanner sc2&#x3D;new Scanner(System.in);</span><br></pre></td></tr></table></figure>
-<p>当关闭其中一个Scanner时，System.in也会关闭，导致另一个Scanner异常</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux指令</title>
     <url>/2021/06/02/Linux%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>记录一些Linux重要指令</p>
@@ -258,6 +251,68 @@
       <tags>
         <tag>Linux</tag>
         <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git备忘录</title>
+    <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.email&#x3D;&quot;此处填邮箱&quot;</span><br><span class="line">git config --global user.name&#x3D;&quot;此处用用户名&quot;&#x2F;&#x2F;这两步为第一次使用git需要</span><br></pre></td></tr></table></figure>
+<p>在要上传的目录初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>添加要上传的文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .(此为添加所有文件,把‘.’改为文件名即可自己挑选文件)</span><br></pre></td></tr></table></figure>
+<p>提交</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;此处为版本等附加信息&quot;</span><br></pre></td></tr></table></figure>
+<p>添加远程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin &quot;此处为仓库URL地址&quot;</span><br></pre></td></tr></table></figure>
+<p>推送</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><p>查看当前分支</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<p>切换分支</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout change &#x2F;&#x2F;切换到change分支</span><br></pre></td></tr></table></figure>
+<p>创建新分支并切换</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout -b change &#x2F;&#x2F;创建名为change的分支并切换到change分支</span><br></pre></td></tr></table></figure>
+<p>查看git提交记录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git log  &#x2F;&#x2F;Git bash界面</span><br><span class="line">gitk     &#x2F;&#x2F;图形化界面</span><br></pre></td></tr></table></figure>
+<p>查看git目前仓库地址</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote show +&quot;远程仓库名&quot;</span><br><span class="line">如</span><br><span class="line">git remote show origin</span><br></pre></td></tr></table></figure>
+<p>查看git配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<p>查看git全局配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+<p>查看git远程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote show</span><br></pre></td></tr></table></figure>
+<p>删除git远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其余随使用逐渐添加，未完待续</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Visual Studio备忘录</title>
+    <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<p>Visual Studio</p>
+<span id="more"></span>
+<p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
+]]></content>
+      <tags>
+        <tag>Visual Studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown</title>
+    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
+<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -321,24 +376,20 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown</title>
-    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
-<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Visual Studio备忘录</title>
-    <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<p>Visual Studio</p>
-<span id="more"></span>
-<p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
+    <title>各种教程和参考</title>
+    <url>/2021/06/07/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E6%95%99%E7%A8%8B%E5%92%8C%E5%8F%82%E8%80%83/</url>
+    <content><![CDATA[<h4 id="nvm-nodejs版本管理工具-使用方式："><a href="#nvm-nodejs版本管理工具-使用方式：" class="headerlink" title="nvm(nodejs版本管理工具)使用方式："></a>nvm(nodejs版本管理工具)使用方式：</h4><p><a href="https://www.cnblogs.com/gaozejie/p/10689742.html">https://www.cnblogs.com/gaozejie/p/10689742.html</a></p>
+<h4 id="磁盘扩容："><a href="#磁盘扩容：" class="headerlink" title="磁盘扩容："></a>磁盘扩容：</h4><ol>
+<li>磁盘未使用过<br>直接搜索磁盘管理，点击创建并格式化硬盘分区<br>删除释放空间的磁盘，重新分区即可</li>
+<li>磁盘已使用<br>使用Diskgenius：<a href="https://www.diskgenius.cn/">https://www.diskgenius.cn/</a></li>
+</ol>
+<h4 id="hexo-yilia主题配置教程"><a href="#hexo-yilia主题配置教程" class="headerlink" title="hexo-yilia主题配置教程"></a>hexo-yilia主题配置教程</h4><p>文字版<br><a href="https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_%E4%B8%BB%E9%A2%98%E4%B8%80%E6%8F%BD%E5%AD%90%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%A4%B1%E6%A8%A1%E5%9D%97">https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_%E4%B8%BB%E9%A2%98%E4%B8%80%E6%8F%BD%E5%AD%90%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%A4%B1%E6%A8%A1%E5%9D%97</a><br>视频版<br><a href="https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver</a></p>
+<h4 id="hexo-添加live2d看板娘"><a href="#hexo-添加live2d看板娘" class="headerlink" title="hexo-添加live2d看板娘"></a>hexo-添加live2d看板娘</h4><p>效果如下↓↓↓<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources/20210608201035.png"><br>教程：<a href="https://akilar.top/posts/5b8f515f/">https://akilar.top/posts/5b8f515f/</a></p>
+<h4 id="hexo-bufferfly配置"><a href="#hexo-bufferfly配置" class="headerlink" title="hexo-bufferfly配置"></a>hexo-bufferfly配置</h4><p><strong>本人均试过，好教程</strong><br><em>官方文档，建议先看这个，很全</em>：<a href="https://butterfly.js.org/posts/21cfbf15/">https://butterfly.js.org/posts/21cfbf15/</a><br><em>各种魔改</em><a href="https://akilar.top/posts/f99b208/">https://akilar.top/posts/f99b208/</a><br><strong>添加全盘吸底aplayer音乐播放器：</strong><a href="https://butterfly.js.org/posts/507c070f/">https://butterfly.js.org/posts/507c070f/</a></p>
 ]]></content>
       <tags>
-        <tag>Visual Studio</tag>
+        <tag>hexo</tag>
+        <tag>nvm</tag>
       </tags>
   </entry>
   <entry>
@@ -368,23 +419,6 @@
 ]]></content>
       <tags>
         <tag>XFTP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>各种教程和参考</title>
-    <url>/2021/06/07/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E6%95%99%E7%A8%8B%E5%92%8C%E5%8F%82%E8%80%83/</url>
-    <content><![CDATA[<h4 id="nvm-nodejs版本管理工具-使用方式："><a href="#nvm-nodejs版本管理工具-使用方式：" class="headerlink" title="nvm(nodejs版本管理工具)使用方式："></a>nvm(nodejs版本管理工具)使用方式：</h4><p><a href="https://www.cnblogs.com/gaozejie/p/10689742.html">https://www.cnblogs.com/gaozejie/p/10689742.html</a></p>
-<h4 id="磁盘扩容："><a href="#磁盘扩容：" class="headerlink" title="磁盘扩容："></a>磁盘扩容：</h4><ol>
-<li>磁盘未使用过<br>直接搜索磁盘管理，点击创建并格式化硬盘分区<br>删除释放空间的磁盘，重新分区即可</li>
-<li>磁盘已使用<br>使用Diskgenius：<a href="https://www.diskgenius.cn/">https://www.diskgenius.cn/</a></li>
-</ol>
-<h4 id="hexo-yilia主题配置教程"><a href="#hexo-yilia主题配置教程" class="headerlink" title="hexo-yilia主题配置教程"></a>hexo-yilia主题配置教程</h4><p>文字版<br><a href="https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_%E4%B8%BB%E9%A2%98%E4%B8%80%E6%8F%BD%E5%AD%90%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%A4%B1%E6%A8%A1%E5%9D%97">https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_%E4%B8%BB%E9%A2%98%E4%B8%80%E6%8F%BD%E5%AD%90%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%A4%B1%E6%A8%A1%E5%9D%97</a><br>视频版<br><a href="https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver</a></p>
-<h4 id="hexo-添加live2d看板娘"><a href="#hexo-添加live2d看板娘" class="headerlink" title="hexo-添加live2d看板娘"></a>hexo-添加live2d看板娘</h4><p>效果如下↓↓↓<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources/20210608201035.png"><br>教程：<a href="https://akilar.top/posts/5b8f515f/">https://akilar.top/posts/5b8f515f/</a></p>
-<h4 id="hexo-bufferfly配置"><a href="#hexo-bufferfly配置" class="headerlink" title="hexo-bufferfly配置"></a>hexo-bufferfly配置</h4><p><strong>本人均试过，好教程</strong><br><em>官方文档，建议先看这个，很全</em>：<a href="https://butterfly.js.org/posts/21cfbf15/">https://butterfly.js.org/posts/21cfbf15/</a><br><em>各种魔改</em><a href="https://akilar.top/posts/f99b208/">https://akilar.top/posts/f99b208/</a><br><strong>添加全盘吸底aplayer音乐播放器：</strong><a href="https://butterfly.js.org/posts/507c070f/">https://butterfly.js.org/posts/507c070f/</a></p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-        <tag>nvm</tag>
       </tags>
   </entry>
   <entry>
