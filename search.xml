@@ -51,6 +51,9 @@
 <p>（gdb）x：查看内存x/20xw 显示20个单元，16进制，4字节每单元</p>
 <p>（gdb）run argv[1] argv[2]：调试时命令行传参</p>
 ]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
       <tags>
         <tag>GDB</tag>
       </tags>
@@ -92,6 +95,9 @@
 <p>其余随使用逐渐添加，未完待续</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
       <tags>
         <tag>git</tag>
       </tags>
@@ -156,6 +162,9 @@
 <p>即可<br>其他主题方式相同，github上有许多主题<br>此时即可通过github地址进入博客(需等待一小会生效)</p>
 <h2 id="以上为正文全部内容"><a href="#以上为正文全部内容" class="headerlink" title="以上为正文全部内容"></a>以上为正文全部内容</h2><h2 id="参考与鸣谢：B站-codesheep"><a href="#参考与鸣谢：B站-codesheep" class="headerlink" title="参考与鸣谢：B站: codesheep"></a>参考与鸣谢：B站: codesheep</h2><p> <a href="https://www.bilibili.com/video/BV1Yb411a7ty">https://www.bilibili.com/video/BV1Yb411a7ty</a></p>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
       <tags>
         <tag>hexo</tag>
       </tags>
@@ -217,6 +226,9 @@
 <p>之后利用捕获组match.group()得到可用信息并进行处理即可</p>
 <p>举例： 若文本为String str=”ZhangSan{Manger,139-0451-0000}”<br>则该行文本匹配模式串2,并会产生3个捕获组:<br>分别为ZhangSan / Manager / 139-0451-0000<br>由此得到了一个员工的信息</p>
 ]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
       <tags>
         <tag>Java</tag>
       </tags>
@@ -284,9 +296,25 @@
 <li>禁用： systemctl stop firewalld</li>
 </ol>
 ]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
       <tags>
         <tag>Linux</tag>
         <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown</title>
+    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
+<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -300,18 +328,102 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select a.ename,a.sal,a.deptno from EMP a</span><br><span class="line">join (</span><br><span class="line">select deptno, max(sal) as max_sal from EMP group by deptno) b</span><br><span class="line">on a.deptno &#x3D; b.deptno and a.sal &#x3D; b.max_sal;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
       <tags>
         <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
-    <title>Markdown</title>
-    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
-<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
+    <title>PicGo CDN加速方式</title>
+    <url>/2021/07/22/PicGo_CDN/</url>
+    <content><![CDATA[<p><strong>方法：更改自定义域名(最下面圈出来那行)</strong><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723131912.png"><br><strong>改为<a href="https://cdn.jsdelivr.net/gh/%E4%BD%A0%E7%9A%84Github%E5%90%8D/%E4%BD%A0%E7%9A%84%E4%BB%93%E5%BA%93%E5%90%8D@%E9%80%89%E6%8B%A9%E7%9A%84%E5%88%86%E6%94%AF">https://cdn.jsdelivr.net/gh/你的Github名/你的仓库名@选择的分支</a></strong><br><strong>例如: <a href="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master">https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master</a></strong><br>(jsdelivr为一家CDN服务商,免费)<br><strong>Github名为LemontreeN,仓库名为picSources,分支为master</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>PicGo</category>
+      </categories>
       <tags>
-        <tag>Markdown</tag>
+        <tag>CDN</tag>
+        <tag>Picgo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一个Web项目开发的全历程</title>
+    <url>/2021/07/22/Web%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%85%A8%E5%8E%86%E7%A8%8B/</url>
+    <content><![CDATA[<h4 id="0-1环境准备："><a href="#0-1环境准备：" class="headerlink" title="0.1环境准备："></a>0.1环境准备：</h4><blockquote>
+<p>IDEA专业版学生可注册账号申请免费使用<br>xshell和xftp在官网也可以申请免费版<br>NaviCat自行解决<br>其他均为免费或开源<br>安装目录：<br>编辑器：IDEA、Vscode<br>服务器环境：VMware16, CentOS 7<br>所需其他工具：JDK1.8<br>其他软件：NaviCat、ApiPost、xshell、xftp</p>
+</blockquote>
+<p>框架：SpringBoot+MySQL+MyBatisPlus<br>其他:Maven、VueJS、NodeJS、axios、elementUI</p>
+<h4 id="0-2基础知识："><a href="#0-2基础知识：" class="headerlink" title="0.2基础知识："></a>0.2基础知识：</h4><ol>
+<li>Linux常用命令<br>&lt; 此处放doc</li>
+<li>java</li>
+<li>html+css+javaScript</li>
+<li>SpringBoot+MySQL+MyBatisPlus</li>
+<li>Maven</li>
+<li>Vue+axios</li>
+</ol>
+<p><strong>以上在初期均只需要少量必备知识，以下会说到</strong></p>
+<h5 id="1-1-在Linux上安装JDK"><a href="#1-1-在Linux上安装JDK" class="headerlink" title="1.1 在Linux上安装JDK"></a>1.1 在Linux上安装JDK</h5><ol>
+<li>卸载已有的openjdk<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 查看安装的jdk信息</span><br><span class="line">rpm -qa | grep java</span><br><span class="line"># 如果有，则卸载jdk</span><br><span class="line">rpm -e --nodeps java-1.6.0-openjdk-1.6.0.35-1.13.7.1.el6_6.i686</span><br><span class="line">rpm -e --nodeps java-1.7.0-openjdk-1.7.0.79-2.5.5.4.el6.i686</span><br></pre></td></tr></table></figure></li>
+<li>在Linux服务器上安装JDK<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* 直接解压就可以</span><br><span class="line">   tar -xvf jdk-8u131-linux-x64.tar.gz  -C 目标路径</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>安装包自行下载,可以为其他版本,但建议使用java8，本文将全程使用jdk1.8</strong><br>3. 配置JDK的环境变量.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">① vi &#x2F;etc&#x2F;profile</span><br><span class="line">② 在末尾行添加</span><br><span class="line">	#set java environment</span><br><span class="line">	JAVA_HOME&#x3D;&#x2F;root&#x2F;server&#x2F;jdk1.8.0_131</span><br><span class="line">	PATH&#x3D;$JAVA_HOME&#x2F;bin:$PATH</span><br><span class="line">	export JAVA_HOME PATH</span><br><span class="line">保存退出</span><br><span class="line">③source &#x2F;etc&#x2F;profile  使更改的配置立即生效</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>测试是否生效，查看jdk版本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<h5 id="1-2-在Linux上安装MySQL"><a href="#1-2-在Linux上安装MySQL" class="headerlink" title="1.2 在Linux上安装MySQL"></a>1.2 在Linux上安装MySQL</h5></li>
+<li><p>将mysql的安装文件上传到Linux的服务器(文件自行解决)</p>
+</li>
+<li><p>查看linux上是否已经安装了mysql,有则卸载，一般centos7默认安装了mariadb,这里把它卸载。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">查看命令：</span><br><span class="line">rpm -qa|grep mariadb</span><br><span class="line">删除命令：</span><br><span class="line">rpm -e --nodeps mariadb-libs-5.5.52-1.el7.x86_64(此处可能有变化，根据实际情况)</span><br></pre></td></tr></table></figure></li>
+<li><p>解压mysql安装包</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir mysql</span><br><span class="line">tar -xvf mysql-5.7.34-1.el7.x86_64.rpm-bundle.tar -C mysql&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li><p>安装mysql客户端及服务端</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd mysql&#x2F;</span><br><span class="line">rpm -ivh mysql-community-client-5.7.34-1.el7.x86_64.rpm --force --nodeps</span><br><span class="line">rpm -ivh mysql-community-server-5.7.34-1.el7.x86_64.rpm --force --nodeps</span><br></pre></td></tr></table></figure></li>
+<li><p>修改mysql默认字符集</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;my.cnf</span><br></pre></td></tr></table></figure>
+<p>修改部分(注意比对)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">character-set-server&#x3D;utf8</span><br><span class="line">collation-server&#x3D;utf8_general_ci</span><br></pre></td></tr></table></figure>
+<p>并在最下方添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set&#x3D;utf8</span><br></pre></td></tr></table></figure></li>
+<li><p>启动mysql服务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">service mysqld start</span><br></pre></td></tr></table></figure></li>
+<li><p>登录mysql<br>初始密码查看：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cat &#x2F;var&#x2F;log&#x2F;mysqld.log</span><br></pre></td></tr></table></figure>
+<p>在root@localhost:   后面的就是初始密码<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723132030.png"><br>mysql -u root -p  敲回车，输入密码</p>
+</li>
+<li><p>修改mysql登录密码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">set global validate_password_policy&#x3D;0;</span><br><span class="line">set global validate_password_length&#x3D;1;</span><br><span class="line">set password&#x3D;password(&#39;密码&#39;);</span><br></pre></td></tr></table></figure></li>
+<li><p>授予远程连接权限<br>授权</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">grant all privileges on *.* to &#39;root&#39; @&#39;%&#39; identified by &#39;密码&#39;;</span><br></pre></td></tr></table></figure>
+<p>刷新</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure></li>
+<li><p>关闭防火墙并重启</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">service mysqld restart</span><br><span class="line">(关闭防火墙是为了能够远程连接到数据库,事实上只要把相应端口打开即可不需要关闭防火墙)</span><br><span class="line">可自行上网搜索方法</span><br></pre></td></tr></table></figure>
+<h5 id="1-3-在Windows上安装JDK"><a href="#1-3-在Windows上安装JDK" class="headerlink" title="1.3 在Windows上安装JDK"></a>1.3 在Windows上安装JDK</h5><p>下载jdk的Windows版本，此处我仍用jdk1.8<br>下载好并安装，设置环境变量(自行百度)<br>最终在cmd中输入java -version 有版本显示即可</p>
+<h5 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h5><h4 id="2-SQL语句"><a href="#2-SQL语句" class="headerlink" title="2. SQL语句"></a>2. SQL语句</h4><h4 id="SpringBoot简单使用-初次使用"><a href="#SpringBoot简单使用-初次使用" class="headerlink" title="SpringBoot简单使用(初次使用)"></a>SpringBoot简单使用(初次使用)</h4></li>
+<li><p>创建SpringBoot项目(需联网)<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723134414.png"><br>如图,选择Spring Initializr,项目SDK选择已经装好的JDK1.8,点击下一步</p>
+</li>
+<li><p><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723134629.png"><br>设置：<br>组一般为域名倒置,我们这里可以先随便起,Java版本使用Java8,其余默认即可</p>
+</li>
+<li><p><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723134814.png"><br>由于是开发Web项目,因此选上Web中的Spring Web即可,如图</p>
+</li>
+<li><p>选择项目所在位置，自己选</p>
+</li>
+<li><p>此时进入后右下角会有个条闪烁，项目在下载一些外部库,这个下载可能很慢,因此需要一定处理  处理方式：安装Maven并配置,配置方式和java类似，设置环境变量,加入Path</p>
+</li>
+<li><p>由于IDEA自带Maven，该版本不好控制,因此我们手动配置Maven<br>如图,把主路径改为自己安装的Maven路径<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723135823.png"></p>
+</li>
+</ol>
+<ol start="6">
+<li>常用命令：自行上网搜索,属基础知识<br> ipconfig得到虚拟机ip地址，并用xshell进行连接</li>
+</ol>
+<h3 id="持续更新-未完待续—————"><a href="#持续更新-未完待续—————" class="headerlink" title="持续更新,未完待续—————"></a>持续更新,未完待续—————</h3>]]></content>
+      <tags>
+        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
@@ -321,18 +433,11 @@
 <span id="more"></span>
 <p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
 ]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
       <tags>
         <tag>Visual Studio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PicGo CDN加速方式</title>
-    <url>/2021/07/22/PicGo_CDN/</url>
-    <content><![CDATA[<p>方法：更改自定义域名(最下面那行)<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@everything/20210722134750.png"><br><strong>改为<a href="https://cdn.jsdelivr.net/gh/%E4%BD%A0%E7%9A%84Github%E5%90%8D/%E4%BD%A0%E7%9A%84%E4%BB%93%E5%BA%93%E5%90%8D@%E9%80%89%E6%8B%A9%E7%9A%84%E5%88%86%E6%94%AF">https://cdn.jsdelivr.net/gh/你的Github名/你的仓库名@选择的分支</a></strong><br><strong>例如: <a href="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@everything">https://cdn.jsdelivr.net/gh/LemontreeN/picSources@everything</a></strong><br>(jsdelivr为一家CDN服务商,免费)<br><strong>我的Github名为LemontreeN,仓库名为picSources,分支为everything</strong></p>
-]]></content>
-      <tags>
-        <tag>CDN</tag>
-        <tag>Picgo</tag>
       </tags>
   </entry>
   <entry>
@@ -390,60 +495,12 @@
 <p>即可</p>
 <p>关于github克隆速度慢的问题可以看视频<a href="https://www.bilibili.com/video/BV1aE411p7Cd%E8%A7%A3%E5%86%B3(B%E7%AB%99:Codesheep)">https://www.bilibili.com/video/BV1aE411p7Cd解决(B站:Codesheep)</a></p>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
       <tags>
         <tag>git</tag>
         <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一个Web项目开发的全历程</title>
-    <url>/2021/07/22/Web%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%85%A8%E5%8E%86%E7%A8%8B/</url>
-    <content><![CDATA[<h4 id="0-1环境准备："><a href="#0-1环境准备：" class="headerlink" title="0.1环境准备："></a>0.1环境准备：</h4><blockquote>
-<p>IDEA专业版学生可注册账号申请免费使用<br>xshell和xftp在官网也可以申请免费版<br>NaviCat自行解决<br>其他均为免费或开源<br>安装目录：<br>编辑器：IDEA、Vscode<br>服务器环境：VMware16, CentOS 7<br>所需其他工具：JDK1.8<br>其他软件：NaviCat、ApiPost、xshell、xftp</p>
-</blockquote>
-<p>框架：SpringBoot+MySQL+MyBatisPlus<br>其他:Maven、VueJS、NodeJS、axios、elementUI</p>
-<h4 id="0-2基础知识："><a href="#0-2基础知识：" class="headerlink" title="0.2基础知识："></a>0.2基础知识：</h4><ol>
-<li>Linux常用命令<br>&lt; 此处放doc</li>
-<li>java</li>
-<li>html+css+javaScript</li>
-<li>SpringBoot+MySQL+MyBatisPlus</li>
-<li>Maven</li>
-<li>Vue+axios</li>
-</ol>
-<p><strong>以上在初期均只需要少量必备知识，以下会说到</strong></p>
-<h5 id="1-1-1-在Linux上安装JDK"><a href="#1-1-1-在Linux上安装JDK" class="headerlink" title="1.1.1 在Linux上安装JDK"></a>1.1.1 在Linux上安装JDK</h5><ol>
-<li>卸载已有的openjdk<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 查看安装的jdk信息</span><br><span class="line">rpm -qa | grep java</span><br><span class="line"># 如果有，则卸载jdk</span><br><span class="line">rpm -e --nodeps java-1.6.0-openjdk-1.6.0.35-1.13.7.1.el6_6.i686</span><br><span class="line">rpm -e --nodeps java-1.7.0-openjdk-1.7.0.79-2.5.5.4.el6.i686</span><br></pre></td></tr></table></figure></li>
-<li>在Linux服务器上安装JDK<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* 直接解压就可以</span><br><span class="line">   tar -xvf jdk-8u131-linux-x64.tar.gz  -C 目标路径</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p><strong>安装包自行下载,可以为其他版本,但建议使用java8，本文将全程使用jdk1.8</strong><br>3. 配置JDK的环境变量.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">① vi &#x2F;etc&#x2F;profile</span><br><span class="line">② 在末尾行添加</span><br><span class="line">	#set java environment</span><br><span class="line">	JAVA_HOME&#x3D;&#x2F;root&#x2F;server&#x2F;jdk1.8.0_131</span><br><span class="line">	PATH&#x3D;$JAVA_HOME&#x2F;bin:$PATH</span><br><span class="line">	export JAVA_HOME PATH</span><br><span class="line">保存退出</span><br><span class="line">③source &#x2F;etc&#x2F;profile  使更改的配置立即生效</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>测试是否生效，查看jdk版本<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
-<h5 id="1-1-2-在Linux上安装MySQL"><a href="#1-1-2-在Linux上安装MySQL" class="headerlink" title="1.1.2 在Linux上安装MySQL"></a>1.1.2 在Linux上安装MySQL</h5></li>
-<li>将mysql的安装文件上传到Linux的服务器(文件自行解决)</li>
-<li>查看linux上是否已经安装了mysql,有则卸载，一般centos7默认安装了mariadb,这里把它卸载。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">查看命令：</span><br><span class="line">rpm -qa|grep mariadb</span><br><span class="line">删除命令：</span><br><span class="line">rpm -e --nodeps mariadb-libs-5.5.52-1.el7.x86_64(此处可能有变化，根据实际情况)</span><br></pre></td></tr></table></figure></li>
-<li>解压mysql安装包<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir mysql</span><br><span class="line">tar -xvf mysql-5.7.34-1.el7.x86_64.rpm-bundle.tar -C mysql&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>安装mysql客户端及服务端<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd mysql&#x2F;</span><br><span class="line">rpm -ivh mysql-community-client-5.7.34-1.el7.x86_64.rpm --force --nodeps</span><br><span class="line">rpm -ivh mysql-community-server-5.7.34-1.el7.x86_64.rpm --force --nodeps</span><br></pre></td></tr></table></figure></li>
-<li>修改mysql默认字符集<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;my.cnf</span><br></pre></td></tr></table></figure>
-修改部分(注意比对)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">character-set-server&#x3D;utf8</span><br><span class="line">collation-server&#x3D;utf8_general_ci</span><br></pre></td></tr></table></figure>
-并在最下方添加<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set&#x3D;utf8</span><br></pre></td></tr></table></figure></li>
-<li>启动mysql服务<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">service mysqld start</span><br></pre></td></tr></table></figure></li>
-<li>登录mysql<br>初始密码查看：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cat &#x2F;var&#x2F;log&#x2F;mysqld.log</span><br></pre></td></tr></table></figure>
-在root@localhost:   后面的就是初始密码</li>
-</ol>
-<p>—图片1—-<br>mysql -u root -p  敲回车，输入密码<br>8. 修改mysql登录密码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">set global validate_password_policy&#x3D;0;</span><br><span class="line">set global validate_password_length&#x3D;1;</span><br><span class="line">set password&#x3D;password(&#39;密码&#39;);</span><br></pre></td></tr></table></figure>
-<ol start="9">
-<li>授予远程连接权限<br>授权<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">grant all privileges on *.* to &#39;root&#39; @&#39;%&#39; identified by &#39;密码&#39;;</span><br></pre></td></tr></table></figure>
-刷新<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure></li>
-<li>关闭防火墙并重启<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">service mysqld restart</span><br><span class="line">(关闭防火墙是为了能够远程连接到数据库,事实上只要把相应端口打开即可不需要关闭防火墙)</span><br><span class="line">可自行上网搜索方法</span><br></pre></td></tr></table></figure>
-<h5 id="1-1-3-在Windows上安装JDK"><a href="#1-1-3-在Windows上安装JDK" class="headerlink" title="1.1.3 在Windows上安装JDK"></a>1.1.3 在Windows上安装JDK</h5>下载jdk的Windows版本，此处我仍用jdk1.8<br>下载好并安装，设置环境变量<br>最终在cmd中输入java -version 有版本显示即可<h5 id="1-1-4"><a href="#1-1-4" class="headerlink" title="1.1.4"></a>1.1.4</h5><h4 id="2-SQL语句"><a href="#2-SQL语句" class="headerlink" title="2. SQL语句"></a>2. SQL语句</h4><h4 id="SpringBoot简单使用-初次使用"><a href="#SpringBoot简单使用-初次使用" class="headerlink" title="SpringBoot简单使用(初次使用)"></a>SpringBoot简单使用(初次使用)</h4></li>
-<li>创建SpringBoot项目</li>
-</ol>
-<p>常用命令：自行上网搜索,属基础知识<br>ipconfig得到虚拟机ip地址，并用xshell进行连接</p>
-<h3 id="持续更新-未完待续"><a href="#持续更新-未完待续" class="headerlink" title="持续更新,未完待续"></a>持续更新,未完待续</h3>]]></content>
-      <tags>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
@@ -460,8 +517,55 @@
 <li>输入<code>net user administrator /active:no</code>关闭</li>
 </ol>
 ]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
       <tags>
         <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在gitee上做一个图床</title>
+    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<blockquote>
+<p>本人已经更换回Github图床<br>原因：Gitee图片大于1M时需要登录才能查看,只有小于1M才能随意直接访问<br>虽然我有压缩图片的习惯(提升加载速度),但有了梯子之后还是换回了Github<br>但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见<br><a href="https://lemontreen.github.io/2021/07/22/PicGo_CDN">https://lemontreen.github.io/2021/07/22/PicGo_CDN</a><br><strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
+</blockquote>
+<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？"><a href="#如何在gitee上部署一个图床给自己markdown文本使用？" class="headerlink" title="如何在gitee上部署一个图床给自己markdown文本使用？"></a>如何在gitee上部署一个图床给自己markdown文本使用？</h3><p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况</p>
+<h4 id="需要工具-PicGo-以及-gitee-账号"><a href="#需要工具-PicGo-以及-gitee-账号" class="headerlink" title="需要工具: PicGo 以及 gitee 账号"></a>需要工具: PicGo 以及 gitee 账号</h4><h4 id="1-下载PicGo"><a href="#1-下载PicGo" class="headerlink" title="1.下载PicGo"></a>1.下载PicGo</h4><p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a>  </p>
+<h4 id="2-创建一个仓库和密钥"><a href="#2-创建一个仓库和密钥" class="headerlink" title="2.创建一个仓库和密钥"></a>2.创建一个仓库和密钥</h4><p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png"><br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png"></p>
+<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects"><a href="#创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects" class="headerlink" title="创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects"></a>创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png"><br>生成的令牌只会显示一次，务必记好!!!!</p>
+<h4 id="3-配置PicGo"><a href="#3-配置PicGo" class="headerlink" title="3.配置PicGo"></a>3.配置PicGo</h4><p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png"><br>然后重启PicGo 在插件设置中找到gitee<br>repo: 填写用户名/仓库名<br>branch: master<br>token: 填写刚刚的访问令牌<br>path: 想上传到gitee的目录<br>customPath和customURL不用填写<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png"><br>点击确定和设为默认图床</p>
+<p> ！！大功告成！！  </p>
+<h4 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4.使用方式"></a>4.使用方式</h4><p>直接将图片拖拽到上传区即可<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png"><br>此时在文档中ctrl+v即可粘贴URL<br>此时去gitee仓库即可看到<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png"><br>PicgoCDN加速设置方法：<br><a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
+<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241"><a href="#参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241" class="headerlink" title="参考及鸣谢：https://blog.csdn.net/disilll/article/details/103962241"></a>参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Picgo</tag>
+        <tag>图床</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo遇到的一些问题</title>
+    <url>/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="此文章为使用hexo过程中遇到的问题"><a href="#此文章为使用hexo过程中遇到的问题" class="headerlink" title="此文章为使用hexo过程中遇到的问题"></a>此文章为使用hexo过程中遇到的问题</h2><span id="more"></span>
+<h2 id="问题1-Error-Spwan-failed"><a href="#问题1-Error-Spwan-failed" class="headerlink" title="问题1: Error: Spwan failed"></a>问题1: Error: Spwan failed</h2><h4 id="有时在把本地文件用hexo-d推到远端时会发生如下情况"><a href="#有时在把本地文件用hexo-d推到远端时会发生如下情况" class="headerlink" title="有时在把本地文件用hexo d推到远端时会发生如下情况"></a>有时在把本地文件用hexo d推到远端时会发生如下情况</h4><blockquote>
+<p>注意先检查是否为网络导致的连接失败,若是,重新多尝试即可</p>
+</blockquote>
+<p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222237.png"><br>解决方式:<br>删除.deploy_git和public文件夹,然后输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>即可</p>
+<h2 id="问题2-ERROR-Deployer-not-found-git"><a href="#问题2-ERROR-Deployer-not-found-git" class="headerlink" title="问题2: ERROR Deployer not found: git"></a>问题2: ERROR Deployer not found: git</h2><p>如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222246.png"><br>解决方式：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+<p>即可</p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -504,47 +608,12 @@
 <h4 id="hexo-添加live2d看板娘"><a href="#hexo-添加live2d看板娘" class="headerlink" title="hexo-添加live2d看板娘"></a>hexo-添加live2d看板娘</h4><p>效果如下↓↓↓<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources/20210608201035.png"><br>教程：<a href="https://akilar.top/posts/5b8f515f/">https://akilar.top/posts/5b8f515f/</a></p>
 <h4 id="hexo-bufferfly配置"><a href="#hexo-bufferfly配置" class="headerlink" title="hexo-bufferfly配置"></a>hexo-bufferfly配置</h4><p><strong>本人均试过，好教程</strong><br><em>官方文档，建议先看这个，很全</em>：<a href="https://butterfly.js.org/posts/21cfbf15/">https://butterfly.js.org/posts/21cfbf15/</a><br><em>各种魔改</em><a href="https://akilar.top/posts/f99b208/">https://akilar.top/posts/f99b208/</a><br><strong>添加全盘吸底aplayer音乐播放器：</strong><a href="https://butterfly.js.org/posts/507c070f/">https://butterfly.js.org/posts/507c070f/</a></p>
 ]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
       <tags>
         <tag>hexo</tag>
         <tag>nvm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo遇到的一些问题</title>
-    <url>/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="此文章为使用hexo过程中遇到的问题"><a href="#此文章为使用hexo过程中遇到的问题" class="headerlink" title="此文章为使用hexo过程中遇到的问题"></a>此文章为使用hexo过程中遇到的问题</h2><span id="more"></span>
-<h2 id="问题1-Error-Spwan-failed"><a href="#问题1-Error-Spwan-failed" class="headerlink" title="问题1: Error: Spwan failed"></a>问题1: Error: Spwan failed</h2><h4 id="有时在把本地文件用hexo-d推到远端时会发生如下情况"><a href="#有时在把本地文件用hexo-d推到远端时会发生如下情况" class="headerlink" title="有时在把本地文件用hexo d推到远端时会发生如下情况"></a>有时在把本地文件用hexo d推到远端时会发生如下情况</h4><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222237.png"><br>解决方式:<br>删除.deploy_git和public文件夹,然后输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>即可</p>
-<h2 id="问题2-ERROR-Deployer-not-found-git"><a href="#问题2-ERROR-Deployer-not-found-git" class="headerlink" title="问题2: ERROR Deployer not found: git"></a>问题2: ERROR Deployer not found: git</h2><p>如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222246.png"><br>解决方式：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>即可</p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在gitee上做一个图床</title>
-    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<blockquote>
-<p>本人已经更换回Github图床<br>原因：Gitee图片大于1M时需要登录才能查看,只有小于1M才能随意直接访问<br>虽然我有压缩图片的习惯(提升加载速度),但有了梯子之后还是换回了Github<br>但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见<br><a href="https://lemontreen.github.io/2021/07/22/PicGo_CDN">https://lemontreen.github.io/2021/07/22/PicGo_CDN</a><br><strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
-</blockquote>
-<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？"><a href="#如何在gitee上部署一个图床给自己markdown文本使用？" class="headerlink" title="如何在gitee上部署一个图床给自己markdown文本使用？"></a>如何在gitee上部署一个图床给自己markdown文本使用？</h3><p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况</p>
-<h4 id="需要工具-PicGo-以及-gitee-账号"><a href="#需要工具-PicGo-以及-gitee-账号" class="headerlink" title="需要工具: PicGo 以及 gitee 账号"></a>需要工具: PicGo 以及 gitee 账号</h4><h4 id="1-下载PicGo"><a href="#1-下载PicGo" class="headerlink" title="1.下载PicGo"></a>1.下载PicGo</h4><p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a>  </p>
-<h4 id="2-创建一个仓库和密钥"><a href="#2-创建一个仓库和密钥" class="headerlink" title="2.创建一个仓库和密钥"></a>2.创建一个仓库和密钥</h4><p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png"><br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png"></p>
-<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects"><a href="#创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects" class="headerlink" title="创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects"></a>创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png"><br>生成的令牌只会显示一次，务必记好!!!!</p>
-<h4 id="3-配置PicGo"><a href="#3-配置PicGo" class="headerlink" title="3.配置PicGo"></a>3.配置PicGo</h4><p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png"><br>然后重启PicGo 在插件设置中找到gitee<br>repo: 填写用户名/仓库名<br>branch: master<br>token: 填写刚刚的访问令牌<br>path: 想上传到gitee的目录<br>customPath和customURL不用填写<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png"><br>点击确定和设为默认图床</p>
-<p> ！！大功告成！！  </p>
-<h4 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4.使用方式"></a>4.使用方式</h4><p>直接将图片拖拽到上传区即可<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png"><br>此时在文档中ctrl+v即可粘贴URL<br>此时去gitee仓库即可看到<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png"><br>PicgoCDN加速设置方法：<br><a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
-<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241"><a href="#参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241" class="headerlink" title="参考及鸣谢：https://blog.csdn.net/disilll/article/details/103962241"></a>参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>]]></content>
-      <tags>
-        <tag>Picgo</tag>
-        <tag>图床</tag>
       </tags>
   </entry>
   <entry>
