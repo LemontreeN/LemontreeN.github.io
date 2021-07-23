@@ -17,19 +17,42 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux_GCC下用32位模式编译C程序</title>
-    <url>/2021/03/27/GCC32%E4%BD%8D%E7%BC%96%E8%AF%91C%E7%A8%8B%E5%BA%8F/</url>
-    <content><![CDATA[<h2 id="怎么在GCC下用32位模式编译C程序？"><a href="#怎么在GCC下用32位模式编译C程序？" class="headerlink" title="怎么在GCC下用32位模式编译C程序？"></a>怎么在GCC下用32位模式编译C程序？</h2><span id="more"></span>
-
-<p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可<br>如 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gcc -m32 hello.c -o hello.out</span><br></pre></td></tr></table></figure>
-<p>若报错，输入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
-
-<p>获得所需包再重新编译即可</p>
+    <title>GDB</title>
+    <url>/2021/04/14/GDB%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="GDB使用方式"><a href="#GDB使用方式" class="headerlink" title="GDB使用方式"></a>GDB使用方式</h3><span id="more"></span>
+<p>使用条件：目标为可执行文件<br>注意事项：仅使用 gcc（或 g++）命令编译生成的可执行文件，是无法借助 GDB 进行调试的。<br>原因：使用 GDB 调试某个可执行文件，该文件中必须包含必要的调试信息（比如各行代码所在的行号、包含程序中所有变量名称的列表（又称为符号表）等）</p>
+<p>那么，如何生成符合 GDB 调试要求的可执行文件呢？很简单，只需要使用 gcc -g 选项编译源文件，即可生成满足 GDB 要求的可执行文件。<br>即可使用 GDB 进行调试。</p>
+<p>值得一提的是，GCC 编译器支持 -O（等于同 -O1，优化生成的目标文件）和 -g 一起参与编译。GCC 编译过程对进行优化的程度可分为 5 个等级，分别为 O0~O4，O0 表示不优化（默认选项），从 O1 ~ O4 优化级别越来越高，O4 最高。<br>所谓优化，例如省略掉代码中从未使用过的变量、直接将常量表达式用结果值代替等等，这些操作会缩减目标文件所包含的代码量，提高最终生成的可执行文件的运行效率。</p>
+<p>而相对于 -O -g 选项，对 GDB 调试器更友好的是 -Og 选项，-Og 对代码所做的优化程序介于 O0 ~ O1 之间，真正可做到“在保持快速编译和良好调试体验的同时，提供较为合理的优化级别”。</p>
+<h3 id="GDB命令"><a href="#GDB命令" class="headerlink" title="GDB命令"></a>GDB命令</h3><p>（gdb）help：查看命令帮助，具体命令查询在gdb中输入help + 命令,简写h</p>
+<p>（gdb）run：重新开始运行文件（run-text：加载文本文件，run-bin：加载二进制文件）,简写r</p>
+<p>（gdb）start：单步执行，运行程序，停在第一执行语句</p>
+<p>（gdb）list：查看原代码（list-n,从第n行开始查看代码。list+ 函数名：查看具体函数）,简写l</p>
+<p>（gdb）set：设置变量的值</p>
+<p>（gdb）next：单步调试（逐过程，函数直接执行）,简写n</p>
+<p>（gdb）step：单步调试（逐语句：跳入自定义函数内部执行）,简写s</p>
+<p>（gdb）backtrace：查看函数的调用的栈帧和层级关系,简写bt</p>
+<p>（gdb）frame：切换函数的栈帧,简写f</p>
+<p>（gdb）info：查看函数内部局部变量的数值,简写i</p>
+<p>（gdb）finish：结束当前函数，返回到函数调用点</p>
+<p>（gdb）continue：继续运行,运行到下一个断点,简写c</p>
+<p>（gdb）print：打印值及地址,简写p</p>
+<p>（gdb）quit：退出gdb,简写q</p>
+<p>（gdb）break+num：在第num行设置断点,简写b</p>
+<p> 也可以b+函数名or地址</p>
+<p>（gdb）info breakpoints：查看当前设置的所有断点</p>
+<p>（gdb）delete breakpoints num：删除第num个断点,简写d</p>
+<p>（gdb）display：追踪查看具体变量值</p>
+<p>（gdb）undisplay：取消追踪观察变量</p>
+<p>（gdb）watch：被设置观察点的变量发生修改时，打印显示</p>
+<p>（gdb）i watch：显示观察点</p>
+<p>（gdb）enable breakpoints：启用断点</p>
+<p>（gdb）disable breakpoints：禁用断点</p>
+<p>（gdb）x：查看内存x/20xw 显示20个单元，16进制，4字节每单元</p>
+<p>（gdb）run argv[1] argv[2]：调试时命令行传参</p>
 ]]></content>
       <tags>
-        <tag>linux</tag>
+        <tag>GDB</tag>
       </tags>
   </entry>
   <entry>
@@ -71,45 +94,6 @@
 ]]></content>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GDB</title>
-    <url>/2021/04/14/GDB%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="GDB使用方式"><a href="#GDB使用方式" class="headerlink" title="GDB使用方式"></a>GDB使用方式</h3><span id="more"></span>
-<p>使用条件：目标为可执行文件<br>注意事项：仅使用 gcc（或 g++）命令编译生成的可执行文件，是无法借助 GDB 进行调试的。<br>原因：使用 GDB 调试某个可执行文件，该文件中必须包含必要的调试信息（比如各行代码所在的行号、包含程序中所有变量名称的列表（又称为符号表）等）</p>
-<p>那么，如何生成符合 GDB 调试要求的可执行文件呢？很简单，只需要使用 gcc -g 选项编译源文件，即可生成满足 GDB 要求的可执行文件。<br>即可使用 GDB 进行调试。</p>
-<p>值得一提的是，GCC 编译器支持 -O（等于同 -O1，优化生成的目标文件）和 -g 一起参与编译。GCC 编译过程对进行优化的程度可分为 5 个等级，分别为 O0~O4，O0 表示不优化（默认选项），从 O1 ~ O4 优化级别越来越高，O4 最高。<br>所谓优化，例如省略掉代码中从未使用过的变量、直接将常量表达式用结果值代替等等，这些操作会缩减目标文件所包含的代码量，提高最终生成的可执行文件的运行效率。</p>
-<p>而相对于 -O -g 选项，对 GDB 调试器更友好的是 -Og 选项，-Og 对代码所做的优化程序介于 O0 ~ O1 之间，真正可做到“在保持快速编译和良好调试体验的同时，提供较为合理的优化级别”。</p>
-<h3 id="GDB命令"><a href="#GDB命令" class="headerlink" title="GDB命令"></a>GDB命令</h3><p>（gdb）help：查看命令帮助，具体命令查询在gdb中输入help + 命令,简写h</p>
-<p>（gdb）run：重新开始运行文件（run-text：加载文本文件，run-bin：加载二进制文件）,简写r</p>
-<p>（gdb）start：单步执行，运行程序，停在第一执行语句</p>
-<p>（gdb）list：查看原代码（list-n,从第n行开始查看代码。list+ 函数名：查看具体函数）,简写l</p>
-<p>（gdb）set：设置变量的值</p>
-<p>（gdb）next：单步调试（逐过程，函数直接执行）,简写n</p>
-<p>（gdb）step：单步调试（逐语句：跳入自定义函数内部执行）,简写s</p>
-<p>（gdb）backtrace：查看函数的调用的栈帧和层级关系,简写bt</p>
-<p>（gdb）frame：切换函数的栈帧,简写f</p>
-<p>（gdb）info：查看函数内部局部变量的数值,简写i</p>
-<p>（gdb）finish：结束当前函数，返回到函数调用点</p>
-<p>（gdb）continue：继续运行,运行到下一个断点,简写c</p>
-<p>（gdb）print：打印值及地址,简写p</p>
-<p>（gdb）quit：退出gdb,简写q</p>
-<p>（gdb）break+num：在第num行设置断点,简写b</p>
-<p> 也可以b+函数名or地址</p>
-<p>（gdb）info breakpoints：查看当前设置的所有断点</p>
-<p>（gdb）delete breakpoints num：删除第num个断点,简写d</p>
-<p>（gdb）display：追踪查看具体变量值</p>
-<p>（gdb）undisplay：取消追踪观察变量</p>
-<p>（gdb）watch：被设置观察点的变量发生修改时，打印显示</p>
-<p>（gdb）i watch：显示观察点</p>
-<p>（gdb）enable breakpoints：启用断点</p>
-<p>（gdb）disable breakpoints：禁用断点</p>
-<p>（gdb）x：查看内存x/20xw 显示20个单元，16进制，4字节每单元</p>
-<p>（gdb）run argv[1] argv[2]：调试时命令行传参</p>
-]]></content>
-      <tags>
-        <tag>GDB</tag>
       </tags>
   </entry>
   <entry>
@@ -216,7 +200,7 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Collections.sort(Processes, new Comparator&lt;Process&gt;() &#123;</span><br><span class="line">				@Override</span><br><span class="line">				public int compare(Process o1, Process o2) &#123;</span><br><span class="line">					if (o1.number &gt;&#x3D; o2.number) &#123;</span><br><span class="line">						return 1;</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">						return -1;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>多参数排序<br>例如优先按照进程号，其次按照进程剩余时间大小排序<br>TODO</p>
+<p>多参数排序<br>例如优先按照进程号，其次按照进程剩余时间大小排序<br>//TODO</p>
 </blockquote>
 <h4 id="关于-split-Illegal-repetition-near-index-1-报错"><a href="#关于-split-Illegal-repetition-near-index-1-报错" class="headerlink" title="关于 split:Illegal repetition near index 1 报错"></a>关于 split:Illegal repetition near index 1 报错</h4><blockquote>
 <p>关于Split用法：<a href="https://www.runoob.com/java/java-string-split.html">https://www.runoob.com/java/java-string-split.html</a><br>发生原因：split中的某些字符需要转义</p>
@@ -238,10 +222,14 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux指令</title>
-    <url>/2021/06/02/Linux%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>记录一些Linux重要指令</p>
-<span id="more"></span>
+    <title>Linux</title>
+    <url>/2021/06/02/Linux/</url>
+    <content><![CDATA[<h4 id="怎么在GCC下用32位模式编译C程序？"><a href="#怎么在GCC下用32位模式编译C程序？" class="headerlink" title="怎么在GCC下用32位模式编译C程序？"></a>怎么在GCC下用32位模式编译C程序？</h4><p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可<br>如 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gcc -m32 hello.c -o hello.out</span><br></pre></td></tr></table></figure>
+<p>若报错，输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
+
+<p>获得所需包再重新编译即可</p>
 <h4 id="chmod命令用法"><a href="#chmod命令用法" class="headerlink" title="chmod命令用法"></a>chmod命令用法</h4><p><a href="https://www.runoob.com/linux/linux-comm-chmod.html">https://www.runoob.com/linux/linux-comm-chmod.html</a></p>
 <h4 id="getopt-函数："><a href="#getopt-函数：" class="headerlink" title="getopt()函数："></a>getopt()函数：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">extern char *optarg;</span><br><span class="line">extern int optind;</span><br><span class="line">extern int opterr;</span><br><span class="line">extern int optopt;</span><br><span class="line">extern int getopt(int argc, char * const argv[], const char *optstring);</span><br></pre></td></tr></table></figure>
 <p>用途：解析命令行参数<br>举个例子：cp -a -b hello -c123 src dst<br>optarg: -b的optarg是hello，-c的optarg是123，optarg就是选项后面跟着的参数；<br>optind  : 下一个要处理的参数的下标(argv)；每次getopt后，这个索引就会指向argv里当前分析的字符串的下一个索引，因此argv[optind]就能得到下个字符串，<br>opterr  : 如果将opterr设为0，则getopt不输出错误信息，否则报错，形如（e2fsck: invalid option – ‘x’）<br>optopt  : 当命令行选项字符不包括在optstring中或者选项缺少必要的参数时，该选项存储在optopt中<br>optstring:待处理的字符串</p>
@@ -302,16 +290,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown</title>
-    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
-<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL</title>
     <url>/2021/07/22/MySQL/</url>
     <content><![CDATA[<blockquote>
@@ -327,13 +305,13 @@
       </tags>
   </entry>
   <entry>
-    <title>PicGo_CDN</title>
-    <url>/2021/07/22/PicGoCDN%E5%8A%A0%E9%80%9F%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<p>方法：更改自定义域名(最下面那行)<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@everything/20210722134750.png"><br><strong>改为<a href="https://cdn.jsdelivr.net/gh/%E4%BD%A0%E7%9A%84Github%E5%90%8D/%E4%BD%A0%E7%9A%84%E4%BB%93%E5%BA%93%E5%90%8D@%E9%80%89%E6%8B%A9%E7%9A%84%E5%88%86%E6%94%AF">https://cdn.jsdelivr.net/gh/你的Github名/你的仓库名@选择的分支</a></strong><br><strong>例如: <a href="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@everything">https://cdn.jsdelivr.net/gh/LemontreeN/picSources@everything</a></strong><br>(jsdelivr为一家CDN服务商,免费)<br><strong>我的Github名为LemontreeN,仓库名为picSources,分支为everything</strong></p>
-]]></content>
+    <title>Markdown</title>
+    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
+<h4 id="如何实现内容折叠"><a href="#如何实现内容折叠" class="headerlink" title="如何实现内容折叠"></a>如何实现内容折叠</h4><p>原理：使用<code>html</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
-        <tag>CDN</tag>
-        <tag>Picgo</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -345,6 +323,16 @@
 ]]></content>
       <tags>
         <tag>Visual Studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PicGo CDN加速方式</title>
+    <url>/2021/07/22/PicGo_CDN/</url>
+    <content><![CDATA[<p>方法：更改自定义域名(最下面那行)<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@everything/20210722134750.png"><br><strong>改为<a href="https://cdn.jsdelivr.net/gh/%E4%BD%A0%E7%9A%84Github%E5%90%8D/%E4%BD%A0%E7%9A%84%E4%BB%93%E5%BA%93%E5%90%8D@%E9%80%89%E6%8B%A9%E7%9A%84%E5%88%86%E6%94%AF">https://cdn.jsdelivr.net/gh/你的Github名/你的仓库名@选择的分支</a></strong><br><strong>例如: <a href="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@everything">https://cdn.jsdelivr.net/gh/LemontreeN/picSources@everything</a></strong><br>(jsdelivr为一家CDN服务商,免费)<br><strong>我的Github名为LemontreeN,仓库名为picSources,分支为everything</strong></p>
+]]></content>
+      <tags>
+        <tag>CDN</tag>
+        <tag>Picgo</tag>
       </tags>
   </entry>
   <entry>
@@ -408,6 +396,57 @@
       </tags>
   </entry>
   <entry>
+    <title>一个Web项目开发的全历程</title>
+    <url>/2021/07/22/Web%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%85%A8%E5%8E%86%E7%A8%8B/</url>
+    <content><![CDATA[<h4 id="0-1环境准备："><a href="#0-1环境准备：" class="headerlink" title="0.1环境准备："></a>0.1环境准备：</h4><blockquote>
+<p>IDEA专业版学生可注册账号申请免费使用<br>xshell和xftp在官网也可以申请免费版<br>NaviCat自行解决<br>其他均为免费或开源<br>安装目录：<br>编辑器：IDEA、Vscode<br>服务器环境：VMware16, CentOS 7<br>所需其他工具：JDK1.8<br>其他软件：NaviCat、ApiPost、xshell、xftp</p>
+</blockquote>
+<p>框架：SpringBoot+MySQL+MyBatisPlus<br>其他:Maven、VueJS、NodeJS、axios、elementUI</p>
+<h4 id="0-2基础知识："><a href="#0-2基础知识：" class="headerlink" title="0.2基础知识："></a>0.2基础知识：</h4><ol>
+<li>Linux常用命令<br>&lt; 此处放doc</li>
+<li>java</li>
+<li>html+css+javaScript</li>
+<li>SpringBoot+MySQL+MyBatisPlus</li>
+<li>Maven</li>
+<li>Vue+axios</li>
+</ol>
+<p><strong>以上在初期均只需要少量必备知识，以下会说到</strong></p>
+<h5 id="1-1-1-在Linux上安装JDK"><a href="#1-1-1-在Linux上安装JDK" class="headerlink" title="1.1.1 在Linux上安装JDK"></a>1.1.1 在Linux上安装JDK</h5><ol>
+<li>卸载已有的openjdk<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 查看安装的jdk信息</span><br><span class="line">rpm -qa | grep java</span><br><span class="line"># 如果有，则卸载jdk</span><br><span class="line">rpm -e --nodeps java-1.6.0-openjdk-1.6.0.35-1.13.7.1.el6_6.i686</span><br><span class="line">rpm -e --nodeps java-1.7.0-openjdk-1.7.0.79-2.5.5.4.el6.i686</span><br></pre></td></tr></table></figure></li>
+<li>在Linux服务器上安装JDK<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* 直接解压就可以</span><br><span class="line">   tar -xvf jdk-8u131-linux-x64.tar.gz  -C 目标路径</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>安装包自行下载,可以为其他版本,但建议使用java8，本文将全程使用jdk1.8</strong><br>3. 配置JDK的环境变量.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">① vi &#x2F;etc&#x2F;profile</span><br><span class="line">② 在末尾行添加</span><br><span class="line">	#set java environment</span><br><span class="line">	JAVA_HOME&#x3D;&#x2F;root&#x2F;server&#x2F;jdk1.8.0_131</span><br><span class="line">	PATH&#x3D;$JAVA_HOME&#x2F;bin:$PATH</span><br><span class="line">	export JAVA_HOME PATH</span><br><span class="line">保存退出</span><br><span class="line">③source &#x2F;etc&#x2F;profile  使更改的配置立即生效</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>测试是否生效，查看jdk版本<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<h5 id="1-1-2-在Linux上安装MySQL"><a href="#1-1-2-在Linux上安装MySQL" class="headerlink" title="1.1.2 在Linux上安装MySQL"></a>1.1.2 在Linux上安装MySQL</h5></li>
+<li>将mysql的安装文件上传到Linux的服务器(文件自行解决)</li>
+<li>查看linux上是否已经安装了mysql,有则卸载，一般centos7默认安装了mariadb,这里把它卸载。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">查看命令：</span><br><span class="line">rpm -qa|grep mariadb</span><br><span class="line">删除命令：</span><br><span class="line">rpm -e --nodeps mariadb-libs-5.5.52-1.el7.x86_64(此处可能有变化，根据实际情况)</span><br></pre></td></tr></table></figure></li>
+<li>解压mysql安装包<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir mysql</span><br><span class="line">tar -xvf mysql-5.7.34-1.el7.x86_64.rpm-bundle.tar -C mysql&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>安装mysql客户端及服务端<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd mysql&#x2F;</span><br><span class="line">rpm -ivh mysql-community-client-5.7.34-1.el7.x86_64.rpm --force --nodeps</span><br><span class="line">rpm -ivh mysql-community-server-5.7.34-1.el7.x86_64.rpm --force --nodeps</span><br></pre></td></tr></table></figure></li>
+<li>修改mysql默认字符集<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;my.cnf</span><br></pre></td></tr></table></figure>
+修改部分(注意比对)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">character-set-server&#x3D;utf8</span><br><span class="line">collation-server&#x3D;utf8_general_ci</span><br></pre></td></tr></table></figure>
+并在最下方添加<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set&#x3D;utf8</span><br></pre></td></tr></table></figure></li>
+<li>启动mysql服务<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">service mysqld start</span><br></pre></td></tr></table></figure></li>
+<li>登录mysql<br>初始密码查看：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cat &#x2F;var&#x2F;log&#x2F;mysqld.log</span><br></pre></td></tr></table></figure>
+在root@localhost:   后面的就是初始密码</li>
+</ol>
+<p>—图片1—-<br>mysql -u root -p  敲回车，输入密码<br>8. 修改mysql登录密码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">set global validate_password_policy&#x3D;0;</span><br><span class="line">set global validate_password_length&#x3D;1;</span><br><span class="line">set password&#x3D;password(&#39;密码&#39;);</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>授予远程连接权限<br>授权<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">grant all privileges on *.* to &#39;root&#39; @&#39;%&#39; identified by &#39;密码&#39;;</span><br></pre></td></tr></table></figure>
+刷新<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure></li>
+<li>关闭防火墙并重启<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">service mysqld restart</span><br><span class="line">(关闭防火墙是为了能够远程连接到数据库,事实上只要把相应端口打开即可不需要关闭防火墙)</span><br><span class="line">可自行上网搜索方法</span><br></pre></td></tr></table></figure>
+<h5 id="1-1-3-在Windows上安装JDK"><a href="#1-1-3-在Windows上安装JDK" class="headerlink" title="1.1.3 在Windows上安装JDK"></a>1.1.3 在Windows上安装JDK</h5>下载jdk的Windows版本，此处我仍用jdk1.8<br>下载好并安装，设置环境变量<br>最终在cmd中输入java -version 有版本显示即可<h5 id="1-1-4"><a href="#1-1-4" class="headerlink" title="1.1.4"></a>1.1.4</h5><h4 id="2-SQL语句"><a href="#2-SQL语句" class="headerlink" title="2. SQL语句"></a>2. SQL语句</h4><h4 id="SpringBoot简单使用-初次使用"><a href="#SpringBoot简单使用-初次使用" class="headerlink" title="SpringBoot简单使用(初次使用)"></a>SpringBoot简单使用(初次使用)</h4></li>
+<li>创建SpringBoot项目</li>
+</ol>
+<p>常用命令：自行上网搜索,属基础知识<br>ipconfig得到虚拟机ip地址，并用xshell进行连接</p>
+<h3 id="持续更新-未完待续"><a href="#持续更新-未完待续" class="headerlink" title="持续更新,未完待续"></a>持续更新,未完待续</h3>]]></content>
+      <tags>
+        <tag>Web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows</title>
     <url>/2021/07/20/Windows/</url>
     <content><![CDATA[<h4 id="如何切换到管理员Administrator用户"><a href="#如何切换到管理员Administrator用户" class="headerlink" title="如何切换到管理员Administrator用户"></a>如何切换到管理员Administrator用户</h4><blockquote>
@@ -423,6 +462,51 @@
 ]]></content>
       <tags>
         <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>各种教程和参考</title>
+    <url>/2021/06/07/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E6%95%99%E7%A8%8B%E5%92%8C%E5%8F%82%E8%80%83/</url>
+    <content><![CDATA[<h4 id="nvm-nodejs版本管理工具-使用方式："><a href="#nvm-nodejs版本管理工具-使用方式：" class="headerlink" title="nvm(nodejs版本管理工具)使用方式："></a>nvm(nodejs版本管理工具)使用方式：</h4><blockquote>
+<p>nvm: 全名node.js version management，顾名思义是一个nodejs的版本管理工具。通过它可以安装和切换不同版本的nodejs,可在Github上下载 <a href="https://github.com/nvm-sh/nvm">https://github.com/nvm-sh/nvm</a><br>安装路径最好无英文</p>
+</blockquote>
+<ol>
+<li>安装后检查：<br>cmd输入nvm,如果出现版本号说明安装成功</li>
+<li>常用命令<ul>
+<li>查看本地安装的所有版本；有可选参数available，显示所有可下载的版本。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm list [available]</span><br></pre></td></tr></table></figure></li>
+<li>安装，命令中的版本号可自定义，具体参考命令1查询出来的列表<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm install 11.13.0</span><br></pre></td></tr></table></figure></li>
+<li>使用特定版本<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm use 11.13.0</span><br></pre></td></tr></table></figure></li>
+<li>卸载<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm uninstall 11.13.0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>其他命令：<ul>
+<li><code>nvm arch</code> ：显示node是运行在32位还是64位。</li>
+<li><code>nvm install &lt;version&gt; [arch]</code> ：安装node， version是特定版本也可以是最新稳定版本latest。可选参数arch指定安装32位还是64位版本，默认是系统位数。可以添加–insecure绕过远程服务器的SSL。</li>
+<li><code>nvm list [available]</code> ：显示已安装的列表。可选参数available，显示可安装的所有版本。list可简化为ls。</li>
+<li><code>nvm on</code> ：开启node.js版本管理。</li>
+<li><code>nvm off</code> ：关闭node.js版本管理。</li>
+<li><code>nvm proxy [url]</code> ：设置下载代理。不加可选参数url，显示当前代理。将url设置为none则移除代理。</li>
+<li><code>nvm node_mirror [url]</code>：设置node镜像。默认是<a href="https://nodejs.org/dist/%E3%80%82%E5%A6%82%E6%9E%9C%E4%B8%8D%E5%86%99url%EF%BC%8C%E5%88%99%E4%BD%BF%E7%94%A8%E9%BB%98%E8%AE%A4url%E3%80%82%E8%AE%BE%E7%BD%AE%E5%90%8E%E5%8F%AF%E8%87%B3%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95settings.txt%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B%EF%BC%8C%E4%B9%9F%E5%8F%AF%E7%9B%B4%E6%8E%A5%E5%9C%A8%E8%AF%A5%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E3%80%82">https://nodejs.org/dist/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。</a></li>
+<li><code>nvm npm_mirror [url]</code> ：设置npm镜像。<a href="https://github.com/npm/cli/archive/%E3%80%82%E5%A6%82%E6%9E%9C%E4%B8%8D%E5%86%99url%EF%BC%8C%E5%88%99%E4%BD%BF%E7%94%A8%E9%BB%98%E8%AE%A4url%E3%80%82%E8%AE%BE%E7%BD%AE%E5%90%8E%E5%8F%AF%E8%87%B3%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95settings.txt%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B%EF%BC%8C%E4%B9%9F%E5%8F%AF%E7%9B%B4%E6%8E%A5%E5%9C%A8%E8%AF%A5%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E3%80%82">https://github.com/npm/cli/archive/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。</a></li>
+<li><code>nvm uninstall &lt;version&gt;</code> ：卸载指定版本node。</li>
+<li><code>nvm use [version] [arch]</code> ：使用制定版本node。可指定32/64位。</li>
+<li><code>nvm root [path]</code> ：设置存储不同版本node的目录。如果未设置，默认使用当前目录。</li>
+<li><code>nvm version</code> ：显示nvm版本。version可简化为v。   </li>
+</ul>
+</li>
+</ol>
+<p><strong>参考：<a href="https://www.cnblogs.com/gaozejie/p/10689742.html">https://www.cnblogs.com/gaozejie/p/10689742.html</a></strong></p>
+<h4 id="磁盘扩容："><a href="#磁盘扩容：" class="headerlink" title="磁盘扩容："></a>磁盘扩容：</h4><ol>
+<li>磁盘未使用过<br>直接搜索磁盘管理，点击创建并格式化硬盘分区<br>删除释放空间的磁盘，重新分区即可</li>
+<li>磁盘已使用<br>使用Diskgenius：<a href="https://www.diskgenius.cn/">https://www.diskgenius.cn/</a></li>
+</ol>
+<h4 id="hexo-yilia主题配置教程"><a href="#hexo-yilia主题配置教程" class="headerlink" title="hexo-yilia主题配置教程"></a>hexo-yilia主题配置教程</h4><p>文字版<br><a href="https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_%E4%B8%BB%E9%A2%98%E4%B8%80%E6%8F%BD%E5%AD%90%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%A4%B1%E6%A8%A1%E5%9D%97">https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_%E4%B8%BB%E9%A2%98%E4%B8%80%E6%8F%BD%E5%AD%90%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%A4%B1%E6%A8%A1%E5%9D%97</a><br>视频版<br><a href="https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver</a></p>
+<h4 id="hexo-添加live2d看板娘"><a href="#hexo-添加live2d看板娘" class="headerlink" title="hexo-添加live2d看板娘"></a>hexo-添加live2d看板娘</h4><p>效果如下↓↓↓<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources/20210608201035.png"><br>教程：<a href="https://akilar.top/posts/5b8f515f/">https://akilar.top/posts/5b8f515f/</a></p>
+<h4 id="hexo-bufferfly配置"><a href="#hexo-bufferfly配置" class="headerlink" title="hexo-bufferfly配置"></a>hexo-bufferfly配置</h4><p><strong>本人均试过，好教程</strong><br><em>官方文档，建议先看这个，很全</em>：<a href="https://butterfly.js.org/posts/21cfbf15/">https://butterfly.js.org/posts/21cfbf15/</a><br><em>各种魔改</em><a href="https://akilar.top/posts/f99b208/">https://akilar.top/posts/f99b208/</a><br><strong>添加全盘吸底aplayer音乐播放器：</strong><a href="https://butterfly.js.org/posts/507c070f/">https://butterfly.js.org/posts/507c070f/</a></p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>nvm</tag>
       </tags>
   </entry>
   <entry>
@@ -445,16 +529,6 @@
       </tags>
   </entry>
   <entry>
-    <title>xshell和xftp配合ubuntu虚拟机的使用</title>
-    <url>/2021/03/21/xshell%E5%92%8Cxftp%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="如何安装并部署xshell和xftp"><a href="#如何安装并部署xshell和xftp" class="headerlink" title="如何安装并部署xshell和xftp"></a>如何安装并部署xshell和xftp</h3><span id="more"></span>
-<h4 id="需要工具-xshell-xftp"><a href="#需要工具-xshell-xftp" class="headerlink" title="需要工具: xshell xftp"></a>需要工具: xshell xftp</h4><h4 id="下载地址-https-www-netsarang-com-zh-xshell-download"><a href="#下载地址-https-www-netsarang-com-zh-xshell-download" class="headerlink" title="下载地址: https://www.netsarang.com/zh/xshell-download/"></a>下载地址: <a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></h4><p>注意事项:xshell不支持UTF-8编码的电脑</p>
-]]></content>
-      <tags>
-        <tag>XFTP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何在gitee上做一个图床</title>
     <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<blockquote>
@@ -471,23 +545,6 @@
       <tags>
         <tag>Picgo</tag>
         <tag>图床</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>各种教程和参考</title>
-    <url>/2021/06/07/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E6%95%99%E7%A8%8B%E5%92%8C%E5%8F%82%E8%80%83/</url>
-    <content><![CDATA[<h4 id="nvm-nodejs版本管理工具-使用方式："><a href="#nvm-nodejs版本管理工具-使用方式：" class="headerlink" title="nvm(nodejs版本管理工具)使用方式："></a>nvm(nodejs版本管理工具)使用方式：</h4><p><a href="https://www.cnblogs.com/gaozejie/p/10689742.html">https://www.cnblogs.com/gaozejie/p/10689742.html</a></p>
-<h4 id="磁盘扩容："><a href="#磁盘扩容：" class="headerlink" title="磁盘扩容："></a>磁盘扩容：</h4><ol>
-<li>磁盘未使用过<br>直接搜索磁盘管理，点击创建并格式化硬盘分区<br>删除释放空间的磁盘，重新分区即可</li>
-<li>磁盘已使用<br>使用Diskgenius：<a href="https://www.diskgenius.cn/">https://www.diskgenius.cn/</a></li>
-</ol>
-<h4 id="hexo-yilia主题配置教程"><a href="#hexo-yilia主题配置教程" class="headerlink" title="hexo-yilia主题配置教程"></a>hexo-yilia主题配置教程</h4><p>文字版<br><a href="https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_%E4%B8%BB%E9%A2%98%E4%B8%80%E6%8F%BD%E5%AD%90%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%A4%B1%E6%A8%A1%E5%9D%97">https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_%E4%B8%BB%E9%A2%98%E4%B8%80%E6%8F%BD%E5%AD%90%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%A4%B1%E6%A8%A1%E5%9D%97</a><br>视频版<br><a href="https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver</a></p>
-<h4 id="hexo-添加live2d看板娘"><a href="#hexo-添加live2d看板娘" class="headerlink" title="hexo-添加live2d看板娘"></a>hexo-添加live2d看板娘</h4><p>效果如下↓↓↓<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources/20210608201035.png"><br>教程：<a href="https://akilar.top/posts/5b8f515f/">https://akilar.top/posts/5b8f515f/</a></p>
-<h4 id="hexo-bufferfly配置"><a href="#hexo-bufferfly配置" class="headerlink" title="hexo-bufferfly配置"></a>hexo-bufferfly配置</h4><p><strong>本人均试过，好教程</strong><br><em>官方文档，建议先看这个，很全</em>：<a href="https://butterfly.js.org/posts/21cfbf15/">https://butterfly.js.org/posts/21cfbf15/</a><br><em>各种魔改</em><a href="https://akilar.top/posts/f99b208/">https://akilar.top/posts/f99b208/</a><br><strong>添加全盘吸底aplayer音乐播放器：</strong><a href="https://butterfly.js.org/posts/507c070f/">https://butterfly.js.org/posts/507c070f/</a></p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-        <tag>nvm</tag>
       </tags>
   </entry>
   <entry>
