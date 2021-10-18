@@ -17,48 +17,6 @@
       </tags>
   </entry>
   <entry>
-    <title>GDB</title>
-    <url>/2021/04/14/GDB%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="GDB使用方式"><a href="#GDB使用方式" class="headerlink" title="GDB使用方式"></a>GDB使用方式</h3><span id="more"></span>
-<p>使用条件：目标为可执行文件<br>注意事项：仅使用 gcc（或 g++）命令编译生成的可执行文件，是无法借助 GDB 进行调试的。<br>原因：使用 GDB 调试某个可执行文件，该文件中必须包含必要的调试信息（比如各行代码所在的行号、包含程序中所有变量名称的列表（又称为符号表）等）</p>
-<p>那么，如何生成符合 GDB 调试要求的可执行文件呢？很简单，只需要使用 gcc -g 选项编译源文件，即可生成满足 GDB 要求的可执行文件。<br>即可使用 GDB 进行调试。</p>
-<p>值得一提的是，GCC 编译器支持 -O（等于同 -O1，优化生成的目标文件）和 -g 一起参与编译。GCC 编译过程对进行优化的程度可分为 5 个等级，分别为 O0~O4，O0 表示不优化（默认选项），从 O1 ~ O4 优化级别越来越高，O4 最高。<br>所谓优化，例如省略掉代码中从未使用过的变量、直接将常量表达式用结果值代替等等，这些操作会缩减目标文件所包含的代码量，提高最终生成的可执行文件的运行效率。</p>
-<p>而相对于 -O -g 选项，对 GDB 调试器更友好的是 -Og 选项，-Og 对代码所做的优化程序介于 O0 ~ O1 之间，真正可做到“在保持快速编译和良好调试体验的同时，提供较为合理的优化级别”。</p>
-<h3 id="GDB命令"><a href="#GDB命令" class="headerlink" title="GDB命令"></a>GDB命令</h3><p>（gdb）help：查看命令帮助，具体命令查询在gdb中输入help + 命令,简写h</p>
-<p>（gdb）run：重新开始运行文件（run-text：加载文本文件，run-bin：加载二进制文件）,简写r</p>
-<p>（gdb）start：单步执行，运行程序，停在第一执行语句</p>
-<p>（gdb）list：查看原代码（list-n,从第n行开始查看代码。list+ 函数名：查看具体函数）,简写l</p>
-<p>（gdb）set：设置变量的值</p>
-<p>（gdb）next：单步调试（逐过程，函数直接执行）,简写n</p>
-<p>（gdb）step：单步调试（逐语句：跳入自定义函数内部执行）,简写s</p>
-<p>（gdb）backtrace：查看函数的调用的栈帧和层级关系,简写bt</p>
-<p>（gdb）frame：切换函数的栈帧,简写f</p>
-<p>（gdb）info：查看函数内部局部变量的数值,简写i</p>
-<p>（gdb）finish：结束当前函数，返回到函数调用点</p>
-<p>（gdb）continue：继续运行,运行到下一个断点,简写c</p>
-<p>（gdb）print：打印值及地址,简写p</p>
-<p>（gdb）quit：退出gdb,简写q</p>
-<p>（gdb）break+num：在第num行设置断点,简写b</p>
-<p> 也可以b+函数名or地址</p>
-<p>（gdb）info breakpoints：查看当前设置的所有断点</p>
-<p>（gdb）delete breakpoints num：删除第num个断点,简写d</p>
-<p>（gdb）display：追踪查看具体变量值</p>
-<p>（gdb）undisplay：取消追踪观察变量</p>
-<p>（gdb）watch：被设置观察点的变量发生修改时，打印显示</p>
-<p>（gdb）i watch：显示观察点</p>
-<p>（gdb）enable breakpoints：启用断点</p>
-<p>（gdb）disable breakpoints：禁用断点</p>
-<p>（gdb）x：查看内存x/20xw 显示20个单元，16进制，4字节每单元</p>
-<p>（gdb）run argv[1] argv[2]：调试时命令行传参</p>
-]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>GDB</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>git备忘录</title>
     <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
     <content><![CDATA[<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
@@ -170,67 +128,38 @@
       </tags>
   </entry>
   <entry>
-    <title>Java</title>
-    <url>/2021/06/02/Java/</url>
-    <content><![CDATA[<p>记录帖</p>
-<span id="more"></span>
-<h4 id="查询jdk版本"><a href="#查询jdk版本" class="headerlink" title="查询jdk版本"></a>查询jdk版本</h4><p>cmd: <code>java -verbose</code></p>
-<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
+    <title>HIT机器学习Lab1</title>
+    <url>/2021/10/16/HIT%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0Lab1/</url>
+    <content><![CDATA[<blockquote>
+<p>一、实验目的<br>掌握最小二乘法求解（无惩罚项的损失函数）、掌握加惩罚项（2范数）的损失函数优化、梯度下降法、共轭梯度法、理解过拟合、克服过拟合的方法(如加惩罚项、增加样本)</p>
+<p>二、实验要求及实验环境<br>实验要求:<br>1.生成数据，加入均值为0、一定方差(高斯)噪声；<br>$$<br>生成函数：y=sin2\pi x<br>$$<br>2.用高阶多项式函数拟合曲线；<br>3.用解析解求解两种loss的最优解（无正则项和有正则项）<br>4.优化方法求解最优解（梯度下降，共轭梯度）；<br>5.用你得到的实验数据，解释过拟合。<br>6.用不同数据量，不同超参数，不同的多项式阶数，比较实验效果。<br>7.语言不限，可以用matlab，python。求解解析解时可以利用现成的矩阵求逆。梯度下降，共轭梯度要求自己求梯度，迭代优化自己写。不许用现成的平台，例如pytorch，tensorflow的自动微分工具。</p>
+<p>实验环境:<br>Windows10/Pycharm2021.2/Python 3.9</p>
+</blockquote>
+<p>三、设计思想<br><strong>核心: 泰勒展开</strong><br>任何函数都可以分解为不同阶的多项式之和, 因此可以用多项式对未知函数进行拟合.<br>本次实验即采用:m阶多项式对sin2x进行拟合, 则m有m+1个系数, 这些系数组成的列向量记为W, 用最小二乘法计算W </p>
 <ol>
-<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
+<li>最小二乘法求解析解(无正则项):</li>
 </ol>
-<ul>
-<li>key: 键</li>
-<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
-</ul>
-<ol start="2">
-<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
-<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
-<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
+<p>$$<br>E(\omega)=\frac{1}{2} \sum_{n=1}^{N}\left(y\left(x_{n}, W\right)-t_{n}\right)^{2}=\frac{1}{2}(X W-T)^{T}(X W-T)\W=\left[\begin{array}{c}<br>w_{0} \<br>w_{1} \<br>\vdots \<br>w_{m}<br>\end{array}\right], X=\left[\begin{array}{cccc}<br>1 &amp; x_{1} &amp; \cdots &amp; x_{1}^{m} \<br>1 &amp; x_{2} &amp; \cdots &amp; x_{2}^{m} \<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>1 &amp; x_{n} &amp; \cdots &amp; x_{n}^{m}<br>\end{array}\right]\<br>\begin{array}{c}<br>\frac{\partial E(W)}{\partial W}=X^{T} X W-X^{T} T \<br>W=\left(X^{T} X\right)^{-1} X^{T} T<br>\end{array}<br>$$<br>2. 最小二乘法求解析解(有正则项):</p>
+<p>$$<br>\begin{array}{c}<br>\widetilde{E}(w)=\frac{1}{2} \sum_{n=1}^{N}\left{y\left(x_{n}, w\right)-t_{n}\right}^{2}+\frac{\lambda}{2}|w|^{2} \<br>W=\left(X^{T} X+\lambda E_{m+1}\right)^{-1} X^{T} T<br>\end{array}<br>$$</p>
+<ol start="3">
+<li>梯度下降：</li>
 </ol>
-<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
-<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><ol>
-<li>String<br>String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String a = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">a = <span class="string">&quot;456&quot;</span>;</span><br><span class="line"><span class="comment">// 打印出来的a为456</span></span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
-在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是<strong>生成了一个新的实例，将a指向了这个新的实例</strong>，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收</li>
-<li>StringBuffer<br>StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，<br>通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。<br>一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">StringBuffer b = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">b.append(<span class="string">&quot;456&quot;</span>);</span><br><span class="line"><span class="comment">// b打印结果为：123456</span></span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure></li>
-<li>StringBuilder<br>StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。<br>不同的是：<strong>StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。</strong></li>
+<p>$$<br>\begin{aligned}<br>\widetilde{E}(\boldsymbol{w}) &amp;=\frac{1}{2}(\boldsymbol{X} \boldsymbol{w}-\boldsymbol{Y})^{T}(\boldsymbol{X} \boldsymbol{w}-\boldsymbol{Y})+\frac{\lambda}{2}|\boldsymbol{w}|_{2} \<br>&amp;=\frac{1}{2}\left(\boldsymbol{w}^{T} \boldsymbol{X}^{T} \boldsymbol{X} \boldsymbol{w}-2 \boldsymbol{w}^{T} \boldsymbol{X}^{T} \boldsymbol{Y}+\boldsymbol{X}^{T} \boldsymbol{Y}\right)+\frac{\lambda}{2} \boldsymbol{w}^{T} \boldsymbol{w}<br>\end{aligned}\<br>\frac{\partial \widetilde{E}}{\partial \boldsymbol{w}}=\boldsymbol{X}^{T} \boldsymbol{X} \boldsymbol{w}-\boldsymbol{X}^{T} \boldsymbol{Y}+\lambda \boldsymbol{w}\<br>\boldsymbol{w}=\boldsymbol{w}-\alpha \cdot \frac{\partial \widetilde{E}}{\partial \boldsymbol{w}}<br>$$</p>
+<ol start="4">
+<li>共轭梯度：</li>
 </ol>
-<h4 id="Queue的用法"><a href="#Queue的用法" class="headerlink" title="Queue的用法:"></a>Queue的用法:</h4><p><a href="https://www.runoob.com/java/data-queue.html">https://www.runoob.com/java/data-queue.html</a></p>
-<h4 id="关于日期格式的判断"><a href="#关于日期格式的判断" class="headerlink" title="关于日期格式的判断"></a>关于日期格式的判断</h4><blockquote>
-<p>日期格式为2020-01-03，若格式为2020/01/03，可修改为yyyy/MM/dd,注意MM为大写<br>完整类型 yyyy-MM-dd HH:mm:ss<br>@return 若解析成功，返回对应的Date类型,解析失败返回null</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parser</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Date <span class="title">checkInput</span><span class="params">(String S)</span> </span>&#123;</span><br><span class="line">		Date date = <span class="keyword">null</span>;</span><br><span class="line">		SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			format.setLenient(<span class="keyword">false</span>);</span><br><span class="line">			<span class="comment">// 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007/02/29会被接受，并转换成2007/03/01</span></span><br><span class="line">			date = format.parse(S);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> date;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="关于Scanner异常：java-util-NoSuchElementException-No-line-found"><a href="#关于Scanner异常：java-util-NoSuchElementException-No-line-found" class="headerlink" title="关于Scanner异常：java.util.NoSuchElementException: No line found"></a>关于Scanner异常：java.util.NoSuchElementException: No line found</h4><p>可能是同时开启了多个Scanner指向同一位置，如</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner sc1=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">Scanner sc2=<span class="keyword">new</span> Scanner(System.in);</span><br></pre></td></tr></table></figure>
-<p>当关闭其中一个Scanner时，System.in也会关闭，导致另一个Scanner异常</p>
-<h4 id="Java随机数生成"><a href="#Java随机数生成" class="headerlink" title="Java随机数生成"></a>Java随机数生成</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Random</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i = IDs.size();</span><br><span class="line">		<span class="keyword">int</span> min = <span class="number">1</span>, max = <span class="number">1000</span>;</span><br><span class="line">		<span class="keyword">int</span> random = (<span class="keyword">int</span>) (Math.random() * (max - min) + min);<span class="comment">//生成min到max的随机数</span></span><br><span class="line">		<span class="keyword">return</span> random % i;<span class="comment">//生成0到i-1的随机数</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="关于ArrayList排序器"><a href="#关于ArrayList排序器" class="headerlink" title="关于ArrayList排序器"></a>关于ArrayList排序器</h4><blockquote>
-<p>单一参数排序<br>例如对进程表Processes中所有进程号进行排序</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Collections.sort(Processes, <span class="keyword">new</span> Comparator&lt;Process&gt;() &#123;</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Process o1, Process o2)</span> </span>&#123;</span><br><span class="line">					<span class="keyword">if</span> (o1.number &gt;= o2.number) &#123;</span><br><span class="line">						<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>多参数排序<br>例如优先按照进程号，其次按照进程剩余时间大小排序<br>//TODO</p>
-</blockquote>
-<h4 id="关于-split-Illegal-repetition-near-index-1-报错"><a href="#关于-split-Illegal-repetition-near-index-1-报错" class="headerlink" title="关于 split:Illegal repetition near index 1 报错"></a>关于 split:Illegal repetition near index 1 报错</h4><blockquote>
-<p>关于Split用法：<a href="https://www.runoob.com/java/java-string-split.html">https://www.runoob.com/java/java-string-split.html</a><br>发生原因：split中的某些字符需要转义</p>
-</blockquote>
-<p>例如<code>strs=s.split(&quot;&#123;&quot;);</code><br>需改为<code>strs=s.split(&quot;\\&#123;&#125;&quot;);</code></p>
-<h4 id="关于正则表达式匹配"><a href="#关于正则表达式匹配" class="headerlink" title="关于正则表达式匹配"></a>关于正则表达式匹配</h4><blockquote>
-<p>软件构造实验Lab3的一些收获<br>以软件构造Lab3的文本举例<br>正则表达式匹配速查：<a href="https://www.runoob.com/java/java-regular-expressions.html">https://www.runoob.com/java/java-regular-expressions.html</a></p>
-</blockquote>
-<p>希望匹配如下文本</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Employee&#123; </span><br><span class="line">ZhangSan&#123;Manger,139-0451-0000&#125;</span><br><span class="line">LiSi&#123;Secretary,151-0101-0000&#125;</span><br><span class="line">WangWu&#123;Associate Dean,177-2021-0301&#125;</span><br><span class="line">ZhaoLiua&#123;Professor,138-1920-3912&#125;</span><br><span class="line">ZhaoLiub&#123;Lecturer,138-1921-3912&#125;</span><br><span class="line">ZhaoLiuc&#123;Professor,138-1922-3912&#125;</span><br><span class="line">ZhaoLiud&#123;Lecturer,198-1920-3912&#125;</span><br><span class="line">ZhaoLiue&#123;Professor,178-1920-3912&#125;</span><br><span class="line">ZhaoLiuf&#123;Lecturer,138-1929-3912&#125;</span><br><span class="line">ZhaoLiug&#123;Professor,138-1920-0000&#125;</span><br><span class="line">ZhaoLiuh&#123;AssciateProfessor,138-1929-0000&#125;</span><br><span class="line">ZhaoLiui&#123;Professor,138-1920-0200&#125;</span><br><span class="line">ZhaoLiuj&#123;AssciateProfessor,138-1920-0044&#125;</span><br><span class="line">ZhaoLiuk&#123;Professor,188-1920-0000&#125;</span><br><span class="line">&#125;</span><br><span class="line">Period&#123;2021-01-10,2021-03-06&#125;</span><br><span class="line">Roster&#123; </span><br><span class="line">ZhangSan&#123;2021-01-10,2021-01-11&#125;</span><br><span class="line">LiSi&#123;2021-01-12,2021-01-20&#125;</span><br><span class="line">WangWu&#123;2021-01-21,2021-01-21&#125;</span><br><span class="line">ZhaoLiua&#123;2021-01-22,2021-01-22&#125;</span><br><span class="line">ZhaoLiub&#123;2021-01-23,2021-01-29&#125;</span><br><span class="line">ZhaoLiuc&#123;2021-01-30,2021-01-31&#125;</span><br><span class="line">ZhaoLiud&#123;2021-02-01,2021-02-08&#125;</span><br><span class="line">ZhaoLiue&#123;2021-02-09,2021-02-15&#125;</span><br><span class="line">ZhaoLiuf&#123;2021-02-16,2021-02-24&#125;</span><br><span class="line">ZhaoLiug&#123;2021-02-25,2021-02-28&#125;</span><br><span class="line">ZhaoLiuh&#123;2021-03-01,2021-03-01&#125;</span><br><span class="line">ZhaoLiui&#123;2021-03-02,2021-03-04&#125;</span><br><span class="line">ZhaoLiuj&#123;2021-03-05,2021-03-05&#125;</span><br><span class="line">ZhaoLiuk&#123;2021-03-06,2021-03-06&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>则可以构造6个模式串进行匹配</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern pattern1 = Pattern.compile(<span class="string">&quot;(Period)\\&#123;(2021-[01][0-9]-[0123][0-9],2021-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Period&#123;2021-01-10,2021-03-06&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern2 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;(\\D*),([0-9]&#123;3&#125;-[0-9]&#123;4&#125;-[0-9]&#123;4&#125;)\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;Manger,139-0451-0000&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern3 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9]),([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;2021-01-10,2021-01-11&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern4 = Pattern.compile(<span class="string">&quot;(Employee)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Employee&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern5 = Pattern.compile(<span class="string">&quot;(Roster)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Roster&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern6 = Pattern.compile(<span class="string">&quot;\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
-<p>之后利用捕获组match.group()得到可用信息并进行处理即可</p>
-<p>举例： 若文本为String str=”ZhangSan{Manger,139-0451-0000}”<br>则该行文本匹配模式串2,并会产生3个捕获组:<br>分别为ZhangSan / Manager / 139-0451-0000<br>由此得到了一个员工的信息</p>
+<p>$$<br>\frac{\partial \widetilde{E}}{\partial \boldsymbol{w}}=\boldsymbol{X}^{T} \boldsymbol{X} \boldsymbol{w}-\boldsymbol{X}^{T} \boldsymbol{Y}+\lambda \boldsymbol{w}=0\<br>\begin{aligned}<br>a_{k} &amp;=\frac{\boldsymbol{r}<em>{k}^{T} \boldsymbol{r}</em>{k}}{\boldsymbol{p}<em>{k}^{T} \boldsymbol{A} \boldsymbol{p}</em>{k}} \<br>\boldsymbol{w}<em>{k} &amp;=\boldsymbol{w}</em>{k}+a_{k} \boldsymbol{p}<em>{k} \<br>\boldsymbol{r}</em>{k+1} &amp;=\boldsymbol{r}<em>{k}-a</em>{k} \boldsymbol{A} \boldsymbol{p}<em>{k} \<br>b</em>{k} &amp;=\frac{\boldsymbol{r}<em>{k+1}^{T} \boldsymbol{r}</em>{k+1}}{\boldsymbol{r}<em>{k}^{T} \boldsymbol{r}</em>{k}} \<br>\boldsymbol{p}<em>{k+1} &amp;=\boldsymbol{r}</em>{k+1}+b_{k} \boldsymbol{p}_{k}<br>\end{aligned}<br>$$</p>
+<p>四、 实验结果与分析</p>
+<ol>
+<li>不带正则项的解析解</li>
+</ol>
+<p><strong>(红色为标准曲线,蓝色散点为生成的带有高斯噪声的数据,绿色为拟合曲线)</strong></p>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>Java</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -305,6 +234,70 @@
       </tags>
   </entry>
   <entry>
+    <title>Java</title>
+    <url>/2021/06/02/Java/</url>
+    <content><![CDATA[<p>记录帖</p>
+<span id="more"></span>
+<h4 id="查询jdk版本"><a href="#查询jdk版本" class="headerlink" title="查询jdk版本"></a>查询jdk版本</h4><p>cmd: <code>java -verbose</code></p>
+<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
+<ol>
+<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
+</ol>
+<ul>
+<li>key: 键</li>
+<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
+</ul>
+<ol start="2">
+<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
+<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
+<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
+</ol>
+<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
+<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><ol>
+<li>String<br>String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String a = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">a = <span class="string">&quot;456&quot;</span>;</span><br><span class="line"><span class="comment">// 打印出来的a为456</span></span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
+在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是<strong>生成了一个新的实例，将a指向了这个新的实例</strong>，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收</li>
+<li>StringBuffer<br>StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，<br>通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。<br>一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">StringBuffer b = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">b.append(<span class="string">&quot;456&quot;</span>);</span><br><span class="line"><span class="comment">// b打印结果为：123456</span></span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure></li>
+<li>StringBuilder<br>StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。<br>不同的是：<strong>StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。</strong></li>
+</ol>
+<h4 id="Queue的用法"><a href="#Queue的用法" class="headerlink" title="Queue的用法:"></a>Queue的用法:</h4><p><a href="https://www.runoob.com/java/data-queue.html">https://www.runoob.com/java/data-queue.html</a></p>
+<h4 id="关于日期格式的判断"><a href="#关于日期格式的判断" class="headerlink" title="关于日期格式的判断"></a>关于日期格式的判断</h4><blockquote>
+<p>日期格式为2020-01-03，若格式为2020/01/03，可修改为yyyy/MM/dd,注意MM为大写<br>完整类型 yyyy-MM-dd HH:mm:ss<br>@return 若解析成功，返回对应的Date类型,解析失败返回null</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parser</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Date <span class="title">checkInput</span><span class="params">(String S)</span> </span>&#123;</span><br><span class="line">		Date date = <span class="keyword">null</span>;</span><br><span class="line">		SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			format.setLenient(<span class="keyword">false</span>);</span><br><span class="line">			<span class="comment">// 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007/02/29会被接受，并转换成2007/03/01</span></span><br><span class="line">			date = format.parse(S);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> date;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关于Scanner异常：java-util-NoSuchElementException-No-line-found"><a href="#关于Scanner异常：java-util-NoSuchElementException-No-line-found" class="headerlink" title="关于Scanner异常：java.util.NoSuchElementException: No line found"></a>关于Scanner异常：java.util.NoSuchElementException: No line found</h4><p>可能是同时开启了多个Scanner指向同一位置，如</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner sc1=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">Scanner sc2=<span class="keyword">new</span> Scanner(System.in);</span><br></pre></td></tr></table></figure>
+<p>当关闭其中一个Scanner时，System.in也会关闭，导致另一个Scanner异常</p>
+<h4 id="Java随机数生成"><a href="#Java随机数生成" class="headerlink" title="Java随机数生成"></a>Java随机数生成</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Random</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i = IDs.size();</span><br><span class="line">		<span class="keyword">int</span> min = <span class="number">1</span>, max = <span class="number">1000</span>;</span><br><span class="line">		<span class="keyword">int</span> random = (<span class="keyword">int</span>) (Math.random() * (max - min) + min);<span class="comment">//生成min到max的随机数</span></span><br><span class="line">		<span class="keyword">return</span> random % i;<span class="comment">//生成0到i-1的随机数</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关于ArrayList排序器"><a href="#关于ArrayList排序器" class="headerlink" title="关于ArrayList排序器"></a>关于ArrayList排序器</h4><blockquote>
+<p>单一参数排序<br>例如对进程表Processes中所有进程号进行排序</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Collections.sort(Processes, <span class="keyword">new</span> Comparator&lt;Process&gt;() &#123;</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Process o1, Process o2)</span> </span>&#123;</span><br><span class="line">					<span class="keyword">if</span> (o1.number &gt;= o2.number) &#123;</span><br><span class="line">						<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>多参数排序<br>例如优先按照进程号，其次按照进程剩余时间大小排序<br>//TODO</p>
+</blockquote>
+<h4 id="关于-split-Illegal-repetition-near-index-1-报错"><a href="#关于-split-Illegal-repetition-near-index-1-报错" class="headerlink" title="关于 split:Illegal repetition near index 1 报错"></a>关于 split:Illegal repetition near index 1 报错</h4><blockquote>
+<p>关于Split用法：<a href="https://www.runoob.com/java/java-string-split.html">https://www.runoob.com/java/java-string-split.html</a><br>发生原因：split中的某些字符需要转义</p>
+</blockquote>
+<p>例如<code>strs=s.split(&quot;&#123;&quot;);</code><br>需改为<code>strs=s.split(&quot;\\&#123;&#125;&quot;);</code></p>
+<h4 id="关于正则表达式匹配"><a href="#关于正则表达式匹配" class="headerlink" title="关于正则表达式匹配"></a>关于正则表达式匹配</h4><blockquote>
+<p>软件构造实验Lab3的一些收获<br>以软件构造Lab3的文本举例<br>正则表达式匹配速查：<a href="https://www.runoob.com/java/java-regular-expressions.html">https://www.runoob.com/java/java-regular-expressions.html</a></p>
+</blockquote>
+<p>希望匹配如下文本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Employee&#123; </span><br><span class="line">ZhangSan&#123;Manger,139-0451-0000&#125;</span><br><span class="line">LiSi&#123;Secretary,151-0101-0000&#125;</span><br><span class="line">WangWu&#123;Associate Dean,177-2021-0301&#125;</span><br><span class="line">ZhaoLiua&#123;Professor,138-1920-3912&#125;</span><br><span class="line">ZhaoLiub&#123;Lecturer,138-1921-3912&#125;</span><br><span class="line">ZhaoLiuc&#123;Professor,138-1922-3912&#125;</span><br><span class="line">ZhaoLiud&#123;Lecturer,198-1920-3912&#125;</span><br><span class="line">ZhaoLiue&#123;Professor,178-1920-3912&#125;</span><br><span class="line">ZhaoLiuf&#123;Lecturer,138-1929-3912&#125;</span><br><span class="line">ZhaoLiug&#123;Professor,138-1920-0000&#125;</span><br><span class="line">ZhaoLiuh&#123;AssciateProfessor,138-1929-0000&#125;</span><br><span class="line">ZhaoLiui&#123;Professor,138-1920-0200&#125;</span><br><span class="line">ZhaoLiuj&#123;AssciateProfessor,138-1920-0044&#125;</span><br><span class="line">ZhaoLiuk&#123;Professor,188-1920-0000&#125;</span><br><span class="line">&#125;</span><br><span class="line">Period&#123;2021-01-10,2021-03-06&#125;</span><br><span class="line">Roster&#123; </span><br><span class="line">ZhangSan&#123;2021-01-10,2021-01-11&#125;</span><br><span class="line">LiSi&#123;2021-01-12,2021-01-20&#125;</span><br><span class="line">WangWu&#123;2021-01-21,2021-01-21&#125;</span><br><span class="line">ZhaoLiua&#123;2021-01-22,2021-01-22&#125;</span><br><span class="line">ZhaoLiub&#123;2021-01-23,2021-01-29&#125;</span><br><span class="line">ZhaoLiuc&#123;2021-01-30,2021-01-31&#125;</span><br><span class="line">ZhaoLiud&#123;2021-02-01,2021-02-08&#125;</span><br><span class="line">ZhaoLiue&#123;2021-02-09,2021-02-15&#125;</span><br><span class="line">ZhaoLiuf&#123;2021-02-16,2021-02-24&#125;</span><br><span class="line">ZhaoLiug&#123;2021-02-25,2021-02-28&#125;</span><br><span class="line">ZhaoLiuh&#123;2021-03-01,2021-03-01&#125;</span><br><span class="line">ZhaoLiui&#123;2021-03-02,2021-03-04&#125;</span><br><span class="line">ZhaoLiuj&#123;2021-03-05,2021-03-05&#125;</span><br><span class="line">ZhaoLiuk&#123;2021-03-06,2021-03-06&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>则可以构造6个模式串进行匹配</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern pattern1 = Pattern.compile(<span class="string">&quot;(Period)\\&#123;(2021-[01][0-9]-[0123][0-9],2021-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Period&#123;2021-01-10,2021-03-06&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern2 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;(\\D*),([0-9]&#123;3&#125;-[0-9]&#123;4&#125;-[0-9]&#123;4&#125;)\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;Manger,139-0451-0000&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern3 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9]),([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;2021-01-10,2021-01-11&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern4 = Pattern.compile(<span class="string">&quot;(Employee)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Employee&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern5 = Pattern.compile(<span class="string">&quot;(Roster)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Roster&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern6 = Pattern.compile(<span class="string">&quot;\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>之后利用捕获组match.group()得到可用信息并进行处理即可</p>
+<p>举例： 若文本为String str=”ZhangSan{Manger,139-0451-0000}”<br>则该行文本匹配模式串2,并会产生3个捕获组:<br>分别为ZhangSan / Manager / 139-0451-0000<br>由此得到了一个员工的信息</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown</title>
     <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
     <content><![CDATA[<h4 id="常用语法："><a href="#常用语法：" class="headerlink" title="常用语法："></a>常用语法：</h4><p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
@@ -315,24 +308,6 @@
       </categories>
       <tags>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL</title>
-    <url>/2021/07/22/MySQL/</url>
-    <content><![CDATA[<blockquote>
-<p>启动MySQL之前需要先关闭防火墙或者打开相应端口(如8080)</p>
-</blockquote>
-<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><p><code>mysql -u root -p</code></p>
-<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p><code>select * from EMP;</code></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> a.ename,a.sal,a.deptno <span class="keyword">from</span> EMP a</span><br><span class="line"><span class="keyword">join</span> (</span><br><span class="line"><span class="keyword">select</span> deptno, <span class="built_in">max</span>(sal) <span class="keyword">as</span> max_sal <span class="keyword">from</span> EMP <span class="keyword">group</span> <span class="keyword">by</span> deptno) b</span><br><span class="line"><span class="keyword">on</span> a.deptno <span class="operator">=</span> b.deptno <span class="keyword">and</span> a.sal <span class="operator">=</span> b.max_sal;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -347,140 +322,6 @@
       <tags>
         <tag>CDN</tag>
         <tag>Picgo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PyCharm</title>
-    <url>/2021/08/11/PyCharm/</url>
-    <content><![CDATA[<h4 id="PyCharm怎么运行不同文件不用重新设置config？"><a href="#PyCharm怎么运行不同文件不用重新设置config？" class="headerlink" title="PyCharm怎么运行不同文件不用重新设置config？"></a>PyCharm怎么运行不同文件不用重新设置config？</h4><p><code>Ctrl+Shift+F10</code> 或者 右键运行</p>
-]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>PyCharm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python爬虫入门</title>
-    <url>/2021/08/25/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<p>此帖为Python爬虫入门帖</p>
-<h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><ul>
-<li>Python3.9.0</li>
-<li>Pycharm 2021<h4 id="用到的库-包"><a href="#用到的库-包" class="headerlink" title="用到的库/包"></a>用到的库/包</h4></li>
-<li>request请求库</li>
-<li>BeautifulSoup解析库</li>
-<li>正则表达式</li>
-<li>json模块</li>
-</ul>
-<h4 id="采集上一天疫情信息-用来了解各个库的用法"><a href="#采集上一天疫情信息-用来了解各个库的用法" class="headerlink" title="采集上一天疫情信息(用来了解各个库的用法)"></a>采集上一天疫情信息(用来了解各个库的用法)</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 导入 requests请求库</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment"># 导入正则表达式模块</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># 导入json模块</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment"># 导入BeautifulSoup库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.发送Get请求获取主页信息</span></span><br><span class="line">response = requests.get(<span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span>)</span><br><span class="line">home_page = response.content.decode()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.从主页信息中提取最近一日各国疫情数据信息</span></span><br><span class="line">soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">script = soup.find(<span class="built_in">id</span>=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">text = script.string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.获取json格式字符串 </span></span><br><span class="line">json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 4.把json格式字符串转换为Python类型</span></span><br><span class="line">last_day_data = json.loads(json_str)</span><br><span class="line"><span class="comment"># 5.把数据写入相应json文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_data.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    json.dump(last_day_data, fp, ensure_ascii=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="采集数据正文"><a href="#采集数据正文" class="headerlink" title="采集数据正文"></a>采集数据正文</h4><blockquote>
-<p>采集内容: 1.最近一日世界各国疫情数据     2.最近一日中国疫情数据<br>         3.从1月23日期世界各国疫情数据 </p>
-</blockquote>
-<p><strong>上文的代码由于拓展性和可复用性差,因此我们对代码进行重构,提高可拓展性和复用性</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CoronaVirusSpider</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.home_url = <span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_content_from_url</span>(<span class="params">self, url</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :param url:请求的URL</span></span><br><span class="line"><span class="string">        :return: 响应得到的字符串</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">return</span> response.content.decode()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_home_page</span>(<span class="params">self, home_page, tag_id</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        解析首页内容,获取解析后的Python数据</span></span><br><span class="line"><span class="string">        :param home_page:首页内容</span></span><br><span class="line"><span class="string">        :return: 解析后的Python数据</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">        script = soup.find(<span class="built_in">id</span>=tag_id)</span><br><span class="line">        text = script.string</span><br><span class="line">        json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">return</span> json.loads(json_str)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span>(<span class="params">self, data, path</span>):</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            json.dump(data, fp, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集各国最近一天的疫情信息</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取首页内容</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析首页内容,获取最近一天各国疫情数据</span></span><br><span class="line">        last_day_corona_virus = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_corona_virus, <span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集从1月23号以来各国的疫情数据</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.加载各国疫情数据</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            last_day_corona_virus = json.load(fp)</span><br><span class="line">        corona_virus = []</span><br><span class="line">        <span class="comment"># 2.遍历各国获取统计URL</span></span><br><span class="line">        <span class="keyword">for</span> country <span class="keyword">in</span> tqdm(last_day_corona_virus, <span class="string">&#x27;采集1月23以来各国疫情信息&#x27;</span>):</span><br><span class="line">            <span class="comment"># 3.发送请求,获取各国从1月23号至今的json数据</span></span><br><span class="line">            statistics_data_url = country[<span class="string">&#x27;statisticsData&#x27;</span>]</span><br><span class="line">            statistics_data_json_str = self.get_content_from_url(statistics_data_url)</span><br><span class="line">            <span class="comment"># 4.把Json数据转换为Python数据,添加到列表汇总</span></span><br><span class="line">            statistics_data = json.loads(statistics_data_json_str)[<span class="string">&#x27;data&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            <span class="keyword">for</span> one_day <span class="keyword">in</span> statistics_data:</span><br><span class="line">                one_day[<span class="string">&#x27;provinceName&#x27;</span>] = country[<span class="string">&#x27;provinceName&#x27;</span>]</span><br><span class="line">                one_day[<span class="string">&#x27;countryShortCode&#x27;</span>] = country[<span class="string">&#x27;countryShortCode&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            corona_virus.extend(statistics_data)</span><br><span class="line">            <span class="comment"># 5.把列表保存为Json文件</span></span><br><span class="line">        self.save(corona_virus, <span class="string">&#x27;data/corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus_of_China</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集最近1日中国各省疫情数据,方式同上文</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取疫情主页</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析主页,获取信息</span></span><br><span class="line">        last_day_china_data = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getAreaStat&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_china_data, <span class="string">&#x27;data/last_day_corona_virus_of_China.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.crawl_last_day_corona_virus()  <span class="comment"># 采集最近1日世界各国疫情数据</span></span><br><span class="line">        <span class="comment"># self.crawl_corona_virus()     # 采集从1月23日起世界各国疫情数据</span></span><br><span class="line">        self.crawl_last_day_corona_virus_of_China() <span class="comment"># 采集最近1日中国各省疫情数据</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    spider = CoronaVirusSpider()</span><br><span class="line">    spider.run()</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python</category>
-        <category>爬虫</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Visual Studio备忘录</title>
-    <url>/2021/05/31/Visual%20Studio%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<p>Visual Studio</p>
-<span id="more"></span>
-<p><strong>代码格式化：</strong><br>选中格式化的代码块<br>先<code>ctrl+K</code>再<code>ctrl+F</code></p>
-]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>Visual Studio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一个Web项目开发的全历程</title>
-    <url>/2021/07/22/Web%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%85%A8%E5%8E%86%E7%A8%8B/</url>
-    <content><![CDATA[<h4 id="环境准备："><a href="#环境准备：" class="headerlink" title="环境准备："></a>环境准备：</h4><blockquote>
-<p>IDEA专业版学生可注册账号申请免费使用<br>xshell和xftp在官网也可以申请免费版<br>NaviCat自行解决<br>其他均为免费或开源<br>安装目录：<br>编辑器：IDEA、Vscode<br>服务器环境：VMware16, CentOS 7<br>所需其他工具：JDK1.8<br>其他软件：NaviCat、ApiPost、xshell、xftp</p>
-</blockquote>
-<p>框架：SpringBoot+MySQL+MyBatisPlus<br>其他:Maven、VueJS、NodeJS、axios、elementUI</p>
-<h4 id="基础知识："><a href="#基础知识：" class="headerlink" title="基础知识："></a>基础知识：</h4><ol>
-<li>Linux常用命令<br>&lt; 此处放doc</li>
-<li>java</li>
-<li>html+css+javaScript</li>
-<li>SpringBoot+MySQL+MyBatisPlus</li>
-<li>Maven</li>
-<li>Vue+axios</li>
-</ol>
-<p><strong>以上在初期均只需要少量必备知识，以下会说到</strong></p>
-<h5 id="在Linux上安装JDK"><a href="#在Linux上安装JDK" class="headerlink" title="在Linux上安装JDK"></a>在Linux上安装JDK</h5><ol>
-<li>卸载已有的openjdk<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看安装的jdk信息</span></span><br><span class="line">rpm -qa | grep java</span><br><span class="line"><span class="comment"># 如果有，则卸载jdk</span></span><br><span class="line">rpm -e --nodeps java-1.6.0-openjdk-1.6.0.35-1.13.7.1.el6_6.i686</span><br><span class="line">rpm -e --nodeps java-1.7.0-openjdk-1.7.0.79-2.5.5.4.el6.i686</span><br></pre></td></tr></table></figure></li>
-<li>在Linux服务器上安装JDK<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">* 直接解压就可以</span><br><span class="line">   tar -xvf jdk-8u131-linux-x64.tar.gz  -C 目标路径</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p><strong>安装包自行下载,可以为其他版本,但建议使用java8，本文将全程使用jdk1.8</strong><br>3. 配置JDK的环境变量.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">① vi /etc/profile</span><br><span class="line">② 在末尾行添加</span><br><span class="line">	<span class="comment">#set java environment</span></span><br><span class="line">	JAVA_HOME=/root/server/jdk1.8.0_131</span><br><span class="line">	PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">	<span class="built_in">export</span> JAVA_HOME PATH</span><br><span class="line">保存退出</span><br><span class="line">③<span class="built_in">source</span> /etc/profile  使更改的配置立即生效</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li><p>测试是否生效，查看jdk版本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
-<h5 id="在Linux上安装MySQL"><a href="#在Linux上安装MySQL" class="headerlink" title="在Linux上安装MySQL"></a>在Linux上安装MySQL</h5></li>
-<li><p>将mysql的安装文件上传到Linux的服务器(文件自行解决)</p>
-</li>
-<li><p>查看linux上是否已经安装了mysql,有则卸载，一般centos7默认安装了mariadb,这里把它卸载。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">查看命令：</span><br><span class="line">rpm -qa|grep mariadb</span><br><span class="line">删除命令：</span><br><span class="line">rpm -e --nodeps mariadb-libs-5.5.52-1.el7.x86_64(此处可能有变化，根据实际情况)</span><br></pre></td></tr></table></figure></li>
-<li><p>解压mysql安装包</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir mysql</span><br><span class="line">tar -xvf mysql-5.7.34-1.el7.x86_64.rpm-bundle.tar -C mysql&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li><p>安装mysql客户端及服务端</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd mysql&#x2F;</span><br><span class="line">rpm -ivh mysql-community-client-5.7.34-1.el7.x86_64.rpm --force --nodeps</span><br><span class="line">rpm -ivh mysql-community-server-5.7.34-1.el7.x86_64.rpm --force --nodeps</span><br></pre></td></tr></table></figure></li>
-<li><p>修改mysql默认字符集</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;my.cnf</span><br></pre></td></tr></table></figure>
-<p>修改部分(注意比对)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">character-set-server&#x3D;utf8</span><br><span class="line">collation-server&#x3D;utf8_general_ci</span><br></pre></td></tr></table></figure>
-<p>并在最下方添加</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set&#x3D;utf8</span><br></pre></td></tr></table></figure></li>
-<li><p>启动mysql服务</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">service mysqld start</span><br></pre></td></tr></table></figure></li>
-<li><p>登录mysql<br>初始密码查看：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cat &#x2F;var&#x2F;log&#x2F;mysqld.log</span><br></pre></td></tr></table></figure>
-<p>在root@localhost:   后面的就是初始密码<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723132030.png"><br>mysql -u root -p  敲回车，输入密码</p>
-</li>
-<li><p>修改mysql登录密码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">set global validate_password_policy&#x3D;0;</span><br><span class="line">set global validate_password_length&#x3D;1;</span><br><span class="line">set password&#x3D;password(&#39;密码&#39;);</span><br></pre></td></tr></table></figure></li>
-<li><p>授予远程连接权限<br>授权</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">grant all privileges on *.* to &#39;root&#39; @&#39;%&#39; identified by &#39;密码&#39;;</span><br></pre></td></tr></table></figure>
-<p>刷新</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure></li>
-<li><p>关闭防火墙并重启</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">service mysqld restart</span><br><span class="line">(关闭防火墙是为了能够远程连接到数据库,事实上只要把相应端口打开即可不需要关闭防火墙)</span><br><span class="line">可自行上网搜索方法</span><br></pre></td></tr></table></figure>
-<h5 id="在Windows上安装JDK"><a href="#在Windows上安装JDK" class="headerlink" title="在Windows上安装JDK"></a>在Windows上安装JDK</h5><p>下载jdk的Windows版本，此处我仍用jdk1.8<br>下载好并安装，设置环境变量(自行百度)<br>最终在cmd中输入java -version 有版本显示即可</p>
-<h5 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h5><h4 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h4><h4 id="SpringBoot简单使用-初次使用-包括配置"><a href="#SpringBoot简单使用-初次使用-包括配置" class="headerlink" title="SpringBoot简单使用(初次使用,包括配置)"></a>SpringBoot简单使用(初次使用,包括配置)</h4></li>
-<li><p>创建SpringBoot项目(需联网)<br> <img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723134414.png"><br> 如图,选择Spring Initializr,项目SDK选择已经装好的JDK1.8,点击下一步</p>
-</li>
-<li><p><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723134629.png"><br> 设置：<br> 组一般为域名倒置,我们这里可以先随便起,Java版本使用Java8,其余默认即可</p>
-</li>
-<li><p><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723134814.png"><br>由于是开发Web项目,因此选上Web中的Spring Web即可,如图</p>
-</li>
-<li><p>选择项目所在位置，自己选</p>
-</li>
-<li><p>此时进入后右下角会有个条闪烁，项目在下载一些外部库,这个下载可能很慢,因此需要一定处理  处理方式：安装Maven并配置,配置方式和java类似，设置环境变量,加入Path</p>
-</li>
-<li><p>由于IDEA自带Maven，该版本不好控制,因此我们手动配置Maven<br> 如图,把主路径改为自己安装的Maven路径<br> <img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723135823.png"></p>
-</li>
-<li><p>更换Maven的源(换成国内的淘宝源，加快下载速度)<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723153159.png"><br> 目录如图，修改conf文件夹中的settings.xml文件<br> 修改方式：<a href="https://maven.aliyun.com/mvn/guide">https://maven.aliyun.com/mvn/guide</a><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723153338.png"></p>
-</li>
-<li><p>回到IDEA,等到资源全部加载好,可以找到一个自动生成的入口程序<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210724132600.png"><br>点击绿色箭头运行,可以看到服务开启在8080端口<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210724140550.png"><br>我们访问<a href="http://localhost:8080/">http://localhost:8080</a> 可以看到<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210724140649.png"><br>由于还没添加什么内容，所以是这样的页面</p>
-</li>
-<li><p>回到IDEA,我们建立一个包controller存放<code>控制器</code><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210724140913.png"><br>再在包中建类,举例：EmpController,添加控制器注解,并随便写好一个函数<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210724141326.png"><br>@RequstMapping(路由)可以用@GetMapping或者@PostMapping替代，详细信息自行百度<br>重启项目，重新访问localhost:8080/abc<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210724141545.png"><br>可以看到,hello已经打印出来了</p>
-</li>
-</ol>
-<p><strong>至此完成了一个简单的流程</strong></p>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h3 id="持续更新-未完待续—————11"><a href="#持续更新-未完待续—————11" class="headerlink" title="持续更新,未完待续—————11"></a>持续更新,未完待续—————11</h3>]]></content>
-      <tags>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
@@ -547,23 +388,6 @@
       </tags>
   </entry>
   <entry>
-    <title>一个Web项目开发的全历程</title>
-    <url>/2021/07/24/Web%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h4 id="RequestParam和-RequestBody"><a href="#RequestParam和-RequestBody" class="headerlink" title="@RequestParam和@RequestBody"></a>@RequestParam和@RequestBody</h4><p>在方法接收的参数为自己定义的类型时，可以用@RequestBody以json格式传入数据<br>@RequestBody只能使用Post方法</p>
-<h4 id="怎么查看MySQL数据库哪个是主键"><a href="#怎么查看MySQL数据库哪个是主键" class="headerlink" title="怎么查看MySQL数据库哪个是主键"></a>怎么查看MySQL数据库哪个是主键</h4><p>在NaviCat中选择目标表,右键,设计表,有黄色钥匙的为主键<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210724120709.png"><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210724120650.png"></p>
-<h4 id="deleteById-updateById等方法需要先在实体类中写好注解-TableId-TableField"><a href="#deleteById-updateById等方法需要先在实体类中写好注解-TableId-TableField" class="headerlink" title="deleteById/updateById等方法需要先在实体类中写好注解@TableId @TableField"></a>deleteById/updateById等方法需要先在实体类中写好注解@TableId @TableField</h4><p>如图<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210724131604.png"></p>
-<h4 id="TableName-TableId-TableField用途"><a href="#TableName-TableId-TableField用途" class="headerlink" title="@TableName @TableId @TableField用途"></a>@TableName @TableId @TableField用途</h4><ol>
-<li>@TableName: 如果数据库的表名和实体类的名字不符，例如<br>数据库表名为user 实体类为account 那么就需要<code>@TableName(value=&quot;user&quot;)</code>进行绑定</li>
-<li>@TableId: 告知Controller表的主键,以便于使用deleteById()等方法<br>数据库表的字段为id,但是实体类为userId，同理也需要绑定<code>@TableId(value=&quot;id&quot;)</code></li>
-<li>@TableField: 非主键字段中使用<br>数据库表的字段为name,但是实体类为userName,就需要<code>@TableField(value=&quot;name&quot;)</code>  </li>
-</ol>
-<p><strong>其他的属性和用法(懒,暂不更新)：<a href="https://blog.csdn.net/weixin_42526068/article/details/113039510">https://blog.csdn.net/weixin_42526068/article/details/113039510</a></strong></p>
-]]></content>
-      <tags>
-        <tag>Web</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows</title>
     <url>/2021/07/20/Windows/</url>
     <content><![CDATA[<h4 id="如何切换到管理员Administrator用户"><a href="#如何切换到管理员Administrator用户" class="headerlink" title="如何切换到管理员Administrator用户"></a>如何切换到管理员Administrator用户</h4><blockquote>
@@ -582,6 +406,55 @@
       </categories>
       <tags>
         <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python爬虫入门</title>
+    <url>/2021/08/25/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<p>此帖为Python爬虫入门帖</p>
+<h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><ul>
+<li>Python3.9.0</li>
+<li>Pycharm 2021<h4 id="用到的库-包"><a href="#用到的库-包" class="headerlink" title="用到的库/包"></a>用到的库/包</h4></li>
+<li>request请求库</li>
+<li>BeautifulSoup解析库</li>
+<li>正则表达式</li>
+<li>json模块</li>
+</ul>
+<h4 id="采集上一天疫情信息-用来了解各个库的用法"><a href="#采集上一天疫情信息-用来了解各个库的用法" class="headerlink" title="采集上一天疫情信息(用来了解各个库的用法)"></a>采集上一天疫情信息(用来了解各个库的用法)</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 导入 requests请求库</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment"># 导入正则表达式模块</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># 导入json模块</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment"># 导入BeautifulSoup库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.发送Get请求获取主页信息</span></span><br><span class="line">response = requests.get(<span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span>)</span><br><span class="line">home_page = response.content.decode()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.从主页信息中提取最近一日各国疫情数据信息</span></span><br><span class="line">soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">script = soup.find(<span class="built_in">id</span>=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">text = script.string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.获取json格式字符串 </span></span><br><span class="line">json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 4.把json格式字符串转换为Python类型</span></span><br><span class="line">last_day_data = json.loads(json_str)</span><br><span class="line"><span class="comment"># 5.把数据写入相应json文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_data.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    json.dump(last_day_data, fp, ensure_ascii=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="采集数据正文"><a href="#采集数据正文" class="headerlink" title="采集数据正文"></a>采集数据正文</h4><blockquote>
+<p>采集内容: 1.最近一日世界各国疫情数据     2.最近一日中国疫情数据<br>         3.从1月23日期世界各国疫情数据 </p>
+</blockquote>
+<p><strong>上文的代码由于拓展性和可复用性差,因此我们对代码进行重构,提高可拓展性和复用性</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CoronaVirusSpider</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.home_url = <span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_content_from_url</span>(<span class="params">self, url</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :param url:请求的URL</span></span><br><span class="line"><span class="string">        :return: 响应得到的字符串</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">return</span> response.content.decode()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_home_page</span>(<span class="params">self, home_page, tag_id</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        解析首页内容,获取解析后的Python数据</span></span><br><span class="line"><span class="string">        :param home_page:首页内容</span></span><br><span class="line"><span class="string">        :return: 解析后的Python数据</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">        script = soup.find(<span class="built_in">id</span>=tag_id)</span><br><span class="line">        text = script.string</span><br><span class="line">        json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">return</span> json.loads(json_str)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span>(<span class="params">self, data, path</span>):</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            json.dump(data, fp, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集各国最近一天的疫情信息</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取首页内容</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析首页内容,获取最近一天各国疫情数据</span></span><br><span class="line">        last_day_corona_virus = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_corona_virus, <span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集从1月23号以来各国的疫情数据</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.加载各国疫情数据</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            last_day_corona_virus = json.load(fp)</span><br><span class="line">        corona_virus = []</span><br><span class="line">        <span class="comment"># 2.遍历各国获取统计URL</span></span><br><span class="line">        <span class="keyword">for</span> country <span class="keyword">in</span> tqdm(last_day_corona_virus, <span class="string">&#x27;采集1月23以来各国疫情信息&#x27;</span>):</span><br><span class="line">            <span class="comment"># 3.发送请求,获取各国从1月23号至今的json数据</span></span><br><span class="line">            statistics_data_url = country[<span class="string">&#x27;statisticsData&#x27;</span>]</span><br><span class="line">            statistics_data_json_str = self.get_content_from_url(statistics_data_url)</span><br><span class="line">            <span class="comment"># 4.把Json数据转换为Python数据,添加到列表汇总</span></span><br><span class="line">            statistics_data = json.loads(statistics_data_json_str)[<span class="string">&#x27;data&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            <span class="keyword">for</span> one_day <span class="keyword">in</span> statistics_data:</span><br><span class="line">                one_day[<span class="string">&#x27;provinceName&#x27;</span>] = country[<span class="string">&#x27;provinceName&#x27;</span>]</span><br><span class="line">                one_day[<span class="string">&#x27;countryShortCode&#x27;</span>] = country[<span class="string">&#x27;countryShortCode&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            corona_virus.extend(statistics_data)</span><br><span class="line">            <span class="comment"># 5.把列表保存为Json文件</span></span><br><span class="line">        self.save(corona_virus, <span class="string">&#x27;data/corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus_of_China</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集最近1日中国各省疫情数据,方式同上文</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取疫情主页</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析主页,获取信息</span></span><br><span class="line">        last_day_china_data = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getAreaStat&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_china_data, <span class="string">&#x27;data/last_day_corona_virus_of_China.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.crawl_last_day_corona_virus()  <span class="comment"># 采集最近1日世界各国疫情数据</span></span><br><span class="line">        <span class="comment"># self.crawl_corona_virus()     # 采集从1月23日起世界各国疫情数据</span></span><br><span class="line">        self.crawl_last_day_corona_virus_of_China() <span class="comment"># 采集最近1日中国各省疫情数据</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    spider = CoronaVirusSpider()</span><br><span class="line">    spider.run()</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python</category>
+        <category>爬虫</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在gitee上做一个图床</title>
+    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<blockquote>
+<p>本人已经更换回Github图床<br>原因：Gitee图片大于1M时需要登录才能查看,只有小于1M才能随意直接访问<br>虽然我有压缩图片的习惯(提升加载速度),但有了梯子之后还是换回了Github<br>但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见<br><a href="https://lemontreen.github.io/2021/07/22/PicGo_CDN">https://lemontreen.github.io/2021/07/22/PicGo_CDN</a><br><strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
+</blockquote>
+<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？"><a href="#如何在gitee上部署一个图床给自己markdown文本使用？" class="headerlink" title="如何在gitee上部署一个图床给自己markdown文本使用？"></a>如何在gitee上部署一个图床给自己markdown文本使用？</h3><p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况</p>
+<h4 id="需要工具-PicGo-以及-gitee-账号"><a href="#需要工具-PicGo-以及-gitee-账号" class="headerlink" title="需要工具: PicGo 以及 gitee 账号"></a>需要工具: PicGo 以及 gitee 账号</h4><h4 id="1-下载PicGo"><a href="#1-下载PicGo" class="headerlink" title="1.下载PicGo"></a>1.下载PicGo</h4><p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a>  </p>
+<h4 id="2-创建一个仓库和密钥"><a href="#2-创建一个仓库和密钥" class="headerlink" title="2.创建一个仓库和密钥"></a>2.创建一个仓库和密钥</h4><p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png"><br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png"></p>
+<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects"><a href="#创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects" class="headerlink" title="创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects"></a>创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png"><br>生成的令牌只会显示一次，务必记好!!!!</p>
+<h4 id="3-配置PicGo"><a href="#3-配置PicGo" class="headerlink" title="3.配置PicGo"></a>3.配置PicGo</h4><p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png"><br>然后重启PicGo 在插件设置中找到gitee<br>repo: 填写用户名/仓库名<br>branch: master<br>token: 填写刚刚的访问令牌<br>path: 想上传到gitee的目录<br>customPath和customURL不用填写<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png"><br>点击确定和设为默认图床</p>
+<p> ！！大功告成！！  </p>
+<h4 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4.使用方式"></a>4.使用方式</h4><p>直接将图片拖拽到上传区即可<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png"><br>此时在文档中ctrl+v即可粘贴URL<br>此时去gitee仓库即可看到<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png"><br>PicgoCDN加速设置方法：<br><a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
+<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241"><a href="#参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241" class="headerlink" title="参考及鸣谢：https://blog.csdn.net/disilll/article/details/103962241"></a>参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Picgo</tag>
+        <tag>图床</tag>
       </tags>
   </entry>
   <entry>
@@ -630,50 +503,6 @@
       <tags>
         <tag>hexo</tag>
         <tag>nvm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo遇到的一些问题</title>
-    <url>/2021/03/21/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="此文章为使用hexo过程中遇到的问题"><a href="#此文章为使用hexo过程中遇到的问题" class="headerlink" title="此文章为使用hexo过程中遇到的问题"></a>此文章为使用hexo过程中遇到的问题</h2><span id="more"></span>
-<h2 id="问题1-Error-Spwan-failed"><a href="#问题1-Error-Spwan-failed" class="headerlink" title="问题1: Error: Spwan failed"></a>问题1: Error: Spwan failed</h2><h4 id="有时在把本地文件用hexo-d推到远端时会发生如下情况"><a href="#有时在把本地文件用hexo-d推到远端时会发生如下情况" class="headerlink" title="有时在把本地文件用hexo d推到远端时会发生如下情况"></a>有时在把本地文件用hexo d推到远端时会发生如下情况</h4><blockquote>
-<p>注意先检查是否为网络导致的连接失败,若是,重新多尝试即可</p>
-</blockquote>
-<p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222237.png"><br>解决方式:<br>删除.deploy_git和public文件夹,然后输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>即可</p>
-<h2 id="问题2-ERROR-Deployer-not-found-git"><a href="#问题2-ERROR-Deployer-not-found-git" class="headerlink" title="问题2: ERROR Deployer not found: git"></a>问题2: ERROR Deployer not found: git</h2><p>如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/20210321222246.png"><br>解决方式：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>即可</p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在gitee上做一个图床</title>
-    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<blockquote>
-<p>本人已经更换回Github图床<br>原因：Gitee图片大于1M时需要登录才能查看,只有小于1M才能随意直接访问<br>虽然我有压缩图片的习惯(提升加载速度),但有了梯子之后还是换回了Github<br>但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见<br><a href="https://lemontreen.github.io/2021/07/22/PicGo_CDN">https://lemontreen.github.io/2021/07/22/PicGo_CDN</a><br><strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
-</blockquote>
-<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？"><a href="#如何在gitee上部署一个图床给自己markdown文本使用？" class="headerlink" title="如何在gitee上部署一个图床给自己markdown文本使用？"></a>如何在gitee上部署一个图床给自己markdown文本使用？</h3><p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况</p>
-<h4 id="需要工具-PicGo-以及-gitee-账号"><a href="#需要工具-PicGo-以及-gitee-账号" class="headerlink" title="需要工具: PicGo 以及 gitee 账号"></a>需要工具: PicGo 以及 gitee 账号</h4><h4 id="1-下载PicGo"><a href="#1-下载PicGo" class="headerlink" title="1.下载PicGo"></a>1.下载PicGo</h4><p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a>  </p>
-<h4 id="2-创建一个仓库和密钥"><a href="#2-创建一个仓库和密钥" class="headerlink" title="2.创建一个仓库和密钥"></a>2.创建一个仓库和密钥</h4><p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png"><br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png"></p>
-<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects"><a href="#创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects" class="headerlink" title="创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects"></a>创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5><p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png"><br>生成的令牌只会显示一次，务必记好!!!!</p>
-<h4 id="3-配置PicGo"><a href="#3-配置PicGo" class="headerlink" title="3.配置PicGo"></a>3.配置PicGo</h4><p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png"><br>然后重启PicGo 在插件设置中找到gitee<br>repo: 填写用户名/仓库名<br>branch: master<br>token: 填写刚刚的访问令牌<br>path: 想上传到gitee的目录<br>customPath和customURL不用填写<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png"><br>点击确定和设为默认图床</p>
-<p> ！！大功告成！！  </p>
-<h4 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4.使用方式"></a>4.使用方式</h4><p>直接将图片拖拽到上传区即可<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png"><br>此时在文档中ctrl+v即可粘贴URL<br>此时去gitee仓库即可看到<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png"><br>PicgoCDN加速设置方法：<br><a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
-<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241"><a href="#参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241" class="headerlink" title="参考及鸣谢：https://blog.csdn.net/disilll/article/details/103962241"></a>参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>Picgo</tag>
-        <tag>图床</tag>
       </tags>
   </entry>
   <entry>
