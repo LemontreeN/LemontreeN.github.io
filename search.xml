@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Eclipse</title>
-    <url>/2021/06/05/Eclipse/</url>
-    <content><![CDATA[<h4 id="如何查看一个函数被谁调用？"><a href="#如何查看一个函数被谁调用？" class="headerlink" title="如何查看一个函数被谁调用？"></a>如何查看一个函数被谁调用？</h4><ol>
-<li>双击选中该方法，<strong>Ctrl+Alt+H</strong> </li>
-<li>选中该方法，Ctrl+H(全局搜索)<h4 id="如何使用Eclemma"><a href="#如何使用Eclemma" class="headerlink" title="如何使用Eclemma?"></a>如何使用Eclemma?</h4></li>
-<li>下载Eclemma<br>Eclipse-&gt;帮助(Help)-&gt;Eclpise Marketplace-&gt;查询Eclemma-&gt;Install&gt;重启</li>
-<li>使用<br>重启后可以发现上面多了一个图标<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Eclipse/20210605144033.png"><br>点击该图标运行Junit即可，结果如下图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Eclipse/20210605144047.png"></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>Eclipse</tag>
-        <tag>Eclemma</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>git备忘录</title>
     <url>/2021/05/30/Git%E5%A4%87%E5%BF%98%E5%BD%95/</url>
     <content><![CDATA[<h3 id="完整git创建仓库到提交流程"><a href="#完整git创建仓库到提交流程" class="headerlink" title="完整git创建仓库到提交流程"></a>完整git创建仓库到提交流程</h3><p>在目标目录下打开<code>git bash</code></p>
@@ -58,6 +42,127 @@
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Eclipse</title>
+    <url>/2021/06/05/Eclipse/</url>
+    <content><![CDATA[<h4 id="如何查看一个函数被谁调用？"><a href="#如何查看一个函数被谁调用？" class="headerlink" title="如何查看一个函数被谁调用？"></a>如何查看一个函数被谁调用？</h4><ol>
+<li>双击选中该方法，<strong>Ctrl+Alt+H</strong> </li>
+<li>选中该方法，Ctrl+H(全局搜索)<h4 id="如何使用Eclemma"><a href="#如何使用Eclemma" class="headerlink" title="如何使用Eclemma?"></a>如何使用Eclemma?</h4></li>
+<li>下载Eclemma<br>Eclipse-&gt;帮助(Help)-&gt;Eclpise Marketplace-&gt;查询Eclemma-&gt;Install&gt;重启</li>
+<li>使用<br>重启后可以发现上面多了一个图标<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Eclipse/20210605144033.png"><br>点击该图标运行Junit即可，结果如下图<br><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Eclipse/20210605144047.png"></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>Eclipse</tag>
+        <tag>Eclemma</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HIT机器学习Lab1</title>
+    <url>/2021/10/16/HIT%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0Lab1/</url>
+    <content><![CDATA[<blockquote>
+<p>一、实验目的<br>掌握最小二乘法求解（无惩罚项的损失函数）、掌握加惩罚项（2范数）的损失函数优化、梯度下降法、共轭梯度法、理解过拟合、克服过拟合的方法(如加惩罚项、增加样本)</p>
+<p>二、实验要求及实验环境<br>实验要求:<br>1.生成数据，加入均值为0、一定方差(高斯)噪声；<br>$$<br>生成函数：y=sin2\pi x<br>$$<br>2.用高阶多项式函数拟合曲线；<br>3.用解析解求解两种loss的最优解（无正则项和有正则项）<br>4.优化方法求解最优解（梯度下降，共轭梯度）；<br>5.用你得到的实验数据，解释过拟合。<br>6.用不同数据量，不同超参数，不同的多项式阶数，比较实验效果。<br>7.语言不限，可以用matlab，python。求解解析解时可以利用现成的矩阵求逆。梯度下降，共轭梯度要求自己求梯度，迭代优化自己写。不许用现成的平台，例如pytorch，tensorflow的自动微分工具。</p>
+<p>实验环境:<br>Windows10/Pycharm2021.2/Python 3.9</p>
+</blockquote>
+<p>三、设计思想<br><strong>核心: 泰勒展开</strong><br>任何函数都可以分解为不同阶的多项式之和, 因此可以用多项式对未知函数进行拟合.<br>本次实验即采用:m阶多项式对sin2x进行拟合, 则m有m+1个系数, 这些系数组成的列向量记为W, 用最小二乘法计算W </p>
+<ol>
+<li>最小二乘法求解析解(无正则项):</li>
+</ol>
+<p>$$<br>E(\omega)=\frac{1}{2} \sum_{n=1}^{N}\left(y\left(x_{n}, W\right)-t_{n}\right)^{2}=\frac{1}{2}(X W-T)^{T}(X W-T)\W=\left[\begin{array}{c}<br>w_{0} \<br>w_{1} \<br>\vdots \<br>w_{m}<br>\end{array}\right], X=\left[\begin{array}{cccc}<br>1 &amp; x_{1} &amp; \cdots &amp; x_{1}^{m} \<br>1 &amp; x_{2} &amp; \cdots &amp; x_{2}^{m} \<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>1 &amp; x_{n} &amp; \cdots &amp; x_{n}^{m}<br>\end{array}\right]\<br>\begin{array}{c}<br>\frac{\partial E(W)}{\partial W}=X^{T} X W-X^{T} T \<br>W=\left(X^{T} X\right)^{-1} X^{T} T<br>\end{array}<br>$$<br>2. 最小二乘法求解析解(有正则项):</p>
+<p>$$<br>\begin{array}{c}<br>\widetilde{E}(w)=\frac{1}{2} \sum_{n=1}^{N}\left{y\left(x_{n}, w\right)-t_{n}\right}^{2}+\frac{\lambda}{2}|w|^{2} \<br>W=\left(X^{T} X+\lambda E_{m+1}\right)^{-1} X^{T} T<br>\end{array}<br>$$</p>
+<ol start="3">
+<li>梯度下降：</li>
+</ol>
+<p>$$<br>\begin{aligned}<br>\widetilde{E}(\boldsymbol{w}) &amp;=\frac{1}{2}(\boldsymbol{X} \boldsymbol{w}-\boldsymbol{Y})^{T}(\boldsymbol{X} \boldsymbol{w}-\boldsymbol{Y})+\frac{\lambda}{2}|\boldsymbol{w}|_{2} \<br>&amp;=\frac{1}{2}\left(\boldsymbol{w}^{T} \boldsymbol{X}^{T} \boldsymbol{X} \boldsymbol{w}-2 \boldsymbol{w}^{T} \boldsymbol{X}^{T} \boldsymbol{Y}+\boldsymbol{X}^{T} \boldsymbol{Y}\right)+\frac{\lambda}{2} \boldsymbol{w}^{T} \boldsymbol{w}<br>\end{aligned}\<br>\frac{\partial \widetilde{E}}{\partial \boldsymbol{w}}=\boldsymbol{X}^{T} \boldsymbol{X} \boldsymbol{w}-\boldsymbol{X}^{T} \boldsymbol{Y}+\lambda \boldsymbol{w}\<br>\boldsymbol{w}=\boldsymbol{w}-\alpha \cdot \frac{\partial \widetilde{E}}{\partial \boldsymbol{w}}<br>$$</p>
+<ol start="4">
+<li>共轭梯度：</li>
+</ol>
+<p>$$<br>\frac{\partial \widetilde{E}}{\partial \boldsymbol{w}}=\boldsymbol{X}^{T} \boldsymbol{X} \boldsymbol{w}-\boldsymbol{X}^{T} \boldsymbol{Y}+\lambda \boldsymbol{w}=0\<br>\begin{aligned}<br>a_{k} &amp;=\frac{\boldsymbol{r}<em>{k}^{T} \boldsymbol{r}</em>{k}}{\boldsymbol{p}<em>{k}^{T} \boldsymbol{A} \boldsymbol{p}</em>{k}} \<br>\boldsymbol{w}<em>{k} &amp;=\boldsymbol{w}</em>{k}+a_{k} \boldsymbol{p}<em>{k} \<br>\boldsymbol{r}</em>{k+1} &amp;=\boldsymbol{r}<em>{k}-a</em>{k} \boldsymbol{A} \boldsymbol{p}<em>{k} \<br>b</em>{k} &amp;=\frac{\boldsymbol{r}<em>{k+1}^{T} \boldsymbol{r}</em>{k+1}}{\boldsymbol{r}<em>{k}^{T} \boldsymbol{r}</em>{k}} \<br>\boldsymbol{p}<em>{k+1} &amp;=\boldsymbol{r}</em>{k+1}+b_{k} \boldsymbol{p}_{k}<br>\end{aligned}<br>$$</p>
+<p>四、 实验结果与分析</p>
+<ol>
+<li>不带正则项的解析解</li>
+</ol>
+<p><strong>(红色为标准曲线,蓝色散点为生成的带有高斯噪声的数据,绿色为拟合曲线)</strong><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181929295.png"><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181930793.png"><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181930618.png"><br>可以看出,1-2阶时明显欠拟合,拟合的能力不足<br>从3阶开始,拟合效果明显变好,继续提高阶数,直到9阶为止,此时拟合曲线穿过所有散点,导致函数波动较大,出现了过拟合现象.<br>通过增加训练样本数量可以改善过拟合现象,如图<br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181931373.png"><br>如上所示,数据量达到100时,拟合曲线已经和实际曲线十分接近。<br>2. 带有正则项的解析解<br><strong>添加正则项lamda=10^(-9)</strong><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181932783.png"><br>3. 梯度下降法<br><strong>不同阶数 同样数据量10的结果</strong><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181933939.png"><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181934179.png"><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181935490.png"><br><strong>固定九阶下不同数据量</strong><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181936842.png"><br>由上图可以看出10^(-10)拟合精度要好于10^(-8)精度(PS:当初精度一不小心设置太高了，还懒得全重跑重新截图一遍)</p>
+<ol start="4">
+<li>共轭梯度法</li>
+</ol>
+<p><strong>固定数据量10</strong><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181937733.png"><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181938003.png"><strong>固定九阶 不同数据量</strong><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITML/lab1/202110181939030.png"></p>
+<p>五、结论<br>多项式次数越高,其拟合能力越强,在不添加正则项的情况下,低阶会有欠拟合现象,随着阶数上升,拟合效果变好,继续提升阶数,会出现过拟合现象,这是因为样本过少导致拟合曲线穿过所有散点,增加样本数量可以显著改善过拟合现象.<br>在加入正则项后,过拟合现象也会得到好转,这是因为正则项的惩罚效果平衡了过强的学习能力<br>在梯度下降中,我们选取一个初始步长,并在出现”梯度上升”的情况下减小步长, 由于目标函数为二次,因此只有一个极值点,也是最值点,因此在梯度接近于0时即为收敛<br>梯度下降相比共轭梯度收敛速度很慢，迭代次数很大，而共轭梯度的稳定性较差，更容易出现过拟合现象，但对于数据量较大复杂度较高的情况，共轭梯度显然要比梯度下降来的更优。<br>共轭梯度法相比于梯度下降,其收敛速度非常快.<br>六、附录：源代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-09-28</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;Microsoft YaHei&#x27;</span>]  <span class="comment"># 用来正常显示中文标签</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PolynomialFitting</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        设置参数</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.num = <span class="number">10</span>  <span class="comment"># 数据量</span></span><br><span class="line">        self.order = <span class="number">9</span>  <span class="comment"># 拟合阶数</span></span><br><span class="line">        self.lamda = <span class="number">0</span>  <span class="comment"># 正则项</span></span><br><span class="line">        self.alpha = <span class="number">1</span>  <span class="comment"># 步长系数</span></span><br><span class="line">        self.constriction = <span class="number">0.001</span>  <span class="comment"># 收敛条件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">draw_standard</span>():</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        画出标准sin(2*pi*x)函数曲线</span></span><br><span class="line"><span class="string">        :return:NONE</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        x_s = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>)</span><br><span class="line">        y_s = np.sin(<span class="number">2</span> * math.pi * x_s)</span><br><span class="line">        plt.xlabel(<span class="string">&quot;x&quot;</span>)</span><br><span class="line">        plt.ylabel(<span class="string">&quot;y&quot;</span>)</span><br><span class="line">        plt.plot(x_s, y_s, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_data</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        生成一组y=sin(2*pi*x)的数据并添加高斯噪声(loc=0.1,scale=0)</span></span><br><span class="line"><span class="string">        :return: 散点: (x,y)对</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        x = np.linspace(<span class="number">0</span>, <span class="number">1</span>, self.num)  <span class="comment"># 取均匀间距</span></span><br><span class="line">        y = np.sin(<span class="number">2</span> * math.pi * x) + np.random.normal(loc=<span class="number">0</span>, scale=<span class="number">0.1</span>,</span><br><span class="line">                                                       size=self.num)  <span class="comment"># np.random.normal:高斯噪声 loc:均值,scale:方差,size:数目</span></span><br><span class="line">        plt.scatter(x, y, marker=<span class="string">&#x27;o&#x27;</span>, edgecolor=<span class="string">&#x27;b&#x27;</span>)  <span class="comment"># 绘制散点图</span></span><br><span class="line">        <span class="keyword">return</span> x, y</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">poly_fitting</span>(<span class="params">self, X, y</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        多项式拟合</span></span><br><span class="line"><span class="string">        :return:W---多项式各阶系数(从低到高)</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        a = np.matmul(X.T, X) + self.lamda * np.identity(self.order + <span class="number">1</span>)  <span class="comment"># X_T*X+lamda*E_(order+1)</span></span><br><span class="line">        b = np.matmul(X.T, y)  <span class="comment"># X_T*Y</span></span><br><span class="line">        W = np.linalg.solve(a, b)  <span class="comment"># 解方程aW=b =&gt; W=a^(-1)b=(X_T*X+lamda)^(-1)*X_T*Y</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;X=&quot;</span> + <span class="built_in">str</span>(X))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;W:&quot;</span> + <span class="built_in">str</span>(W))</span><br><span class="line">        plt.title(<span class="string">&quot;数据量num=&quot;</span> + <span class="built_in">str</span>(self.num) + <span class="string">&quot;,拟合阶数order=&quot;</span> + <span class="built_in">str</span>(self.order) + <span class="string">&quot;,lamda=&quot;</span> + <span class="built_in">str</span>(self.lamda) + <span class="string">&quot;,方差=0.1&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> W</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">draw_poly_fitting</span>(<span class="params">self, W</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        画出拟合曲线</span></span><br><span class="line"><span class="string">        :param W:多项式各阶系数(从低到高)</span></span><br><span class="line"><span class="string">        :return:NONE</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        x_f = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1000</span>)</span><br><span class="line">        x_ff = np.array(np.power(x_f, <span class="number">0</span>))</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, self.order + <span class="number">1</span>):</span><br><span class="line">            x_ff = np.vstack((x_ff, np.power(x_f, i)))</span><br><span class="line">        y_f = np.matmul(W, x_ff)</span><br><span class="line">        plt.plot(x_f, y_f, <span class="string">&#x27;g&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">loss</span>(<span class="params">self, X, y, w</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        损失函数</span></span><br><span class="line"><span class="string">        :return:损失函数1/2(X*w-Y).T*(X*w-Y)+lamda/2*||w||的值</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.5</span> * np.dot((np.matmul(X, w) - y).T, np.matmul(X, w) - y) + <span class="number">0.5</span> * self.lamda * np.linalg.norm(w)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gradient_descent</span>(<span class="params">self, X, y</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        进行梯度下降求优化解</span></span><br><span class="line"><span class="string">        :return:拟合出的多项式系数</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        y = np.mat(y)</span><br><span class="line">        y = y.T</span><br><span class="line">        w = np.zeros((self.order + <span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;w=&quot;</span> + <span class="built_in">str</span>(w))</span><br><span class="line">        new_loss = <span class="built_in">abs</span>(self.loss(X, y, w))</span><br><span class="line">        <span class="built_in">print</span>(new_loss)</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">            old_loss = new_loss</span><br><span class="line">            gradient_w = np.dot(X.T, X).dot(w) - np.dot(X.T, y) + self.lamda * w  <span class="comment"># 梯度</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;梯度=&quot;</span>, <span class="built_in">str</span>(gradient_w))</span><br><span class="line">            old_w = w.copy()</span><br><span class="line">            w -= gradient_w * self.alpha</span><br><span class="line">            new_loss = <span class="built_in">abs</span>(self.loss(X, y, w))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;alpha=&quot;</span>, <span class="built_in">str</span>(self.alpha))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;w=&quot;</span>, <span class="built_in">str</span>(w))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;w的2-范数=&quot;</span>, <span class="built_in">str</span>(np.linalg.norm(gradient_w)))</span><br><span class="line">            <span class="keyword">if</span> old_loss &lt; new_loss:</span><br><span class="line">                w = old_w</span><br><span class="line">                new_loss = old_loss</span><br><span class="line">                self.alpha /= <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> np.linalg.norm(gradient_w) &lt; self.constriction:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;count=&quot;</span>, count)</span><br><span class="line">        <span class="keyword">return</span> w.T</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">conjugate_gradient</span>(<span class="params">self, X, y</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        共轭梯度法求优化解</span></span><br><span class="line"><span class="string">        :return:拟合出的多项式系数</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        y = np.mat(y)</span><br><span class="line">        y = y.T</span><br><span class="line">        A = np.dot(X.T, X) + self.lamda</span><br><span class="line">        b = np.dot(X.T, y)</span><br><span class="line">        W = np.zeros((self.order + <span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">        r = b - np.dot(A, W)</span><br><span class="line">        p = r</span><br><span class="line">        a = np.dot(r.T, p) / (np.dot(np.dot(A, p).T, p))</span><br><span class="line">        W = W + np.dot(p, a)</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; self.order + <span class="number">1</span>:</span><br><span class="line">            r = b - np.dot(A, W)</span><br><span class="line">            B = np.dot(np.dot(A, p).T, r) / (np.dot(np.dot(A, p).T, p))</span><br><span class="line">            p = r - np.dot(p, B)</span><br><span class="line">            a = np.dot(r.T, p) / (np.dot(np.dot(A, p).T, p))</span><br><span class="line">            W = W + np.dot(p, a)</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> W</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">global</span> W</span><br><span class="line">        self.draw_standard()  <span class="comment"># 画出标准函数曲线</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;请依次输入 拟合选项/拟合阶数/数据量 例如 \&quot;1 3 10\&quot; 代表第一种方式 3阶拟合 数据量为10&quot;</span>)</span><br><span class="line">        choice, order, num = (<span class="built_in">input</span>(<span class="string">&quot;拟合选项 1.多项式拟合(无正则)2.多项式拟合(带正则)3.梯度下降4.共轭梯度法&quot;</span>).split())</span><br><span class="line">        choice = <span class="built_in">int</span>(choice)</span><br><span class="line">        self.order = <span class="built_in">int</span>(order)</span><br><span class="line">        self.num = <span class="built_in">int</span>(num)</span><br><span class="line">        x, y = self.generate_data()  <span class="comment"># 生成带有高斯噪声的数据</span></span><br><span class="line">        X_T = np.array(np.power(x, <span class="number">0</span>))</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, self.order + <span class="number">1</span>):</span><br><span class="line">            X_T = np.vstack((X_T, np.power(x, i)))</span><br><span class="line">        X = np.transpose(X_T)</span><br><span class="line">        <span class="keyword">if</span> choice == <span class="number">1</span>:</span><br><span class="line">            W = self.poly_fitting(X, y)  <span class="comment"># 多项式拟合, W为多项式拟合的系数</span></span><br><span class="line">        <span class="keyword">elif</span> choice == <span class="number">2</span>:</span><br><span class="line">            self.lamda = np.exp(-<span class="number">9</span>)</span><br><span class="line">            W = self.poly_fitting(X, y)</span><br><span class="line">        <span class="keyword">elif</span> choice == <span class="number">3</span>:</span><br><span class="line">            W = self.gradient_descent(X, y)</span><br><span class="line">        <span class="keyword">elif</span> choice == <span class="number">4</span>:</span><br><span class="line">            W = self.conjugate_gradient(X, y)</span><br><span class="line">        W = np.array(W).flatten().tolist()</span><br><span class="line">        self.draw_poly_fitting(W)</span><br><span class="line">        plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    polyfit = PolynomialFitting()</span><br><span class="line">    polyfit.run()</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java</title>
+    <url>/2021/06/02/Java/</url>
+    <content><![CDATA[<p>记录帖</p>
+<span id="more"></span>
+<h4 id="查询jdk版本"><a href="#查询jdk版本" class="headerlink" title="查询jdk版本"></a>查询jdk版本</h4><p>cmd: <code>java -verbose</code></p>
+<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
+<ol>
+<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
+</ol>
+<ul>
+<li>key: 键</li>
+<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
+</ul>
+<ol start="2">
+<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
+<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
+<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
+</ol>
+<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
+<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><ol>
+<li>String<br>String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String a = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">a = <span class="string">&quot;456&quot;</span>;</span><br><span class="line"><span class="comment">// 打印出来的a为456</span></span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
+在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是<strong>生成了一个新的实例，将a指向了这个新的实例</strong>，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收</li>
+<li>StringBuffer<br>StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，<br>通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。<br>一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">StringBuffer b = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">b.append(<span class="string">&quot;456&quot;</span>);</span><br><span class="line"><span class="comment">// b打印结果为：123456</span></span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure></li>
+<li>StringBuilder<br>StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。<br>不同的是：<strong>StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。</strong></li>
+</ol>
+<h4 id="Queue的用法"><a href="#Queue的用法" class="headerlink" title="Queue的用法:"></a>Queue的用法:</h4><p><a href="https://www.runoob.com/java/data-queue.html">https://www.runoob.com/java/data-queue.html</a></p>
+<h4 id="关于日期格式的判断"><a href="#关于日期格式的判断" class="headerlink" title="关于日期格式的判断"></a>关于日期格式的判断</h4><blockquote>
+<p>日期格式为2020-01-03，若格式为2020/01/03，可修改为yyyy/MM/dd,注意MM为大写<br>完整类型 yyyy-MM-dd HH:mm:ss<br>@return 若解析成功，返回对应的Date类型,解析失败返回null</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parser</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Date <span class="title">checkInput</span><span class="params">(String S)</span> </span>&#123;</span><br><span class="line">		Date date = <span class="keyword">null</span>;</span><br><span class="line">		SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			format.setLenient(<span class="keyword">false</span>);</span><br><span class="line">			<span class="comment">// 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007/02/29会被接受，并转换成2007/03/01</span></span><br><span class="line">			date = format.parse(S);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> date;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关于Scanner异常：java-util-NoSuchElementException-No-line-found"><a href="#关于Scanner异常：java-util-NoSuchElementException-No-line-found" class="headerlink" title="关于Scanner异常：java.util.NoSuchElementException: No line found"></a>关于Scanner异常：java.util.NoSuchElementException: No line found</h4><p>可能是同时开启了多个Scanner指向同一位置，如</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner sc1=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">Scanner sc2=<span class="keyword">new</span> Scanner(System.in);</span><br></pre></td></tr></table></figure>
+<p>当关闭其中一个Scanner时，System.in也会关闭，导致另一个Scanner异常</p>
+<h4 id="Java随机数生成"><a href="#Java随机数生成" class="headerlink" title="Java随机数生成"></a>Java随机数生成</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Random</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i = IDs.size();</span><br><span class="line">		<span class="keyword">int</span> min = <span class="number">1</span>, max = <span class="number">1000</span>;</span><br><span class="line">		<span class="keyword">int</span> random = (<span class="keyword">int</span>) (Math.random() * (max - min) + min);<span class="comment">//生成min到max的随机数</span></span><br><span class="line">		<span class="keyword">return</span> random % i;<span class="comment">//生成0到i-1的随机数</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关于ArrayList排序器"><a href="#关于ArrayList排序器" class="headerlink" title="关于ArrayList排序器"></a>关于ArrayList排序器</h4><blockquote>
+<p>单一参数排序<br>例如对进程表Processes中所有进程号进行排序</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Collections.sort(Processes, <span class="keyword">new</span> Comparator&lt;Process&gt;() &#123;</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Process o1, Process o2)</span> </span>&#123;</span><br><span class="line">					<span class="keyword">if</span> (o1.number &gt;= o2.number) &#123;</span><br><span class="line">						<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>多参数排序<br>例如优先按照进程号，其次按照进程剩余时间大小排序<br>//TODO</p>
+</blockquote>
+<h4 id="关于-split-Illegal-repetition-near-index-1-报错"><a href="#关于-split-Illegal-repetition-near-index-1-报错" class="headerlink" title="关于 split:Illegal repetition near index 1 报错"></a>关于 split:Illegal repetition near index 1 报错</h4><blockquote>
+<p>关于Split用法：<a href="https://www.runoob.com/java/java-string-split.html">https://www.runoob.com/java/java-string-split.html</a><br>发生原因：split中的某些字符需要转义</p>
+</blockquote>
+<p>例如<code>strs=s.split(&quot;&#123;&quot;);</code><br>需改为<code>strs=s.split(&quot;\\&#123;&#125;&quot;);</code></p>
+<h4 id="关于正则表达式匹配"><a href="#关于正则表达式匹配" class="headerlink" title="关于正则表达式匹配"></a>关于正则表达式匹配</h4><blockquote>
+<p>软件构造实验Lab3的一些收获<br>以软件构造Lab3的文本举例<br>正则表达式匹配速查：<a href="https://www.runoob.com/java/java-regular-expressions.html">https://www.runoob.com/java/java-regular-expressions.html</a></p>
+</blockquote>
+<p>希望匹配如下文本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Employee&#123; </span><br><span class="line">ZhangSan&#123;Manger,139-0451-0000&#125;</span><br><span class="line">LiSi&#123;Secretary,151-0101-0000&#125;</span><br><span class="line">WangWu&#123;Associate Dean,177-2021-0301&#125;</span><br><span class="line">ZhaoLiua&#123;Professor,138-1920-3912&#125;</span><br><span class="line">ZhaoLiub&#123;Lecturer,138-1921-3912&#125;</span><br><span class="line">ZhaoLiuc&#123;Professor,138-1922-3912&#125;</span><br><span class="line">ZhaoLiud&#123;Lecturer,198-1920-3912&#125;</span><br><span class="line">ZhaoLiue&#123;Professor,178-1920-3912&#125;</span><br><span class="line">ZhaoLiuf&#123;Lecturer,138-1929-3912&#125;</span><br><span class="line">ZhaoLiug&#123;Professor,138-1920-0000&#125;</span><br><span class="line">ZhaoLiuh&#123;AssciateProfessor,138-1929-0000&#125;</span><br><span class="line">ZhaoLiui&#123;Professor,138-1920-0200&#125;</span><br><span class="line">ZhaoLiuj&#123;AssciateProfessor,138-1920-0044&#125;</span><br><span class="line">ZhaoLiuk&#123;Professor,188-1920-0000&#125;</span><br><span class="line">&#125;</span><br><span class="line">Period&#123;2021-01-10,2021-03-06&#125;</span><br><span class="line">Roster&#123; </span><br><span class="line">ZhangSan&#123;2021-01-10,2021-01-11&#125;</span><br><span class="line">LiSi&#123;2021-01-12,2021-01-20&#125;</span><br><span class="line">WangWu&#123;2021-01-21,2021-01-21&#125;</span><br><span class="line">ZhaoLiua&#123;2021-01-22,2021-01-22&#125;</span><br><span class="line">ZhaoLiub&#123;2021-01-23,2021-01-29&#125;</span><br><span class="line">ZhaoLiuc&#123;2021-01-30,2021-01-31&#125;</span><br><span class="line">ZhaoLiud&#123;2021-02-01,2021-02-08&#125;</span><br><span class="line">ZhaoLiue&#123;2021-02-09,2021-02-15&#125;</span><br><span class="line">ZhaoLiuf&#123;2021-02-16,2021-02-24&#125;</span><br><span class="line">ZhaoLiug&#123;2021-02-25,2021-02-28&#125;</span><br><span class="line">ZhaoLiuh&#123;2021-03-01,2021-03-01&#125;</span><br><span class="line">ZhaoLiui&#123;2021-03-02,2021-03-04&#125;</span><br><span class="line">ZhaoLiuj&#123;2021-03-05,2021-03-05&#125;</span><br><span class="line">ZhaoLiuk&#123;2021-03-06,2021-03-06&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>则可以构造6个模式串进行匹配</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern pattern1 = Pattern.compile(<span class="string">&quot;(Period)\\&#123;(2021-[01][0-9]-[0123][0-9],2021-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Period&#123;2021-01-10,2021-03-06&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern2 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;(\\D*),([0-9]&#123;3&#125;-[0-9]&#123;4&#125;-[0-9]&#123;4&#125;)\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;Manger,139-0451-0000&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern3 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9]),([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;2021-01-10,2021-01-11&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern4 = Pattern.compile(<span class="string">&quot;(Employee)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Employee&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern5 = Pattern.compile(<span class="string">&quot;(Roster)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Roster&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern6 = Pattern.compile(<span class="string">&quot;\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>之后利用捕获组match.group()得到可用信息并进行处理即可</p>
+<p>举例： 若文本为String str=”ZhangSan{Manger,139-0451-0000}”<br>则该行文本匹配模式串2,并会产生3个捕获组:<br>分别为ZhangSan / Manager / 139-0451-0000<br>由此得到了一个员工的信息</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -125,41 +230,6 @@
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HIT机器学习Lab1</title>
-    <url>/2021/10/16/HIT%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0Lab1/</url>
-    <content><![CDATA[<blockquote>
-<p>一、实验目的<br>掌握最小二乘法求解（无惩罚项的损失函数）、掌握加惩罚项（2范数）的损失函数优化、梯度下降法、共轭梯度法、理解过拟合、克服过拟合的方法(如加惩罚项、增加样本)</p>
-<p>二、实验要求及实验环境<br>实验要求:<br>1.生成数据，加入均值为0、一定方差(高斯)噪声；<br>$$<br>生成函数：y=sin2\pi x<br>$$<br>2.用高阶多项式函数拟合曲线；<br>3.用解析解求解两种loss的最优解（无正则项和有正则项）<br>4.优化方法求解最优解（梯度下降，共轭梯度）；<br>5.用你得到的实验数据，解释过拟合。<br>6.用不同数据量，不同超参数，不同的多项式阶数，比较实验效果。<br>7.语言不限，可以用matlab，python。求解解析解时可以利用现成的矩阵求逆。梯度下降，共轭梯度要求自己求梯度，迭代优化自己写。不许用现成的平台，例如pytorch，tensorflow的自动微分工具。</p>
-<p>实验环境:<br>Windows10/Pycharm2021.2/Python 3.9</p>
-</blockquote>
-<p>三、设计思想<br><strong>核心: 泰勒展开</strong><br>任何函数都可以分解为不同阶的多项式之和, 因此可以用多项式对未知函数进行拟合.<br>本次实验即采用:m阶多项式对sin2x进行拟合, 则m有m+1个系数, 这些系数组成的列向量记为W, 用最小二乘法计算W </p>
-<ol>
-<li>最小二乘法求解析解(无正则项):</li>
-</ol>
-<p>$$<br>E(\omega)=\frac{1}{2} \sum_{n=1}^{N}\left(y\left(x_{n}, W\right)-t_{n}\right)^{2}=\frac{1}{2}(X W-T)^{T}(X W-T)\W=\left[\begin{array}{c}<br>w_{0} \<br>w_{1} \<br>\vdots \<br>w_{m}<br>\end{array}\right], X=\left[\begin{array}{cccc}<br>1 &amp; x_{1} &amp; \cdots &amp; x_{1}^{m} \<br>1 &amp; x_{2} &amp; \cdots &amp; x_{2}^{m} \<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>1 &amp; x_{n} &amp; \cdots &amp; x_{n}^{m}<br>\end{array}\right]\<br>\begin{array}{c}<br>\frac{\partial E(W)}{\partial W}=X^{T} X W-X^{T} T \<br>W=\left(X^{T} X\right)^{-1} X^{T} T<br>\end{array}<br>$$<br>2. 最小二乘法求解析解(有正则项):</p>
-<p>$$<br>\begin{array}{c}<br>\widetilde{E}(w)=\frac{1}{2} \sum_{n=1}^{N}\left{y\left(x_{n}, w\right)-t_{n}\right}^{2}+\frac{\lambda}{2}|w|^{2} \<br>W=\left(X^{T} X+\lambda E_{m+1}\right)^{-1} X^{T} T<br>\end{array}<br>$$</p>
-<ol start="3">
-<li>梯度下降：</li>
-</ol>
-<p>$$<br>\begin{aligned}<br>\widetilde{E}(\boldsymbol{w}) &amp;=\frac{1}{2}(\boldsymbol{X} \boldsymbol{w}-\boldsymbol{Y})^{T}(\boldsymbol{X} \boldsymbol{w}-\boldsymbol{Y})+\frac{\lambda}{2}|\boldsymbol{w}|_{2} \<br>&amp;=\frac{1}{2}\left(\boldsymbol{w}^{T} \boldsymbol{X}^{T} \boldsymbol{X} \boldsymbol{w}-2 \boldsymbol{w}^{T} \boldsymbol{X}^{T} \boldsymbol{Y}+\boldsymbol{X}^{T} \boldsymbol{Y}\right)+\frac{\lambda}{2} \boldsymbol{w}^{T} \boldsymbol{w}<br>\end{aligned}\<br>\frac{\partial \widetilde{E}}{\partial \boldsymbol{w}}=\boldsymbol{X}^{T} \boldsymbol{X} \boldsymbol{w}-\boldsymbol{X}^{T} \boldsymbol{Y}+\lambda \boldsymbol{w}\<br>\boldsymbol{w}=\boldsymbol{w}-\alpha \cdot \frac{\partial \widetilde{E}}{\partial \boldsymbol{w}}<br>$$</p>
-<ol start="4">
-<li>共轭梯度：</li>
-</ol>
-<p>$$<br>\frac{\partial \widetilde{E}}{\partial \boldsymbol{w}}=\boldsymbol{X}^{T} \boldsymbol{X} \boldsymbol{w}-\boldsymbol{X}^{T} \boldsymbol{Y}+\lambda \boldsymbol{w}=0\<br>\begin{aligned}<br>a_{k} &amp;=\frac{\boldsymbol{r}<em>{k}^{T} \boldsymbol{r}</em>{k}}{\boldsymbol{p}<em>{k}^{T} \boldsymbol{A} \boldsymbol{p}</em>{k}} \<br>\boldsymbol{w}<em>{k} &amp;=\boldsymbol{w}</em>{k}+a_{k} \boldsymbol{p}<em>{k} \<br>\boldsymbol{r}</em>{k+1} &amp;=\boldsymbol{r}<em>{k}-a</em>{k} \boldsymbol{A} \boldsymbol{p}<em>{k} \<br>b</em>{k} &amp;=\frac{\boldsymbol{r}<em>{k+1}^{T} \boldsymbol{r}</em>{k+1}}{\boldsymbol{r}<em>{k}^{T} \boldsymbol{r}</em>{k}} \<br>\boldsymbol{p}<em>{k+1} &amp;=\boldsymbol{r}</em>{k+1}+b_{k} \boldsymbol{p}_{k}<br>\end{aligned}<br>$$</p>
-<p>四、 实验结果与分析</p>
-<ol>
-<li>不带正则项的解析解</li>
-</ol>
-<p><strong>(红色为标准曲线,蓝色散点为生成的带有高斯噪声的数据,绿色为拟合曲线)</strong></p>
-]]></content>
-      <categories>
-        <category>Machine Learning</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -234,67 +304,17 @@
       </tags>
   </entry>
   <entry>
-    <title>Java</title>
-    <url>/2021/06/02/Java/</url>
-    <content><![CDATA[<p>记录帖</p>
-<span id="more"></span>
-<h4 id="查询jdk版本"><a href="#查询jdk版本" class="headerlink" title="查询jdk版本"></a>查询jdk版本</h4><p>cmd: <code>java -verbose</code></p>
-<h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>注：以下 hashmap 均是 HashMap 类的一个对象。</p>
-<ol>
-<li>put()方法<br><code>hashmap.put(K key，V value)</code></li>
-</ol>
-<ul>
-<li>key: 键</li>
-<li>value: 值<br>返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
-</ul>
-<ol start="2">
-<li>remove()方法<br> <code>hashmap.remove(Object key, Object value)</code><br> 返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br> 如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
-<li>get()方法<br><code>hashmap.get(Object key)</code><br>返回值：与指定 key 所关联的 value</li>
-<li>keySet()方法<br><code>hashmap.keySet()</code><br>返回值：返回映射中所有 key 组成的 Set 视图。</li>
-</ol>
-<h4 id="Iterator："><a href="#Iterator：" class="headerlink" title="Iterator："></a>Iterator：</h4><p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
-<h4 id="String、StringBuffer、StringBuilder区别"><a href="#String、StringBuffer、StringBuilder区别" class="headerlink" title="String、StringBuffer、StringBuilder区别"></a>String、StringBuffer、StringBuilder区别</h4><ol>
-<li>String<br>String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String a = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">a = <span class="string">&quot;456&quot;</span>;</span><br><span class="line"><span class="comment">// 打印出来的a为456</span></span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
-在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是<strong>生成了一个新的实例，将a指向了这个新的实例</strong>，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收</li>
-<li>StringBuffer<br>StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，<br>通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。<br>一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">StringBuffer b = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">b.append(<span class="string">&quot;456&quot;</span>);</span><br><span class="line"><span class="comment">// b打印结果为：123456</span></span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure></li>
-<li>StringBuilder<br>StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。<br>不同的是：<strong>StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。</strong></li>
-</ol>
-<h4 id="Queue的用法"><a href="#Queue的用法" class="headerlink" title="Queue的用法:"></a>Queue的用法:</h4><p><a href="https://www.runoob.com/java/data-queue.html">https://www.runoob.com/java/data-queue.html</a></p>
-<h4 id="关于日期格式的判断"><a href="#关于日期格式的判断" class="headerlink" title="关于日期格式的判断"></a>关于日期格式的判断</h4><blockquote>
-<p>日期格式为2020-01-03，若格式为2020/01/03，可修改为yyyy/MM/dd,注意MM为大写<br>完整类型 yyyy-MM-dd HH:mm:ss<br>@return 若解析成功，返回对应的Date类型,解析失败返回null</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parser</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Date <span class="title">checkInput</span><span class="params">(String S)</span> </span>&#123;</span><br><span class="line">		Date date = <span class="keyword">null</span>;</span><br><span class="line">		SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			format.setLenient(<span class="keyword">false</span>);</span><br><span class="line">			<span class="comment">// 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007/02/29会被接受，并转换成2007/03/01</span></span><br><span class="line">			date = format.parse(S);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> date;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="关于Scanner异常：java-util-NoSuchElementException-No-line-found"><a href="#关于Scanner异常：java-util-NoSuchElementException-No-line-found" class="headerlink" title="关于Scanner异常：java.util.NoSuchElementException: No line found"></a>关于Scanner异常：java.util.NoSuchElementException: No line found</h4><p>可能是同时开启了多个Scanner指向同一位置，如</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner sc1=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">Scanner sc2=<span class="keyword">new</span> Scanner(System.in);</span><br></pre></td></tr></table></figure>
-<p>当关闭其中一个Scanner时，System.in也会关闭，导致另一个Scanner异常</p>
-<h4 id="Java随机数生成"><a href="#Java随机数生成" class="headerlink" title="Java随机数生成"></a>Java随机数生成</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Random</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i = IDs.size();</span><br><span class="line">		<span class="keyword">int</span> min = <span class="number">1</span>, max = <span class="number">1000</span>;</span><br><span class="line">		<span class="keyword">int</span> random = (<span class="keyword">int</span>) (Math.random() * (max - min) + min);<span class="comment">//生成min到max的随机数</span></span><br><span class="line">		<span class="keyword">return</span> random % i;<span class="comment">//生成0到i-1的随机数</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="关于ArrayList排序器"><a href="#关于ArrayList排序器" class="headerlink" title="关于ArrayList排序器"></a>关于ArrayList排序器</h4><blockquote>
-<p>单一参数排序<br>例如对进程表Processes中所有进程号进行排序</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Collections.sort(Processes, <span class="keyword">new</span> Comparator&lt;Process&gt;() &#123;</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Process o1, Process o2)</span> </span>&#123;</span><br><span class="line">					<span class="keyword">if</span> (o1.number &gt;= o2.number) &#123;</span><br><span class="line">						<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>多参数排序<br>例如优先按照进程号，其次按照进程剩余时间大小排序<br>//TODO</p>
-</blockquote>
-<h4 id="关于-split-Illegal-repetition-near-index-1-报错"><a href="#关于-split-Illegal-repetition-near-index-1-报错" class="headerlink" title="关于 split:Illegal repetition near index 1 报错"></a>关于 split:Illegal repetition near index 1 报错</h4><blockquote>
-<p>关于Split用法：<a href="https://www.runoob.com/java/java-string-split.html">https://www.runoob.com/java/java-string-split.html</a><br>发生原因：split中的某些字符需要转义</p>
-</blockquote>
-<p>例如<code>strs=s.split(&quot;&#123;&quot;);</code><br>需改为<code>strs=s.split(&quot;\\&#123;&#125;&quot;);</code></p>
-<h4 id="关于正则表达式匹配"><a href="#关于正则表达式匹配" class="headerlink" title="关于正则表达式匹配"></a>关于正则表达式匹配</h4><blockquote>
-<p>软件构造实验Lab3的一些收获<br>以软件构造Lab3的文本举例<br>正则表达式匹配速查：<a href="https://www.runoob.com/java/java-regular-expressions.html">https://www.runoob.com/java/java-regular-expressions.html</a></p>
-</blockquote>
-<p>希望匹配如下文本</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Employee&#123; </span><br><span class="line">ZhangSan&#123;Manger,139-0451-0000&#125;</span><br><span class="line">LiSi&#123;Secretary,151-0101-0000&#125;</span><br><span class="line">WangWu&#123;Associate Dean,177-2021-0301&#125;</span><br><span class="line">ZhaoLiua&#123;Professor,138-1920-3912&#125;</span><br><span class="line">ZhaoLiub&#123;Lecturer,138-1921-3912&#125;</span><br><span class="line">ZhaoLiuc&#123;Professor,138-1922-3912&#125;</span><br><span class="line">ZhaoLiud&#123;Lecturer,198-1920-3912&#125;</span><br><span class="line">ZhaoLiue&#123;Professor,178-1920-3912&#125;</span><br><span class="line">ZhaoLiuf&#123;Lecturer,138-1929-3912&#125;</span><br><span class="line">ZhaoLiug&#123;Professor,138-1920-0000&#125;</span><br><span class="line">ZhaoLiuh&#123;AssciateProfessor,138-1929-0000&#125;</span><br><span class="line">ZhaoLiui&#123;Professor,138-1920-0200&#125;</span><br><span class="line">ZhaoLiuj&#123;AssciateProfessor,138-1920-0044&#125;</span><br><span class="line">ZhaoLiuk&#123;Professor,188-1920-0000&#125;</span><br><span class="line">&#125;</span><br><span class="line">Period&#123;2021-01-10,2021-03-06&#125;</span><br><span class="line">Roster&#123; </span><br><span class="line">ZhangSan&#123;2021-01-10,2021-01-11&#125;</span><br><span class="line">LiSi&#123;2021-01-12,2021-01-20&#125;</span><br><span class="line">WangWu&#123;2021-01-21,2021-01-21&#125;</span><br><span class="line">ZhaoLiua&#123;2021-01-22,2021-01-22&#125;</span><br><span class="line">ZhaoLiub&#123;2021-01-23,2021-01-29&#125;</span><br><span class="line">ZhaoLiuc&#123;2021-01-30,2021-01-31&#125;</span><br><span class="line">ZhaoLiud&#123;2021-02-01,2021-02-08&#125;</span><br><span class="line">ZhaoLiue&#123;2021-02-09,2021-02-15&#125;</span><br><span class="line">ZhaoLiuf&#123;2021-02-16,2021-02-24&#125;</span><br><span class="line">ZhaoLiug&#123;2021-02-25,2021-02-28&#125;</span><br><span class="line">ZhaoLiuh&#123;2021-03-01,2021-03-01&#125;</span><br><span class="line">ZhaoLiui&#123;2021-03-02,2021-03-04&#125;</span><br><span class="line">ZhaoLiuj&#123;2021-03-05,2021-03-05&#125;</span><br><span class="line">ZhaoLiuk&#123;2021-03-06,2021-03-06&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>则可以构造6个模式串进行匹配</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern pattern1 = Pattern.compile(<span class="string">&quot;(Period)\\&#123;(2021-[01][0-9]-[0123][0-9],2021-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Period&#123;2021-01-10,2021-03-06&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern2 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;(\\D*),([0-9]&#123;3&#125;-[0-9]&#123;4&#125;-[0-9]&#123;4&#125;)\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;Manger,139-0451-0000&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern3 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9]),([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;2021-01-10,2021-01-11&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern4 = Pattern.compile(<span class="string">&quot;(Employee)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Employee&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern5 = Pattern.compile(<span class="string">&quot;(Roster)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Roster&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern6 = Pattern.compile(<span class="string">&quot;\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
-<p>之后利用捕获组match.group()得到可用信息并进行处理即可</p>
-<p>举例： 若文本为String str=”ZhangSan{Manger,139-0451-0000}”<br>则该行文本匹配模式串2,并会产生3个捕获组:<br>分别为ZhangSan / Manager / 139-0451-0000<br>由此得到了一个员工的信息</p>
+    <title>PicGo CDN加速方式</title>
+    <url>/2021/07/22/PicGo_CDN/</url>
+    <content><![CDATA[<p><strong>方法：更改自定义域名(最下面圈出来那行)</strong><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723131912.png"><br><strong>改为<a href="https://cdn.jsdelivr.net/gh/%E4%BD%A0%E7%9A%84Github%E5%90%8D/%E4%BD%A0%E7%9A%84%E4%BB%93%E5%BA%93%E5%90%8D@%E9%80%89%E6%8B%A9%E7%9A%84%E5%88%86%E6%94%AF">https://cdn.jsdelivr.net/gh/你的Github名/你的仓库名@选择的分支</a></strong><br><strong>例如: <a href="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master">https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master</a></strong><br>(jsdelivr为一家CDN服务商,免费)<br><strong>Github名为LemontreeN,仓库名为picSources,分支为master</strong></p>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>教程</category>
+        <category>PicGo</category>
       </categories>
       <tags>
-        <tag>Java</tag>
+        <tag>CDN</tag>
+        <tag>Picgo</tag>
       </tags>
   </entry>
   <entry>
@@ -308,20 +328,6 @@
       </categories>
       <tags>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PicGo CDN加速方式</title>
-    <url>/2021/07/22/PicGo_CDN/</url>
-    <content><![CDATA[<p><strong>方法：更改自定义域名(最下面圈出来那行)</strong><br><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723131912.png"><br><strong>改为<a href="https://cdn.jsdelivr.net/gh/%E4%BD%A0%E7%9A%84Github%E5%90%8D/%E4%BD%A0%E7%9A%84%E4%BB%93%E5%BA%93%E5%90%8D@%E9%80%89%E6%8B%A9%E7%9A%84%E5%88%86%E6%94%AF">https://cdn.jsdelivr.net/gh/你的Github名/你的仓库名@选择的分支</a></strong><br><strong>例如: <a href="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master">https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master</a></strong><br>(jsdelivr为一家CDN服务商,免费)<br><strong>Github名为LemontreeN,仓库名为picSources,分支为master</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>PicGo</category>
-      </categories>
-      <tags>
-        <tag>CDN</tag>
-        <tag>Picgo</tag>
       </tags>
   </entry>
   <entry>
@@ -388,27 +394,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Windows</title>
-    <url>/2021/07/20/Windows/</url>
-    <content><![CDATA[<h4 id="如何切换到管理员Administrator用户"><a href="#如何切换到管理员Administrator用户" class="headerlink" title="如何切换到管理员Administrator用户"></a>如何切换到管理员Administrator用户</h4><blockquote>
-<p>PS:前段时间修改注册表改出了一些问题,导致环境变量无法在自己的账户中修改,只好用Administrator账户修改。。。</p>
-</blockquote>
-<ol>
-<li>以管理员身份打开cmd(在左下角搜索框搜索cmd)</li>
-<li>输入<code>net user administrator /active:yes</code></li>
-<li>Ctrl+Alt+. 同时按 点击切换用户即可在左下角找到Administrator用户</li>
-<li>用完同样方式回到原来的用户</li>
-<li>输入<code>net user administrator /active:no</code>关闭</li>
-</ol>
-]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python爬虫入门</title>
     <url>/2021/08/25/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<p>此帖为Python爬虫入门帖</p>
@@ -433,6 +418,27 @@
       <tags>
         <tag>Python</tag>
         <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows</title>
+    <url>/2021/07/20/Windows/</url>
+    <content><![CDATA[<h4 id="如何切换到管理员Administrator用户"><a href="#如何切换到管理员Administrator用户" class="headerlink" title="如何切换到管理员Administrator用户"></a>如何切换到管理员Administrator用户</h4><blockquote>
+<p>PS:前段时间修改注册表改出了一些问题,导致环境变量无法在自己的账户中修改,只好用Administrator账户修改。。。</p>
+</blockquote>
+<ol>
+<li>以管理员身份打开cmd(在左下角搜索框搜索cmd)</li>
+<li>输入<code>net user administrator /active:yes</code></li>
+<li>Ctrl+Alt+. 同时按 点击切换用户即可在左下角找到Administrator用户</li>
+<li>用完同样方式回到原来的用户</li>
+<li>输入<code>net user administrator /active:no</code>关闭</li>
+</ol>
+]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
@@ -527,19 +533,19 @@
 </tr>
 <tr>
 <td align="center">学号</td>
-<td align="center">1190201615</td>
+<td align="center">XXX</td>
 </tr>
 <tr>
 <td align="center">班级</td>
-<td align="center">1903009</td>
+<td align="center">XXX</td>
 </tr>
 <tr>
 <td align="center">学生</td>
-<td align="center">穆晟伟</td>
+<td align="center">XXX</td>
 </tr>
 <tr>
 <td align="center">指导教师</td>
-<td align="center">吴锐</td>
+<td align="center">XXX</td>
 </tr>
 </tbody></table>
 <p><strong>计算机科学与技术学院</strong><br><strong>2021年5月</strong></p>
