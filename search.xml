@@ -594,21 +594,6 @@ Valgrind --leak-check=yes ./文件名<br>
       </tags>
   </entry>
   <entry>
-    <title>Markdown</title>
-    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<h4 id="常用语法：">常用语法：</h4>
-<p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
-<h4 id="如何实现内容折叠">如何实现内容折叠</h4>
-<p>原理：使用<code>html</code>标签</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PicGo CDN加速方式</title>
     <url>/2021/07/22/PicGo_CDN/</url>
     <content><![CDATA[<p><strong>方法：更改自定义域名(最下面圈出来那行)</strong><br>
@@ -625,6 +610,21 @@ Valgrind --leak-check=yes ./文件名<br>
       <tags>
         <tag>CDN</tag>
         <tag>Picgo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown</title>
+    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h4 id="常用语法：">常用语法：</h4>
+<p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
+<h4 id="如何实现内容折叠">如何实现内容折叠</h4>
+<p>原理：使用<code>html</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -660,6 +660,54 @@ Valgrind --leak-check=yes ./文件名<br>
         <tag>Python</tag>
         <tag>爬虫</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Just a test</title>
+    <url>/2021/10/23/TEST/</url>
+    <content><![CDATA[<div class="tabs" id="np"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#np-1">np.linspace</button></li><li class="tab"><button type="button" data-href="#np-2">np.zeros</button></li><li class="tab"><button type="button" data-href="#np-3">np. identity</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="np-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">linspace</span>(<span class="params">start, stop, num=<span class="number">50</span>, endpoint=<span class="literal">True</span>, retstep=<span class="literal">False</span>, dtype=<span class="literal">None</span></span>)</span></span><br></pre></td></tr></table></figure>
+<p>功能 : 均匀生成num个start到stop之间的元素<br>
+参数说明 :</p>
+<ul>
+<li>start : scalar
+<ul>
+<li>起始点</li>
+</ul>
+</li>
+<li>stop : scalar
+<ul>
+<li>终止点</li>
+</ul>
+</li>
+<li>num : int, optional
+<ul>
+<li>Number of samples to generate. Default is 50. Must be non-negative.</li>
+<li>默认值为50,生成start和stop之间50个等差间隔的元素</li>
+</ul>
+</li>
+<li>endpoint : bool, optional
+<ul>
+<li>默认为True,即生成的元素包含stop点,若为false则不包含</li>
+</ul>
+</li>
+<li>retstep : bool, optional
+<ul>
+<li>If True, return (samples, step), where step is the spacing between samples</li>
+</ul>
+</li>
+<li>dtype : dtype, optional
+<ul>
+<li>输出数组的类型。如果没有给出dtype，则从其他输入参数推断数据类型</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="comment">#输出结果: [0.   0.75 1.5  2.25 3.  ]</span></span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="np-2"><p><a href="https://numpy.org/doc/stable/reference/generated/numpy.zeros.html">https://numpy.org/doc/stable/reference/generated/numpy.zeros.html</a></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="np-3"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.identity(n, dtype=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<p>功能 : 创建一个主对角线为1,其他为0的方阵<br>
+参数说明:</p>
+<ul>
+<li>n : int, 矩阵的行数和列数都是n</li>
+<li>dtype : 输出的类型, 默认是float</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">a = np.identity(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="comment"># 输出结果: </span></span><br><span class="line">[[<span class="number">1.</span> <span class="number">0.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">1.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">0.</span> <span class="number">1.</span>]]</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>]]></content>
   </entry>
   <entry>
     <title>Vscode上Git的配置和使用</title>
@@ -728,6 +776,28 @@ Valgrind --leak-check=yes ./文件名<br>
       <tags>
         <tag>git</tag>
         <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows</title>
+    <url>/2021/07/20/Windows/</url>
+    <content><![CDATA[<h4 id="如何切换到管理员Administrator用户">如何切换到管理员Administrator用户</h4>
+<blockquote>
+<p>PS:前段时间修改注册表改出了一些问题,导致环境变量无法在自己的账户中修改,只好用Administrator账户修改。。。</p>
+</blockquote>
+<ol>
+<li>以管理员身份打开cmd(在左下角搜索框搜索cmd)</li>
+<li>输入<code>net user administrator /active:yes</code></li>
+<li>Ctrl+Alt+. 同时按 点击切换用户即可在左下角找到Administrator用户</li>
+<li>用完同样方式回到原来的用户</li>
+<li>输入<code>net user administrator /active:no</code>关闭</li>
+</ol>
+]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
@@ -813,6 +883,56 @@ cmd输入nvm,如果出现版本号说明安装成功</p>
       </tags>
   </entry>
   <entry>
+    <title>如何实现一个简易http代理服务器</title>
+    <url>/2021/10/30/httpProxy/</url>
+    <content><![CDATA[<blockquote>
+<p>此为HIT计算机网络Lab1内容<br>
+1.  设计并实现一个基本 HTTP 代理服务器。要求在指定端口（例如 8080）接收来自客户的 HTTP 请求并且根据其中的 URL 地址访问该地址所指向的 HTTP 服务器（原服务器），接收 HTTP 服务器的响应报文，并将响应报文转发给对应的客户进行浏览。<br>
+2.  设计并实现一个支持 Cache 功能的 HTTP 代理服务器。要求能缓存原服务器响应的对象，并能够通过修改请求报文（添加 if-modified-since头行），向原服务器确认缓存对象是否是最新版本。（选作内容，加分项目，可以当堂完成或课下完成）<br>
+3. 扩展 HTTP 代理服务器，支持如下功能：（选作内容，加分项目，可以当堂完成或课下完成）<br>
+4. 网站过滤：允许/不允许访问某些网站；<br>
+5. 用户过滤：支持/不支持某些用户访问外部网站；<br>
+6. 网站引导：将用户对某个网站的访问引导至一个模拟网站（钓鱼）。</p>
+</blockquote>
+<h4 id="实验原理和过程">实验原理和过程</h4>
+<ol>
+<li>创建套接字，绑定好端口和ip地址，并持续监听，直到接收到请求开始服务</li>
+<li>接收请求头，对其进行解析，得到请求方法，请求主机，请求端口</li>
+<li>检测是否为屏蔽网站(发送403 Forbidden)、屏蔽主机(发送403 Forbidden)、钓鱼目标网址(发送回钓鱼内容)</li>
+<li>建立套接字和目标主机通信</li>
+<li>检测是否存在cache、cache是否为最新</li>
+<li>Cache最新，直接返回cache内容，无cache/cache需要更新，创建/更新cache，并发回给请求端</li>
+<li>关闭除监听套接字以外的套接字<br>
+上述过程（2-7）循环</li>
+</ol>
+<h4 id="实验结果：">实验结果：</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab1/202110301951543.png" alt=""><br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab1/202110301952372.png" alt=""><br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab1/202110301952567.png" alt=""><br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab1/202110301952428.png" alt=""></p>
+<h4 id="问题讨论">问题讨论</h4>
+<ol>
+<li>暂时不会实现https的cache功能<br>
+访问https网站会先发送一个connect请求，回复“HTTP/1.X 200 Connection Established\r\n\r\n”后，由于https是加密通信，clinet_socket再发送过来的数据为加密数据，我暂时无法修改报文添加If Modified属性，应该是需要SSL知识</li>
+<li>不知道为什么https代理加载速度非常快，而http代理加载速度很慢</li>
+</ol>
+<h4 id="心得体会">心得体会</h4>
+<p>代理服务器本质功能是转发。<br>
+在http下，只需与目标建立连接，转发请求并且将获得的反馈发送给请求者即可；<br>
+而在https下，额外需要向请求方发送建立连接报文，再转发请求方的加密数据并且将获得的反馈发送给请求者。<br>
+对HTTP报文和运作方式了解加深了很多，能够改造报文实现某些功能。</p>
+<h4 id="源代码">源代码</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-10-27</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> _thread</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">CACHE_DIR = os.path.join(os.path.dirname(__file__), <span class="string">&#x27;proxycache&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(CACHE_DIR):</span><br><span class="line">    os.mkdir(CACHE_DIR)</span><br><span class="line">BLOCKED_WEB = [</span><br><span class="line">    <span class="string">&#x27;www.hit.edu.cn&#x27;</span>,</span><br><span class="line">]</span><br><span class="line">BLOCKED_IP = [</span><br><span class="line">    <span class="comment"># &#x27;127.0.0.1&#x27;,</span></span><br><span class="line">]</span><br><span class="line">FISHING_RULE = &#123;</span><br><span class="line">    <span class="string">&#x27;today.hit.edu.cn&#x27;</span>: <span class="string">&#x27;http://evaristexu.cc/&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyServer</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.ip = <span class="string">&#x27;127.0.0.1&#x27;</span></span><br><span class="line">        self.port = <span class="number">7890</span></span><br><span class="line">        self.buffer_size = <span class="number">4096</span></span><br><span class="line">        self.timeout = <span class="number">60</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_blocked_by_web</span>(<span class="params">web</span>):</span></span><br><span class="line">        <span class="keyword">if</span> web <span class="keyword">in</span> BLOCKED_WEB:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_blocked_by_ip</span>(<span class="params">ip</span>):</span></span><br><span class="line">        <span class="keyword">if</span> ip <span class="keyword">in</span> BLOCKED_IP:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">service</span>(<span class="params">self, client_socket, client_ip</span>):</span></span><br><span class="line">        client_socket.settimeout(self.timeout)</span><br><span class="line">        header = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            data = client_socket.recv(self.buffer_size)</span><br><span class="line">            header = <span class="string">b&quot;%s%s&quot;</span> % (header, data)</span><br><span class="line">            <span class="keyword">if</span> header.endswith(<span class="string">b&#x27;\r\n\r\n&#x27;</span>) <span class="keyword">or</span> (<span class="keyword">not</span> data):</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(header) == <span class="number">0</span>:  <span class="comment"># 无数据报</span></span><br><span class="line">            client_socket.close()</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        request_decode = header.decode()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;header:&quot;</span> + <span class="built_in">str</span>(request_decode))</span><br><span class="line">        httpheader_firstline = request_decode.split(<span class="string">&quot;\n&quot;</span>)[<span class="number">0</span>]</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;fisrtline:&quot;</span> + <span class="built_in">str</span>(httpheader_firstline))</span><br><span class="line">        method = httpheader_firstline.split(<span class="string">&quot; &quot;</span>)[<span class="number">0</span>]</span><br><span class="line">        url = httpheader_firstline.split(<span class="string">&quot; &quot;</span>)[<span class="number">1</span>]</span><br><span class="line">        http_version = httpheader_firstline.split(<span class="string">&quot; &quot;</span>)[<span class="number">2</span>]</span><br><span class="line">        <span class="comment"># URL解析</span></span><br><span class="line">        http_pos = url.find(<span class="string">&quot;://&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> http_pos == -<span class="number">1</span>:</span><br><span class="line">            temp = url</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp = url[(http_pos + <span class="number">3</span>):]</span><br><span class="line">        port_pos = temp.find(<span class="string">&quot;:&quot;</span>)</span><br><span class="line">        webserver_pos = temp.find(<span class="string">&quot;/&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> webserver_pos == -<span class="number">1</span>:</span><br><span class="line">            webserver_pos = <span class="built_in">len</span>(temp)</span><br><span class="line">        <span class="keyword">if</span> port_pos == -<span class="number">1</span> <span class="keyword">or</span> webserver_pos &lt; port_pos:</span><br><span class="line">            port = <span class="number">80</span></span><br><span class="line">            webserver = temp[:webserver_pos]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            port = <span class="built_in">int</span>(temp[(port_pos + <span class="number">1</span>):][:webserver_pos - port_pos - <span class="number">1</span>])</span><br><span class="line">            webserver = temp[:port_pos]</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;TargetWebPage:&quot;</span> + <span class="built_in">str</span>(webserver))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Port:&quot;</span> + <span class="built_in">str</span>(port))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Method:&quot;</span> + <span class="built_in">str</span>(method))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;HttpVersion:&quot;</span> + <span class="built_in">str</span>(http_version))</span><br><span class="line">        <span class="comment"># 检测是否合法</span></span><br><span class="line">        <span class="comment"># 1. 是否为屏蔽网站</span></span><br><span class="line">        <span class="keyword">if</span> self.is_blocked_by_web(webserver):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;webserver&#125;</span>is forbidden\n&quot;</span>)</span><br><span class="line">            client_socket.send(<span class="built_in">str</span>.encode(<span class="string">&#x27;HTTP/1.1 403 Forbidden\r\n&#x27;</span>))</span><br><span class="line">            client_socket.close()</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="comment"># 2. 是否为屏蔽IP</span></span><br><span class="line">        <span class="keyword">if</span> self.is_blocked_by_ip(client_ip[<span class="number">0</span>]):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;client_ip&#125;</span>is forbidden\n&quot;</span>)</span><br><span class="line">            client_socket.send(<span class="built_in">str</span>.encode(<span class="string">&#x27;HTTP/1.1 403 Forbidden\r\n&#x27;</span>))</span><br><span class="line">            client_socket.close()</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="comment"># 3. 根据字典跳转钓鱼网站</span></span><br><span class="line">        <span class="keyword">if</span> webserver <span class="keyword">in</span> FISHING_RULE:</span><br><span class="line">            request = requests.get(url=<span class="built_in">str</span>(FISHING_RULE.get(webserver))).content</span><br><span class="line">            client_socket.sendall(request)</span><br><span class="line">            client_socket.close()</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        m = hashlib.md5()</span><br><span class="line">        m.update(<span class="built_in">str</span>.encode(webserver))  <span class="comment"># TODO;</span></span><br><span class="line">        filename = os.path.join(CACHE_DIR, m.hexdigest() + <span class="string">&#x27;.ch&#x27;</span>)</span><br><span class="line">        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">        server_socket.settimeout(self.timeout)</span><br><span class="line">        server_socket.connect((webserver, port))</span><br><span class="line">        <span class="comment"># 有cache,检测是否为最新版本</span></span><br><span class="line">        <span class="keyword">if</span> os.path.exists(filename) <span class="keyword">and</span> method != <span class="string">&#x27;CONNECT&#x27;</span>:</span><br><span class="line">            temp = httpheader_firstline + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="comment"># 更新时间戳</span></span><br><span class="line">            t = (time.strptime(time.ctime(os.path.getmtime(filename)), <span class="string">&quot;%a %b %d %H:%M:%S %Y&quot;</span>))</span><br><span class="line">            temp += <span class="string">&#x27;If-Modified-Since: &#x27;</span> + time.strftime(<span class="string">&#x27;%a, %d %b %Y %H:%M:%S GMT&#x27;</span>, t) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> header.decode().split(<span class="string">&#x27;\n&#x27;</span>)[<span class="number">1</span>:]:</span><br><span class="line">                temp += line + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            server_socket.sendall(<span class="built_in">str</span>.encode(temp))</span><br><span class="line">            first = <span class="literal">True</span></span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                data = server_socket.recv(self.buffer_size)</span><br><span class="line">                <span class="comment"># 每次收取是按MAX_LENGTH获取,第一次创建cache文件</span></span><br><span class="line">                <span class="keyword">if</span> first:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;REPLY:&quot;</span> + <span class="built_in">str</span>(data))</span><br><span class="line">                    <span class="keyword">if</span> data.decode(<span class="string">&#x27;iso-8859-1&#x27;</span>).split()[<span class="number">1</span>] == <span class="string">&#x27;304&#x27;</span>:</span><br><span class="line">                        <span class="built_in">print</span>(<span class="string">&#x27;Cache hit: &#123;path&#125;&#x27;</span>.<span class="built_in">format</span>(path=webserver))  <span class="comment"># TODO;</span></span><br><span class="line">                        client_socket.send(<span class="built_in">open</span>(filename, <span class="string">&#x27;rb&#x27;</span>).read())</span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        o = <span class="built_in">open</span>(filename, <span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">                        <span class="built_in">print</span>(<span class="string">&#x27;Cache updated: &#123;path&#125;&#x27;</span>.<span class="built_in">format</span>(path=webserver))</span><br><span class="line">                        <span class="keyword">if</span> <span class="built_in">len</span>(data) &gt; <span class="number">0</span>:</span><br><span class="line">                            client_socket.send(data)</span><br><span class="line">                            o.write(data)</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            <span class="keyword">break</span></span><br><span class="line">                        first = <span class="literal">False</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    o = <span class="built_in">open</span>(filename, <span class="string">&#x27;ab&#x27;</span>)</span><br><span class="line">                    <span class="keyword">if</span> <span class="built_in">len</span>(data) &gt; <span class="number">0</span>:</span><br><span class="line">                        client_socket.send(data)</span><br><span class="line">                        o.write(data)</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">        <span class="comment">#  Cache不命中/HTTPS</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;Cache miss: &#123;path&#125;&#x27;</span>.<span class="built_in">format</span>(path=webserver))</span><br><span class="line">            <span class="keyword">if</span> method == <span class="string">&#x27;CONNECT&#x27;</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;HTTPS!!!!&quot;</span>)</span><br><span class="line">                connect_back = http_version.encode()+<span class="string">b&quot; 200 Connection Established\r\n\r\n&quot;</span></span><br><span class="line">                client_socket.sendall(connect_back)</span><br><span class="line">                _thread.start_new_thread(self.communicate, (client_socket, server_socket, filename, <span class="literal">False</span>))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;HTTP!!!!&quot;</span>)</span><br><span class="line">                server_socket.send(header)</span><br><span class="line">            self.communicate(server_socket, client_socket, filename, <span class="literal">True</span>)</span><br><span class="line">        server_socket.close()</span><br><span class="line">        client_socket.close()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">communicate</span>(<span class="params">self, socket1, socket2, filename, file</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Start passing data&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> file:</span><br><span class="line">            o = <span class="built_in">open</span>(filename, <span class="string">&#x27;ab&#x27;</span>)</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                data = socket1.recv(self.buffer_size)</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(data) &gt; <span class="number">0</span>:</span><br><span class="line">                    o.write(data)</span><br><span class="line">                    socket2.send(data)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            o.close()</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                data = socket1.recv(self.buffer_size)</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(data) &gt; <span class="number">0</span>:</span><br><span class="line">                    socket2.send(data)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">        listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">        listen_socket.bind((self.ip, self.port))</span><br><span class="line">        listen_socket.listen(<span class="number">128</span>)</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;---------waiting for a new clinet--------&quot;</span>)</span><br><span class="line">            client_socket, client_ip = listen_socket.accept()</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;开始响应来自<span class="subst">&#123;client_ip&#125;</span>的连接&quot;</span>)</span><br><span class="line">            _thread.start_new_thread(self.service, (client_socket, client_ip))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    proxy = ProxyServer()</span><br><span class="line">    proxy.run()</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+      <tags>
+        <tag>计算机网络</tag>
+        <tag>HTTP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何在gitee上做一个图床</title>
     <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<blockquote>
@@ -864,33 +984,6 @@ PicgoCDN加速设置方法：<br>
         <tag>Picgo</tag>
         <tag>图床</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Windows</title>
-    <url>/2021/07/20/Windows/</url>
-    <content><![CDATA[<h4 id="如何切换到管理员Administrator用户">如何切换到管理员Administrator用户</h4>
-<blockquote>
-<p>PS:前段时间修改注册表改出了一些问题,导致环境变量无法在自己的账户中修改,只好用Administrator账户修改。。。</p>
-</blockquote>
-<ol>
-<li>以管理员身份打开cmd(在左下角搜索框搜索cmd)</li>
-<li>输入<code>net user administrator /active:yes</code></li>
-<li>Ctrl+Alt+. 同时按 点击切换用户即可在左下角找到Administrator用户</li>
-<li>用完同样方式回到原来的用户</li>
-<li>输入<code>net user administrator /active:no</code>关闭</li>
-</ol>
-]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于此BLOG</title>
-    <url>/2021/10/18/%E7%BD%AE%E9%A1%B6%E5%B8%96/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>HIT CSAPP大作业</title>
