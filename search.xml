@@ -343,112 +343,6 @@ repo为仓库地址  branch为master即可<br>
       </tags>
   </entry>
   <entry>
-    <title>Java</title>
-    <url>/2021/06/02/Java/</url>
-    <content><![CDATA[<p>记录帖</p>
-<span id="more"></span>
-<h4 id="查询jdk版本">查询jdk版本</h4>
-<p>cmd: <code>java -verbose</code></p>
-<h4 id="HashMap：">HashMap：</h4>
-<p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>
-注：以下 hashmap 均是 HashMap 类的一个对象。</p>
-<ol>
-<li>put()方法<br>
-<code>hashmap.put(K key，V value)</code></li>
-</ol>
-<ul>
-<li>key: 键</li>
-<li>value: 值<br>
-返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
-</ul>
-<ol start="2">
-<li>remove()方法<br>
-<code>hashmap.remove(Object key, Object value)</code><br>
-返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br>
-如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
-<li>get()方法<br>
-<code>hashmap.get(Object key)</code><br>
-返回值：与指定 key 所关联的 value</li>
-<li>keySet()方法<br>
-<code>hashmap.keySet()</code><br>
-返回值：返回映射中所有 key 组成的 Set 视图。</li>
-</ol>
-<h4 id="Iterator：">Iterator：</h4>
-<p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
-<h4 id="String、StringBuffer、StringBuilder区别">String、StringBuffer、StringBuilder区别</h4>
-<ol>
-<li>String<br>
-String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String a = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">a = <span class="string">&quot;456&quot;</span>;</span><br><span class="line"><span class="comment">// 打印出来的a为456</span></span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
-<p>在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是<strong>生成了一个新的实例，将a指向了这个新的实例</strong>，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收<br>
-2. StringBuffer<br>
-StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，<br>
-通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。<br>
-一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">StringBuffer b = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">b.append(<span class="string">&quot;456&quot;</span>);</span><br><span class="line"><span class="comment">// b打印结果为：123456</span></span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>StringBuilder<br>
-StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。<br>
-不同的是：<strong>StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。</strong></li>
-</ol>
-<h4 id="Queue的用法">Queue的用法:</h4>
-<p><a href="https://www.runoob.com/java/data-queue.html">https://www.runoob.com/java/data-queue.html</a></p>
-<h4 id="关于日期格式的判断">关于日期格式的判断</h4>
-<blockquote>
-<p>日期格式为2020-01-03，若格式为2020/01/03，可修改为yyyy/MM/dd,注意MM为大写<br>
-完整类型 yyyy-MM-dd HH:mm:ss<br>
-@return 若解析成功，返回对应的Date类型,解析失败返回null</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parser</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Date <span class="title">checkInput</span><span class="params">(String S)</span> </span>&#123;</span><br><span class="line">		Date date = <span class="keyword">null</span>;</span><br><span class="line">		SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			format.setLenient(<span class="keyword">false</span>);</span><br><span class="line">			<span class="comment">// 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007/02/29会被接受，并转换成2007/03/01</span></span><br><span class="line">			date = format.parse(S);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> date;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="关于Scanner异常：java-util-NoSuchElementException-No-line-found">关于Scanner异常：java.util.NoSuchElementException: No line found</h4>
-<p>可能是同时开启了多个Scanner指向同一位置，如</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner sc1=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">Scanner sc2=<span class="keyword">new</span> Scanner(System.in);</span><br></pre></td></tr></table></figure>
-<p>当关闭其中一个Scanner时，System.in也会关闭，导致另一个Scanner异常</p>
-<h4 id="Java随机数生成">Java随机数生成</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Random</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i = IDs.size();</span><br><span class="line">		<span class="keyword">int</span> min = <span class="number">1</span>, max = <span class="number">1000</span>;</span><br><span class="line">		<span class="keyword">int</span> random = (<span class="keyword">int</span>) (Math.random() * (max - min) + min);<span class="comment">//生成min到max的随机数</span></span><br><span class="line">		<span class="keyword">return</span> random % i;<span class="comment">//生成0到i-1的随机数</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="关于ArrayList排序器">关于ArrayList排序器</h4>
-<blockquote>
-<p>单一参数排序<br>
-例如对进程表Processes中所有进程号进行排序</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Collections.sort(Processes, <span class="keyword">new</span> Comparator&lt;Process&gt;() &#123;</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Process o1, Process o2)</span> </span>&#123;</span><br><span class="line">					<span class="keyword">if</span> (o1.number &gt;= o2.number) &#123;</span><br><span class="line">						<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>多参数排序<br>
-例如优先按照进程号，其次按照进程剩余时间大小排序<br>
-//TODO</p>
-</blockquote>
-<h4 id="关于-split-Illegal-repetition-near-index-1-报错">关于 split:Illegal repetition near index 1 报错</h4>
-<blockquote>
-<p>关于Split用法：<a href="https://www.runoob.com/java/java-string-split.html">https://www.runoob.com/java/java-string-split.html</a><br>
-发生原因：split中的某些字符需要转义</p>
-</blockquote>
-<p>例如<code>strs=s.split(&quot;&#123;&quot;);</code><br>
-需改为<code>strs=s.split(&quot;\\&#123;&#125;&quot;);</code></p>
-<h4 id="关于正则表达式匹配">关于正则表达式匹配</h4>
-<blockquote>
-<p>软件构造实验Lab3的一些收获<br>
-以软件构造Lab3的文本举例<br>
-正则表达式匹配速查：<a href="https://www.runoob.com/java/java-regular-expressions.html">https://www.runoob.com/java/java-regular-expressions.html</a></p>
-</blockquote>
-<p>希望匹配如下文本</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Employee&#123; </span><br><span class="line">ZhangSan&#123;Manger,139-0451-0000&#125;</span><br><span class="line">LiSi&#123;Secretary,151-0101-0000&#125;</span><br><span class="line">WangWu&#123;Associate Dean,177-2021-0301&#125;</span><br><span class="line">ZhaoLiua&#123;Professor,138-1920-3912&#125;</span><br><span class="line">ZhaoLiub&#123;Lecturer,138-1921-3912&#125;</span><br><span class="line">ZhaoLiuc&#123;Professor,138-1922-3912&#125;</span><br><span class="line">ZhaoLiud&#123;Lecturer,198-1920-3912&#125;</span><br><span class="line">ZhaoLiue&#123;Professor,178-1920-3912&#125;</span><br><span class="line">ZhaoLiuf&#123;Lecturer,138-1929-3912&#125;</span><br><span class="line">ZhaoLiug&#123;Professor,138-1920-0000&#125;</span><br><span class="line">ZhaoLiuh&#123;AssciateProfessor,138-1929-0000&#125;</span><br><span class="line">ZhaoLiui&#123;Professor,138-1920-0200&#125;</span><br><span class="line">ZhaoLiuj&#123;AssciateProfessor,138-1920-0044&#125;</span><br><span class="line">ZhaoLiuk&#123;Professor,188-1920-0000&#125;</span><br><span class="line">&#125;</span><br><span class="line">Period&#123;2021-01-10,2021-03-06&#125;</span><br><span class="line">Roster&#123; </span><br><span class="line">ZhangSan&#123;2021-01-10,2021-01-11&#125;</span><br><span class="line">LiSi&#123;2021-01-12,2021-01-20&#125;</span><br><span class="line">WangWu&#123;2021-01-21,2021-01-21&#125;</span><br><span class="line">ZhaoLiua&#123;2021-01-22,2021-01-22&#125;</span><br><span class="line">ZhaoLiub&#123;2021-01-23,2021-01-29&#125;</span><br><span class="line">ZhaoLiuc&#123;2021-01-30,2021-01-31&#125;</span><br><span class="line">ZhaoLiud&#123;2021-02-01,2021-02-08&#125;</span><br><span class="line">ZhaoLiue&#123;2021-02-09,2021-02-15&#125;</span><br><span class="line">ZhaoLiuf&#123;2021-02-16,2021-02-24&#125;</span><br><span class="line">ZhaoLiug&#123;2021-02-25,2021-02-28&#125;</span><br><span class="line">ZhaoLiuh&#123;2021-03-01,2021-03-01&#125;</span><br><span class="line">ZhaoLiui&#123;2021-03-02,2021-03-04&#125;</span><br><span class="line">ZhaoLiuj&#123;2021-03-05,2021-03-05&#125;</span><br><span class="line">ZhaoLiuk&#123;2021-03-06,2021-03-06&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>则可以构造6个模式串进行匹配</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern pattern1 = Pattern.compile(<span class="string">&quot;(Period)\\&#123;(2021-[01][0-9]-[0123][0-9],2021-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Period&#123;2021-01-10,2021-03-06&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern2 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;(\\D*),([0-9]&#123;3&#125;-[0-9]&#123;4&#125;-[0-9]&#123;4&#125;)\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;Manger,139-0451-0000&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern3 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9]),([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;2021-01-10,2021-01-11&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern4 = Pattern.compile(<span class="string">&quot;(Employee)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Employee&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern5 = Pattern.compile(<span class="string">&quot;(Roster)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Roster&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern6 = Pattern.compile(<span class="string">&quot;\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
-<p>之后利用捕获组match.group()得到可用信息并进行处理即可</p>
-<p>举例： 若文本为String str=“ZhangSan{Manger,139-0451-0000}”<br>
-则该行文本匹配模式串2,并会产生3个捕获组:<br>
-分别为ZhangSan / Manager / 139-0451-0000<br>
-由此得到了一个员工的信息</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux</title>
     <url>/2021/06/02/Linux/</url>
     <content><![CDATA[<h4 id="怎么在GCC下用32位模式编译C程序？">怎么在GCC下用32位模式编译C程序？</h4>
@@ -606,6 +500,112 @@ Valgrind --leak-check=yes ./文件名<br>
       </categories>
       <tags>
         <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java</title>
+    <url>/2021/06/02/Java/</url>
+    <content><![CDATA[<p>记录帖</p>
+<span id="more"></span>
+<h4 id="查询jdk版本">查询jdk版本</h4>
+<p>cmd: <code>java -verbose</code></p>
+<h4 id="HashMap：">HashMap：</h4>
+<p><a href="https://www.runoob.com/java/java-hashmap.html">https://www.runoob.com/java/java-hashmap.html</a><br>
+注：以下 hashmap 均是 HashMap 类的一个对象。</p>
+<ol>
+<li>put()方法<br>
+<code>hashmap.put(K key，V value)</code></li>
+</ol>
+<ul>
+<li>key: 键</li>
+<li>value: 值<br>
+返回值：如果插入的 key 对应的 value 已经存在，则执行 value 替换操作，返回旧的 value 值，如果不存在则执行插入，返回 null。</li>
+</ul>
+<ol start="2">
+<li>remove()方法<br>
+<code>hashmap.remove(Object key, Object value)</code><br>
+返回值：如果指定 key，返回指定键 key 关联的值，如果指定的 key 映射值为 null 或者该 key 并不存在于该 HashMap 中，此方法将返回null。<br>
+如果指定了 key 和 value，删除成功返回 true，否则返回 false。</li>
+<li>get()方法<br>
+<code>hashmap.get(Object key)</code><br>
+返回值：与指定 key 所关联的 value</li>
+<li>keySet()方法<br>
+<code>hashmap.keySet()</code><br>
+返回值：返回映射中所有 key 组成的 Set 视图。</li>
+</ol>
+<h4 id="Iterator：">Iterator：</h4>
+<p><a href="https://www.runoob.com/java/java-iterator.html">https://www.runoob.com/java/java-iterator.html</a></p>
+<h4 id="String、StringBuffer、StringBuilder区别">String、StringBuffer、StringBuilder区别</h4>
+<ol>
+<li>String<br>
+String类是不可变类，即一旦一个String对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String a = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">a = <span class="string">&quot;456&quot;</span>;</span><br><span class="line"><span class="comment">// 打印出来的a为456</span></span><br><span class="line">System.out.println(a)</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，可以看到打印的a为456，但这并不是因为String可以修改，而是<strong>生成了一个新的实例，将a指向了这个新的实例</strong>，而原来的实例仍然存在，如果没有再次被引用，最终会被GC回收<br>
+2. StringBuffer<br>
+StringBuffer对象则代表一个字符序列可变的字符串，当一个StringBuffer被创建以后，<br>
+通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()等方法可以改变这个字符串对象的字符序列。<br>
+一旦通过StringBuffer生成了最终想要的字符串，就可以调用它的toString()方法将其转换为一个String对象。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">StringBuffer b = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">b.append(<span class="string">&quot;456&quot;</span>);</span><br><span class="line"><span class="comment">// b打印结果为：123456</span></span><br><span class="line">System.out.println(b);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>StringBuilder<br>
+StringBuilder类也代表可变字符串对象。实际上，StringBuilder和StringBuffer基本相似，两个类的构造器和方法也基本相同。<br>
+不同的是：<strong>StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。</strong></li>
+</ol>
+<h4 id="Queue的用法">Queue的用法:</h4>
+<p><a href="https://www.runoob.com/java/data-queue.html">https://www.runoob.com/java/data-queue.html</a></p>
+<h4 id="关于日期格式的判断">关于日期格式的判断</h4>
+<blockquote>
+<p>日期格式为2020-01-03，若格式为2020/01/03，可修改为yyyy/MM/dd,注意MM为大写<br>
+完整类型 yyyy-MM-dd HH:mm:ss<br>
+@return 若解析成功，返回对应的Date类型,解析失败返回null</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parser</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Date <span class="title">checkInput</span><span class="params">(String S)</span> </span>&#123;</span><br><span class="line">		Date date = <span class="keyword">null</span>;</span><br><span class="line">		SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			format.setLenient(<span class="keyword">false</span>);</span><br><span class="line">			<span class="comment">// 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007/02/29会被接受，并转换成2007/03/01</span></span><br><span class="line">			date = format.parse(S);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> date;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关于Scanner异常：java-util-NoSuchElementException-No-line-found">关于Scanner异常：java.util.NoSuchElementException: No line found</h4>
+<p>可能是同时开启了多个Scanner指向同一位置，如</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner sc1=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">Scanner sc2=<span class="keyword">new</span> Scanner(System.in);</span><br></pre></td></tr></table></figure>
+<p>当关闭其中一个Scanner时，System.in也会关闭，导致另一个Scanner异常</p>
+<h4 id="Java随机数生成">Java随机数生成</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Random</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i = IDs.size();</span><br><span class="line">		<span class="keyword">int</span> min = <span class="number">1</span>, max = <span class="number">1000</span>;</span><br><span class="line">		<span class="keyword">int</span> random = (<span class="keyword">int</span>) (Math.random() * (max - min) + min);<span class="comment">//生成min到max的随机数</span></span><br><span class="line">		<span class="keyword">return</span> random % i;<span class="comment">//生成0到i-1的随机数</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关于ArrayList排序器">关于ArrayList排序器</h4>
+<blockquote>
+<p>单一参数排序<br>
+例如对进程表Processes中所有进程号进行排序</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Collections.sort(Processes, <span class="keyword">new</span> Comparator&lt;Process&gt;() &#123;</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Process o1, Process o2)</span> </span>&#123;</span><br><span class="line">					<span class="keyword">if</span> (o1.number &gt;= o2.number) &#123;</span><br><span class="line">						<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>多参数排序<br>
+例如优先按照进程号，其次按照进程剩余时间大小排序<br>
+//TODO</p>
+</blockquote>
+<h4 id="关于-split-Illegal-repetition-near-index-1-报错">关于 split:Illegal repetition near index 1 报错</h4>
+<blockquote>
+<p>关于Split用法：<a href="https://www.runoob.com/java/java-string-split.html">https://www.runoob.com/java/java-string-split.html</a><br>
+发生原因：split中的某些字符需要转义</p>
+</blockquote>
+<p>例如<code>strs=s.split(&quot;&#123;&quot;);</code><br>
+需改为<code>strs=s.split(&quot;\\&#123;&#125;&quot;);</code></p>
+<h4 id="关于正则表达式匹配">关于正则表达式匹配</h4>
+<blockquote>
+<p>软件构造实验Lab3的一些收获<br>
+以软件构造Lab3的文本举例<br>
+正则表达式匹配速查：<a href="https://www.runoob.com/java/java-regular-expressions.html">https://www.runoob.com/java/java-regular-expressions.html</a></p>
+</blockquote>
+<p>希望匹配如下文本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Employee&#123; </span><br><span class="line">ZhangSan&#123;Manger,139-0451-0000&#125;</span><br><span class="line">LiSi&#123;Secretary,151-0101-0000&#125;</span><br><span class="line">WangWu&#123;Associate Dean,177-2021-0301&#125;</span><br><span class="line">ZhaoLiua&#123;Professor,138-1920-3912&#125;</span><br><span class="line">ZhaoLiub&#123;Lecturer,138-1921-3912&#125;</span><br><span class="line">ZhaoLiuc&#123;Professor,138-1922-3912&#125;</span><br><span class="line">ZhaoLiud&#123;Lecturer,198-1920-3912&#125;</span><br><span class="line">ZhaoLiue&#123;Professor,178-1920-3912&#125;</span><br><span class="line">ZhaoLiuf&#123;Lecturer,138-1929-3912&#125;</span><br><span class="line">ZhaoLiug&#123;Professor,138-1920-0000&#125;</span><br><span class="line">ZhaoLiuh&#123;AssciateProfessor,138-1929-0000&#125;</span><br><span class="line">ZhaoLiui&#123;Professor,138-1920-0200&#125;</span><br><span class="line">ZhaoLiuj&#123;AssciateProfessor,138-1920-0044&#125;</span><br><span class="line">ZhaoLiuk&#123;Professor,188-1920-0000&#125;</span><br><span class="line">&#125;</span><br><span class="line">Period&#123;2021-01-10,2021-03-06&#125;</span><br><span class="line">Roster&#123; </span><br><span class="line">ZhangSan&#123;2021-01-10,2021-01-11&#125;</span><br><span class="line">LiSi&#123;2021-01-12,2021-01-20&#125;</span><br><span class="line">WangWu&#123;2021-01-21,2021-01-21&#125;</span><br><span class="line">ZhaoLiua&#123;2021-01-22,2021-01-22&#125;</span><br><span class="line">ZhaoLiub&#123;2021-01-23,2021-01-29&#125;</span><br><span class="line">ZhaoLiuc&#123;2021-01-30,2021-01-31&#125;</span><br><span class="line">ZhaoLiud&#123;2021-02-01,2021-02-08&#125;</span><br><span class="line">ZhaoLiue&#123;2021-02-09,2021-02-15&#125;</span><br><span class="line">ZhaoLiuf&#123;2021-02-16,2021-02-24&#125;</span><br><span class="line">ZhaoLiug&#123;2021-02-25,2021-02-28&#125;</span><br><span class="line">ZhaoLiuh&#123;2021-03-01,2021-03-01&#125;</span><br><span class="line">ZhaoLiui&#123;2021-03-02,2021-03-04&#125;</span><br><span class="line">ZhaoLiuj&#123;2021-03-05,2021-03-05&#125;</span><br><span class="line">ZhaoLiuk&#123;2021-03-06,2021-03-06&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>则可以构造6个模式串进行匹配</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern pattern1 = Pattern.compile(<span class="string">&quot;(Period)\\&#123;(2021-[01][0-9]-[0123][0-9],2021-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Period&#123;2021-01-10,2021-03-06&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern2 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;(\\D*),([0-9]&#123;3&#125;-[0-9]&#123;4&#125;-[0-9]&#123;4&#125;)\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;Manger,139-0451-0000&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern3 = Pattern.compile(<span class="string">&quot;(\\D*)\\&#123;([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9]),([0-9]&#123;4&#125;-[01][0-9]-[0123][0-9])\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;ZhangSan&#123;2021-01-10,2021-01-11&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern4 = Pattern.compile(<span class="string">&quot;(Employee)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Employee&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern5 = Pattern.compile(<span class="string">&quot;(Roster)\\&#123; &quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;Roster&#123; &quot;</span></span><br><span class="line"></span><br><span class="line">Pattern pattern6 = Pattern.compile(<span class="string">&quot;\\&#125;&quot;</span>);</span><br><span class="line"><span class="comment">// 匹配&quot;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>之后利用捕获组match.group()得到可用信息并进行处理即可</p>
+<p>举例： 若文本为String str=“ZhangSan{Manger,139-0451-0000}”<br>
+则该行文本匹配模式串2,并会产生3个捕获组:<br>
+分别为ZhangSan / Manager / 139-0451-0000<br>
+由此得到了一个员工的信息</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
