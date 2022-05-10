@@ -540,152 +540,6 @@ repo为仓库地址  branch为master即可<br>
       </tags>
   </entry>
   <entry>
-    <title>Linux</title>
-    <url>/2021/06/02/Linux/</url>
-    <content><![CDATA[<p>[Toc]</p>
-<h4 id="怎么在GCC下用32位模式编译C程序？">怎么在GCC下用32位模式编译C程序？</h4>
-<p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可<br>
-如</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -m32 hello.c -o hello.out</span><br></pre></td></tr></table></figure>
-<p>若报错，输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
-<p>获得所需包再重新编译即可</p>
-<h4 id="chmod命令用法">chmod命令用法</h4>
-<p><a href="https://www.runoob.com/linux/linux-comm-chmod.html">https://www.runoob.com/linux/linux-comm-chmod.html</a></p>
-<h4 id="getopt-函数：">getopt()函数：</h4>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">char</span> *optarg;</span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> optind;</span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> opterr;</span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> optopt;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">getopt</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * <span class="keyword">const</span> argv[], <span class="keyword">const</span> <span class="keyword">char</span> *optstring)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>用途：解析命令行参数<br>
-举个例子：cp -a -b hello -c123 src dst<br>
-optarg: -b的optarg是hello，-c的optarg是123，optarg就是选项后面跟着的参数；<br>
-optind  : 下一个要处理的参数的下标(argv)；每次getopt后，这个索引就会指向argv里当前分析的字符串的下一个索引，因此argv[optind]就能得到下个字符串，<br>
-opterr  : 如果将opterr设为0，则getopt不输出错误信息，否则报错，形如（e2fsck: invalid option – ‘x’）<br>
-optopt  : 当命令行选项字符不包括在optstring中或者选项缺少必要的参数时，该选项存储在optopt中<br>
-optstring:待处理的字符串</p>
-<p>此函数会返回在argv 中下一个的选项字母，此字母会对应参数optstring 中的字母。如果选项字符串里的字母后接着冒号“:”，则表示还有相关的参数，全局变量optarg 即会指向此额外参数。如果getopt()找不到符合的参数则会印出错信息，并将全局变量optopt设为“?”字符，如果不希望getopt()印出错信息，则只要将全局变量opterr设为0即可。</p>
-<p>optstring中的指定的内容的意义（例如getopt(argc, argv, “ab:c::d::”);）<br>
-1.单个字符，表示选项<br>
-2.单个字符后接一个冒号：表示该选项后必须跟一个参数。参数紧跟在选项后或者以空格隔开。该参数的指针赋给optarg。<br>
-3.单个字符后跟两个冒号，表示该选项后可以跟一个参数(可以没有)，如果有参数，则参数必须紧跟在选项后不能以空格隔开。该参数的指针赋给optarg。(这个特性是GNU的扩张)。</p>
-<p>getopt处理以’-’开头的命令行参数，如optstring=“ab:c::d::”,命令行为getopt.exe -a -b host -ckeke -d haha<br>
-在这个命令行参数中，host是b的参数，keke是c的参数，但haha并不是d的参数，因为haha和d中间有空格隔开。</p>
-<p>还要注意的是默认情况下getopt会重新排列命令行参数的顺序，所以到最后所有不包含选项的命令行参数都排到最后。<br>
-例如 getopt.exe -a ima -b host -ckeke -d haha<br>
-因为a和d没有参数所以ima和haha是没有选项的命令行参数，会放到最后<br>
-所以最后命令行参数的顺序是： -a -b host -ckeke -d ima haha</p>
-<h4 id="sigfillset-函数">sigfillset()函数</h4>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigfillset</span><span class="params">(<span class="keyword">sigset_t</span> * <span class="built_in">set</span>)</span></span>;</span><br><span class="line">函数说明：sigfillset()用来将参数<span class="built_in">set</span>信号集初始化, 然后把所有的信号加入到此信号集里.</span><br><span class="line">返回值：执行成功则返回<span class="number">0</span>, 如果有错误则返回<span class="number">-1</span>。</span><br><span class="line">附加说明：EFAULT 参数<span class="built_in">set</span> 指针地址无法存取。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sigemptyset 函数初始化信号集合set,将set 设置为空.</span><br><span class="line"></span><br><span class="line">sigfillset 也初始化信号集合,只是将信号集合设置为所有信号的集合.</span><br><span class="line"></span><br><span class="line">sigaddset 将信号signo 加入到信号集合之中,</span><br><span class="line"></span><br><span class="line">sigdelset 将信号从信号集合中删除.</span><br><span class="line"></span><br><span class="line">sigismember 查询信号是否在信号集合之中.</span><br></pre></td></tr></table></figure>
-<h4 id="sigprocmask-函数">sigprocmask()函数</h4>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigprocmask</span><span class="params">(<span class="keyword">int</span> how, <span class="keyword">const</span> <span class="keyword">sigset_t</span> *<span class="built_in">set</span>, <span class="keyword">sigset_t</span> *oldset)</span></span>;</span><br><span class="line">参数：</span><br><span class="line">how：用于指定信号修改的方式，可能选择有三种：</span><br><span class="line">SIG_BLOCK   <span class="comment">//加入信号到进程屏蔽。</span></span><br><span class="line">SIG_UNBLOCK <span class="comment">//从进程屏蔽里将信号删除。</span></span><br><span class="line">SIG_SETMASK <span class="comment">//将set的值设定为新的进程屏蔽。</span></span><br><span class="line"><span class="built_in">set</span>：为指向信号集的指针，在此专指新设的信号集，如果仅想读取现在的屏蔽值，可将其置为<span class="literal">NULL</span>。</span><br><span class="line">oldset：也是指向信号集的指针，在此存放原来的信号集。</span><br></pre></td></tr></table></figure>
-<p>返回说明：<br>
-函数说明：<br>
-一个进程的信号屏蔽字规定了当前阻塞而不能递送给该进程的信号集。sigprocmask()可以用来检测或改变信号屏蔽字，其操作依参数how来决定，如果参数oldset不是NULL指针，那么信号屏蔽字会由此指针返回。如果set是一个非空指针，则参数how指示如何修改当前信号屏蔽字。每个进程都有一个用来描述哪些信号递送到进程时将被阻塞的信号集，该信号集中的所有信号在递送到进程后都将被阻塞。<br>
-成功执行时，返回0。失败返回-1，errno被设为EINVAL。<br>
-sigprocmask(SIG_BLOCK, &amp;newmask, &amp;oldmask);//将newmask中的SIGINT阻塞掉，并保存当前信号屏蔽字到Oldmask<br>
-sigprocmask(SIG_SETMASK, &amp;oldmask, NULL);//恢复被屏蔽的信号SIGINT</p>
-<p>sigprocmask(SIG_BLOCK, &amp;newmask, NULL); //阻塞<br>
-sigprocmask(SIG_UNBLOCK, &amp;newmask, NULL);//取消阻塞<br>
-注意事项：sigprocmask()函数只为单线程的进程定义的，在多线程中要使用pthread_sigmask变量，在使用之前需要声明和初始化。</p>
-<h4 id="kill-函数">kill()函数</h4>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kill</span><span class="params">(<span class="keyword">pid_t</span> pid, <span class="keyword">int</span> sig)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>参数：<br>
-pid：可能选择有以下四种</p>
-<ol>
-<li>pid大于零时，pid是信号欲送往的进程的标识。</li>
-<li>pid等于零时，信号将送往所有与调用kill()的那个进程属同一个使用组的进程。</li>
-<li>pid等于-1时，信号将送往所有调用进程有权给其发送信号的进程，除了进程1(init)。</li>
-<li>pid小于-1时，信号将送往以-pid为组标识的进程。</li>
-</ol>
-<p>sig：准备发送的信号代码，假如其值为零则没有任何信号送出，但是系统会执行错误检查，通常会利用sig值为零来检验某个进程是否仍在执行。</p>
-<p>返回值说明： 成功执行时，返回0。失败返回-1，errno被设为以下的某个值 EINVAL：指定的信号码无效（参数 sig 不合法） EPERM；权限不够无法传送信号给指定进程 ESRCH：参数 pid 所指定的进程或进程组不存在</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. SIGHUP</span><br><span class="line">本信号在用户终端连接(正常或非正常)结束时发出, 通常是在终端的控制进程结束时, 通知同一session内的各个作业, 这时它们与控制终端不再关联。  </span><br><span class="line">登录Linux时，系统会分配给登录用户一个终端(Session)。在这个终端运行的所有程序，包括前台进程组和后台进程组，一般都属于这个 Session。当用户退出Linux登录时，前台进程组和后台有对终端输出的进程将会收到SIGHUP信号。这个信号的默认操作为终止进程，因此前台进程组和后台有终端输出的进程就会中止。不过可以捕获这个信号，比如wget能捕获SIGHUP信号，并忽略它，这样就算退出了Linux登录，wget也能继续下载。  </span><br><span class="line">此外，对于与终端脱离关系的守护进程，这个信号用于通知它重新读取配置文件。</span><br><span class="line">2. SIGINT</span><br><span class="line">程序终止(interrupt)信号, 在用户键入INTR字符(通常是Ctrl-C)时发出，用于通知前台进程组终止进程。</span><br><span class="line">3. SIGQUIT</span><br><span class="line">和SIGINT类似, 但由QUIT字符(通常是Ctrl-\)来控制. 进程在因收到SIGQUIT退出时会产生core文件, 在这个意义上类似于一个程序错误信号。</span><br><span class="line">4. SIGILL</span><br><span class="line">执行了非法指令. 通常是因为可执行文件本身出现错误, 或者试图执行数据段. 堆栈溢出时也有可能产生这个信号。</span><br><span class="line">5. SIGTRAP</span><br><span class="line">由断点指令或其它trap指令产生. 由debugger使用。</span><br><span class="line">6. SIGABRT</span><br><span class="line">调用abort函数生成的信号。</span><br><span class="line">7. SIGBUS</span><br><span class="line">非法地址, 包括内存地址对齐(alignment)出错。比如访问一个四个字长的整数, 但其地址不是4的倍数。它与SIGSEGV的区别在于后者是由于对合法存储地址的非法访问触发的(如访问不属于自己存储空间或只读存储空间)。</span><br><span class="line">8. SIGFPE</span><br><span class="line">在发生致命的算术运算错误时发出. 不仅包括浮点运算错误, 还包括溢出及除数为0等其它所有的算术的错误。</span><br><span class="line">9. SIGKILL</span><br><span class="line">用来立即结束程序的运行. 本信号不能被阻塞、处理和忽略。如果管理员发现某个进程终止不了，可尝试发送这个信号。</span><br><span class="line">10. SIGUSR1</span><br><span class="line">留给用户使用</span><br><span class="line">11. SIGSEGV</span><br><span class="line">试图访问未分配给自己的内存, 或试图往没有写权限的内存地址写数据.</span><br><span class="line">12. SIGUSR2</span><br><span class="line">留给用户使用</span><br><span class="line">13. SIGPIPE</span><br><span class="line">管道破裂。这个信号通常在进程间通信产生，比如采用FIFO(管道)通信的两个进程，读管道没打开或者意外终止就往管道写，写进程会收到SIGPIPE信号。此外用Socket通信的两个进程，写进程在写Socket的时候，读进程已经终止。</span><br><span class="line">14. SIGALRM</span><br><span class="line">时钟定时信号, 计算的是实际的时间或时钟时间. alarm函数使用该信号.</span><br><span class="line">15. SIGTERM</span><br><span class="line">程序结束(terminate)信号, 与SIGKILL不同的是该信号可以被阻塞和处理。通常用来要求程序自己正常退出，shell命令kill缺省产生这个信号。如果进程终止不了，我们才会尝试SIGKILL。</span><br><span class="line">17. SIGCHLD</span><br><span class="line">子进程结束时, 父进程会收到这个信号。</span><br><span class="line">如果父进程没有处理这个信号，也没有等待(wait)子进程，子进程虽然终止，但是还会在内核进程表中占有表项，这时的子进程称为僵尸进程。这种情况我们应该避免(父进程或者忽略SIGCHILD信号，或者捕捉它，或者wait它派生的子进程，或者父进程先终止，这时子进程的终止自动由init进程来接管)。</span><br><span class="line">18. SIGCONT</span><br><span class="line">让一个停止(stopped)的进程继续执行. 本信号不能被阻塞. 可以用一个handler来让程序在由stopped状态变为继续执行时完成特定的工作. 例如, 重新显示提示符</span><br><span class="line">19. SIGSTOP</span><br><span class="line">停止(stopped)进程的执行. 注意它和terminate以及interrupt的区别:该进程还未结束, 只是暂停执行. 本信号不能被阻塞, 处理或忽略.</span><br><span class="line">20. SIGTSTP</span><br><span class="line">停止进程的运行, 但该信号可以被处理和忽略. 用户键入SUSP字符时(通常是Ctrl-Z)发出这个信号</span><br><span class="line">21. SIGTTIN</span><br><span class="line">当后台作业要从用户终端读数据时, 该作业中的所有进程会收到SIGTTIN信号. 缺省时这些进程会停止执行.</span><br><span class="line">22. SIGTTOU</span><br><span class="line">类似于SIGTTIN, 但在写终端(或修改终端模式)时收到.</span><br><span class="line">23. SIGURG</span><br><span class="line">有”紧急”数据或out-of-band数据到达socket时产生.</span><br><span class="line">24. SIGXCPU</span><br><span class="line">超过CPU时间资源限制. 这个限制可以由getrlimit&#x2F;setrlimit来读取&#x2F;改变。</span><br><span class="line">25. SIGXFSZ</span><br><span class="line">当进程企图扩大文件以至于超过文件大小资源限制。</span><br><span class="line">26. SIGVTALRM</span><br><span class="line">虚拟时钟信号. 类似于SIGALRM, 但是计算的是该进程占用的CPU时间.</span><br><span class="line">27. SIGPROF</span><br><span class="line">类似于SIGALRM&#x2F;SIGVTALRM, 但包括该进程用的CPU时间以及系统调用的时间.</span><br><span class="line">28. SIGWINCH</span><br><span class="line">窗口大小改变时发出.</span><br><span class="line">29. SIGIO</span><br><span class="line">文件描述符准备就绪, 可以开始进行输入&#x2F;输出操作.</span><br><span class="line">30. SIGPWR</span><br><span class="line">Power failure</span><br><span class="line">31. SIGSYS</span><br><span class="line">非法的系统调用。</span><br></pre></td></tr></table></figure>
-<p>在以上列出的信号中，程序不可捕获、阻塞或忽略的信号有：SIGKILL,SIGSTOP<br>
-不能恢复至默认动作的信号有：SIGILL,SIGTRAP<br>
-默认会导致进程流产的信号有：SIGABRT,SIGBUS,SIGFPE,SIGILL,SIGIOT,SIGQUIT,SIGSEGV,SIGTRAP,SIGXCPU,SIGXFSZ<br>
-默认会导致进程退出的信号有：SIGALRM,SIGHUP,SIGINT,SIGKILL,SIGPIPE,SIGPOLL,SIGPROF,SIGSYS,SIGTERM,SIGUSR1,SIGUSR2,SIGVTALRM<br>
-默认会导致进程停止的信号有：SIGSTOP,SIGTSTP,SIGTTIN,SIGTTOU<br>
-默认进程忽略的信号有：SIGCHLD,SIGPWR,SIGURG,SIGWINCH<br>
-kill、killall<br>
-这两个命令是用来向进程发送信号的。kill 命令需要进程号作为参数，而 killall 需要进程名称。<br>
-另外，还可以在这两个命令后附加要发送信号序号作为参数。默认情况下，它们都向相关进程发送信号 15 (TERM)。例如，如果你想要终止 PID 为 785 的进程，请输入以下命令：<br>
-$ kill 785<br>
-如果您要向它发送信号 19 (STOP)，请输入：<br>
-$ kill -19 785<br>
-假设您知道想要终止的进程的命令名称。您可以通过该名称来终止它，而不用再使用 ps 找出该进程的进程号：<br>
-$ killall -9 mozilla</p>
-<h4 id="errno">errno</h4>
-<p><code>#include &lt;errno.h&gt;</code>  记录系统的最后一次错误代码，为int型<br>
-查看数字对应的错误：<a href="https://baike.baidu.com/item/errno/11040395?fr=aladdin">https://baike.baidu.com/item/errno/11040395?fr=aladdin</a> (百度百科)</p>
-<h4 id="WIF">WIF</h4>
-<ol>
-<li>WIFEXITED(status)<br>
-这个宏用来指出子进程是否为正常退出的，如果是，它会返回一个非零值。<br>
-例如子进程调用exit(7)，则<code>WIFEXITED(status)</code>返回值为7</li>
-<li>WIFSIGNALED(status)<br>
-非0 表明进程异常终止。</li>
-<li>WIFSTOPPED(status)<br>
-非0 表明进程处于暂停状态，此时可通过WSTOPSIG(status)获取使得进程暂停的信号编号</li>
-<li>WIFCONTINUED(status)<br>
-非0表示暂停后已经继续运行。</li>
-</ol>
-<h4 id="waitpid-函数">waitpid()函数</h4>
-<p>未完待续. . .</p>
-<h4 id="如何用gprof和valgrind进行性能分析">如何用gprof和valgrind进行性能分析</h4>
-<ol>
-<li>gprof:</li>
-</ol>
-<ol>
-<li>编译时用-pg打开开关</li>
-<li>运行程序并生成报告</li>
-<li>将报告转为txt格式并查看<br>
-<strong>举例</strong>:<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607165908.png" alt=""><br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607165926.png" alt=""><br>
-打开report.txt，得到两张表<br>
-第一张：<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607165935.png" alt=""><br>
-第二张：函数调用表<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607165944.png" alt=""></li>
-</ol>
-<ol start="2">
-<li>valgrind:</li>
-</ol>
-<ol>
-<li>安装:valgrind</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install valgrind  <span class="comment"># version 1:3.15.0-1ubuntu9.1</span></span><br><span class="line">可以在终端输入 valgrind 按照提示信息安装</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>Valgrind有许多功能<br>
-最常用的选项tool=<name>，运行 valgrind中名为toolname的工具。默认memcheck。<br>
-        Memcheck： 这是valgrind应用最广泛的工具，一个重量级的内存检查器，能够发现开发中绝大多数内存错误使用情况，比如：使用未初始化的内存，使用已经释放了的内存，内存访问越界等。<br>
-        callgrind ： 它主要用来检查程序中函数调用过程中出现的问题。<br>
-        cachegrind ： 它主要用来检查程序中缓存使用出现的问题。<br>
-        helgrind ： 它主要用来检查多线程程序中出现的竞争问题。<br>
-        massif ： 它主要用来检查程序中堆栈使用中出现的问题。<br>
-        extension ： 可以利用core提供的功能，自己编写特定的内存调试工具<br>
-接下来以检测内存泄露举例<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607170427.png" alt=""><br>
-Valgrind --leak-check=yes ./文件名<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607170434.png" alt=""><br>
-可以看出，该文件2次申请内存，2次释放内存，无内存泄漏</li>
-</ol>
-<h4 id="关于Linux防火墙">关于Linux防火墙</h4>
-<ol>
-<li>启动： systemctl start firewalld</li>
-<li>查看状态： systemctl status firewalld</li>
-<li>停止： systemctl disable firewalld</li>
-<li>禁用： systemctl stop firewalld</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java</title>
     <url>/2021/06/02/Java/</url>
     <content><![CDATA[<p>记录帖</p>
@@ -836,18 +690,182 @@ e&amp;=f
       </tags>
   </entry>
   <entry>
+    <title>Linux</title>
+    <url>/2021/06/02/Linux/</url>
+    <content><![CDATA[<p>[Toc]</p>
+<h4 id="怎么在GCC下用32位模式编译C程序？">怎么在GCC下用32位模式编译C程序？</h4>
+<p>方式： 在终端输入 gcc -m32 “此处为文件名”.c (-x  xxx.out)即可<br>
+如</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -m32 hello.c -o hello.out</span><br></pre></td></tr></table></figure>
+<p>若报错，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install gcc-multilib g++-multilib module-assistant</span><br></pre></td></tr></table></figure>
+<p>获得所需包再重新编译即可</p>
+<h4 id="chmod命令用法">chmod命令用法</h4>
+<p><a href="https://www.runoob.com/linux/linux-comm-chmod.html">https://www.runoob.com/linux/linux-comm-chmod.html</a></p>
+<h4 id="getopt-函数：">getopt()函数：</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">char</span> *optarg;</span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> optind;</span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> opterr;</span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> optopt;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">getopt</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * <span class="keyword">const</span> argv[], <span class="keyword">const</span> <span class="keyword">char</span> *optstring)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>用途：解析命令行参数<br>
+举个例子：cp -a -b hello -c123 src dst<br>
+optarg: -b的optarg是hello，-c的optarg是123，optarg就是选项后面跟着的参数；<br>
+optind  : 下一个要处理的参数的下标(argv)；每次getopt后，这个索引就会指向argv里当前分析的字符串的下一个索引，因此argv[optind]就能得到下个字符串，<br>
+opterr  : 如果将opterr设为0，则getopt不输出错误信息，否则报错，形如（e2fsck: invalid option – ‘x’）<br>
+optopt  : 当命令行选项字符不包括在optstring中或者选项缺少必要的参数时，该选项存储在optopt中<br>
+optstring:待处理的字符串</p>
+<p>此函数会返回在argv 中下一个的选项字母，此字母会对应参数optstring 中的字母。如果选项字符串里的字母后接着冒号“:”，则表示还有相关的参数，全局变量optarg 即会指向此额外参数。如果getopt()找不到符合的参数则会印出错信息，并将全局变量optopt设为“?”字符，如果不希望getopt()印出错信息，则只要将全局变量opterr设为0即可。</p>
+<p>optstring中的指定的内容的意义（例如getopt(argc, argv, “ab:c::d::”);）<br>
+1.单个字符，表示选项<br>
+2.单个字符后接一个冒号：表示该选项后必须跟一个参数。参数紧跟在选项后或者以空格隔开。该参数的指针赋给optarg。<br>
+3.单个字符后跟两个冒号，表示该选项后可以跟一个参数(可以没有)，如果有参数，则参数必须紧跟在选项后不能以空格隔开。该参数的指针赋给optarg。(这个特性是GNU的扩张)。</p>
+<p>getopt处理以’-’开头的命令行参数，如optstring=“ab:c::d::”,命令行为getopt.exe -a -b host -ckeke -d haha<br>
+在这个命令行参数中，host是b的参数，keke是c的参数，但haha并不是d的参数，因为haha和d中间有空格隔开。</p>
+<p>还要注意的是默认情况下getopt会重新排列命令行参数的顺序，所以到最后所有不包含选项的命令行参数都排到最后。<br>
+例如 getopt.exe -a ima -b host -ckeke -d haha<br>
+因为a和d没有参数所以ima和haha是没有选项的命令行参数，会放到最后<br>
+所以最后命令行参数的顺序是： -a -b host -ckeke -d ima haha</p>
+<h4 id="sigfillset-函数">sigfillset()函数</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigfillset</span><span class="params">(<span class="keyword">sigset_t</span> * <span class="built_in">set</span>)</span></span>;</span><br><span class="line">函数说明：sigfillset()用来将参数<span class="built_in">set</span>信号集初始化, 然后把所有的信号加入到此信号集里.</span><br><span class="line">返回值：执行成功则返回<span class="number">0</span>, 如果有错误则返回<span class="number">-1</span>。</span><br><span class="line">附加说明：EFAULT 参数<span class="built_in">set</span> 指针地址无法存取。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sigemptyset 函数初始化信号集合set,将set 设置为空.</span><br><span class="line"></span><br><span class="line">sigfillset 也初始化信号集合,只是将信号集合设置为所有信号的集合.</span><br><span class="line"></span><br><span class="line">sigaddset 将信号signo 加入到信号集合之中,</span><br><span class="line"></span><br><span class="line">sigdelset 将信号从信号集合中删除.</span><br><span class="line"></span><br><span class="line">sigismember 查询信号是否在信号集合之中.</span><br></pre></td></tr></table></figure>
+<h4 id="sigprocmask-函数">sigprocmask()函数</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigprocmask</span><span class="params">(<span class="keyword">int</span> how, <span class="keyword">const</span> <span class="keyword">sigset_t</span> *<span class="built_in">set</span>, <span class="keyword">sigset_t</span> *oldset)</span></span>;</span><br><span class="line">参数：</span><br><span class="line">how：用于指定信号修改的方式，可能选择有三种：</span><br><span class="line">SIG_BLOCK   <span class="comment">//加入信号到进程屏蔽。</span></span><br><span class="line">SIG_UNBLOCK <span class="comment">//从进程屏蔽里将信号删除。</span></span><br><span class="line">SIG_SETMASK <span class="comment">//将set的值设定为新的进程屏蔽。</span></span><br><span class="line"><span class="built_in">set</span>：为指向信号集的指针，在此专指新设的信号集，如果仅想读取现在的屏蔽值，可将其置为<span class="literal">NULL</span>。</span><br><span class="line">oldset：也是指向信号集的指针，在此存放原来的信号集。</span><br></pre></td></tr></table></figure>
+<p>返回说明：<br>
+函数说明：<br>
+一个进程的信号屏蔽字规定了当前阻塞而不能递送给该进程的信号集。sigprocmask()可以用来检测或改变信号屏蔽字，其操作依参数how来决定，如果参数oldset不是NULL指针，那么信号屏蔽字会由此指针返回。如果set是一个非空指针，则参数how指示如何修改当前信号屏蔽字。每个进程都有一个用来描述哪些信号递送到进程时将被阻塞的信号集，该信号集中的所有信号在递送到进程后都将被阻塞。<br>
+成功执行时，返回0。失败返回-1，errno被设为EINVAL。<br>
+sigprocmask(SIG_BLOCK, &amp;newmask, &amp;oldmask);//将newmask中的SIGINT阻塞掉，并保存当前信号屏蔽字到Oldmask<br>
+sigprocmask(SIG_SETMASK, &amp;oldmask, NULL);//恢复被屏蔽的信号SIGINT</p>
+<p>sigprocmask(SIG_BLOCK, &amp;newmask, NULL); //阻塞<br>
+sigprocmask(SIG_UNBLOCK, &amp;newmask, NULL);//取消阻塞<br>
+注意事项：sigprocmask()函数只为单线程的进程定义的，在多线程中要使用pthread_sigmask变量，在使用之前需要声明和初始化。</p>
+<h4 id="kill-函数">kill()函数</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kill</span><span class="params">(<span class="keyword">pid_t</span> pid, <span class="keyword">int</span> sig)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>参数：<br>
+pid：可能选择有以下四种</p>
+<ol>
+<li>pid大于零时，pid是信号欲送往的进程的标识。</li>
+<li>pid等于零时，信号将送往所有与调用kill()的那个进程属同一个使用组的进程。</li>
+<li>pid等于-1时，信号将送往所有调用进程有权给其发送信号的进程，除了进程1(init)。</li>
+<li>pid小于-1时，信号将送往以-pid为组标识的进程。</li>
+</ol>
+<p>sig：准备发送的信号代码，假如其值为零则没有任何信号送出，但是系统会执行错误检查，通常会利用sig值为零来检验某个进程是否仍在执行。</p>
+<p>返回值说明： 成功执行时，返回0。失败返回-1，errno被设为以下的某个值 EINVAL：指定的信号码无效（参数 sig 不合法） EPERM；权限不够无法传送信号给指定进程 ESRCH：参数 pid 所指定的进程或进程组不存在</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. SIGHUP</span><br><span class="line">本信号在用户终端连接(正常或非正常)结束时发出, 通常是在终端的控制进程结束时, 通知同一session内的各个作业, 这时它们与控制终端不再关联。  </span><br><span class="line">登录Linux时，系统会分配给登录用户一个终端(Session)。在这个终端运行的所有程序，包括前台进程组和后台进程组，一般都属于这个 Session。当用户退出Linux登录时，前台进程组和后台有对终端输出的进程将会收到SIGHUP信号。这个信号的默认操作为终止进程，因此前台进程组和后台有终端输出的进程就会中止。不过可以捕获这个信号，比如wget能捕获SIGHUP信号，并忽略它，这样就算退出了Linux登录，wget也能继续下载。  </span><br><span class="line">此外，对于与终端脱离关系的守护进程，这个信号用于通知它重新读取配置文件。</span><br><span class="line">2. SIGINT</span><br><span class="line">程序终止(interrupt)信号, 在用户键入INTR字符(通常是Ctrl-C)时发出，用于通知前台进程组终止进程。</span><br><span class="line">3. SIGQUIT</span><br><span class="line">和SIGINT类似, 但由QUIT字符(通常是Ctrl-\)来控制. 进程在因收到SIGQUIT退出时会产生core文件, 在这个意义上类似于一个程序错误信号。</span><br><span class="line">4. SIGILL</span><br><span class="line">执行了非法指令. 通常是因为可执行文件本身出现错误, 或者试图执行数据段. 堆栈溢出时也有可能产生这个信号。</span><br><span class="line">5. SIGTRAP</span><br><span class="line">由断点指令或其它trap指令产生. 由debugger使用。</span><br><span class="line">6. SIGABRT</span><br><span class="line">调用abort函数生成的信号。</span><br><span class="line">7. SIGBUS</span><br><span class="line">非法地址, 包括内存地址对齐(alignment)出错。比如访问一个四个字长的整数, 但其地址不是4的倍数。它与SIGSEGV的区别在于后者是由于对合法存储地址的非法访问触发的(如访问不属于自己存储空间或只读存储空间)。</span><br><span class="line">8. SIGFPE</span><br><span class="line">在发生致命的算术运算错误时发出. 不仅包括浮点运算错误, 还包括溢出及除数为0等其它所有的算术的错误。</span><br><span class="line">9. SIGKILL</span><br><span class="line">用来立即结束程序的运行. 本信号不能被阻塞、处理和忽略。如果管理员发现某个进程终止不了，可尝试发送这个信号。</span><br><span class="line">10. SIGUSR1</span><br><span class="line">留给用户使用</span><br><span class="line">11. SIGSEGV</span><br><span class="line">试图访问未分配给自己的内存, 或试图往没有写权限的内存地址写数据.</span><br><span class="line">12. SIGUSR2</span><br><span class="line">留给用户使用</span><br><span class="line">13. SIGPIPE</span><br><span class="line">管道破裂。这个信号通常在进程间通信产生，比如采用FIFO(管道)通信的两个进程，读管道没打开或者意外终止就往管道写，写进程会收到SIGPIPE信号。此外用Socket通信的两个进程，写进程在写Socket的时候，读进程已经终止。</span><br><span class="line">14. SIGALRM</span><br><span class="line">时钟定时信号, 计算的是实际的时间或时钟时间. alarm函数使用该信号.</span><br><span class="line">15. SIGTERM</span><br><span class="line">程序结束(terminate)信号, 与SIGKILL不同的是该信号可以被阻塞和处理。通常用来要求程序自己正常退出，shell命令kill缺省产生这个信号。如果进程终止不了，我们才会尝试SIGKILL。</span><br><span class="line">17. SIGCHLD</span><br><span class="line">子进程结束时, 父进程会收到这个信号。</span><br><span class="line">如果父进程没有处理这个信号，也没有等待(wait)子进程，子进程虽然终止，但是还会在内核进程表中占有表项，这时的子进程称为僵尸进程。这种情况我们应该避免(父进程或者忽略SIGCHILD信号，或者捕捉它，或者wait它派生的子进程，或者父进程先终止，这时子进程的终止自动由init进程来接管)。</span><br><span class="line">18. SIGCONT</span><br><span class="line">让一个停止(stopped)的进程继续执行. 本信号不能被阻塞. 可以用一个handler来让程序在由stopped状态变为继续执行时完成特定的工作. 例如, 重新显示提示符</span><br><span class="line">19. SIGSTOP</span><br><span class="line">停止(stopped)进程的执行. 注意它和terminate以及interrupt的区别:该进程还未结束, 只是暂停执行. 本信号不能被阻塞, 处理或忽略.</span><br><span class="line">20. SIGTSTP</span><br><span class="line">停止进程的运行, 但该信号可以被处理和忽略. 用户键入SUSP字符时(通常是Ctrl-Z)发出这个信号</span><br><span class="line">21. SIGTTIN</span><br><span class="line">当后台作业要从用户终端读数据时, 该作业中的所有进程会收到SIGTTIN信号. 缺省时这些进程会停止执行.</span><br><span class="line">22. SIGTTOU</span><br><span class="line">类似于SIGTTIN, 但在写终端(或修改终端模式)时收到.</span><br><span class="line">23. SIGURG</span><br><span class="line">有”紧急”数据或out-of-band数据到达socket时产生.</span><br><span class="line">24. SIGXCPU</span><br><span class="line">超过CPU时间资源限制. 这个限制可以由getrlimit&#x2F;setrlimit来读取&#x2F;改变。</span><br><span class="line">25. SIGXFSZ</span><br><span class="line">当进程企图扩大文件以至于超过文件大小资源限制。</span><br><span class="line">26. SIGVTALRM</span><br><span class="line">虚拟时钟信号. 类似于SIGALRM, 但是计算的是该进程占用的CPU时间.</span><br><span class="line">27. SIGPROF</span><br><span class="line">类似于SIGALRM&#x2F;SIGVTALRM, 但包括该进程用的CPU时间以及系统调用的时间.</span><br><span class="line">28. SIGWINCH</span><br><span class="line">窗口大小改变时发出.</span><br><span class="line">29. SIGIO</span><br><span class="line">文件描述符准备就绪, 可以开始进行输入&#x2F;输出操作.</span><br><span class="line">30. SIGPWR</span><br><span class="line">Power failure</span><br><span class="line">31. SIGSYS</span><br><span class="line">非法的系统调用。</span><br></pre></td></tr></table></figure>
+<p>在以上列出的信号中，程序不可捕获、阻塞或忽略的信号有：SIGKILL,SIGSTOP<br>
+不能恢复至默认动作的信号有：SIGILL,SIGTRAP<br>
+默认会导致进程流产的信号有：SIGABRT,SIGBUS,SIGFPE,SIGILL,SIGIOT,SIGQUIT,SIGSEGV,SIGTRAP,SIGXCPU,SIGXFSZ<br>
+默认会导致进程退出的信号有：SIGALRM,SIGHUP,SIGINT,SIGKILL,SIGPIPE,SIGPOLL,SIGPROF,SIGSYS,SIGTERM,SIGUSR1,SIGUSR2,SIGVTALRM<br>
+默认会导致进程停止的信号有：SIGSTOP,SIGTSTP,SIGTTIN,SIGTTOU<br>
+默认进程忽略的信号有：SIGCHLD,SIGPWR,SIGURG,SIGWINCH<br>
+kill、killall<br>
+这两个命令是用来向进程发送信号的。kill 命令需要进程号作为参数，而 killall 需要进程名称。<br>
+另外，还可以在这两个命令后附加要发送信号序号作为参数。默认情况下，它们都向相关进程发送信号 15 (TERM)。例如，如果你想要终止 PID 为 785 的进程，请输入以下命令：<br>
+$ kill 785<br>
+如果您要向它发送信号 19 (STOP)，请输入：<br>
+$ kill -19 785<br>
+假设您知道想要终止的进程的命令名称。您可以通过该名称来终止它，而不用再使用 ps 找出该进程的进程号：<br>
+$ killall -9 mozilla</p>
+<h4 id="errno">errno</h4>
+<p><code>#include &lt;errno.h&gt;</code>  记录系统的最后一次错误代码，为int型<br>
+查看数字对应的错误：<a href="https://baike.baidu.com/item/errno/11040395?fr=aladdin">https://baike.baidu.com/item/errno/11040395?fr=aladdin</a> (百度百科)</p>
+<h4 id="WIF">WIF</h4>
+<ol>
+<li>WIFEXITED(status)<br>
+这个宏用来指出子进程是否为正常退出的，如果是，它会返回一个非零值。<br>
+例如子进程调用exit(7)，则<code>WIFEXITED(status)</code>返回值为7</li>
+<li>WIFSIGNALED(status)<br>
+非0 表明进程异常终止。</li>
+<li>WIFSTOPPED(status)<br>
+非0 表明进程处于暂停状态，此时可通过WSTOPSIG(status)获取使得进程暂停的信号编号</li>
+<li>WIFCONTINUED(status)<br>
+非0表示暂停后已经继续运行。</li>
+</ol>
+<h4 id="waitpid-函数">waitpid()函数</h4>
+<p>未完待续. . .</p>
+<h4 id="如何用gprof和valgrind进行性能分析">如何用gprof和valgrind进行性能分析</h4>
+<ol>
+<li>gprof:</li>
+</ol>
+<ol>
+<li>编译时用-pg打开开关</li>
+<li>运行程序并生成报告</li>
+<li>将报告转为txt格式并查看<br>
+<strong>举例</strong>:<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607165908.png" alt=""><br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607165926.png" alt=""><br>
+打开report.txt，得到两张表<br>
+第一张：<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607165935.png" alt=""><br>
+第二张：函数调用表<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607165944.png" alt=""></li>
+</ol>
+<ol start="2">
+<li>valgrind:</li>
+</ol>
+<ol>
+<li>安装:valgrind</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install valgrind  <span class="comment"># version 1:3.15.0-1ubuntu9.1</span></span><br><span class="line">可以在终端输入 valgrind 按照提示信息安装</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Valgrind有许多功能<br>
+最常用的选项tool=<name>，运行 valgrind中名为toolname的工具。默认memcheck。<br>
+        Memcheck： 这是valgrind应用最广泛的工具，一个重量级的内存检查器，能够发现开发中绝大多数内存错误使用情况，比如：使用未初始化的内存，使用已经释放了的内存，内存访问越界等。<br>
+        callgrind ： 它主要用来检查程序中函数调用过程中出现的问题。<br>
+        cachegrind ： 它主要用来检查程序中缓存使用出现的问题。<br>
+        helgrind ： 它主要用来检查多线程程序中出现的竞争问题。<br>
+        massif ： 它主要用来检查程序中堆栈使用中出现的问题。<br>
+        extension ： 可以利用core提供的功能，自己编写特定的内存调试工具<br>
+接下来以检测内存泄露举例<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607170427.png" alt=""><br>
+Valgrind --leak-check=yes ./文件名<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/Linux%E6%8C%87%E4%BB%A4/20210607170434.png" alt=""><br>
+可以看出，该文件2次申请内存，2次释放内存，无内存泄漏</li>
+</ol>
+<h4 id="关于Linux防火墙">关于Linux防火墙</h4>
+<ol>
+<li>启动： systemctl start firewalld</li>
+<li>查看状态： systemctl status firewalld</li>
+<li>停止： systemctl disable firewalld</li>
+<li>禁用： systemctl stop firewalld</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python_Pycharm</title>
     <url>/2021/08/11/Python/</url>
-    <content><![CDATA[<h5 id="关于JSON库">关于JSON库</h5>
-<p><code>json.dump</code>可以将字典封装为<code>json</code>格式,例如</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.json_dict[<span class="string">&#x27;url&#x27;</span>] = url</span><br><span class="line">self.json_dict[<span class="string">&#x27;title&#x27;</span>] = title</span><br><span class="line">self.json_dict[<span class="string">&#x27;paragraphs&#x27;</span>] = para_json</span><br><span class="line">self.json_dict[<span class="string">&#x27;filename&#x27;</span>] = filename_json</span><br><span class="line">json_str = json.dumps(self.json_dict, indent=<span class="number">4</span>, ensure_ascii=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<p><code>json.load</code>可以把<code>json</code>文件加载成<code>list</code>,<code>list</code>每一项对应<code>json</code>文件的一项</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;js.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">	data=json.load(fp)</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">type</span>(data))</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">len</span>(data))</span><br></pre></td></tr></table></figure>
-<h5 id="Python清洗HTML数据">Python清洗HTML数据</h5>
+    <content><![CDATA[<h4 id="关于JSON库">关于JSON库</h4>
+<h5 id="json-dump-dumps和json-load-loads">json.dump/dumps和json.load/loads</h5>
+<p><code>json.dumps</code>可以将字典封装为<code>json</code>格式,例如</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.json_dict[<span class="string">&#x27;url&#x27;</span>] = url</span><br><span class="line">self.json_dict[<span class="string">&#x27;title&#x27;</span>] = title</span><br><span class="line">self.json_dict[<span class="string">&#x27;paragraphs&#x27;</span>] = para_json</span><br><span class="line">self.json_dict[<span class="string">&#x27;filename&#x27;</span>] = filename_json</span><br><span class="line">json_str = json.dumps(self.json_dict, indent=<span class="number">4</span>, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># json_str为str类型,格式为标准json格式</span></span><br></pre></td></tr></table></figure>
+<p><code>json.dump</code>则是直接将字典转化为<code>json</code>格式并写入文件</p>
+<p>相比于<code>json.dumps</code>参数仅是多了一个文件指针</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># js为相比于`json.dump`多的文件指针</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 写入的json为一行输出,即&#123;&#x27;a&#x27;:&#x27;a.text&#x27;,&#x27;b&#x27;:&#x27;b.text&#x27;&#125;这种单行的形式</span></span><br><span class="line"><span class="comment"># ensure_ascii=False则可以写入中文</span></span><br></pre></td></tr></table></figure>
+<p><code>json.load</code>可以把标准格式的<code>json</code>文件加载成<code>list</code>,<code>list</code>每一项对应<code>json</code>文件的一项</p>
 <blockquote>
-<p>使用<code>BeatifulSoup</code></p>
+<p>标准格式: 形如</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 多个项目之间用逗号隔开,整体用中括号括起来</span></span><br><span class="line">[&#123;</span><br><span class="line">    &#x27;a&#x27;:&#x27;a.text&#x27;,</span><br><span class="line">  	&#x27;b&#x27;:&#x27;b.text&#x27;</span><br><span class="line">&#125;,</span><br><span class="line"> &#123;</span><br><span class="line">     &#x27;c&#x27;:&#x27;c.text&#x27;,</span><br><span class="line">	 &#x27;d&#x27;:&#x27;d.text&#x27;</span><br><span class="line"> &#125;,</span><br><span class="line"> &#123;</span><br><span class="line">     &#x27;e&#x27;:&#x27;e.text&#x27;,</span><br><span class="line"> 	 &#x27;f&#x27;:&#x27;f.text&#x27;</span><br><span class="line"> &#125;]</span><br></pre></td></tr></table></figure>
 </blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;js.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">	data=json.load(fp)</span><br><span class="line"><span class="comment"># 得到的data为list类型,data的一项对应json文件的一条数据</span></span><br></pre></td></tr></table></figure>
+<p><code>json.loads</code>可以把符合规则的<code>str</code>转化为<code>dict</code>类型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = js.readline()</span><br><span class="line">        <span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data = json.loads(data)</span><br><span class="line"><span class="comment"># 得到的data为dict类型,它的key/value同json</span></span><br><span class="line">	title=data.get(<span class="string">&#x27;title&#x27;</span>)</span><br><span class="line"><span class="comment"># 然后便可以用dict的get函数获取内容</span></span><br></pre></td></tr></table></figure>
+<h5 id="一般使用方式">一般使用方式</h5>
+<p><code>dumps</code>写入,<code>loads</code>读取</p>
+<blockquote>
+<p>由于<code>json.dump</code>写入文件为一行输出,因此每次写完一个项目,再写入一个<code>'\n'</code></p>
+<p>则读取时即可按行读取,并用<code>json.loads</code>转换为<code>dict</code>,如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># ensure_ascii=False 写入中文</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = js.readline()</span><br><span class="line">        <span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data = json.loads(data)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>如果是标准格式<code>json</code>文件,用<code>json.load</code>读取即可</p>
+<h4 id="BeautifulSoup">BeautifulSoup</h4>
+<h5 id="清洗HTML数据">清洗HTML数据</h5>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">todo = soup.find_all(attrs=&#123;<span class="string">&#x27;class&#x27;</span>: <span class="string">&#x27;class_name&#x27;</span>&#125;)</span><br><span class="line">soup_text = BeautifulSoup(<span class="built_in">str</span>(todo), <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">result = soup_text.get_text()</span><br></pre></td></tr></table></figure>
+<h5 id="在soup-find-all返回的结果中分离不同属性">在<code>soup.find_all</code>返回的结果中分离不同属性</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">soup = BeautifulSoup(page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">hrefs = soup.find_all(<span class="string">&#x27;a&#x27;</span>, href=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 以href为例</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> hrefs:</span><br><span class="line">	href = item[<span class="string">&#x27;href&#x27;</span>]</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>备忘录</category>
@@ -901,6 +919,54 @@ e&amp;=f
       </tags>
   </entry>
   <entry>
+    <title>Just a test</title>
+    <url>/2021/10/23/TEST/</url>
+    <content><![CDATA[<div class="tabs" id="np"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#np-1">np.linspace</button></li><li class="tab"><button type="button" data-href="#np-2">np.zeros</button></li><li class="tab"><button type="button" data-href="#np-3">np. identity</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="np-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">linspace</span>(<span class="params">start, stop, num=<span class="number">50</span>, endpoint=<span class="literal">True</span>, retstep=<span class="literal">False</span>, dtype=<span class="literal">None</span></span>)</span></span><br></pre></td></tr></table></figure>
+<p>功能 : 均匀生成num个start到stop之间的元素<br>
+参数说明 :</p>
+<ul>
+<li>start : scalar
+<ul>
+<li>起始点</li>
+</ul>
+</li>
+<li>stop : scalar
+<ul>
+<li>终止点</li>
+</ul>
+</li>
+<li>num : int, optional
+<ul>
+<li>Number of samples to generate. Default is 50. Must be non-negative.</li>
+<li>默认值为50,生成start和stop之间50个等差间隔的元素</li>
+</ul>
+</li>
+<li>endpoint : bool, optional
+<ul>
+<li>默认为True,即生成的元素包含stop点,若为false则不包含</li>
+</ul>
+</li>
+<li>retstep : bool, optional
+<ul>
+<li>If True, return (samples, step), where step is the spacing between samples</li>
+</ul>
+</li>
+<li>dtype : dtype, optional
+<ul>
+<li>输出数组的类型。如果没有给出dtype，则从其他输入参数推断数据类型</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="comment">#输出结果: [0.   0.75 1.5  2.25 3.  ]</span></span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="np-2"><p><a href="https://numpy.org/doc/stable/reference/generated/numpy.zeros.html">https://numpy.org/doc/stable/reference/generated/numpy.zeros.html</a></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="np-3"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.identity(n, dtype=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<p>功能 : 创建一个主对角线为1,其他为0的方阵<br>
+参数说明:</p>
+<ul>
+<li>n : int, 矩阵的行数和列数都是n</li>
+<li>dtype : 输出的类型, 默认是float</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">a = np.identity(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="comment"># 输出结果: </span></span><br><span class="line">[[<span class="number">1.</span> <span class="number">0.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">1.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">0.</span> <span class="number">1.</span>]]</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>]]></content>
+  </entry>
+  <entry>
     <title>字典树的Python实现</title>
     <url>/2021/11/29/Trie/</url>
     <content><![CDATA[<h4 id="中文分词-存储中文的字典树的Python实现">中文分词:存储中文的字典树的Python实现</h4>
@@ -917,6 +983,35 @@ e&amp;=f
       </categories>
       <tags>
         <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows</title>
+    <url>/2021/07/20/Windows/</url>
+    <content><![CDATA[<p>[Toc]</p>
+<h4 id="如何切换到管理员Administrator用户">如何切换到管理员Administrator用户</h4>
+<blockquote>
+<p>PS:前段时间修改注册表改出了一些问题,导致环境变量无法在自己的账户中修改,只好用Administrator账户修改。。。</p>
+</blockquote>
+<ol>
+<li>以管理员身份打开cmd(在左下角搜索框搜索cmd)</li>
+<li>输入<code>net user administrator /active:yes</code></li>
+<li>Ctrl+Alt+. 同时按 点击切换用户即可在左下角找到Administrator用户</li>
+<li>用完同样方式回到原来的用户</li>
+<li>输入<code>net user administrator /active:no</code>关闭</li>
+</ol>
+<h4 id="使用steamcommunity-302-端口被占用问题">使用steamcommunity 302 端口被占用问题</h4>
+<blockquote>
+<p>443/80端口被占用,请关闭占用该端口的进程后再点击启动服务</p>
+</blockquote>
+<p>原因之一:VMware虚拟机<br>
+解决方式: 打开任务管理器<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>详细信息<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>找到<code>vmware-hostd.exe</code>,结束任务即可</p>
+]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
@@ -987,83 +1082,6 @@ e&amp;=f
       <tags>
         <tag>git</tag>
         <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Just a test</title>
-    <url>/2021/10/23/TEST/</url>
-    <content><![CDATA[<div class="tabs" id="np"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#np-1">np.linspace</button></li><li class="tab"><button type="button" data-href="#np-2">np.zeros</button></li><li class="tab"><button type="button" data-href="#np-3">np. identity</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="np-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">linspace</span>(<span class="params">start, stop, num=<span class="number">50</span>, endpoint=<span class="literal">True</span>, retstep=<span class="literal">False</span>, dtype=<span class="literal">None</span></span>)</span></span><br></pre></td></tr></table></figure>
-<p>功能 : 均匀生成num个start到stop之间的元素<br>
-参数说明 :</p>
-<ul>
-<li>start : scalar
-<ul>
-<li>起始点</li>
-</ul>
-</li>
-<li>stop : scalar
-<ul>
-<li>终止点</li>
-</ul>
-</li>
-<li>num : int, optional
-<ul>
-<li>Number of samples to generate. Default is 50. Must be non-negative.</li>
-<li>默认值为50,生成start和stop之间50个等差间隔的元素</li>
-</ul>
-</li>
-<li>endpoint : bool, optional
-<ul>
-<li>默认为True,即生成的元素包含stop点,若为false则不包含</li>
-</ul>
-</li>
-<li>retstep : bool, optional
-<ul>
-<li>If True, return (samples, step), where step is the spacing between samples</li>
-</ul>
-</li>
-<li>dtype : dtype, optional
-<ul>
-<li>输出数组的类型。如果没有给出dtype，则从其他输入参数推断数据类型</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="comment">#输出结果: [0.   0.75 1.5  2.25 3.  ]</span></span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="np-2"><p><a href="https://numpy.org/doc/stable/reference/generated/numpy.zeros.html">https://numpy.org/doc/stable/reference/generated/numpy.zeros.html</a></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="np-3"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.identity(n, dtype=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
-<p>功能 : 创建一个主对角线为1,其他为0的方阵<br>
-参数说明:</p>
-<ul>
-<li>n : int, 矩阵的行数和列数都是n</li>
-<li>dtype : 输出的类型, 默认是float</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">a = np.identity(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="comment"># 输出结果: </span></span><br><span class="line">[[<span class="number">1.</span> <span class="number">0.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">1.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">0.</span> <span class="number">1.</span>]]</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>]]></content>
-  </entry>
-  <entry>
-    <title>Windows</title>
-    <url>/2021/07/20/Windows/</url>
-    <content><![CDATA[<p>[Toc]</p>
-<h4 id="如何切换到管理员Administrator用户">如何切换到管理员Administrator用户</h4>
-<blockquote>
-<p>PS:前段时间修改注册表改出了一些问题,导致环境变量无法在自己的账户中修改,只好用Administrator账户修改。。。</p>
-</blockquote>
-<ol>
-<li>以管理员身份打开cmd(在左下角搜索框搜索cmd)</li>
-<li>输入<code>net user administrator /active:yes</code></li>
-<li>Ctrl+Alt+. 同时按 点击切换用户即可在左下角找到Administrator用户</li>
-<li>用完同样方式回到原来的用户</li>
-<li>输入<code>net user administrator /active:no</code>关闭</li>
-</ol>
-<h4 id="使用steamcommunity-302-端口被占用问题">使用steamcommunity 302 端口被占用问题</h4>
-<blockquote>
-<p>443/80端口被占用,请关闭占用该端口的进程后再点击启动服务</p>
-</blockquote>
-<p>原因之一:VMware虚拟机<br>
-解决方式: 打开任务管理器<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>详细信息<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>找到<code>vmware-hostd.exe</code>,结束任务即可</p>
-]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
