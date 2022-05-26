@@ -124,6 +124,150 @@ Eclipse-&gt;帮助(Help)-&gt;Eclpise Marketplace-&gt;查询Eclemma-&gt;Install&g
       </tags>
   </entry>
   <entry>
+    <title>实现Ipv4分组收发和转发</title>
+    <url>/2021/11/13/HIT_csnetlab3/</url>
+    <content><![CDATA[<blockquote>
+<p>此为HIT计算机网络Lab4/5内容<br>
+1. Lab4: Ipv4收发<br>
++ 实现 IPv4 分组的基本接收处理功能<br>
++ 对于接收到的IPv4分组，检查目的地址是否为本地地址，并检查IPv4分组头部中其它字段的合法性。提交正确的分组给上层协议继续处理，丢弃错误的分组并说明错误类型。<br>
++ 实现 IPv4 分组的封装发送根据上层协议所提供的参数，封装 IPv4 分组，调用系统提供的发送接口函数将分组发送出去。<br>
+2. Lab5: Ipv4转发<br>
++ 设计路由表数据结构:<br>
+设计路由表所采用的数据结构。要求能够根据目的 IPv4 地址来确定分组处理行为（转发情况下需获得下一跳的 IPv4 地址）。路由表的数据结构和查找算法会极大的影响路由器的转发性能，有兴趣的同学可以深入思考和探索。<br>
++ IPv4 分组的接收和发送:<br>
+对前面实验（IP 实验）中所完成的代码进行修改，在路由器协议栈的IPv4模块中能够正确完成分组的接收和发送处理。具体要求不做改变，参见“IP 实验”。<br>
++ IPv4 分组的转发:<br>
+对于需要转发的分组进行处理，获得下一跳的 IP 地址，然后调用发送接口函数做进一步处理。</p>
+</blockquote>
+<p>[Toc]</p>
+<h4 id="实验过程">实验过程</h4>
+<p>Ipv4报文结构：<br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131041210.png" alt=""></p>
+<ol>
+<li>Ipv4收发实验</li>
+</ol>
+<ul>
+<li>接收Ipv4报文：
+<ul>
+<li>处理报文，得到报文中的信息，如版本号、ihl(报头长度)、总长度、ttl、校验和等</li>
+<li>判断报文是否合法，不合法直接丢弃主要包括：
+<ul>
+<li>ttl非正</li>
+<li>版本号错误</li>
+<li>报头长度错误</li>
+<li>目的地址错误</li>
+<li>校验和错误</li>
+</ul>
+</li>
+<li>如果报文没问题，则调用ip_SendtouUp()进行接收</li>
+</ul>
+</li>
+<li>发送Ipv4报文：
+<ul>
+<li>根据传来的参数确定分配存储空间大小并申请分配存储空间</li>
+<li>按照Ipv4填写相应字段，某些需转换为网络字节序</li>
+<li>完成封装，调用ip_SendtoLower()完成发送</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>Ipv4转发实验</li>
+</ol>
+<ul>
+<li>路由表维护
+<ul>
+<li>stud_Route_Init ( )函数中，对路由表进行初始化。</li>
+<li>stud_route_add ( )函数中，完成路由的增加。</li>
+</ul>
+</li>
+<li>转发处理流程
+<ul>
+<li>查找路由表根据相应路由表项的类型来确定下一步操作，错误分组调用函数 fwd_DiscardPkt ( )进行丢弃，上交分组调用接口函数 fwd_LocalRcv ( )提交给上层协议继续处理，转发分组进行转发处理。</li>
+<li>转发处理流程，对Ipv4头部中的ttl减1，重新计算checksum，调用fwd_SendtoLower()进行发送</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>关于校验各个字段</li>
+</ol>
+<ul>
+<li>版本号校验</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> version = pBuffer[<span class="number">0</span>] &gt;&gt; <span class="number">4</span>;</span><br><span class="line"><span class="keyword">if</span> (version != <span class="number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ip_DiscardPkt</span>(pBuffer, STUD_IP_TEST_VERSION_ERROR);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>头部长度校验</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> ihl = pBuffer[<span class="number">0</span>] &amp; <span class="number">0xf</span>;</span><br><span class="line"><span class="keyword">if</span> (ihl &lt; <span class="number">5</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ip_DiscardPkt</span>(pBuffer, STUD_IP_TEST_HEADLEN_ERROR);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>TTL校验</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">short</span> ttl = (<span class="keyword">unsigned</span> <span class="keyword">short</span>)pBuffer[<span class="number">8</span>];</span><br><span class="line"><span class="keyword">if</span> (ttl == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ip_DiscardPkt</span>(pBuffer, STUD_IP_TEST_TTL_ERROR);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>目的地址校验</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> dest = <span class="built_in">ntohl</span>(*(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)(pBuffer + <span class="number">16</span>));</span><br><span class="line"><span class="keyword">if</span> (dest != <span class="built_in">getIpv4Address</span>() &amp;&amp; dest != <span class="number">0xffff</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ip_DiscardPkt</span>(pBuffer, STUD_IP_TEST_DESTINATION_ERROR);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>校验和校验</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> check = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i += <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        check += (<span class="keyword">unsigned</span> <span class="keyword">char</span>)pBuffer[i] &lt;&lt; <span class="number">8</span>;</span><br><span class="line">        check += (<span class="keyword">unsigned</span> <span class="keyword">char</span>)pBuffer[i + <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> x = check &amp; <span class="number">0xffff</span>;</span><br><span class="line">    <span class="keyword">int</span> y = check &gt;&gt; <span class="number">16</span>;</span><br><span class="line">    <span class="keyword">if</span> (x + y != <span class="number">0xffff</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ip_DiscardPkt</span>(pBuffer, STUD_IP_TEST_CHECKSUM_ERROR);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="实验结果">实验结果</h4>
+<ul>
+<li>Ipv4收发实验<br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131052598.png" alt=""></li>
+<li>Ipv4转发实验<br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131052705.png" alt=""></li>
+</ul>
+<h4 id="问题讨论">问题讨论</h4>
+<ol>
+<li>Ipv4收发和转发实验流程图</li>
+</ol>
+<ul>
+<li>接收<br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131055100.png" alt=""></li>
+<li>发送<br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131055706.png" alt=""></li>
+<li>转发<br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131055502.png" alt=""></li>
+<li>添加路由表项<br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131055843.png" alt=""></li>
+</ul>
+<ol start="2">
+<li>转发实验开始Init函数：初始化容器(清空)</li>
+<li>转发实验中使用的数据结构：Vector容器</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> std::vector;</span><br><span class="line">vector&lt;stud_route_msg&gt; route_table;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>怎么在大量分组时提高性能</li>
+</ol>
+<ul>
+<li>树形结构匹配路由表项：路由表存储结构由线性结构改为树形结构，提高匹配效率。</li>
+<li>并行检查：每次在转发分组时，都要检测数据合法性，计算校验和等操作，我们可以并行操作，就能提高转发效率，由硬件来实现。</li>
+<li>缓存分组：经过路由器的前后分组间的相关性很大，具有相同目的地址和源地址的分组往往连续到达，快速转发过程中，缓存分组，如果该分组的目的地址和源地址与转发缓存中的匹配，则直接根据转发缓存中的下一网关地址进行转发，减轻了路由器的负担，提高路由器吞吐量。</li>
+</ul>
+<h4 id="心得体会">心得体会</h4>
+<ul>
+<li>对Ipv4报文的结构以及收发流程加深许多了解和认识。更加深入地及了解到各个字段设计的目的和作用能够手算checksum验证代码实现</li>
+<li>了解了路由器的工作方式，如何进行路由选择转发</li>
+<li>了解了路由表的结构</li>
+<li>稍微熟练了一点C++编程</li>
+<li>存在的问题：
+<ul>
+<li>有时候服务器出现问题，不发送数据(我和朋友均遇到过)</li>
+<li>UTF-8在实验系统中有时候正常有时候乱码</li>
+</ul>
+</li>
+</ul>
+<h4 id="源代码：太简单，不写了">源代码：太简单，不写了</h4>
+]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+      <tags>
+        <tag>计算机网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HIT机器学习Lab1</title>
     <url>/2021/10/16/HIT_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0Lab1/</url>
     <content><![CDATA[<blockquote>
@@ -269,150 +413,6 @@ b_{k} &amp;=\frac{\boldsymbol{r}_{k+1}^{T} \boldsymbol{r}_{k+1}}{\boldsymbol{r}_
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>实现Ipv4分组收发和转发</title>
-    <url>/2021/11/13/HIT_csnetlab3/</url>
-    <content><![CDATA[<blockquote>
-<p>此为HIT计算机网络Lab4/5内容<br>
-1. Lab4: Ipv4收发<br>
-+ 实现 IPv4 分组的基本接收处理功能<br>
-+ 对于接收到的IPv4分组，检查目的地址是否为本地地址，并检查IPv4分组头部中其它字段的合法性。提交正确的分组给上层协议继续处理，丢弃错误的分组并说明错误类型。<br>
-+ 实现 IPv4 分组的封装发送根据上层协议所提供的参数，封装 IPv4 分组，调用系统提供的发送接口函数将分组发送出去。<br>
-2. Lab5: Ipv4转发<br>
-+ 设计路由表数据结构:<br>
-设计路由表所采用的数据结构。要求能够根据目的 IPv4 地址来确定分组处理行为（转发情况下需获得下一跳的 IPv4 地址）。路由表的数据结构和查找算法会极大的影响路由器的转发性能，有兴趣的同学可以深入思考和探索。<br>
-+ IPv4 分组的接收和发送:<br>
-对前面实验（IP 实验）中所完成的代码进行修改，在路由器协议栈的IPv4模块中能够正确完成分组的接收和发送处理。具体要求不做改变，参见“IP 实验”。<br>
-+ IPv4 分组的转发:<br>
-对于需要转发的分组进行处理，获得下一跳的 IP 地址，然后调用发送接口函数做进一步处理。</p>
-</blockquote>
-<p>[Toc]</p>
-<h4 id="实验过程">实验过程</h4>
-<p>Ipv4报文结构：<br>
-<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131041210.png" alt=""></p>
-<ol>
-<li>Ipv4收发实验</li>
-</ol>
-<ul>
-<li>接收Ipv4报文：
-<ul>
-<li>处理报文，得到报文中的信息，如版本号、ihl(报头长度)、总长度、ttl、校验和等</li>
-<li>判断报文是否合法，不合法直接丢弃主要包括：
-<ul>
-<li>ttl非正</li>
-<li>版本号错误</li>
-<li>报头长度错误</li>
-<li>目的地址错误</li>
-<li>校验和错误</li>
-</ul>
-</li>
-<li>如果报文没问题，则调用ip_SendtouUp()进行接收</li>
-</ul>
-</li>
-<li>发送Ipv4报文：
-<ul>
-<li>根据传来的参数确定分配存储空间大小并申请分配存储空间</li>
-<li>按照Ipv4填写相应字段，某些需转换为网络字节序</li>
-<li>完成封装，调用ip_SendtoLower()完成发送</li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li>Ipv4转发实验</li>
-</ol>
-<ul>
-<li>路由表维护
-<ul>
-<li>stud_Route_Init ( )函数中，对路由表进行初始化。</li>
-<li>stud_route_add ( )函数中，完成路由的增加。</li>
-</ul>
-</li>
-<li>转发处理流程
-<ul>
-<li>查找路由表根据相应路由表项的类型来确定下一步操作，错误分组调用函数 fwd_DiscardPkt ( )进行丢弃，上交分组调用接口函数 fwd_LocalRcv ( )提交给上层协议继续处理，转发分组进行转发处理。</li>
-<li>转发处理流程，对Ipv4头部中的ttl减1，重新计算checksum，调用fwd_SendtoLower()进行发送</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li>关于校验各个字段</li>
-</ol>
-<ul>
-<li>版本号校验</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> version = pBuffer[<span class="number">0</span>] &gt;&gt; <span class="number">4</span>;</span><br><span class="line"><span class="keyword">if</span> (version != <span class="number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ip_DiscardPkt</span>(pBuffer, STUD_IP_TEST_VERSION_ERROR);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>头部长度校验</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> ihl = pBuffer[<span class="number">0</span>] &amp; <span class="number">0xf</span>;</span><br><span class="line"><span class="keyword">if</span> (ihl &lt; <span class="number">5</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ip_DiscardPkt</span>(pBuffer, STUD_IP_TEST_HEADLEN_ERROR);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>TTL校验</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">short</span> ttl = (<span class="keyword">unsigned</span> <span class="keyword">short</span>)pBuffer[<span class="number">8</span>];</span><br><span class="line"><span class="keyword">if</span> (ttl == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ip_DiscardPkt</span>(pBuffer, STUD_IP_TEST_TTL_ERROR);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>目的地址校验</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> dest = <span class="built_in">ntohl</span>(*(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)(pBuffer + <span class="number">16</span>));</span><br><span class="line"><span class="keyword">if</span> (dest != <span class="built_in">getIpv4Address</span>() &amp;&amp; dest != <span class="number">0xffff</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ip_DiscardPkt</span>(pBuffer, STUD_IP_TEST_DESTINATION_ERROR);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>校验和校验</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> check = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i += <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        check += (<span class="keyword">unsigned</span> <span class="keyword">char</span>)pBuffer[i] &lt;&lt; <span class="number">8</span>;</span><br><span class="line">        check += (<span class="keyword">unsigned</span> <span class="keyword">char</span>)pBuffer[i + <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> x = check &amp; <span class="number">0xffff</span>;</span><br><span class="line">    <span class="keyword">int</span> y = check &gt;&gt; <span class="number">16</span>;</span><br><span class="line">    <span class="keyword">if</span> (x + y != <span class="number">0xffff</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ip_DiscardPkt</span>(pBuffer, STUD_IP_TEST_CHECKSUM_ERROR);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="实验结果">实验结果</h4>
-<ul>
-<li>Ipv4收发实验<br>
-<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131052598.png" alt=""></li>
-<li>Ipv4转发实验<br>
-<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131052705.png" alt=""></li>
-</ul>
-<h4 id="问题讨论">问题讨论</h4>
-<ol>
-<li>Ipv4收发和转发实验流程图</li>
-</ol>
-<ul>
-<li>接收<br>
-<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131055100.png" alt=""></li>
-<li>发送<br>
-<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131055706.png" alt=""></li>
-<li>转发<br>
-<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131055502.png" alt=""></li>
-<li>添加路由表项<br>
-<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/HITCSWeb/Lab3/202111131055843.png" alt=""></li>
-</ul>
-<ol start="2">
-<li>转发实验开始Init函数：初始化容器(清空)</li>
-<li>转发实验中使用的数据结构：Vector容器</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> std::vector;</span><br><span class="line">vector&lt;stud_route_msg&gt; route_table;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>怎么在大量分组时提高性能</li>
-</ol>
-<ul>
-<li>树形结构匹配路由表项：路由表存储结构由线性结构改为树形结构，提高匹配效率。</li>
-<li>并行检查：每次在转发分组时，都要检测数据合法性，计算校验和等操作，我们可以并行操作，就能提高转发效率，由硬件来实现。</li>
-<li>缓存分组：经过路由器的前后分组间的相关性很大，具有相同目的地址和源地址的分组往往连续到达，快速转发过程中，缓存分组，如果该分组的目的地址和源地址与转发缓存中的匹配，则直接根据转发缓存中的下一网关地址进行转发，减轻了路由器的负担，提高路由器吞吐量。</li>
-</ul>
-<h4 id="心得体会">心得体会</h4>
-<ul>
-<li>对Ipv4报文的结构以及收发流程加深许多了解和认识。更加深入地及了解到各个字段设计的目的和作用能够手算checksum验证代码实现</li>
-<li>了解了路由器的工作方式，如何进行路由选择转发</li>
-<li>了解了路由表的结构</li>
-<li>稍微熟练了一点C++编程</li>
-<li>存在的问题：
-<ul>
-<li>有时候服务器出现问题，不发送数据(我和朋友均遇到过)</li>
-<li>UTF-8在实验系统中有时候正常有时候乱码</li>
-</ul>
-</li>
-</ul>
-<h4 id="源代码：太简单，不写了">源代码：太简单，不写了</h4>
-]]></content>
-      <categories>
-        <category>计算机网络</category>
-      </categories>
-      <tags>
-        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -836,89 +836,6 @@ Valgrind --leak-check=yes ./文件名<br>
       </tags>
   </entry>
   <entry>
-    <title>Python_Pycharm</title>
-    <url>/2021/08/11/Python/</url>
-    <content><![CDATA[<h4 id="关于JSON库">关于JSON库</h4>
-<h5 id="json-dump-dumps和json-load-loads">json.dump/dumps和json.load/loads</h5>
-<p><code>json.dumps</code>可以将字典封装为<code>json</code>格式,例如</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.json_dict[<span class="string">&#x27;url&#x27;</span>] = url</span><br><span class="line">self.json_dict[<span class="string">&#x27;title&#x27;</span>] = title</span><br><span class="line">self.json_dict[<span class="string">&#x27;paragraphs&#x27;</span>] = para_json</span><br><span class="line">self.json_dict[<span class="string">&#x27;filename&#x27;</span>] = filename_json</span><br><span class="line">json_str = json.dumps(self.json_dict, indent=<span class="number">4</span>, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># json_str为str类型,格式为标准json格式</span></span><br></pre></td></tr></table></figure>
-<p><code>json.dump</code>则是直接将字典转化为<code>json</code>格式并写入文件</p>
-<p>相比于<code>json.dumps</code>参数仅是多了一个文件指针</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># js为相比于`json.dump`多的文件指针</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 写入的json为一行输出,即&#123;&#x27;a&#x27;:&#x27;a.text&#x27;,&#x27;b&#x27;:&#x27;b.text&#x27;&#125;这种单行的形式</span></span><br><span class="line"><span class="comment"># ensure_ascii=False则可以写入中文</span></span><br></pre></td></tr></table></figure>
-<p><code>json.load</code>可以把标准格式的<code>json</code>文件加载成<code>list</code>,<code>list</code>每一项对应<code>json</code>文件的一项</p>
-<blockquote>
-<p>标准格式: 形如</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 多个项目之间用逗号隔开,整体用中括号括起来</span></span><br><span class="line">[&#123;</span><br><span class="line">    &#x27;a&#x27;:&#x27;a.text&#x27;,</span><br><span class="line">  	&#x27;b&#x27;:&#x27;b.text&#x27;</span><br><span class="line">&#125;,</span><br><span class="line"> &#123;</span><br><span class="line">     &#x27;c&#x27;:&#x27;c.text&#x27;,</span><br><span class="line">	 &#x27;d&#x27;:&#x27;d.text&#x27;</span><br><span class="line"> &#125;,</span><br><span class="line"> &#123;</span><br><span class="line">     &#x27;e&#x27;:&#x27;e.text&#x27;,</span><br><span class="line"> 	 &#x27;f&#x27;:&#x27;f.text&#x27;</span><br><span class="line"> &#125;]</span><br></pre></td></tr></table></figure>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;js.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">	data=json.load(fp)</span><br><span class="line"><span class="comment"># 得到的data为list类型,data的一项对应json文件的一条数据</span></span><br></pre></td></tr></table></figure>
-<p><code>json.loads</code>可以把符合规则的<code>str</code>转化为<code>dict</code>类型</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = js.readline()</span><br><span class="line">        <span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data = json.loads(data)</span><br><span class="line"><span class="comment"># 得到的data为dict类型,它的key/value同json</span></span><br><span class="line">	title=data.get(<span class="string">&#x27;title&#x27;</span>)</span><br><span class="line"><span class="comment"># 然后便可以用dict的get函数获取内容</span></span><br></pre></td></tr></table></figure>
-<h5 id="一般使用方式">一般使用方式</h5>
-<p><code>dumps</code>写入,<code>loads</code>读取</p>
-<blockquote>
-<p>由于<code>json.dump</code>写入文件为一行输出,因此每次写完一个项目,再写入一个<code>'\n'</code></p>
-<p>则读取时即可按行读取,并用<code>json.loads</code>转换为<code>dict</code>,如下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># ensure_ascii=False 写入中文</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = js.readline()</span><br><span class="line">        <span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data = json.loads(data)</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>如果是标准格式<code>json</code>文件,用<code>json.load</code>读取即可</p>
-<h4 id="BeautifulSoup">BeautifulSoup</h4>
-<h5 id="清洗HTML数据">清洗HTML数据</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">todo = soup.find_all(attrs=&#123;<span class="string">&#x27;class&#x27;</span>: <span class="string">&#x27;class_name&#x27;</span>&#125;)</span><br><span class="line">soup_text = BeautifulSoup(<span class="built_in">str</span>(todo), <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">result = soup_text.get_text()</span><br></pre></td></tr></table></figure>
-<h5 id="在soup-find-all返回的结果中分离不同属性">在<code>soup.find_all</code>返回的结果中分离不同属性</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">soup = BeautifulSoup(page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">hrefs = soup.find_all(<span class="string">&#x27;a&#x27;</span>, href=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 以href为例</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> hrefs:</span><br><span class="line">	href = item[<span class="string">&#x27;href&#x27;</span>]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python爬虫入门</title>
-    <url>/2021/08/25/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<p>[Toc]</p>
-<p>此帖为Python爬虫入门帖</p>
-<p>分为两部分:</p>
-<ul>
-<li>
-<p>简单采集疫情信息</p>
-</li>
-<li>
-<p>批量采集网页数据</p>
-</li>
-</ul>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">环境准备:</span><br><span class="line"><span class="bullet">    +</span> Python3.9.0</span><br><span class="line"><span class="bullet">	+</span> Pycharm 2021</span><br><span class="line">库:</span><br><span class="line"><span class="bullet">    +</span> request请求库</span><br><span class="line"><span class="bullet">    +</span> BeautifulSoup解析库</span><br><span class="line"><span class="bullet">    +</span> 正则表达式</span><br><span class="line"><span class="bullet">    +</span> json模块</span><br></pre></td></tr></table></figure>
-<h3 id="采集疫情信息">采集疫情信息</h3>
-<h4 id="采集上一天疫情信息-用来了解各个库的用法">采集上一天疫情信息(用来了解各个库的用法)</h4>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 导入 requests请求库</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment"># 导入正则表达式模块</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># 导入json模块</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment"># 导入BeautifulSoup库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.发送Get请求获取主页信息</span></span><br><span class="line">response = requests.get(<span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span>)</span><br><span class="line">home_page = response.content.decode()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.从主页信息中提取最近一日各国疫情数据信息</span></span><br><span class="line">soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">script = soup.find(<span class="built_in">id</span>=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">text = script.string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.获取json格式字符串 </span></span><br><span class="line">json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 4.把json格式字符串转换为Python类型</span></span><br><span class="line">last_day_data = json.loads(json_str)</span><br><span class="line"><span class="comment"># 5.把数据写入相应json文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_data.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    json.dump(last_day_data, fp, ensure_ascii=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="采集数据正文">采集数据正文</h4>
-<blockquote>
-<p>采集内容: 1.最近一日世界各国疫情数据 	2.最近一日中国疫情数据<br>
-3.从1月23日期世界各国疫情数据</p>
-</blockquote>
-<p><strong>上文的代码由于拓展性和可复用性差,因此我们对代码进行重构,提高可拓展性和复用性</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CoronaVirusSpider</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.home_url = <span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_content_from_url</span>(<span class="params">self, url</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :param url:请求的URL</span></span><br><span class="line"><span class="string">        :return: 响应得到的字符串</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">return</span> response.content.decode()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_home_page</span>(<span class="params">self, home_page, tag_id</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        解析首页内容,获取解析后的Python数据</span></span><br><span class="line"><span class="string">        :param home_page:首页内容</span></span><br><span class="line"><span class="string">        :return: 解析后的Python数据</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">        script = soup.find(<span class="built_in">id</span>=tag_id)</span><br><span class="line">        text = script.string</span><br><span class="line">        json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">return</span> json.loads(json_str)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span>(<span class="params">self, data, path</span>):</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            json.dump(data, fp, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集各国最近一天的疫情信息</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取首页内容</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析首页内容,获取最近一天各国疫情数据</span></span><br><span class="line">        last_day_corona_virus = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_corona_virus, <span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集从1月23号以来各国的疫情数据</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.加载各国疫情数据</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            last_day_corona_virus = json.load(fp)</span><br><span class="line">        corona_virus = []</span><br><span class="line">        <span class="comment"># 2.遍历各国获取统计URL</span></span><br><span class="line">        <span class="keyword">for</span> country <span class="keyword">in</span> tqdm(last_day_corona_virus, <span class="string">&#x27;采集1月23以来各国疫情信息&#x27;</span>):</span><br><span class="line">            <span class="comment"># 3.发送请求,获取各国从1月23号至今的json数据</span></span><br><span class="line">            statistics_data_url = country[<span class="string">&#x27;statisticsData&#x27;</span>]</span><br><span class="line">            statistics_data_json_str = self.get_content_from_url(statistics_data_url)</span><br><span class="line">            <span class="comment"># 4.把Json数据转换为Python数据,添加到列表汇总</span></span><br><span class="line">            statistics_data = json.loads(statistics_data_json_str)[<span class="string">&#x27;data&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            <span class="keyword">for</span> one_day <span class="keyword">in</span> statistics_data:</span><br><span class="line">                one_day[<span class="string">&#x27;provinceName&#x27;</span>] = country[<span class="string">&#x27;provinceName&#x27;</span>]</span><br><span class="line">                one_day[<span class="string">&#x27;countryShortCode&#x27;</span>] = country[<span class="string">&#x27;countryShortCode&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            corona_virus.extend(statistics_data)</span><br><span class="line">            <span class="comment"># 5.把列表保存为Json文件</span></span><br><span class="line">        self.save(corona_virus, <span class="string">&#x27;data/corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus_of_China</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集最近1日中国各省疫情数据,方式同上文</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取疫情主页</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析主页,获取信息</span></span><br><span class="line">        last_day_china_data = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getAreaStat&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_china_data, <span class="string">&#x27;data/last_day_corona_virus_of_China.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.crawl_last_day_corona_virus()  <span class="comment"># 采集最近1日世界各国疫情数据</span></span><br><span class="line">        <span class="comment"># self.crawl_corona_virus()     # 采集从1月23日起世界各国疫情数据</span></span><br><span class="line">        self.crawl_last_day_corona_virus_of_China() <span class="comment"># 采集最近1日中国各省疫情数据</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    spider = CoronaVirusSpider()</span><br><span class="line">    spider.run()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="批量爬取网页">批量爬取网页</h3>
-<blockquote>
-<p>以爬取今日哈工大新闻页面为例,新闻列表页面的URL格式为<br>
-<code>https://news.hit.edu.cn/zhxw/list +r'\d*'+ .htm</code><br>
-例如<code>https://news.hit.edu.cn/zhxw/list1.htm</code>为新闻第一页</p>
-</blockquote>
-<p>第一步,批量获取所需页面的URL</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">craw_for_urls</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    获取1000+网页的URL</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(CONFIG.get(<span class="string">&#x27;url_file&#x27;</span>), <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> out:</span><br><span class="line">        <span class="keyword">while</span> self.cnt_urls &lt; <span class="number">1000</span>:</span><br><span class="line">            response = requests.get(CONFIG.get(<span class="string">&#x27;base_url&#x27;</span>) + <span class="built_in">str</span>(self.cnt_pages) + <span class="string">&#x27;.htm&#x27;</span>, timeout=<span class="number">100</span>)</span><br><span class="line">            self.cnt_pages += <span class="number">1</span></span><br><span class="line">            home_page = response.content.decode()</span><br><span class="line">            soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">            script = soup.find_all(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">            urls_todo = []</span><br><span class="line">            <span class="keyword">for</span> text <span class="keyword">in</span> script:</span><br><span class="line">                attrs = text.attrs</span><br><span class="line">                urls_todo.append(attrs.get(<span class="string">&#x27;href&#x27;</span>))</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> urls_todo:</span><br><span class="line">                out_url = re.findall(<span class="string">r&#x27;/\d+/\d+/[A-Za-z0-9]+/page.htm&#x27;</span>, i)</span><br><span class="line">                <span class="keyword">if</span> out_url <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                    <span class="keyword">for</span> j <span class="keyword">in</span> out_url:</span><br><span class="line">                        out.write(<span class="string">&#x27;https://news.hit.edu.cn&#x27;</span> + <span class="built_in">str</span>(j) + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">                        self.cnt_urls += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>第二步,从对应URL读取信息并处理</p>
-]]></content>
-      <categories>
-        <category>Python</category>
-        <category>爬虫</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Just a test</title>
     <url>/2021/10/23/TEST/</url>
     <content><![CDATA[<div class="tabs" id="np"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#np-1">np.linspace</button></li><li class="tab"><button type="button" data-href="#np-2">np.zeros</button></li><li class="tab"><button type="button" data-href="#np-3">np. identity</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="np-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">linspace</span>(<span class="params">start, stop, num=<span class="number">50</span>, endpoint=<span class="literal">True</span>, retstep=<span class="literal">False</span>, dtype=<span class="literal">None</span></span>)</span></span><br></pre></td></tr></table></figure>
@@ -967,6 +884,98 @@ Valgrind --leak-check=yes ./文件名<br>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">a = np.identity(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="comment"># 输出结果: </span></span><br><span class="line">[[<span class="number">1.</span> <span class="number">0.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">1.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">0.</span> <span class="number">1.</span>]]</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>]]></content>
   </entry>
   <entry>
+    <title>Python_Pycharm</title>
+    <url>/2021/08/11/Python/</url>
+    <content><![CDATA[<h4 id="关于JSON库">关于JSON库</h4>
+<h5 id="json-dump-dumps和json-load-loads">json.dump/dumps和json.load/loads</h5>
+<p><code>json.dumps</code>可以将字典封装为<code>json</code>格式,例如</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.json_dict[<span class="string">&#x27;url&#x27;</span>] = url</span><br><span class="line">self.json_dict[<span class="string">&#x27;title&#x27;</span>] = title</span><br><span class="line">self.json_dict[<span class="string">&#x27;paragraphs&#x27;</span>] = para_json</span><br><span class="line">self.json_dict[<span class="string">&#x27;filename&#x27;</span>] = filename_json</span><br><span class="line">json_str = json.dumps(self.json_dict, indent=<span class="number">4</span>, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># json_str为str类型,格式为标准json格式</span></span><br></pre></td></tr></table></figure>
+<p><code>json.dump</code>则是直接将字典转化为<code>json</code>格式并写入文件</p>
+<p>相比于<code>json.dumps</code>参数仅是多了一个文件指针</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># js为相比于`json.dump`多的文件指针</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 写入的json为一行输出,即&#123;&#x27;a&#x27;:&#x27;a.text&#x27;,&#x27;b&#x27;:&#x27;b.text&#x27;&#125;这种单行的形式</span></span><br><span class="line"><span class="comment"># ensure_ascii=False则可以写入中文</span></span><br></pre></td></tr></table></figure>
+<p><code>json.load</code>可以把标准格式的<code>json</code>文件加载成<code>list</code>,<code>list</code>每一项对应<code>json</code>文件的一项</p>
+<blockquote>
+<p>标准格式: 形如</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 多个项目之间用逗号隔开,整体用中括号括起来</span></span><br><span class="line">[&#123;</span><br><span class="line">    &#x27;a&#x27;:&#x27;a.text&#x27;,</span><br><span class="line">  	&#x27;b&#x27;:&#x27;b.text&#x27;</span><br><span class="line">&#125;,</span><br><span class="line"> &#123;</span><br><span class="line">     &#x27;c&#x27;:&#x27;c.text&#x27;,</span><br><span class="line">	 &#x27;d&#x27;:&#x27;d.text&#x27;</span><br><span class="line"> &#125;,</span><br><span class="line"> &#123;</span><br><span class="line">     &#x27;e&#x27;:&#x27;e.text&#x27;,</span><br><span class="line"> 	 &#x27;f&#x27;:&#x27;f.text&#x27;</span><br><span class="line"> &#125;]</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;js.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">	data=json.load(fp)</span><br><span class="line"><span class="comment"># 得到的data为list类型,data的一项对应json文件的一条数据</span></span><br></pre></td></tr></table></figure>
+<p><code>json.loads</code>可以把符合规则的<code>str</code>转化为<code>dict</code>类型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = js.readline()</span><br><span class="line">        <span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data = json.loads(data)</span><br><span class="line"><span class="comment"># 得到的data为dict类型,它的key/value同json</span></span><br><span class="line">	title=data.get(<span class="string">&#x27;title&#x27;</span>)</span><br><span class="line"><span class="comment"># 然后便可以用dict的get函数获取内容</span></span><br></pre></td></tr></table></figure>
+<h5 id="一般使用方式">一般使用方式</h5>
+<p><code>dumps</code>写入,<code>loads</code>读取</p>
+<blockquote>
+<p>由于<code>json.dump</code>写入文件为一行输出,因此每次写完一个项目,再写入一个<code>'\n'</code></p>
+<p>则读取时即可按行读取,并用<code>json.loads</code>转换为<code>dict</code>,如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># ensure_ascii=False 写入中文</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = js.readline()</span><br><span class="line">        <span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data = json.loads(data)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>如果是标准格式<code>json</code>文件,用<code>json.load</code>读取即可</p>
+<h4 id="BeautifulSoup">BeautifulSoup</h4>
+<h5 id="清洗HTML数据">清洗HTML数据</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">todo = soup.find_all(attrs=&#123;<span class="string">&#x27;class&#x27;</span>: <span class="string">&#x27;class_name&#x27;</span>&#125;)</span><br><span class="line">soup_text = BeautifulSoup(<span class="built_in">str</span>(todo), <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">result = soup_text.get_text()</span><br></pre></td></tr></table></figure>
+<h5 id="在soup-find-all返回的结果中分离不同属性">在<code>soup.find_all</code>返回的结果中分离不同属性</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">soup = BeautifulSoup(page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">hrefs = soup.find_all(<span class="string">&#x27;a&#x27;</span>, href=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 以href为例</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> hrefs:</span><br><span class="line">	href = item[<span class="string">&#x27;href&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="多线程">多线程</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(CONFIG.get(<span class="string">&#x27;thread_num&#x27;</span>)):</span><br><span class="line">    thread = threading.Thread(target=content_crawer.craw, args=(j,))</span><br><span class="line">    threads.append(thread)</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.start()</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.join()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意 不能写成</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">       thread.start()</span><br><span class="line">       thread.join()</span><br></pre></td></tr></table></figure>
+<p>这种情况下会变成串行执行,即等同于单线程</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python爬虫入门</title>
+    <url>/2021/08/25/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<p>[Toc]</p>
+<p>此帖为Python爬虫入门帖</p>
+<p>分为两部分:</p>
+<ul>
+<li>
+<p>简单采集疫情信息</p>
+</li>
+<li>
+<p>批量采集网页数据</p>
+</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">环境准备:</span><br><span class="line"><span class="bullet">    +</span> Python3.9.0</span><br><span class="line"><span class="bullet">	+</span> Pycharm 2021</span><br><span class="line">库:</span><br><span class="line"><span class="bullet">    +</span> request请求库</span><br><span class="line"><span class="bullet">    +</span> BeautifulSoup解析库</span><br><span class="line"><span class="bullet">    +</span> 正则表达式</span><br><span class="line"><span class="bullet">    +</span> json模块</span><br></pre></td></tr></table></figure>
+<h3 id="采集疫情信息">采集疫情信息</h3>
+<h4 id="采集上一天疫情信息-用来了解各个库的用法">采集上一天疫情信息(用来了解各个库的用法)</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 导入 requests请求库</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment"># 导入正则表达式模块</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># 导入json模块</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment"># 导入BeautifulSoup库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.发送Get请求获取主页信息</span></span><br><span class="line">response = requests.get(<span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span>)</span><br><span class="line">home_page = response.content.decode()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.从主页信息中提取最近一日各国疫情数据信息</span></span><br><span class="line">soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">script = soup.find(<span class="built_in">id</span>=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">text = script.string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.获取json格式字符串 </span></span><br><span class="line">json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 4.把json格式字符串转换为Python类型</span></span><br><span class="line">last_day_data = json.loads(json_str)</span><br><span class="line"><span class="comment"># 5.把数据写入相应json文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_data.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    json.dump(last_day_data, fp, ensure_ascii=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="采集数据正文">采集数据正文</h4>
+<blockquote>
+<p>采集内容: 1.最近一日世界各国疫情数据 	2.最近一日中国疫情数据<br>
+3.从1月23日期世界各国疫情数据</p>
+</blockquote>
+<p><strong>上文的代码由于拓展性和可复用性差,因此我们对代码进行重构,提高可拓展性和复用性</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CoronaVirusSpider</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.home_url = <span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_content_from_url</span>(<span class="params">self, url</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :param url:请求的URL</span></span><br><span class="line"><span class="string">        :return: 响应得到的字符串</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">return</span> response.content.decode()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_home_page</span>(<span class="params">self, home_page, tag_id</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        解析首页内容,获取解析后的Python数据</span></span><br><span class="line"><span class="string">        :param home_page:首页内容</span></span><br><span class="line"><span class="string">        :return: 解析后的Python数据</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">        script = soup.find(<span class="built_in">id</span>=tag_id)</span><br><span class="line">        text = script.string</span><br><span class="line">        json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">return</span> json.loads(json_str)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span>(<span class="params">self, data, path</span>):</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            json.dump(data, fp, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集各国最近一天的疫情信息</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取首页内容</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析首页内容,获取最近一天各国疫情数据</span></span><br><span class="line">        last_day_corona_virus = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_corona_virus, <span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集从1月23号以来各国的疫情数据</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.加载各国疫情数据</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            last_day_corona_virus = json.load(fp)</span><br><span class="line">        corona_virus = []</span><br><span class="line">        <span class="comment"># 2.遍历各国获取统计URL</span></span><br><span class="line">        <span class="keyword">for</span> country <span class="keyword">in</span> tqdm(last_day_corona_virus, <span class="string">&#x27;采集1月23以来各国疫情信息&#x27;</span>):</span><br><span class="line">            <span class="comment"># 3.发送请求,获取各国从1月23号至今的json数据</span></span><br><span class="line">            statistics_data_url = country[<span class="string">&#x27;statisticsData&#x27;</span>]</span><br><span class="line">            statistics_data_json_str = self.get_content_from_url(statistics_data_url)</span><br><span class="line">            <span class="comment"># 4.把Json数据转换为Python数据,添加到列表汇总</span></span><br><span class="line">            statistics_data = json.loads(statistics_data_json_str)[<span class="string">&#x27;data&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            <span class="keyword">for</span> one_day <span class="keyword">in</span> statistics_data:</span><br><span class="line">                one_day[<span class="string">&#x27;provinceName&#x27;</span>] = country[<span class="string">&#x27;provinceName&#x27;</span>]</span><br><span class="line">                one_day[<span class="string">&#x27;countryShortCode&#x27;</span>] = country[<span class="string">&#x27;countryShortCode&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            corona_virus.extend(statistics_data)</span><br><span class="line">            <span class="comment"># 5.把列表保存为Json文件</span></span><br><span class="line">        self.save(corona_virus, <span class="string">&#x27;data/corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus_of_China</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集最近1日中国各省疫情数据,方式同上文</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取疫情主页</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析主页,获取信息</span></span><br><span class="line">        last_day_china_data = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getAreaStat&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_china_data, <span class="string">&#x27;data/last_day_corona_virus_of_China.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.crawl_last_day_corona_virus()  <span class="comment"># 采集最近1日世界各国疫情数据</span></span><br><span class="line">        <span class="comment"># self.crawl_corona_virus()     # 采集从1月23日起世界各国疫情数据</span></span><br><span class="line">        self.crawl_last_day_corona_virus_of_China() <span class="comment"># 采集最近1日中国各省疫情数据</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    spider = CoronaVirusSpider()</span><br><span class="line">    spider.run()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="批量爬取网页">批量爬取网页</h3>
+<blockquote>
+<p>以爬取今日哈工大新闻页面为例,新闻列表页面的URL格式为<br>
+<code>https://news.hit.edu.cn/zhxw/list +r'\d*'+ .htm</code><br>
+例如<code>https://news.hit.edu.cn/zhxw/list1.htm</code>为新闻第一页</p>
+</blockquote>
+<p>第一步,批量获取所需页面的URL</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">craw_for_urls</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    获取1000+网页的URL</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(CONFIG.get(<span class="string">&#x27;url_file&#x27;</span>), <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> out:</span><br><span class="line">        <span class="keyword">while</span> self.cnt_urls &lt; <span class="number">1000</span>:</span><br><span class="line">            response = requests.get(CONFIG.get(<span class="string">&#x27;base_url&#x27;</span>) + <span class="built_in">str</span>(self.cnt_pages) + <span class="string">&#x27;.htm&#x27;</span>, timeout=<span class="number">100</span>)</span><br><span class="line">            self.cnt_pages += <span class="number">1</span></span><br><span class="line">            home_page = response.content.decode()</span><br><span class="line">            soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">            script = soup.find_all(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">            urls_todo = []</span><br><span class="line">            <span class="keyword">for</span> text <span class="keyword">in</span> script:</span><br><span class="line">                attrs = text.attrs</span><br><span class="line">                urls_todo.append(attrs.get(<span class="string">&#x27;href&#x27;</span>))</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> urls_todo:</span><br><span class="line">                out_url = re.findall(<span class="string">r&#x27;/\d+/\d+/[A-Za-z0-9]+/page.htm&#x27;</span>, i)</span><br><span class="line">                <span class="keyword">if</span> out_url <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                    <span class="keyword">for</span> j <span class="keyword">in</span> out_url:</span><br><span class="line">                        out.write(<span class="string">&#x27;https://news.hit.edu.cn&#x27;</span> + <span class="built_in">str</span>(j) + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">                        self.cnt_urls += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>第二步,从对应URL读取信息并处理</p>
+<h5 id="多线程爬虫和BeautifulSoup技巧">多线程爬虫和BeautifulSoup技巧</h5>
+<p>详见https://lemontreen.github.io/2021/08/11/Python/</p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>爬虫</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>字典树的Python实现</title>
     <url>/2021/11/29/Trie/</url>
     <content><![CDATA[<h4 id="中文分词-存储中文的字典树的Python实现">中文分词:存储中文的字典树的Python实现</h4>
@@ -983,35 +992,6 @@ Valgrind --leak-check=yes ./文件名<br>
       </categories>
       <tags>
         <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows</title>
-    <url>/2021/07/20/Windows/</url>
-    <content><![CDATA[<p>[Toc]</p>
-<h4 id="如何切换到管理员Administrator用户">如何切换到管理员Administrator用户</h4>
-<blockquote>
-<p>PS:前段时间修改注册表改出了一些问题,导致环境变量无法在自己的账户中修改,只好用Administrator账户修改。。。</p>
-</blockquote>
-<ol>
-<li>以管理员身份打开cmd(在左下角搜索框搜索cmd)</li>
-<li>输入<code>net user administrator /active:yes</code></li>
-<li>Ctrl+Alt+. 同时按 点击切换用户即可在左下角找到Administrator用户</li>
-<li>用完同样方式回到原来的用户</li>
-<li>输入<code>net user administrator /active:no</code>关闭</li>
-</ol>
-<h4 id="使用steamcommunity-302-端口被占用问题">使用steamcommunity 302 端口被占用问题</h4>
-<blockquote>
-<p>443/80端口被占用,请关闭占用该端口的进程后再点击启动服务</p>
-</blockquote>
-<p>原因之一:VMware虚拟机<br>
-解决方式: 打开任务管理器<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>详细信息<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>找到<code>vmware-hostd.exe</code>,结束任务即可</p>
-]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
@@ -1082,6 +1062,177 @@ Valgrind --leak-check=yes ./文件名<br>
       <tags>
         <tag>git</tag>
         <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows</title>
+    <url>/2021/07/20/Windows/</url>
+    <content><![CDATA[<p>[Toc]</p>
+<h4 id="如何切换到管理员Administrator用户">如何切换到管理员Administrator用户</h4>
+<blockquote>
+<p>PS:前段时间修改注册表改出了一些问题,导致环境变量无法在自己的账户中修改,只好用Administrator账户修改。。。</p>
+</blockquote>
+<ol>
+<li>以管理员身份打开cmd(在左下角搜索框搜索cmd)</li>
+<li>输入<code>net user administrator /active:yes</code></li>
+<li>Ctrl+Alt+. 同时按 点击切换用户即可在左下角找到Administrator用户</li>
+<li>用完同样方式回到原来的用户</li>
+<li>输入<code>net user administrator /active:no</code>关闭</li>
+</ol>
+<h4 id="使用steamcommunity-302-端口被占用问题">使用steamcommunity 302 端口被占用问题</h4>
+<blockquote>
+<p>443/80端口被占用,请关闭占用该端口的进程后再点击启动服务</p>
+</blockquote>
+<p>原因之一:VMware虚拟机<br>
+解决方式: 打开任务管理器<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>详细信息<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>找到<code>vmware-hostd.exe</code>,结束任务即可</p>
+]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>各种教程和参考</title>
+    <url>/2021/06/07/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E6%95%99%E7%A8%8B%E5%92%8C%E5%8F%82%E8%80%83/</url>
+    <content><![CDATA[<p>[Toc]</p>
+<h4 id="nvm-nodejs版本管理工具-使用方式：">nvm(nodejs版本管理工具)使用方式：</h4>
+<blockquote>
+<p>nvm: 全名node.js version management，顾名思义是一个nodejs的版本管理工具。通过它可以安装和切换不同版本的nodejs,可在Github上下载 <a href="https://github.com/nvm-sh/nvm">https://github.com/nvm-sh/nvm</a><br>
+安装路径最好无英文</p>
+</blockquote>
+<ol>
+<li>
+<p>安装后检查：<br>
+cmd输入nvm,如果出现版本号说明安装成功</p>
+</li>
+<li>
+<p>常用命令</p>
+<ul>
+<li>查看本地安装的所有版本；有可选参数available，显示所有可下载的版本。</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nvm list [available]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装，命令中的版本号可自定义，具体参考命令1查询出来的列表</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nvm install 11.13.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用特定版本</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nvm use 11.13.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>卸载</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nvm uninstall 11.13.0</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>其他命令：</p>
+<ul>
+<li><code>nvm arch</code> ：显示node是运行在32位还是64位。</li>
+<li><code>nvm install &lt;version&gt; [arch]</code> ：安装node， version是特定版本也可以是最新稳定版本latest。可选参数arch指定安装32位还是64位版本，默认是系统位数。可以添加–insecure绕过远程服务器的SSL。</li>
+<li><code>nvm list [available]</code> ：显示已安装的列表。可选参数available，显示可安装的所有版本。list可简化为ls。</li>
+<li><code>nvm on</code> ：开启node.js版本管理。</li>
+<li><code>nvm off</code> ：关闭node.js版本管理。</li>
+<li><code>nvm proxy [url]</code> ：设置下载代理。不加可选参数url，显示当前代理。将url设置为none则移除代理。</li>
+<li><code>nvm node_mirror [url]</code>：设置node镜像。默认是https://nodejs.org/dist/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。</li>
+<li><code>nvm npm_mirror [url]</code> ：设置npm镜像。<a href="https://github.com/npm/cli/archive/%E3%80%82%E5%A6%82%E6%9E%9C%E4%B8%8D%E5%86%99url%EF%BC%8C%E5%88%99%E4%BD%BF%E7%94%A8%E9%BB%98%E8%AE%A4url%E3%80%82%E8%AE%BE%E7%BD%AE%E5%90%8E%E5%8F%AF%E8%87%B3%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95settings.txt%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B%EF%BC%8C%E4%B9%9F%E5%8F%AF%E7%9B%B4%E6%8E%A5%E5%9C%A8%E8%AF%A5%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E3%80%82">https://github.com/npm/cli/archive/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。</a></li>
+<li><code>nvm uninstall &lt;version&gt;</code> ：卸载指定版本node。</li>
+<li><code>nvm use [version] [arch]</code> ：使用制定版本node。可指定32/64位。</li>
+<li><code>nvm root [path]</code> ：设置存储不同版本node的目录。如果未设置，默认使用当前目录。</li>
+<li><code>nvm version</code> ：显示nvm版本。version可简化为v。</li>
+</ul>
+</li>
+</ol>
+<p><strong>参考：<a href="https://www.cnblogs.com/gaozejie/p/10689742.html">https://www.cnblogs.com/gaozejie/p/10689742.html</a></strong></p>
+<h4 id="磁盘扩容：">磁盘扩容：</h4>
+<ol>
+<li>磁盘未使用过<br>
+直接搜索磁盘管理，点击创建并格式化硬盘分区<br>
+删除释放空间的磁盘，重新分区即可</li>
+<li>磁盘已使用<br>
+使用Diskgenius：<a href="https://www.diskgenius.cn/">https://www.diskgenius.cn/</a></li>
+</ol>
+<h4 id="hexo-yilia主题配置教程">hexo-yilia主题配置教程</h4>
+<p>文字版<br>
+<a href="https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_%E4%B8%BB%E9%A2%98%E4%B8%80%E6%8F%BD%E5%AD%90%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%A4%B1%E6%A8%A1%E5%9D%97">https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_主题一揽子优化方案/#查看所有文件，提示缺失模块</a><br>
+视频版<br>
+<a href="https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver</a></p>
+<h4 id="hexo-添加live2d看板娘">hexo-添加live2d看板娘</h4>
+<p>效果如下↓↓↓<br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources/20210608201035.png" alt=""><br>
+教程：<a href="https://akilar.top/posts/5b8f515f/">https://akilar.top/posts/5b8f515f/</a></p>
+<h4 id="hexo-bufferfly配置">hexo-bufferfly配置</h4>
+<p><strong>本人均试过，好教程</strong><br>
+<em>官方文档，建议先看这个，很全</em>：<a href="https://butterfly.js.org/posts/21cfbf15/">https://butterfly.js.org/posts/21cfbf15/</a><br>
+<em>各种魔改</em><a href="https://akilar.top/posts/f99b208/">https://akilar.top/posts/f99b208/</a><br>
+**添加全盘吸底aplayer音乐播放器：**<a href="https://butterfly.js.org/posts/507c070f/">https://butterfly.js.org/posts/507c070f/</a></p>
+<h4 id="如何解决各游戏平台等下载慢的问题">如何解决各游戏平台等下载慢的问题</h4>
+<blockquote>
+<p>使用<code>steamcommunity 302</code>和<code>UsbEam host editor</code></p>
+<p>见dalao<code>羽翼城</code>博客</p>
+<p><a href="https://www.dogfight360.com/blog/">https://www.dogfight360.com/blog/</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>nvm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在gitee上做一个图床</title>
+    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<blockquote>
+<p>本人已经更换回Github图床<br>
+原因：Gitee图片大于1M时需要登录才能查看,只有小于1M才能随意直接访问<br>
+虽然我有压缩图片的习惯(提升加载速度),但有了梯子之后还是换回了Github<br>
+但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见<br>
+<a href="https://lemontreen.github.io/2021/07/22/PicGo_CDN">https://lemontreen.github.io/2021/07/22/PicGo_CDN</a><br>
+<strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
+</blockquote>
+<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？">如何在gitee上部署一个图床给自己markdown文本使用？</h3>
+<p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况</p>
+<h4 id="需要工具-PicGo-以及-gitee-账号">需要工具: PicGo 以及 gitee 账号</h4>
+<h4 id="1-下载PicGo">1.下载PicGo</h4>
+<p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a></p>
+<h4 id="2-创建一个仓库和密钥">2.创建一个仓库和密钥</h4>
+<p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png" alt=""><br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png" alt=""></p>
+<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects">创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5>
+<p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png" alt=""><br>
+生成的令牌只会显示一次，务必记好!!!</p>
+<h4 id="3-配置PicGo">3.配置PicGo</h4>
+<p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png" alt=""><br>
+然后重启PicGo 在插件设置中找到gitee<br>
+repo: 填写用户名/仓库名<br>
+branch: master<br>
+token: 填写刚刚的访问令牌<br>
+path: 想上传到gitee的目录<br>
+customPath和customURL不用填写<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png" alt=""><br>
+点击确定和设为默认图床</p>
+<p>！！大功告成！！</p>
+<h4 id="4-使用方式">4.使用方式</h4>
+<p>直接将图片拖拽到上传区即可<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png" alt=""><br>
+此时在文档中ctrl+v即可粘贴URL<br>
+此时去gitee仓库即可看到<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png" alt=""><br>
+PicgoCDN加速设置方法：<br>
+<a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
+<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241">参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Picgo</tag>
+        <tag>图床</tag>
       </tags>
   </entry>
   <entry>
@@ -1196,148 +1347,6 @@ E_1\cap E_2=E_2\cap E_1\\
 ]]></content>
       <tags>
         <tag>关系代数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在gitee上做一个图床</title>
-    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<blockquote>
-<p>本人已经更换回Github图床<br>
-原因：Gitee图片大于1M时需要登录才能查看,只有小于1M才能随意直接访问<br>
-虽然我有压缩图片的习惯(提升加载速度),但有了梯子之后还是换回了Github<br>
-但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见<br>
-<a href="https://lemontreen.github.io/2021/07/22/PicGo_CDN">https://lemontreen.github.io/2021/07/22/PicGo_CDN</a><br>
-<strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
-</blockquote>
-<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？">如何在gitee上部署一个图床给自己markdown文本使用？</h3>
-<p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况</p>
-<h4 id="需要工具-PicGo-以及-gitee-账号">需要工具: PicGo 以及 gitee 账号</h4>
-<h4 id="1-下载PicGo">1.下载PicGo</h4>
-<p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a></p>
-<h4 id="2-创建一个仓库和密钥">2.创建一个仓库和密钥</h4>
-<p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png" alt=""><br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png" alt=""></p>
-<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects">创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5>
-<p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png" alt=""><br>
-生成的令牌只会显示一次，务必记好!!!</p>
-<h4 id="3-配置PicGo">3.配置PicGo</h4>
-<p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png" alt=""><br>
-然后重启PicGo 在插件设置中找到gitee<br>
-repo: 填写用户名/仓库名<br>
-branch: master<br>
-token: 填写刚刚的访问令牌<br>
-path: 想上传到gitee的目录<br>
-customPath和customURL不用填写<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png" alt=""><br>
-点击确定和设为默认图床</p>
-<p>！！大功告成！！</p>
-<h4 id="4-使用方式">4.使用方式</h4>
-<p>直接将图片拖拽到上传区即可<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png" alt=""><br>
-此时在文档中ctrl+v即可粘贴URL<br>
-此时去gitee仓库即可看到<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png" alt=""><br>
-PicgoCDN加速设置方法：<br>
-<a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
-<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241">参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>Picgo</tag>
-        <tag>图床</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>各种教程和参考</title>
-    <url>/2021/06/07/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E6%95%99%E7%A8%8B%E5%92%8C%E5%8F%82%E8%80%83/</url>
-    <content><![CDATA[<p>[Toc]</p>
-<h4 id="nvm-nodejs版本管理工具-使用方式：">nvm(nodejs版本管理工具)使用方式：</h4>
-<blockquote>
-<p>nvm: 全名node.js version management，顾名思义是一个nodejs的版本管理工具。通过它可以安装和切换不同版本的nodejs,可在Github上下载 <a href="https://github.com/nvm-sh/nvm">https://github.com/nvm-sh/nvm</a><br>
-安装路径最好无英文</p>
-</blockquote>
-<ol>
-<li>
-<p>安装后检查：<br>
-cmd输入nvm,如果出现版本号说明安装成功</p>
-</li>
-<li>
-<p>常用命令</p>
-<ul>
-<li>查看本地安装的所有版本；有可选参数available，显示所有可下载的版本。</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nvm list [available]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装，命令中的版本号可自定义，具体参考命令1查询出来的列表</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nvm install 11.13.0</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用特定版本</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nvm use 11.13.0</span><br></pre></td></tr></table></figure>
-<ul>
-<li>卸载</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nvm uninstall 11.13.0</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>其他命令：</p>
-<ul>
-<li><code>nvm arch</code> ：显示node是运行在32位还是64位。</li>
-<li><code>nvm install &lt;version&gt; [arch]</code> ：安装node， version是特定版本也可以是最新稳定版本latest。可选参数arch指定安装32位还是64位版本，默认是系统位数。可以添加–insecure绕过远程服务器的SSL。</li>
-<li><code>nvm list [available]</code> ：显示已安装的列表。可选参数available，显示可安装的所有版本。list可简化为ls。</li>
-<li><code>nvm on</code> ：开启node.js版本管理。</li>
-<li><code>nvm off</code> ：关闭node.js版本管理。</li>
-<li><code>nvm proxy [url]</code> ：设置下载代理。不加可选参数url，显示当前代理。将url设置为none则移除代理。</li>
-<li><code>nvm node_mirror [url]</code>：设置node镜像。默认是https://nodejs.org/dist/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。</li>
-<li><code>nvm npm_mirror [url]</code> ：设置npm镜像。<a href="https://github.com/npm/cli/archive/%E3%80%82%E5%A6%82%E6%9E%9C%E4%B8%8D%E5%86%99url%EF%BC%8C%E5%88%99%E4%BD%BF%E7%94%A8%E9%BB%98%E8%AE%A4url%E3%80%82%E8%AE%BE%E7%BD%AE%E5%90%8E%E5%8F%AF%E8%87%B3%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95settings.txt%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B%EF%BC%8C%E4%B9%9F%E5%8F%AF%E7%9B%B4%E6%8E%A5%E5%9C%A8%E8%AF%A5%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E3%80%82">https://github.com/npm/cli/archive/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。</a></li>
-<li><code>nvm uninstall &lt;version&gt;</code> ：卸载指定版本node。</li>
-<li><code>nvm use [version] [arch]</code> ：使用制定版本node。可指定32/64位。</li>
-<li><code>nvm root [path]</code> ：设置存储不同版本node的目录。如果未设置，默认使用当前目录。</li>
-<li><code>nvm version</code> ：显示nvm版本。version可简化为v。</li>
-</ul>
-</li>
-</ol>
-<p><strong>参考：<a href="https://www.cnblogs.com/gaozejie/p/10689742.html">https://www.cnblogs.com/gaozejie/p/10689742.html</a></strong></p>
-<h4 id="磁盘扩容：">磁盘扩容：</h4>
-<ol>
-<li>磁盘未使用过<br>
-直接搜索磁盘管理，点击创建并格式化硬盘分区<br>
-删除释放空间的磁盘，重新分区即可</li>
-<li>磁盘已使用<br>
-使用Diskgenius：<a href="https://www.diskgenius.cn/">https://www.diskgenius.cn/</a></li>
-</ol>
-<h4 id="hexo-yilia主题配置教程">hexo-yilia主题配置教程</h4>
-<p>文字版<br>
-<a href="https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_%E4%B8%BB%E9%A2%98%E4%B8%80%E6%8F%BD%E5%AD%90%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%A4%B1%E6%A8%A1%E5%9D%97">https://cloudy-liu.github.io/2018/04/07/Hexo_yilia_主题一揽子优化方案/#查看所有文件，提示缺失模块</a><br>
-视频版<br>
-<a href="https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1pt411K7o9?p=7&amp;spm_id_from=pageDriver</a></p>
-<h4 id="hexo-添加live2d看板娘">hexo-添加live2d看板娘</h4>
-<p>效果如下↓↓↓<br>
-<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources/20210608201035.png" alt=""><br>
-教程：<a href="https://akilar.top/posts/5b8f515f/">https://akilar.top/posts/5b8f515f/</a></p>
-<h4 id="hexo-bufferfly配置">hexo-bufferfly配置</h4>
-<p><strong>本人均试过，好教程</strong><br>
-<em>官方文档，建议先看这个，很全</em>：<a href="https://butterfly.js.org/posts/21cfbf15/">https://butterfly.js.org/posts/21cfbf15/</a><br>
-<em>各种魔改</em><a href="https://akilar.top/posts/f99b208/">https://akilar.top/posts/f99b208/</a><br>
-**添加全盘吸底aplayer音乐播放器：**<a href="https://butterfly.js.org/posts/507c070f/">https://butterfly.js.org/posts/507c070f/</a></p>
-<h4 id="如何解决各游戏平台等下载慢的问题">如何解决各游戏平台等下载慢的问题</h4>
-<blockquote>
-<p>使用<code>steamcommunity 302</code>和<code>UsbEam host editor</code></p>
-<p>见dalao<code>羽翼城</code>博客</p>
-<p><a href="https://www.dogfight360.com/blog/">https://www.dogfight360.com/blog/</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>nvm</tag>
       </tags>
   </entry>
   <entry>
@@ -2200,6 +2209,23 @@ GBN协议结果：<br>
       <tags>
         <tag>计算机网络</tag>
         <tag>UDP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>倒排索引的Python实现</title>
+    <url>/2022/05/26/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<blockquote>
+<p>在词表不是非常大时全部读入内存建立索引即可,如下</p>
+<p>如果词表特别大,可能导致内存不足出现问题</p>
+<p>可以分批存入索引文件, 修改读取索引的方式即可</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">coding:UTF-8</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2022-5-26</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ltp <span class="keyword">import</span> LTP  <span class="comment"># 分词库</span></span><br><span class="line"></span><br><span class="line">ltp = LTP()</span><br><span class="line"></span><br><span class="line">word_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PreProcessed</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.stop_words = <span class="literal">None</span></span><br><span class="line">        self.cnt = <span class="number">0</span></span><br><span class="line">        self.index_path = <span class="string">&#x27;data/inverted_index.txt&#x27;</span> <span class="comment"># 倒排索引存储路径</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read_stop_words</span>(<span class="params">self, file_path: <span class="built_in">str</span></span>):</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            self.stop_words = <span class="built_in">set</span>(fp.read().split(<span class="string">&#x27;\n&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_index</span>(<span class="params">self, input_path: <span class="built_in">str</span></span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        建立倒排索引并保存到文件中</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(input_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">            line = js.readline()</span><br><span class="line">            <span class="keyword">while</span> line != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">                data = json.loads(line)</span><br><span class="line">                pid = data.get(<span class="string">&#x27;pid&#x27;</span>)</span><br><span class="line">                seg_list = data.get(<span class="string">&#x27;document&#x27;</span>)</span><br><span class="line">                seg = ltp.seg(seg_list)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> item <span class="keyword">in</span> seg[<span class="number">0</span>]:</span><br><span class="line">                    <span class="keyword">for</span> word <span class="keyword">in</span> item:</span><br><span class="line">                        <span class="keyword">if</span> word <span class="keyword">in</span> self.stop_words:</span><br><span class="line">                            <span class="keyword">pass</span></span><br><span class="line">                        <span class="keyword">elif</span> word <span class="keyword">not</span> <span class="keyword">in</span> word_dict:</span><br><span class="line">                            word_dict[word] = <span class="built_in">set</span>()</span><br><span class="line">                            word_dict[word].add(pid)</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            word_dict[word].add(pid)</span><br><span class="line">                line = js.readline()</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(self.index_path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> index_output:</span><br><span class="line">            <span class="keyword">for</span> key, value <span class="keyword">in</span> word_dict.items():</span><br><span class="line">                index_output.write(<span class="built_in">str</span>(key) + <span class="string">&#x27;: &#x27;</span>)</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> value:</span><br><span class="line">                    index_output.write(<span class="built_in">str</span>(i) + <span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                index_output.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read_index</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        从文件中读取索引</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(self.index_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            line = fp.readline()</span><br><span class="line">            <span class="keyword">while</span> line != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">                word, index = line.split(<span class="string">&#x27;: &#x27;</span>)</span><br><span class="line">                pid_list = index[:-<span class="number">2</span>].split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                line = fp.readline()</span><br><span class="line">                word_dict[word] = <span class="built_in">set</span>(pid_list)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    pre = PreProcessed()</span><br><span class="line">    pre.read_stop_words(<span class="string">&#x27;data/stopwords.txt&#x27;</span>) <span class="comment">#  读入停用词</span></span><br><span class="line">    pre.generate_index(<span class="string">&#x27;data/passages_multi_sentences.json&#x27;</span>)  <span class="comment"># 参数为待建立索引的文件</span></span><br><span class="line">    exit(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>NLP</category>
+      </categories>
+      <tags>
+        <tag>NLP</tag>
       </tags>
   </entry>
 </search>
