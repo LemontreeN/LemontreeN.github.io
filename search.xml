@@ -647,49 +647,6 @@ StringBuilder类也代表可变字符串对象。实际上，StringBuilder和Str
       </tags>
   </entry>
   <entry>
-    <title>Markdown</title>
-    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<p>[Toc]</p>
-<h4 id="Markdown公式设置对齐">Markdown公式设置对齐</h4>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 举例:</span><br><span class="line"></span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">a+b&amp;&#x3D;c+d\\</span><br><span class="line">e&amp;&#x3D;f</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line"></span><br><span class="line">+ &quot;&amp;&quot;用于表明对齐起始位置</span><br><span class="line">+ \begin&#123;aligned&#125;和\end&#123;aligned&#125;不能与公式空一行,要紧贴</span><br><span class="line">+ \\为换行</span><br></pre></td></tr></table></figure>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>下面是实际效果</mtext><mi mathvariant="normal">.</mi><mtext>可以看到是以等号位置对齐的</mtext><mspace linebreak="newline"></mspace><mtable rowspacing="0.2500em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>c</mi><mo>+</mo><mi>d</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>e</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>f</mi></mrow></mstyle></mtd></mtr></mtable><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">下面是实际效果.可以看到是以等号位置对齐的\\
-\begin{aligned}
-a+b&amp;=c+d\\
-e&amp;=f
-\end{aligned}\\
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">下面是实际效果</span><span class="mord">.</span><span class="mord cjk_fallback">可以看到是以等号位置对齐的</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:3.0000000000000004em;vertical-align:-1.2500000000000002em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7500000000000002em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">b</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2500000000000002em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7500000000000002em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">d</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2500000000000002em;"><span></span></span></span></span></span></span></span></span><span class="mspace newline"></span></span></span></span></p>
-<h4 id="常用语法：">常用语法：</h4>
-<p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
-<h4 id="如何实现内容折叠">如何实现内容折叠</h4>
-<p>原理：使用<code>html</code>标签</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PicGo CDN加速方式</title>
-    <url>/2021/07/22/PicGo_CDN/</url>
-    <content><![CDATA[<p><strong>方法：更改自定义域名(最下面圈出来那行)</strong><br>
-<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723131912.png" alt=""><br>
-<strong>改为https://cdn.jsdelivr.net/gh/你的Github名/你的仓库名@选择的分支</strong><br>
-<strong>例如: <a href="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master">https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master</a></strong><br>
-(jsdelivr为一家CDN服务商,免费)<br>
-<strong>Github名为LemontreeN,仓库名为picSources,分支为master</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>PicGo</category>
-      </categories>
-      <tags>
-        <tag>CDN</tag>
-        <tag>Picgo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux</title>
     <url>/2021/06/02/Linux/</url>
     <content><![CDATA[<p>[Toc]</p>
@@ -836,97 +793,46 @@ Valgrind --leak-check=yes ./文件名<br>
       </tags>
   </entry>
   <entry>
-    <title>Just a test</title>
-    <url>/2021/10/23/TEST/</url>
-    <content><![CDATA[<div class="tabs" id="np"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#np-1">np.linspace</button></li><li class="tab"><button type="button" data-href="#np-2">np.zeros</button></li><li class="tab"><button type="button" data-href="#np-3">np. identity</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="np-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">linspace</span>(<span class="params">start, stop, num=<span class="number">50</span>, endpoint=<span class="literal">True</span>, retstep=<span class="literal">False</span>, dtype=<span class="literal">None</span></span>)</span></span><br></pre></td></tr></table></figure>
-<p>功能 : 均匀生成num个start到stop之间的元素<br>
-参数说明 :</p>
-<ul>
-<li>start : scalar
-<ul>
-<li>起始点</li>
-</ul>
-</li>
-<li>stop : scalar
-<ul>
-<li>终止点</li>
-</ul>
-</li>
-<li>num : int, optional
-<ul>
-<li>Number of samples to generate. Default is 50. Must be non-negative.</li>
-<li>默认值为50,生成start和stop之间50个等差间隔的元素</li>
-</ul>
-</li>
-<li>endpoint : bool, optional
-<ul>
-<li>默认为True,即生成的元素包含stop点,若为false则不包含</li>
-</ul>
-</li>
-<li>retstep : bool, optional
-<ul>
-<li>If True, return (samples, step), where step is the spacing between samples</li>
-</ul>
-</li>
-<li>dtype : dtype, optional
-<ul>
-<li>输出数组的类型。如果没有给出dtype，则从其他输入参数推断数据类型</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="comment">#输出结果: [0.   0.75 1.5  2.25 3.  ]</span></span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="np-2"><p><a href="https://numpy.org/doc/stable/reference/generated/numpy.zeros.html">https://numpy.org/doc/stable/reference/generated/numpy.zeros.html</a></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="np-3"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.identity(n, dtype=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
-<p>功能 : 创建一个主对角线为1,其他为0的方阵<br>
-参数说明:</p>
-<ul>
-<li>n : int, 矩阵的行数和列数都是n</li>
-<li>dtype : 输出的类型, 默认是float</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">a = np.identity(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="comment"># 输出结果: </span></span><br><span class="line">[[<span class="number">1.</span> <span class="number">0.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">1.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">0.</span> <span class="number">1.</span>]]</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>]]></content>
-  </entry>
-  <entry>
-    <title>Python_Pycharm</title>
-    <url>/2021/08/11/Python/</url>
-    <content><![CDATA[<h4 id="关于JSON库">关于JSON库</h4>
-<h5 id="json-dump-dumps和json-load-loads">json.dump/dumps和json.load/loads</h5>
-<p><code>json.dumps</code>可以将字典封装为<code>json</code>格式,例如</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.json_dict[<span class="string">&#x27;url&#x27;</span>] = url</span><br><span class="line">self.json_dict[<span class="string">&#x27;title&#x27;</span>] = title</span><br><span class="line">self.json_dict[<span class="string">&#x27;paragraphs&#x27;</span>] = para_json</span><br><span class="line">self.json_dict[<span class="string">&#x27;filename&#x27;</span>] = filename_json</span><br><span class="line">json_str = json.dumps(self.json_dict, indent=<span class="number">4</span>, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># json_str为str类型,格式为标准json格式</span></span><br></pre></td></tr></table></figure>
-<p><code>json.dump</code>则是直接将字典转化为<code>json</code>格式并写入文件</p>
-<p>相比于<code>json.dumps</code>参数仅是多了一个文件指针</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># js为相比于`json.dump`多的文件指针</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 写入的json为一行输出,即&#123;&#x27;a&#x27;:&#x27;a.text&#x27;,&#x27;b&#x27;:&#x27;b.text&#x27;&#125;这种单行的形式</span></span><br><span class="line"><span class="comment"># ensure_ascii=False则可以写入中文</span></span><br></pre></td></tr></table></figure>
-<p><code>json.load</code>可以把标准格式的<code>json</code>文件加载成<code>list</code>,<code>list</code>每一项对应<code>json</code>文件的一项</p>
-<blockquote>
-<p>标准格式: 形如</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 多个项目之间用逗号隔开,整体用中括号括起来</span></span><br><span class="line">[&#123;</span><br><span class="line">    &#x27;a&#x27;:&#x27;a.text&#x27;,</span><br><span class="line">  	&#x27;b&#x27;:&#x27;b.text&#x27;</span><br><span class="line">&#125;,</span><br><span class="line"> &#123;</span><br><span class="line">     &#x27;c&#x27;:&#x27;c.text&#x27;,</span><br><span class="line">	 &#x27;d&#x27;:&#x27;d.text&#x27;</span><br><span class="line"> &#125;,</span><br><span class="line"> &#123;</span><br><span class="line">     &#x27;e&#x27;:&#x27;e.text&#x27;,</span><br><span class="line"> 	 &#x27;f&#x27;:&#x27;f.text&#x27;</span><br><span class="line"> &#125;]</span><br></pre></td></tr></table></figure>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;js.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">	data=json.load(fp)</span><br><span class="line"><span class="comment"># 得到的data为list类型,data的一项对应json文件的一条数据</span></span><br></pre></td></tr></table></figure>
-<p><code>json.loads</code>可以把符合规则的<code>str</code>转化为<code>dict</code>类型</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = js.readline()</span><br><span class="line">        <span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data = json.loads(data)</span><br><span class="line"><span class="comment"># 得到的data为dict类型,它的key/value同json</span></span><br><span class="line">	title=data.get(<span class="string">&#x27;title&#x27;</span>)</span><br><span class="line"><span class="comment"># 然后便可以用dict的get函数获取内容</span></span><br></pre></td></tr></table></figure>
-<h5 id="一般使用方式">一般使用方式</h5>
-<p><code>dumps</code>写入,<code>loads</code>读取</p>
-<blockquote>
-<p>由于<code>json.dump</code>写入文件为一行输出,因此每次写完一个项目,再写入一个<code>'\n'</code></p>
-<p>则读取时即可按行读取,并用<code>json.loads</code>转换为<code>dict</code>,如下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># ensure_ascii=False 写入中文</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = js.readline()</span><br><span class="line">        <span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data = json.loads(data)</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>如果是标准格式<code>json</code>文件,用<code>json.load</code>读取即可</p>
-<h4 id="BeautifulSoup">BeautifulSoup</h4>
-<h5 id="清洗HTML数据">清洗HTML数据</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">todo = soup.find_all(attrs=&#123;<span class="string">&#x27;class&#x27;</span>: <span class="string">&#x27;class_name&#x27;</span>&#125;)</span><br><span class="line">soup_text = BeautifulSoup(<span class="built_in">str</span>(todo), <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">result = soup_text.get_text()</span><br></pre></td></tr></table></figure>
-<h5 id="在soup-find-all返回的结果中分离不同属性">在<code>soup.find_all</code>返回的结果中分离不同属性</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">soup = BeautifulSoup(page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">hrefs = soup.find_all(<span class="string">&#x27;a&#x27;</span>, href=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 以href为例</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> hrefs:</span><br><span class="line">	href = item[<span class="string">&#x27;href&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<h4 id="多线程">多线程</h4>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(CONFIG.get(<span class="string">&#x27;thread_num&#x27;</span>)):</span><br><span class="line">    thread = threading.Thread(target=content_crawer.craw, args=(j,))</span><br><span class="line">    threads.append(thread)</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.start()</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.join()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意 不能写成</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">       thread.start()</span><br><span class="line">       thread.join()</span><br></pre></td></tr></table></figure>
-<p>这种情况下会变成串行执行,即等同于单线程</p>
-</blockquote>
-]]></content>
+    <title>Markdown</title>
+    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<p>[Toc]</p>
+<h4 id="Markdown公式设置对齐">Markdown公式设置对齐</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 举例:</span><br><span class="line"></span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">a+b&amp;&#x3D;c+d\\</span><br><span class="line">e&amp;&#x3D;f</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line"></span><br><span class="line">+ &quot;&amp;&quot;用于表明对齐起始位置</span><br><span class="line">+ \begin&#123;aligned&#125;和\end&#123;aligned&#125;不能与公式空一行,要紧贴</span><br><span class="line">+ \\为换行</span><br></pre></td></tr></table></figure>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>下面是实际效果</mtext><mi mathvariant="normal">.</mi><mtext>可以看到是以等号位置对齐的</mtext><mspace linebreak="newline"></mspace><mtable rowspacing="0.2500em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>c</mi><mo>+</mo><mi>d</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>e</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>f</mi></mrow></mstyle></mtd></mtr></mtable><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">下面是实际效果.可以看到是以等号位置对齐的\\
+\begin{aligned}
+a+b&amp;=c+d\\
+e&amp;=f
+\end{aligned}\\
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">下面是实际效果</span><span class="mord">.</span><span class="mord cjk_fallback">可以看到是以等号位置对齐的</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:3.0000000000000004em;vertical-align:-1.2500000000000002em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7500000000000002em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">b</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2500000000000002em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7500000000000002em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">d</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2500000000000002em;"><span></span></span></span></span></span></span></span></span><span class="mspace newline"></span></span></span></span></p>
+<h4 id="常用语法：">常用语法：</h4>
+<p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
+<h4 id="如何实现内容折叠">如何实现内容折叠</h4>
+<p>原理：使用<code>html</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>备忘录</category>
       </categories>
       <tags>
-        <tag>Python</tag>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PicGo CDN加速方式</title>
+    <url>/2021/07/22/PicGo_CDN/</url>
+    <content><![CDATA[<p><strong>方法：更改自定义域名(最下面圈出来那行)</strong><br>
+<img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/imgs/20210723131912.png" alt=""><br>
+<strong>改为https://cdn.jsdelivr.net/gh/你的Github名/你的仓库名@选择的分支</strong><br>
+<strong>例如: <a href="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master">https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master</a></strong><br>
+(jsdelivr为一家CDN服务商,免费)<br>
+<strong>Github名为LemontreeN,仓库名为picSources,分支为master</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>PicGo</category>
+      </categories>
+      <tags>
+        <tag>CDN</tag>
+        <tag>Picgo</tag>
       </tags>
   </entry>
   <entry>
@@ -976,23 +882,131 @@ Valgrind --leak-check=yes ./文件名<br>
       </tags>
   </entry>
   <entry>
-    <title>字典树的Python实现</title>
-    <url>/2021/11/29/Trie/</url>
-    <content><![CDATA[<h4 id="中文分词-存储中文的字典树的Python实现">中文分词:存储中文的字典树的Python实现</h4>
+    <title>Python_Pycharm</title>
+    <url>/2021/08/11/Python/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h4 id="关于JSON库">关于JSON库</h4>
+<h5 id="json-dump-dumps和json-load-loads">json.dump/dumps和json.load/loads</h5>
+<p><code>json.dumps</code>可以将字典封装为<code>json</code>格式,例如</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.json_dict[<span class="string">&#x27;url&#x27;</span>] = url</span><br><span class="line">self.json_dict[<span class="string">&#x27;title&#x27;</span>] = title</span><br><span class="line">self.json_dict[<span class="string">&#x27;paragraphs&#x27;</span>] = para_json</span><br><span class="line">self.json_dict[<span class="string">&#x27;filename&#x27;</span>] = filename_json</span><br><span class="line">json_str = json.dumps(self.json_dict, indent=<span class="number">4</span>, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># json_str为str类型,格式为标准json格式</span></span><br></pre></td></tr></table></figure>
+<p><code>json.dump</code>则是直接将字典转化为<code>json</code>格式并写入文件</p>
+<p>相比于<code>json.dumps</code>参数仅是多了一个文件指针</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># js为相比于`json.dump`多的文件指针,默认indent=0</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 写入的json为一行输出,即&#123;&#x27;a&#x27;:&#x27;a.text&#x27;,&#x27;b&#x27;:&#x27;b.text&#x27;&#125;这种单行的形式</span></span><br><span class="line"><span class="comment"># 如果想分行,参数indent不为0可</span></span><br><span class="line"><span class="comment"># ensure_ascii=False则可以写入中文</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"># json.dump -- indent = 4,ensure_ascii=False的效果</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;0&quot;</span>: <span class="string">&quot;2004年五月天《听不到》&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;1&quot;</span>: <span class="string">&quot;参考文献&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;2&quot;</span>: <span class="string">&quot;国药准字H20041484[1]&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>json.load</code>可以读入标准格式的<code>json</code>文件</p>
+<ul>
+<li>文件只有一个项目</li>
+</ul>
 <blockquote>
-<p>在做NLP分词处理时,为了加快查询速度,我们要用到字典树这种数据结构<br>
-由于汉字字符种类多样,因此常规的26子节点字典树无法满足我们的需求<br>
-下文是一种提前开固定窗口数量利用ord()和hash()进行处理的方式<br>
-动态添加节点的方式暂时咕咕了</p>
+<p>此时返回值是<code>dict</code>类型,每一项即为一个键值对,如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/Mess/202205282141004.png" alt="image-20220528214107914"></p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-11-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">CONFIG = &#123;<span class="string">&#x27;size&#x27;</span>: <span class="number">8000</span>,  <span class="comment">#  子节点数量</span></span><br><span class="line">          <span class="string">&#x27;dic_path&#x27;</span>: <span class="string">&#x27;data/dic.txt&#x27;</span>&#125;  <span class="comment">#  词典路径</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.child = [<span class="literal">None</span>] * CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">        self.isEnd = <span class="literal">False</span></span><br><span class="line">        self.ch = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_node</span>(<span class="params">self, word: <span class="built_in">str</span></span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        为Trie树添加一个节点</span></span><br><span class="line"><span class="string">        :param word:待加入的字符串</span></span><br><span class="line"><span class="string">        :return:None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        node = self</span><br><span class="line">        <span class="keyword">for</span> ch <span class="keyword">in</span> word:</span><br><span class="line">            index = <span class="built_in">ord</span>(ch) % CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> node.child[index]:</span><br><span class="line">                    node.child[index] = Trie()</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    node.ch = ch</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">elif</span> ch == node.child[index].ch:</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index += <span class="number">1</span></span><br><span class="line">        node.count += <span class="number">1</span></span><br><span class="line">        node.isEnd = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search_prefix</span>(<span class="params">self, prefix: <span class="built_in">str</span></span>) -&gt; &#x27;Trie&#x27;:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Trie树前缀搜索</span></span><br><span class="line"><span class="string">        :param prefix:前缀</span></span><br><span class="line"><span class="string">        :return:前缀字符串对应的节点</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        node = self</span><br><span class="line">        <span class="keyword">for</span> ch <span class="keyword">in</span> prefix:</span><br><span class="line">            index = <span class="built_in">ord</span>(ch) % CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> node.child[index]:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">                <span class="keyword">elif</span> ch == (node.child[index]).ch:</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span>(<span class="params">self, word: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        node = self.search_prefix(word)</span><br><span class="line">        <span class="keyword">return</span> node <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> node.isEnd</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">starts_with</span>(<span class="params">self, prefix: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.search_prefix(prefix) <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span>(<span class="params">self, dic_path</span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        根据dic_path建立一颗Trie树</span></span><br><span class="line"><span class="string">        :return:None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(dic_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;gbk&#x27;</span>) <span class="keyword">as</span> dic:</span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> dic:</span><br><span class="line">                word = line[:<span class="built_in">len</span>(line) - <span class="number">1</span>]  <span class="comment"># 去除换行符</span></span><br><span class="line">                <span class="built_in">print</span>(line)</span><br><span class="line">                self.add_node(word)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    trie = Trie()</span><br><span class="line">    trie.build(CONFIG.get(<span class="string">&#x27;dic_path&#x27;</span>))</span><br><span class="line">    sys.exit(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>文件有多个项目</li>
+</ul>
+<blockquote>
+<p>此时返回值是<code>list</code>类型,<code>list</code>的每一项对应<code>json</code>文件的一个项目,如图</p>
+<p>![5XZN}<a href="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/Mess/202205282140064.png">Z~4V5[C%~2CIK]M06</a></p>
+</blockquote>
+<blockquote>
+<p><code>json</code>的标准格式: 形如</p>
+<ul>
+<li><code>json</code>仅有一个项目</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;0&quot;</span>: <span class="string">&quot;0.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;1&quot;</span>: <span class="string">&quot;1.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;2&quot;</span>: <span class="string">&quot;2.txt&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>json有多个项目</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 多个项目之间用逗号隔开,整体用中括号括起来,只有一个项目不需要中括号</span></span><br><span class="line">[&#123;</span><br><span class="line">    <span class="attr">&quot;0&quot;</span>: <span class="string">&quot;0.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;1&quot;</span>: <span class="string">&quot;1.txt&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;2&quot;</span>: <span class="string">&quot;2.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;3&quot;</span>: <span class="string">&quot;3.txt&quot;</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;js.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">	data=json.load(fp)</span><br><span class="line"><span class="comment"># 得到的data为list类型,data的一项对应json文件的一条数据</span></span><br></pre></td></tr></table></figure>
+<p><code>json.loads</code>可以把符合规则的<code>str</code>转化为<code>dict</code>类型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = js.readline()</span><br><span class="line">        <span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data = json.loads(data)</span><br><span class="line"><span class="comment"># 得到的data为dict类型,它的key/value同json</span></span><br><span class="line">	title=data.get(<span class="string">&#x27;title&#x27;</span>)</span><br><span class="line"><span class="comment"># 然后便可以用dict的get函数获取内容</span></span><br></pre></td></tr></table></figure>
+<h5 id="一般使用方式">一般使用方式</h5>
+<ul>
+<li><code>dump</code>写入,<code>load</code>读取</li>
+</ul>
+<blockquote>
+<p>如果json文件只有一个项目,那么<code>json.dump</code>写入的是标准格式,直接<code>json.load</code>读取即可</p>
+</blockquote>
+<ul>
+<li>一个json文件中有多个项目的情况</li>
+</ul>
+<blockquote>
+<p>例如一个文件包含了许多篇文章,而每次只处理一篇文章</p>
+</blockquote>
+<blockquote>
+<p>由于<code>json.dump</code>写入文件为一行输出,因此每次写完一个项目,再写入一个<code>'\n'</code></p>
+<p>则读取时即可按行读取,并用<code>json.loads</code>转换为<code>dict</code>,如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># ensure_ascii=False 写入中文</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> js.readlines:</span><br><span class="line">        data=json.loads(data)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="BeautifulSoup">BeautifulSoup</h4>
+<h5 id="清洗HTML数据">清洗HTML数据</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">todo = soup.find_all(attrs=&#123;<span class="string">&#x27;class&#x27;</span>: <span class="string">&#x27;class_name&#x27;</span>&#125;)</span><br><span class="line">soup_text = BeautifulSoup(<span class="built_in">str</span>(todo), <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">result = soup_text.get_text()</span><br></pre></td></tr></table></figure>
+<h5 id="在soup-find-all返回的结果中分离不同属性">在<code>soup.find_all</code>返回的结果中分离不同属性</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">soup = BeautifulSoup(page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">hrefs = soup.find_all(<span class="string">&#x27;a&#x27;</span>, href=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 以href为例</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> hrefs:</span><br><span class="line">	href = item[<span class="string">&#x27;href&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="多线程">多线程</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(CONFIG.get(<span class="string">&#x27;thread_num&#x27;</span>)):</span><br><span class="line">    thread = threading.Thread(target=content_crawer.craw, args=(j,))</span><br><span class="line">    threads.append(thread)</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.start()</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.join()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意 不能写成</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">       thread.start()</span><br><span class="line">       thread.join()</span><br></pre></td></tr></table></figure>
+<p>这种情况下会变成串行执行,即等同于单线程</p>
+</blockquote>
 ]]></content>
       <categories>
-        <category>NLP</category>
+        <category>备忘录</category>
       </categories>
       <tags>
-        <tag>NLP</tag>
+        <tag>Python</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Just a test</title>
+    <url>/2021/10/23/TEST/</url>
+    <content><![CDATA[<div class="tabs" id="np"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#np-1">np.linspace</button></li><li class="tab"><button type="button" data-href="#np-2">np.zeros</button></li><li class="tab"><button type="button" data-href="#np-3">np. identity</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="np-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">linspace</span>(<span class="params">start, stop, num=<span class="number">50</span>, endpoint=<span class="literal">True</span>, retstep=<span class="literal">False</span>, dtype=<span class="literal">None</span></span>)</span></span><br></pre></td></tr></table></figure>
+<p>功能 : 均匀生成num个start到stop之间的元素<br>
+参数说明 :</p>
+<ul>
+<li>start : scalar
+<ul>
+<li>起始点</li>
+</ul>
+</li>
+<li>stop : scalar
+<ul>
+<li>终止点</li>
+</ul>
+</li>
+<li>num : int, optional
+<ul>
+<li>Number of samples to generate. Default is 50. Must be non-negative.</li>
+<li>默认值为50,生成start和stop之间50个等差间隔的元素</li>
+</ul>
+</li>
+<li>endpoint : bool, optional
+<ul>
+<li>默认为True,即生成的元素包含stop点,若为false则不包含</li>
+</ul>
+</li>
+<li>retstep : bool, optional
+<ul>
+<li>If True, return (samples, step), where step is the spacing between samples</li>
+</ul>
+</li>
+<li>dtype : dtype, optional
+<ul>
+<li>输出数组的类型。如果没有给出dtype，则从其他输入参数推断数据类型</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="comment">#输出结果: [0.   0.75 1.5  2.25 3.  ]</span></span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="np-2"><p><a href="https://numpy.org/doc/stable/reference/generated/numpy.zeros.html">https://numpy.org/doc/stable/reference/generated/numpy.zeros.html</a></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="np-3"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.identity(n, dtype=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<p>功能 : 创建一个主对角线为1,其他为0的方阵<br>
+参数说明:</p>
+<ul>
+<li>n : int, 矩阵的行数和列数都是n</li>
+<li>dtype : 输出的类型, 默认是float</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">a = np.identity(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="comment"># 输出结果: </span></span><br><span class="line">[[<span class="number">1.</span> <span class="number">0.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">1.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">0.</span> <span class="number">1.</span>]]</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>]]></content>
   </entry>
   <entry>
     <title>Vscode上Git的配置和使用</title>
@@ -1094,6 +1108,42 @@ Valgrind --leak-check=yes ./文件名<br>
       </tags>
   </entry>
   <entry>
+    <title>字典树的Python实现</title>
+    <url>/2021/11/29/Trie/</url>
+    <content><![CDATA[<h4 id="中文分词-存储中文的字典树的Python实现">中文分词:存储中文的字典树的Python实现</h4>
+<blockquote>
+<p>在做NLP分词处理时,为了加快查询速度,我们要用到字典树这种数据结构<br>
+由于汉字字符种类多样,因此常规的26子节点字典树无法满足我们的需求<br>
+下文是一种提前开固定窗口数量利用ord()和hash()进行处理的方式<br>
+动态添加节点的方式暂时咕咕了</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-11-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">CONFIG = &#123;<span class="string">&#x27;size&#x27;</span>: <span class="number">8000</span>,  <span class="comment">#  子节点数量</span></span><br><span class="line">          <span class="string">&#x27;dic_path&#x27;</span>: <span class="string">&#x27;data/dic.txt&#x27;</span>&#125;  <span class="comment">#  词典路径</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.child = [<span class="literal">None</span>] * CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">        self.isEnd = <span class="literal">False</span></span><br><span class="line">        self.ch = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_node</span>(<span class="params">self, word: <span class="built_in">str</span></span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        为Trie树添加一个节点</span></span><br><span class="line"><span class="string">        :param word:待加入的字符串</span></span><br><span class="line"><span class="string">        :return:None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        node = self</span><br><span class="line">        <span class="keyword">for</span> ch <span class="keyword">in</span> word:</span><br><span class="line">            index = <span class="built_in">ord</span>(ch) % CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> node.child[index]:</span><br><span class="line">                    node.child[index] = Trie()</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    node.ch = ch</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">elif</span> ch == node.child[index].ch:</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index += <span class="number">1</span></span><br><span class="line">        node.count += <span class="number">1</span></span><br><span class="line">        node.isEnd = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search_prefix</span>(<span class="params">self, prefix: <span class="built_in">str</span></span>) -&gt; &#x27;Trie&#x27;:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Trie树前缀搜索</span></span><br><span class="line"><span class="string">        :param prefix:前缀</span></span><br><span class="line"><span class="string">        :return:前缀字符串对应的节点</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        node = self</span><br><span class="line">        <span class="keyword">for</span> ch <span class="keyword">in</span> prefix:</span><br><span class="line">            index = <span class="built_in">ord</span>(ch) % CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> node.child[index]:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">                <span class="keyword">elif</span> ch == (node.child[index]).ch:</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span>(<span class="params">self, word: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        node = self.search_prefix(word)</span><br><span class="line">        <span class="keyword">return</span> node <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> node.isEnd</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">starts_with</span>(<span class="params">self, prefix: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.search_prefix(prefix) <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span>(<span class="params">self, dic_path</span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        根据dic_path建立一颗Trie树</span></span><br><span class="line"><span class="string">        :return:None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(dic_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;gbk&#x27;</span>) <span class="keyword">as</span> dic:</span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> dic:</span><br><span class="line">                word = line[:<span class="built_in">len</span>(line) - <span class="number">1</span>]  <span class="comment"># 去除换行符</span></span><br><span class="line">                <span class="built_in">print</span>(line)</span><br><span class="line">                self.add_node(word)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    trie = Trie()</span><br><span class="line">    trie.build(CONFIG.get(<span class="string">&#x27;dic_path&#x27;</span>))</span><br><span class="line">    sys.exit(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>NLP</category>
+      </categories>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>倒排索引的Python实现</title>
+    <url>/2022/05/26/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<blockquote>
+<p>在词表不是非常大时全部读入内存建立索引即可,如下</p>
+<p>如果词表特别大,可能导致内存不足出现问题</p>
+<p>可以分批存入索引文件, 修改读取索引的方式即可</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">coding:UTF-8</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2022-5-26</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ltp <span class="keyword">import</span> LTP  <span class="comment"># 分词库</span></span><br><span class="line"></span><br><span class="line">ltp = LTP()</span><br><span class="line"></span><br><span class="line">word_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PreProcessed</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.stop_words = <span class="literal">None</span></span><br><span class="line">        self.cnt = <span class="number">0</span></span><br><span class="line">        self.index_path = <span class="string">&#x27;data/inverted_index.txt&#x27;</span> <span class="comment"># 倒排索引存储路径</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read_stop_words</span>(<span class="params">self, file_path: <span class="built_in">str</span></span>):</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            self.stop_words = <span class="built_in">set</span>(fp.read().split(<span class="string">&#x27;\n&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_index</span>(<span class="params">self, input_path: <span class="built_in">str</span></span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        建立倒排索引并保存到文件中</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(input_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">            line = js.readline()</span><br><span class="line">            <span class="keyword">while</span> line != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">                data = json.loads(line)</span><br><span class="line">                pid = data.get(<span class="string">&#x27;pid&#x27;</span>)</span><br><span class="line">                seg_list = data.get(<span class="string">&#x27;document&#x27;</span>)</span><br><span class="line">                seg = ltp.seg(seg_list)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> item <span class="keyword">in</span> seg[<span class="number">0</span>]:</span><br><span class="line">                    <span class="keyword">for</span> word <span class="keyword">in</span> item:</span><br><span class="line">                        <span class="keyword">if</span> word <span class="keyword">in</span> self.stop_words:</span><br><span class="line">                            <span class="keyword">pass</span></span><br><span class="line">                        <span class="keyword">elif</span> word <span class="keyword">not</span> <span class="keyword">in</span> word_dict:</span><br><span class="line">                            word_dict[word] = <span class="built_in">set</span>()</span><br><span class="line">                            word_dict[word].add(pid)</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            word_dict[word].add(pid)</span><br><span class="line">                line = js.readline()</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(self.index_path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> index_output:</span><br><span class="line">            <span class="keyword">for</span> key, value <span class="keyword">in</span> word_dict.items():</span><br><span class="line">                index_output.write(<span class="built_in">str</span>(key) + <span class="string">&#x27;: &#x27;</span>)</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> value:</span><br><span class="line">                    index_output.write(<span class="built_in">str</span>(i) + <span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                index_output.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read_index</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        从文件中读取索引</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(self.index_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            line = fp.readline()</span><br><span class="line">            <span class="keyword">while</span> line != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">                word, index = line.split(<span class="string">&#x27;: &#x27;</span>)</span><br><span class="line">                pid_list = index[:-<span class="number">2</span>].split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                line = fp.readline()</span><br><span class="line">                word_dict[word] = <span class="built_in">set</span>(pid_list)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    pre = PreProcessed()</span><br><span class="line">    pre.read_stop_words(<span class="string">&#x27;data/stopwords.txt&#x27;</span>) <span class="comment">#  读入停用词</span></span><br><span class="line">    pre.generate_index(<span class="string">&#x27;data/passages_multi_sentences.json&#x27;</span>)  <span class="comment"># 参数为待建立索引的文件</span></span><br><span class="line">    exit(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>NLP</category>
+      </categories>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>各种教程和参考</title>
     <url>/2021/06/07/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E6%95%99%E7%A8%8B%E5%92%8C%E5%8F%82%E8%80%83/</url>
     <content><![CDATA[<p>[Toc]</p>
@@ -1180,59 +1230,6 @@ cmd输入nvm,如果出现版本号说明安装成功</p>
       <tags>
         <tag>hexo</tag>
         <tag>nvm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在gitee上做一个图床</title>
-    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<blockquote>
-<p>本人已经更换回Github图床<br>
-原因：Gitee图片大于1M时需要登录才能查看,只有小于1M才能随意直接访问<br>
-虽然我有压缩图片的习惯(提升加载速度),但有了梯子之后还是换回了Github<br>
-但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见<br>
-<a href="https://lemontreen.github.io/2021/07/22/PicGo_CDN">https://lemontreen.github.io/2021/07/22/PicGo_CDN</a><br>
-<strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
-</blockquote>
-<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？">如何在gitee上部署一个图床给自己markdown文本使用？</h3>
-<p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况</p>
-<h4 id="需要工具-PicGo-以及-gitee-账号">需要工具: PicGo 以及 gitee 账号</h4>
-<h4 id="1-下载PicGo">1.下载PicGo</h4>
-<p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a></p>
-<h4 id="2-创建一个仓库和密钥">2.创建一个仓库和密钥</h4>
-<p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png" alt=""><br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png" alt=""></p>
-<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects">创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5>
-<p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png" alt=""><br>
-生成的令牌只会显示一次，务必记好!!!</p>
-<h4 id="3-配置PicGo">3.配置PicGo</h4>
-<p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png" alt=""><br>
-然后重启PicGo 在插件设置中找到gitee<br>
-repo: 填写用户名/仓库名<br>
-branch: master<br>
-token: 填写刚刚的访问令牌<br>
-path: 想上传到gitee的目录<br>
-customPath和customURL不用填写<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png" alt=""><br>
-点击确定和设为默认图床</p>
-<p>！！大功告成！！</p>
-<h4 id="4-使用方式">4.使用方式</h4>
-<p>直接将图片拖拽到上传区即可<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png" alt=""><br>
-此时在文档中ctrl+v即可粘贴URL<br>
-此时去gitee仓库即可看到<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png" alt=""><br>
-PicgoCDN加速设置方法：<br>
-<a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
-<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241">参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>Picgo</tag>
-        <tag>图床</tag>
       </tags>
   </entry>
   <entry>
@@ -1347,6 +1344,59 @@ E_1\cap E_2=E_2\cap E_1\\
 ]]></content>
       <tags>
         <tag>关系代数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在gitee上做一个图床</title>
+    <url>/2021/03/21/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<blockquote>
+<p>本人已经更换回Github图床<br>
+原因：Gitee图片大于1M时需要登录才能查看,只有小于1M才能随意直接访问<br>
+虽然我有压缩图片的习惯(提升加载速度),但有了梯子之后还是换回了Github<br>
+但github存在其他人打开页面图片加载不出来的情况，解决方式是<code>cdn加速</code>，见<br>
+<a href="https://lemontreen.github.io/2021/07/22/PicGo_CDN">https://lemontreen.github.io/2021/07/22/PicGo_CDN</a><br>
+<strong>Github图床与Gitee配置方法几乎完全相同，因此不再重写</strong></p>
+</blockquote>
+<h3 id="如何在gitee上部署一个图床给自己markdown文本使用？">如何在gitee上部署一个图床给自己markdown文本使用？</h3>
+<p>为什么不用github? 答:国内访问速度过慢，总出现打不开的情况</p>
+<h4 id="需要工具-PicGo-以及-gitee-账号">需要工具: PicGo 以及 gitee 账号</h4>
+<h4 id="1-下载PicGo">1.下载PicGo</h4>
+<p>下载地址: <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a></p>
+<h4 id="2-创建一个仓库和密钥">2.创建一个仓库和密钥</h4>
+<p>新建一个仓库(右上角)，设为公开，勾选使用Readme文件初始化仓库<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195111.png" alt=""><br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200205.png" alt=""></p>
+<h5 id="创建一个访问令牌-点击头像进入设置-在左侧找到私人令牌-生成令牌，只需要勾选projects">创建一个访问令牌:点击头像进入设置 在左侧找到私人令牌 生成令牌，只需要勾选projects</h5>
+<p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195129.png" alt=""><br>
+生成的令牌只会显示一次，务必记好!!!</p>
+<h4 id="3-配置PicGo">3.配置PicGo</h4>
+<p>在PicGo中左侧最下找到插件设置 搜索：gitee 安装gitee-uploader插件 如图<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195046.png" alt=""><br>
+然后重启PicGo 在插件设置中找到gitee<br>
+repo: 填写用户名/仓库名<br>
+branch: master<br>
+token: 填写刚刚的访问令牌<br>
+path: 想上传到gitee的目录<br>
+customPath和customURL不用填写<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321200040.png" alt=""><br>
+点击确定和设为默认图床</p>
+<p>！！大功告成！！</p>
+<h4 id="4-使用方式">4.使用方式</h4>
+<p>直接将图片拖拽到上传区即可<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195410.png" alt=""><br>
+此时在文档中ctrl+v即可粘贴URL<br>
+此时去gitee仓库即可看到<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/20210321195448.png" alt=""><br>
+PicgoCDN加速设置方法：<br>
+<a href="https://cloud.tencent.com/developer/article/1651601">https://cloud.tencent.com/developer/article/1651601</a></p>
+<h2 id="参考及鸣谢：https-blog-csdn-net-disilll-article-details-103962241">参考及鸣谢：<a href="https://blog.csdn.net/disilll/article/details/103962241">https://blog.csdn.net/disilll/article/details/103962241</a></h2>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Picgo</tag>
+        <tag>图床</tag>
       </tags>
   </entry>
   <entry>
@@ -2209,23 +2259,6 @@ GBN协议结果：<br>
       <tags>
         <tag>计算机网络</tag>
         <tag>UDP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>倒排索引的Python实现</title>
-    <url>/2022/05/26/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/</url>
-    <content><![CDATA[<blockquote>
-<p>在词表不是非常大时全部读入内存建立索引即可,如下</p>
-<p>如果词表特别大,可能导致内存不足出现问题</p>
-<p>可以分批存入索引文件, 修改读取索引的方式即可</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">coding:UTF-8</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2022-5-26</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ltp <span class="keyword">import</span> LTP  <span class="comment"># 分词库</span></span><br><span class="line"></span><br><span class="line">ltp = LTP()</span><br><span class="line"></span><br><span class="line">word_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PreProcessed</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.stop_words = <span class="literal">None</span></span><br><span class="line">        self.cnt = <span class="number">0</span></span><br><span class="line">        self.index_path = <span class="string">&#x27;data/inverted_index.txt&#x27;</span> <span class="comment"># 倒排索引存储路径</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read_stop_words</span>(<span class="params">self, file_path: <span class="built_in">str</span></span>):</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            self.stop_words = <span class="built_in">set</span>(fp.read().split(<span class="string">&#x27;\n&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_index</span>(<span class="params">self, input_path: <span class="built_in">str</span></span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        建立倒排索引并保存到文件中</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(input_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">            line = js.readline()</span><br><span class="line">            <span class="keyword">while</span> line != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">                data = json.loads(line)</span><br><span class="line">                pid = data.get(<span class="string">&#x27;pid&#x27;</span>)</span><br><span class="line">                seg_list = data.get(<span class="string">&#x27;document&#x27;</span>)</span><br><span class="line">                seg = ltp.seg(seg_list)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> item <span class="keyword">in</span> seg[<span class="number">0</span>]:</span><br><span class="line">                    <span class="keyword">for</span> word <span class="keyword">in</span> item:</span><br><span class="line">                        <span class="keyword">if</span> word <span class="keyword">in</span> self.stop_words:</span><br><span class="line">                            <span class="keyword">pass</span></span><br><span class="line">                        <span class="keyword">elif</span> word <span class="keyword">not</span> <span class="keyword">in</span> word_dict:</span><br><span class="line">                            word_dict[word] = <span class="built_in">set</span>()</span><br><span class="line">                            word_dict[word].add(pid)</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            word_dict[word].add(pid)</span><br><span class="line">                line = js.readline()</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(self.index_path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> index_output:</span><br><span class="line">            <span class="keyword">for</span> key, value <span class="keyword">in</span> word_dict.items():</span><br><span class="line">                index_output.write(<span class="built_in">str</span>(key) + <span class="string">&#x27;: &#x27;</span>)</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> value:</span><br><span class="line">                    index_output.write(<span class="built_in">str</span>(i) + <span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                index_output.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read_index</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        从文件中读取索引</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(self.index_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            line = fp.readline()</span><br><span class="line">            <span class="keyword">while</span> line != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">                word, index = line.split(<span class="string">&#x27;: &#x27;</span>)</span><br><span class="line">                pid_list = index[:-<span class="number">2</span>].split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                line = fp.readline()</span><br><span class="line">                word_dict[word] = <span class="built_in">set</span>(pid_list)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    pre = PreProcessed()</span><br><span class="line">    pre.read_stop_words(<span class="string">&#x27;data/stopwords.txt&#x27;</span>) <span class="comment">#  读入停用词</span></span><br><span class="line">    pre.generate_index(<span class="string">&#x27;data/passages_multi_sentences.json&#x27;</span>)  <span class="comment"># 参数为待建立索引的文件</span></span><br><span class="line">    exit(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>NLP</category>
-      </categories>
-      <tags>
-        <tag>NLP</tag>
       </tags>
   </entry>
 </search>
