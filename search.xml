@@ -268,6 +268,130 @@ Eclipse-&gt;帮助(Help)-&gt;Eclpise Marketplace-&gt;查询Eclemma-&gt;Install&g
       </tags>
   </entry>
   <entry>
+    <title>hexo搭建教程</title>
+    <url>/2021/03/21/Hexo%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p>今天学习用hexo部署博客,记录一下过程</p>
+<span id="more"></span>
+<p>PS：顺便写篇博客熟悉一下md语法<br>
+环境: Win10<br>
+准备内容: 安装git和nodejs<br>
+下载地址: git: <a href="https://git-scm.com/">https://git-scm.com/</a>   nodejs: <a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a><br>
+关于hexo: Hexo 是一个基于nodejs的静态博客网站生成器，可以轻松地完成个人博客的配置和部署，并且兼容Windows、MacOS、Linux<br>
+!!!注意：最好把nodejs放入path环境变量中，否则后面的步骤可能(非100%)遇到问题方式自行百度并不难</p>
+<p>[Toc]</p>
+<h2 id="正式步骤">正式步骤</h2>
+<h3 id="第一部分：搭建hexo">第一部分：搭建hexo</h3>
+<h4 id="1-打开命令行cmd">1.打开命令行cmd</h4>
+<p>输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<p>和</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p>查看是否安装上以及版本<br>
+如图<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192151.png" alt=""></p>
+<h4 id="2-换源-淘宝源">2.换源(淘宝源)</h4>
+<p>在命令行(cmd)输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org  </span><br></pre></td></tr></table></figure>
+<p>输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cnpm -v </span><br></pre></td></tr></table></figure>
+<p>查看版本以及是否安装成功<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192315.png" alt=""></p>
+<h4 id="3-安装hexo">3.安装hexo</h4>
+<p>命令行输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>安装完成用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+<p>验证一下<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192329.png" alt=""></p>
+<h4 id="4">4.</h4>
+<p>随便建立一个文件夹用来放置博客所需内容 例如我的 E:\BLOG<br>
+在命令行用cd命令进入所建立的目录 如图<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192341.png" alt=""></p>
+<h4 id="5-初始化hexo">5.初始化hexo</h4>
+<p>输入命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo init  </span><br></pre></td></tr></table></figure>
+<h4 id="6-启动hexo">6.启动hexo</h4>
+<p>输入命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>即可<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192409.png" alt=""><br>
+进入 <a href="http://localhost:4000">http://localhost:4000</a> 查看</p>
+<h4 id="7-新建一篇文章">7.新建一篇文章</h4>
+<p>输入ctrl+c断开hexo<br>
+输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;此处为文章标题&quot;</span>  </span><br></pre></td></tr></table></figure>
+<p>此时会在/source/_posts/目录下生成 <a href="http://xn--siqv6xu5jfpc51fw92awr1c.md">此处为文章标题.md</a><br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192421.png" alt=""><br>
+之后可以进入自行修改文章内容(使用markdown语法)</p>
+<h4 id="8">8.</h4>
+<p>命令行回到BLOG文件夹<br>
+输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s </span><br></pre></td></tr></table></figure>
+<p>即可在 <a href="http://localhost:4000">http://localhost:4000</a> 查看</p>
+<h4 id="此时hexo搭建已经完成，下面是将其在github上部署">此时hexo搭建已经完成，下面是将其在github上部署</h4>
+<h3 id="第二部分：将博客部署在github上">第二部分：将博客部署在github上</h3>
+<h4 id="准备内容-github账号">准备内容: github账号</h4>
+<h4 id="1-建立一个新的仓库">1.建立一个新的仓库</h4>
+<p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192430.png" alt=""><br>
+注意：此处仓库命名需要符合规则<br>
+规则为 <a href="http://username.github.io">username.github.io</a>  (username为github账号名)</p>
+<h4 id="2-回到命令行安装工具">2.回到命令行安装工具</h4>
+<p>在博客文件夹目录下<br>
+输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git  </span><br></pre></td></tr></table></figure>
+<h4 id="3-更改设置">3.更改设置</h4>
+<p>找到_config.yml文件 打开(可以使用vscode等)<br>
+翻到最底部 将 type改为git 添加 repo: “此处为仓库地址” 添加 branch: master<br>
+repo为仓库地址  branch为master即可<br>
+-------！！！注意格式！！！repo冒号和branch冒号后都有一个空格且和type对齐！！！------<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192510.png" alt=""></p>
+<h4 id="4-部署到远端">4.部署到远端</h4>
+<p>输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.email <span class="string">&quot;xxx(此处为邮箱)&quot;</span>  </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;xxx(此处为用户名)&quot;</span>  <span class="comment">#github用户名</span></span><br></pre></td></tr></table></figure>
+<p>再输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d  </span><br></pre></td></tr></table></figure>
+<p>将会弹出网页提示是否关联git和github 授权即可，可能网页打不开，因为国内日常连不上github，可以挂梯子或者多刷新几次<br>
+此后刷新github界面即可看见仓库不为空了<br>
+访问该页面地址的最后一段 如图<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321203838.png" alt=""><br>
+即可进入博客主页</p>
+<h4 id="到此为止-博客已成功部署在github上">到此为止 博客已成功部署在github上</h4>
+<h3 id="第三部分-更改博客主题-非必须项">第三部分:更改博客主题(非必须项)</h3>
+<p>例如:github上的yilia主题</p>
+<h4 id="1-设置主题">1.设置主题</h4>
+<p>仍在BLOG目录下输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
+<p>将主题下载至themes/yilia目录下<br>
+修改_config.yml文件<br>
+找到theme 改为yilia<br>
+<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192535.png" alt=""><br>
+输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g  </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s  </span><br></pre></td></tr></table></figure>
+<p>即可在 <a href="http://localhost:4000">http://localhost:4000</a> 查看</p>
+<h4 id="2-推到远端">2.推到远端</h4>
+<p>ctrl+c退出hexo<br>
+输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>即可<br>
+其他主题方式相同，github上有许多主题<br>
+此时即可通过github地址进入博客(需等待一小会生效)</p>
+<h2 id="以上为正文全部内容">以上为正文全部内容</h2>
+<h2 id="参考与鸣谢：B站-codesheep">参考与鸣谢：B站: codesheep</h2>
+<p><a href="https://www.bilibili.com/video/BV1Yb411a7ty">https://www.bilibili.com/video/BV1Yb411a7ty</a></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HIT机器学习Lab1</title>
     <url>/2021/10/16/HIT_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0Lab1/</url>
     <content><![CDATA[<blockquote>
@@ -416,127 +540,27 @@ b_{k} &amp;=\frac{\boldsymbol{r}_{k+1}^{T} \boldsymbol{r}_{k+1}}{\boldsymbol{r}_
       </tags>
   </entry>
   <entry>
-    <title>hexo搭建教程</title>
-    <url>/2021/03/21/Hexo%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p>今天学习用hexo部署博客,记录一下过程</p>
-<span id="more"></span>
-<p>PS：顺便写篇博客熟悉一下md语法<br>
-环境: Win10<br>
-准备内容: 安装git和nodejs<br>
-下载地址: git: <a href="https://git-scm.com/">https://git-scm.com/</a>   nodejs: <a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a><br>
-关于hexo: Hexo 是一个基于nodejs的静态博客网站生成器，可以轻松地完成个人博客的配置和部署，并且兼容Windows、MacOS、Linux<br>
-!!!注意：最好把nodejs放入path环境变量中，否则后面的步骤可能(非100%)遇到问题方式自行百度并不难</p>
-<p>[Toc]</p>
-<h2 id="正式步骤">正式步骤</h2>
-<h3 id="第一部分：搭建hexo">第一部分：搭建hexo</h3>
-<h4 id="1-打开命令行cmd">1.打开命令行cmd</h4>
-<p>输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
-<p>和</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p>查看是否安装上以及版本<br>
-如图<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192151.png" alt=""></p>
-<h4 id="2-换源-淘宝源">2.换源(淘宝源)</h4>
-<p>在命令行(cmd)输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org  </span><br></pre></td></tr></table></figure>
-<p>输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cnpm -v </span><br></pre></td></tr></table></figure>
-<p>查看版本以及是否安装成功<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192315.png" alt=""></p>
-<h4 id="3-安装hexo">3.安装hexo</h4>
-<p>命令行输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>安装完成用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
-<p>验证一下<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192329.png" alt=""></p>
-<h4 id="4">4.</h4>
-<p>随便建立一个文件夹用来放置博客所需内容 例如我的 E:\BLOG<br>
-在命令行用cd命令进入所建立的目录 如图<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192341.png" alt=""></p>
-<h4 id="5-初始化hexo">5.初始化hexo</h4>
-<p>输入命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo init  </span><br></pre></td></tr></table></figure>
-<h4 id="6-启动hexo">6.启动hexo</h4>
-<p>输入命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>即可<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192409.png" alt=""><br>
-进入 <a href="http://localhost:4000">http://localhost:4000</a> 查看</p>
-<h4 id="7-新建一篇文章">7.新建一篇文章</h4>
-<p>输入ctrl+c断开hexo<br>
-输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;此处为文章标题&quot;</span>  </span><br></pre></td></tr></table></figure>
-<p>此时会在/source/_posts/目录下生成 <a href="http://xn--siqv6xu5jfpc51fw92awr1c.md">此处为文章标题.md</a><br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192421.png" alt=""><br>
-之后可以进入自行修改文章内容(使用markdown语法)</p>
-<h4 id="8">8.</h4>
-<p>命令行回到BLOG文件夹<br>
-输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s </span><br></pre></td></tr></table></figure>
-<p>即可在 <a href="http://localhost:4000">http://localhost:4000</a> 查看</p>
-<h4 id="此时hexo搭建已经完成，下面是将其在github上部署">此时hexo搭建已经完成，下面是将其在github上部署</h4>
-<h3 id="第二部分：将博客部署在github上">第二部分：将博客部署在github上</h3>
-<h4 id="准备内容-github账号">准备内容: github账号</h4>
-<h4 id="1-建立一个新的仓库">1.建立一个新的仓库</h4>
-<p><img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192430.png" alt=""><br>
-注意：此处仓库命名需要符合规则<br>
-规则为 <a href="http://username.github.io">username.github.io</a>  (username为github账号名)</p>
-<h4 id="2-回到命令行安装工具">2.回到命令行安装工具</h4>
-<p>在博客文件夹目录下<br>
-输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git  </span><br></pre></td></tr></table></figure>
-<h4 id="3-更改设置">3.更改设置</h4>
-<p>找到_config.yml文件 打开(可以使用vscode等)<br>
-翻到最底部 将 type改为git 添加 repo: “此处为仓库地址” 添加 branch: master<br>
-repo为仓库地址  branch为master即可<br>
--------！！！注意格式！！！repo冒号和branch冒号后都有一个空格且和type对齐！！！------<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192510.png" alt=""></p>
-<h4 id="4-部署到远端">4.部署到远端</h4>
-<p>输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.email <span class="string">&quot;xxx(此处为邮箱)&quot;</span>  </span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;xxx(此处为用户名)&quot;</span>  <span class="comment">#github用户名</span></span><br></pre></td></tr></table></figure>
-<p>再输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d  </span><br></pre></td></tr></table></figure>
-<p>将会弹出网页提示是否关联git和github 授权即可，可能网页打不开，因为国内日常连不上github，可以挂梯子或者多刷新几次<br>
-此后刷新github界面即可看见仓库不为空了<br>
-访问该页面地址的最后一段 如图<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321203838.png" alt=""><br>
-即可进入博客主页</p>
-<h4 id="到此为止-博客已成功部署在github上">到此为止 博客已成功部署在github上</h4>
-<h3 id="第三部分-更改博客主题-非必须项">第三部分:更改博客主题(非必须项)</h3>
-<p>例如:github上的yilia主题</p>
-<h4 id="1-设置主题">1.设置主题</h4>
-<p>仍在BLOG目录下输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
-<p>将主题下载至themes/yilia目录下<br>
-修改_config.yml文件<br>
-找到theme 改为yilia<br>
-<img src="https://gitee.com/ning-mengshu/blogpics/raw/master/blogpics/hexo%E6%95%99%E7%A8%8B/20210321192535.png" alt=""><br>
-输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g  </span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s  </span><br></pre></td></tr></table></figure>
-<p>即可在 <a href="http://localhost:4000">http://localhost:4000</a> 查看</p>
-<h4 id="2-推到远端">2.推到远端</h4>
-<p>ctrl+c退出hexo<br>
-输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>即可<br>
-其他主题方式相同，github上有许多主题<br>
-此时即可通过github地址进入博客(需等待一小会生效)</p>
-<h2 id="以上为正文全部内容">以上为正文全部内容</h2>
-<h2 id="参考与鸣谢：B站-codesheep">参考与鸣谢：B站: codesheep</h2>
-<p><a href="https://www.bilibili.com/video/BV1Yb411a7ty">https://www.bilibili.com/video/BV1Yb411a7ty</a></p>
-]]></content>
+    <title>Markdown</title>
+    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<p>[Toc]</p>
+<h4 id="Markdown公式设置对齐">Markdown公式设置对齐</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 举例:</span><br><span class="line"></span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">a+b&amp;&#x3D;c+d\\</span><br><span class="line">e&amp;&#x3D;f</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line"></span><br><span class="line">+ &quot;&amp;&quot;用于表明对齐起始位置</span><br><span class="line">+ \begin&#123;aligned&#125;和\end&#123;aligned&#125;不能与公式空一行,要紧贴</span><br><span class="line">+ \\为换行</span><br></pre></td></tr></table></figure>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>下面是实际效果</mtext><mi mathvariant="normal">.</mi><mtext>可以看到是以等号位置对齐的</mtext><mspace linebreak="newline"></mspace><mtable rowspacing="0.2500em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>c</mi><mo>+</mo><mi>d</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>e</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>f</mi></mrow></mstyle></mtd></mtr></mtable><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">下面是实际效果.可以看到是以等号位置对齐的\\
+\begin{aligned}
+a+b&amp;=c+d\\
+e&amp;=f
+\end{aligned}\\
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">下面是实际效果</span><span class="mord">.</span><span class="mord cjk_fallback">可以看到是以等号位置对齐的</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:3.0000000000000004em;vertical-align:-1.2500000000000002em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7500000000000002em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">b</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2500000000000002em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7500000000000002em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">d</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2500000000000002em;"><span></span></span></span></span></span></span></span></span><span class="mspace newline"></span></span></span></span></p>
+<h4 id="常用语法：">常用语法：</h4>
+<p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
+<h4 id="如何实现内容折叠">如何实现内容折叠</h4>
+<p>原理：使用<code>html</code>标签</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>教程</category>
+        <category>备忘录</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -793,30 +817,6 @@ Valgrind --leak-check=yes ./文件名<br>
       </tags>
   </entry>
   <entry>
-    <title>Markdown</title>
-    <url>/2021/06/05/Markdown%E5%A4%87%E5%BF%98%E5%BD%95/</url>
-    <content><![CDATA[<p>[Toc]</p>
-<h4 id="Markdown公式设置对齐">Markdown公式设置对齐</h4>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 举例:</span><br><span class="line"></span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">a+b&amp;&#x3D;c+d\\</span><br><span class="line">e&amp;&#x3D;f</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line"></span><br><span class="line">+ &quot;&amp;&quot;用于表明对齐起始位置</span><br><span class="line">+ \begin&#123;aligned&#125;和\end&#123;aligned&#125;不能与公式空一行,要紧贴</span><br><span class="line">+ \\为换行</span><br></pre></td></tr></table></figure>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>下面是实际效果</mtext><mi mathvariant="normal">.</mi><mtext>可以看到是以等号位置对齐的</mtext><mspace linebreak="newline"></mspace><mtable rowspacing="0.2500em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>c</mi><mo>+</mo><mi>d</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>e</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>f</mi></mrow></mstyle></mtd></mtr></mtable><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">下面是实际效果.可以看到是以等号位置对齐的\\
-\begin{aligned}
-a+b&amp;=c+d\\
-e&amp;=f
-\end{aligned}\\
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">下面是实际效果</span><span class="mord">.</span><span class="mord cjk_fallback">可以看到是以等号位置对齐的</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:3.0000000000000004em;vertical-align:-1.2500000000000002em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7500000000000002em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">b</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2500000000000002em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7500000000000002em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">d</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2500000000000002em;"><span></span></span></span></span></span></span></span></span><span class="mspace newline"></span></span></span></span></p>
-<h4 id="常用语法：">常用语法：</h4>
-<p><a href="https://www.jianshu.com/p/191d1e21f7ed">https://www.jianshu.com/p/191d1e21f7ed</a></p>
-<h4 id="如何实现内容折叠">如何实现内容折叠</h4>
-<p>原理：使用<code>html</code>标签</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;&quot;摘要&quot;&lt;&#x2F;summary&gt;</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;details&gt;</span><br><span class="line">details：折叠语法标签</span><br><span class="line">summary：折叠语法展示的摘要</span><br><span class="line">pre：以原有格式显示元素内的文字是已经格式化的文本</span><br><span class="line">code：指定代码范例</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PicGo CDN加速方式</title>
     <url>/2021/07/22/PicGo_CDN/</url>
     <content><![CDATA[<p><strong>方法：更改自定义域名(最下面圈出来那行)</strong><br>
@@ -833,131 +833,6 @@ e&amp;=f
       <tags>
         <tag>CDN</tag>
         <tag>Picgo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python爬虫入门</title>
-    <url>/2021/08/25/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<p>[Toc]</p>
-<p>此帖为Python爬虫入门帖</p>
-<p>分为两部分:</p>
-<ul>
-<li>
-<p>简单采集疫情信息</p>
-</li>
-<li>
-<p>批量采集网页数据</p>
-</li>
-</ul>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">环境准备:</span><br><span class="line"><span class="bullet">    +</span> Python3.9.0</span><br><span class="line"><span class="bullet">	+</span> Pycharm 2021</span><br><span class="line">库:</span><br><span class="line"><span class="bullet">    +</span> request请求库</span><br><span class="line"><span class="bullet">    +</span> BeautifulSoup解析库</span><br><span class="line"><span class="bullet">    +</span> 正则表达式</span><br><span class="line"><span class="bullet">    +</span> json模块</span><br></pre></td></tr></table></figure>
-<h3 id="采集疫情信息">采集疫情信息</h3>
-<h4 id="采集上一天疫情信息-用来了解各个库的用法">采集上一天疫情信息(用来了解各个库的用法)</h4>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 导入 requests请求库</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment"># 导入正则表达式模块</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># 导入json模块</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment"># 导入BeautifulSoup库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.发送Get请求获取主页信息</span></span><br><span class="line">response = requests.get(<span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span>)</span><br><span class="line">home_page = response.content.decode()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.从主页信息中提取最近一日各国疫情数据信息</span></span><br><span class="line">soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">script = soup.find(<span class="built_in">id</span>=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">text = script.string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.获取json格式字符串 </span></span><br><span class="line">json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 4.把json格式字符串转换为Python类型</span></span><br><span class="line">last_day_data = json.loads(json_str)</span><br><span class="line"><span class="comment"># 5.把数据写入相应json文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_data.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    json.dump(last_day_data, fp, ensure_ascii=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="采集数据正文">采集数据正文</h4>
-<blockquote>
-<p>采集内容: 1.最近一日世界各国疫情数据 	2.最近一日中国疫情数据<br>
-3.从1月23日期世界各国疫情数据</p>
-</blockquote>
-<p><strong>上文的代码由于拓展性和可复用性差,因此我们对代码进行重构,提高可拓展性和复用性</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CoronaVirusSpider</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.home_url = <span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_content_from_url</span>(<span class="params">self, url</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :param url:请求的URL</span></span><br><span class="line"><span class="string">        :return: 响应得到的字符串</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">return</span> response.content.decode()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_home_page</span>(<span class="params">self, home_page, tag_id</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        解析首页内容,获取解析后的Python数据</span></span><br><span class="line"><span class="string">        :param home_page:首页内容</span></span><br><span class="line"><span class="string">        :return: 解析后的Python数据</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">        script = soup.find(<span class="built_in">id</span>=tag_id)</span><br><span class="line">        text = script.string</span><br><span class="line">        json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">return</span> json.loads(json_str)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span>(<span class="params">self, data, path</span>):</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            json.dump(data, fp, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集各国最近一天的疫情信息</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取首页内容</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析首页内容,获取最近一天各国疫情数据</span></span><br><span class="line">        last_day_corona_virus = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_corona_virus, <span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集从1月23号以来各国的疫情数据</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.加载各国疫情数据</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            last_day_corona_virus = json.load(fp)</span><br><span class="line">        corona_virus = []</span><br><span class="line">        <span class="comment"># 2.遍历各国获取统计URL</span></span><br><span class="line">        <span class="keyword">for</span> country <span class="keyword">in</span> tqdm(last_day_corona_virus, <span class="string">&#x27;采集1月23以来各国疫情信息&#x27;</span>):</span><br><span class="line">            <span class="comment"># 3.发送请求,获取各国从1月23号至今的json数据</span></span><br><span class="line">            statistics_data_url = country[<span class="string">&#x27;statisticsData&#x27;</span>]</span><br><span class="line">            statistics_data_json_str = self.get_content_from_url(statistics_data_url)</span><br><span class="line">            <span class="comment"># 4.把Json数据转换为Python数据,添加到列表汇总</span></span><br><span class="line">            statistics_data = json.loads(statistics_data_json_str)[<span class="string">&#x27;data&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            <span class="keyword">for</span> one_day <span class="keyword">in</span> statistics_data:</span><br><span class="line">                one_day[<span class="string">&#x27;provinceName&#x27;</span>] = country[<span class="string">&#x27;provinceName&#x27;</span>]</span><br><span class="line">                one_day[<span class="string">&#x27;countryShortCode&#x27;</span>] = country[<span class="string">&#x27;countryShortCode&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            corona_virus.extend(statistics_data)</span><br><span class="line">            <span class="comment"># 5.把列表保存为Json文件</span></span><br><span class="line">        self.save(corona_virus, <span class="string">&#x27;data/corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus_of_China</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集最近1日中国各省疫情数据,方式同上文</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取疫情主页</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析主页,获取信息</span></span><br><span class="line">        last_day_china_data = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getAreaStat&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_china_data, <span class="string">&#x27;data/last_day_corona_virus_of_China.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.crawl_last_day_corona_virus()  <span class="comment"># 采集最近1日世界各国疫情数据</span></span><br><span class="line">        <span class="comment"># self.crawl_corona_virus()     # 采集从1月23日起世界各国疫情数据</span></span><br><span class="line">        self.crawl_last_day_corona_virus_of_China() <span class="comment"># 采集最近1日中国各省疫情数据</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    spider = CoronaVirusSpider()</span><br><span class="line">    spider.run()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="批量爬取网页">批量爬取网页</h3>
-<blockquote>
-<p>以爬取今日哈工大新闻页面为例,新闻列表页面的URL格式为<br>
-<code>https://news.hit.edu.cn/zhxw/list +r'\d*'+ .htm</code><br>
-例如<code>https://news.hit.edu.cn/zhxw/list1.htm</code>为新闻第一页</p>
-</blockquote>
-<p>第一步,批量获取所需页面的URL</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">craw_for_urls</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    获取1000+网页的URL</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(CONFIG.get(<span class="string">&#x27;url_file&#x27;</span>), <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> out:</span><br><span class="line">        <span class="keyword">while</span> self.cnt_urls &lt; <span class="number">1000</span>:</span><br><span class="line">            response = requests.get(CONFIG.get(<span class="string">&#x27;base_url&#x27;</span>) + <span class="built_in">str</span>(self.cnt_pages) + <span class="string">&#x27;.htm&#x27;</span>, timeout=<span class="number">100</span>)</span><br><span class="line">            self.cnt_pages += <span class="number">1</span></span><br><span class="line">            home_page = response.content.decode()</span><br><span class="line">            soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">            script = soup.find_all(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">            urls_todo = []</span><br><span class="line">            <span class="keyword">for</span> text <span class="keyword">in</span> script:</span><br><span class="line">                attrs = text.attrs</span><br><span class="line">                urls_todo.append(attrs.get(<span class="string">&#x27;href&#x27;</span>))</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> urls_todo:</span><br><span class="line">                out_url = re.findall(<span class="string">r&#x27;/\d+/\d+/[A-Za-z0-9]+/page.htm&#x27;</span>, i)</span><br><span class="line">                <span class="keyword">if</span> out_url <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                    <span class="keyword">for</span> j <span class="keyword">in</span> out_url:</span><br><span class="line">                        out.write(<span class="string">&#x27;https://news.hit.edu.cn&#x27;</span> + <span class="built_in">str</span>(j) + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">                        self.cnt_urls += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>第二步,从对应URL读取信息并处理</p>
-<h5 id="多线程爬虫和BeautifulSoup技巧">多线程爬虫和BeautifulSoup技巧</h5>
-<p>详见https://lemontreen.github.io/2021/08/11/Python/</p>
-]]></content>
-      <categories>
-        <category>Python</category>
-        <category>爬虫</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python_Pycharm</title>
-    <url>/2021/08/11/Python/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h4 id="关于JSON库">关于JSON库</h4>
-<h5 id="json-dump-dumps和json-load-loads">json.dump/dumps和json.load/loads</h5>
-<p><code>json.dumps</code>可以将字典封装为<code>json</code>格式,例如</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.json_dict[<span class="string">&#x27;url&#x27;</span>] = url</span><br><span class="line">self.json_dict[<span class="string">&#x27;title&#x27;</span>] = title</span><br><span class="line">self.json_dict[<span class="string">&#x27;paragraphs&#x27;</span>] = para_json</span><br><span class="line">self.json_dict[<span class="string">&#x27;filename&#x27;</span>] = filename_json</span><br><span class="line">json_str = json.dumps(self.json_dict, indent=<span class="number">4</span>, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># json_str为str类型,格式为标准json格式</span></span><br></pre></td></tr></table></figure>
-<p><code>json.dump</code>则是直接将字典转化为<code>json</code>格式并写入文件</p>
-<p>相比于<code>json.dumps</code>参数仅是多了一个文件指针</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># js为相比于`json.dump`多的文件指针,默认indent=0</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 写入的json为一行输出,即&#123;&#x27;a&#x27;:&#x27;a.text&#x27;,&#x27;b&#x27;:&#x27;b.text&#x27;&#125;这种单行的形式</span></span><br><span class="line"><span class="comment"># 如果想分行,参数indent不为0可</span></span><br><span class="line"><span class="comment"># ensure_ascii=False则可以写入中文</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"># json.dump -- indent = 4,ensure_ascii=False的效果</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;0&quot;</span>: <span class="string">&quot;2004年五月天《听不到》&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;1&quot;</span>: <span class="string">&quot;参考文献&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;2&quot;</span>: <span class="string">&quot;国药准字H20041484[1]&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>json.load</code>可以读入标准格式的<code>json</code>文件</p>
-<ul>
-<li>文件只有一个项目</li>
-</ul>
-<blockquote>
-<p>此时返回值是<code>dict</code>类型,每一项即为一个键值对,如图</p>
-<p><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/Mess/202205282141004.png" alt="image-20220528214107914"></p>
-</blockquote>
-<ul>
-<li>文件有多个项目</li>
-</ul>
-<blockquote>
-<p>此时返回值是<code>list</code>类型,<code>list</code>的每一项对应<code>json</code>文件的一个项目,如图</p>
-<p>![5XZN}<a href="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/Mess/202205282140064.png">Z~4V5[C%~2CIK]M06</a></p>
-</blockquote>
-<blockquote>
-<p><code>json</code>的标准格式: 形如</p>
-<ul>
-<li><code>json</code>仅有一个项目</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;0&quot;</span>: <span class="string">&quot;0.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;1&quot;</span>: <span class="string">&quot;1.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;2&quot;</span>: <span class="string">&quot;2.txt&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>json有多个项目</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 多个项目之间用逗号隔开,整体用中括号括起来,只有一个项目不需要中括号</span></span><br><span class="line">[&#123;</span><br><span class="line">    <span class="attr">&quot;0&quot;</span>: <span class="string">&quot;0.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;1&quot;</span>: <span class="string">&quot;1.txt&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;2&quot;</span>: <span class="string">&quot;2.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;3&quot;</span>: <span class="string">&quot;3.txt&quot;</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;js.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">	data=json.load(fp)</span><br><span class="line"><span class="comment"># 得到的data为list类型,data的一项对应json文件的一条数据</span></span><br></pre></td></tr></table></figure>
-<p><code>json.loads</code>可以把符合规则的<code>str</code>转化为<code>dict</code>类型</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = js.readline()</span><br><span class="line">        <span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data = json.loads(data)</span><br><span class="line"><span class="comment"># 得到的data为dict类型,它的key/value同json</span></span><br><span class="line">	title=data.get(<span class="string">&#x27;title&#x27;</span>)</span><br><span class="line"><span class="comment"># 然后便可以用dict的get函数获取内容</span></span><br></pre></td></tr></table></figure>
-<h5 id="一般使用方式">一般使用方式</h5>
-<ul>
-<li><code>dump</code>写入,<code>load</code>读取</li>
-</ul>
-<blockquote>
-<p>如果json文件只有一个项目,那么<code>json.dump</code>写入的是标准格式,直接<code>json.load</code>读取即可</p>
-</blockquote>
-<ul>
-<li>一个json文件中有多个项目的情况</li>
-</ul>
-<blockquote>
-<p>例如一个文件包含了许多篇文章,而每次只处理一篇文章</p>
-</blockquote>
-<blockquote>
-<p>由于<code>json.dump</code>写入文件为一行输出,因此每次写完一个项目,再写入一个<code>'\n'</code></p>
-<p>则读取时即可按行读取,并用<code>json.loads</code>转换为<code>dict</code>,如下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># ensure_ascii=False 写入中文</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> js.readlines:</span><br><span class="line">        data=json.loads(data)</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="BeautifulSoup">BeautifulSoup</h4>
-<h5 id="清洗HTML数据">清洗HTML数据</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">todo = soup.find_all(attrs=&#123;<span class="string">&#x27;class&#x27;</span>: <span class="string">&#x27;class_name&#x27;</span>&#125;)</span><br><span class="line">soup_text = BeautifulSoup(<span class="built_in">str</span>(todo), <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">result = soup_text.get_text()</span><br></pre></td></tr></table></figure>
-<h5 id="在soup-find-all返回的结果中分离不同属性">在<code>soup.find_all</code>返回的结果中分离不同属性</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">soup = BeautifulSoup(page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">hrefs = soup.find_all(<span class="string">&#x27;a&#x27;</span>, href=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 以href为例</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> hrefs:</span><br><span class="line">	href = item[<span class="string">&#x27;href&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<h4 id="多线程">多线程</h4>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(CONFIG.get(<span class="string">&#x27;thread_num&#x27;</span>)):</span><br><span class="line">    thread = threading.Thread(target=content_crawer.craw, args=(j,))</span><br><span class="line">    threads.append(thread)</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.start()</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.join()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意 不能写成</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">       thread.start()</span><br><span class="line">       thread.join()</span><br></pre></td></tr></table></figure>
-<p>这种情况下会变成串行执行,即等同于单线程</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>备忘录</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1007,6 +882,25 @@ e&amp;=f
 <li>dtype : 输出的类型, 默认是float</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">a = np.identity(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="comment"># 输出结果: </span></span><br><span class="line">[[<span class="number">1.</span> <span class="number">0.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">1.</span> <span class="number">0.</span>]</span><br><span class="line">[<span class="number">0.</span> <span class="number">0.</span> <span class="number">1.</span>]]</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>]]></content>
+  </entry>
+  <entry>
+    <title>字典树的Python实现</title>
+    <url>/2021/11/29/Trie/</url>
+    <content><![CDATA[<h4 id="中文分词-存储中文的字典树的Python实现">中文分词:存储中文的字典树的Python实现</h4>
+<blockquote>
+<p>在做NLP分词处理时,为了加快查询速度,我们要用到字典树这种数据结构<br>
+由于汉字字符种类多样,因此常规的26子节点字典树无法满足我们的需求<br>
+下文是一种提前开固定窗口数量利用ord()和hash()进行处理的方式<br>
+动态添加节点的方式暂时咕咕了</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-11-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">CONFIG = &#123;<span class="string">&#x27;size&#x27;</span>: <span class="number">8000</span>,  <span class="comment">#  子节点数量</span></span><br><span class="line">          <span class="string">&#x27;dic_path&#x27;</span>: <span class="string">&#x27;data/dic.txt&#x27;</span>&#125;  <span class="comment">#  词典路径</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.child = [<span class="literal">None</span>] * CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">        self.isEnd = <span class="literal">False</span></span><br><span class="line">        self.ch = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_node</span>(<span class="params">self, word: <span class="built_in">str</span></span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        为Trie树添加一个节点</span></span><br><span class="line"><span class="string">        :param word:待加入的字符串</span></span><br><span class="line"><span class="string">        :return:None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        node = self</span><br><span class="line">        <span class="keyword">for</span> ch <span class="keyword">in</span> word:</span><br><span class="line">            index = <span class="built_in">ord</span>(ch) % CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> node.child[index]:</span><br><span class="line">                    node.child[index] = Trie()</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    node.ch = ch</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">elif</span> ch == node.child[index].ch:</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index += <span class="number">1</span></span><br><span class="line">        node.count += <span class="number">1</span></span><br><span class="line">        node.isEnd = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search_prefix</span>(<span class="params">self, prefix: <span class="built_in">str</span></span>) -&gt; &#x27;Trie&#x27;:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Trie树前缀搜索</span></span><br><span class="line"><span class="string">        :param prefix:前缀</span></span><br><span class="line"><span class="string">        :return:前缀字符串对应的节点</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        node = self</span><br><span class="line">        <span class="keyword">for</span> ch <span class="keyword">in</span> prefix:</span><br><span class="line">            index = <span class="built_in">ord</span>(ch) % CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> node.child[index]:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">                <span class="keyword">elif</span> ch == (node.child[index]).ch:</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span>(<span class="params">self, word: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        node = self.search_prefix(word)</span><br><span class="line">        <span class="keyword">return</span> node <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> node.isEnd</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">starts_with</span>(<span class="params">self, prefix: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.search_prefix(prefix) <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span>(<span class="params">self, dic_path</span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        根据dic_path建立一颗Trie树</span></span><br><span class="line"><span class="string">        :return:None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(dic_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;gbk&#x27;</span>) <span class="keyword">as</span> dic:</span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> dic:</span><br><span class="line">                word = line[:<span class="built_in">len</span>(line) - <span class="number">1</span>]  <span class="comment"># 去除换行符</span></span><br><span class="line">                <span class="built_in">print</span>(line)</span><br><span class="line">                self.add_node(word)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    trie = Trie()</span><br><span class="line">    trie.build(CONFIG.get(<span class="string">&#x27;dic_path&#x27;</span>))</span><br><span class="line">    sys.exit(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>NLP</category>
+      </categories>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
   </entry>
   <entry>
     <title>Vscode上Git的配置和使用</title>
@@ -1079,6 +973,131 @@ e&amp;=f
       </tags>
   </entry>
   <entry>
+    <title>Python_Pycharm</title>
+    <url>/2021/08/11/Python/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h4 id="关于JSON库">关于JSON库</h4>
+<h5 id="json-dump-dumps和json-load-loads">json.dump/dumps和json.load/loads</h5>
+<p><code>json.dumps</code>可以将字典封装为<code>json</code>格式,例如</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.json_dict[<span class="string">&#x27;url&#x27;</span>] = url</span><br><span class="line">self.json_dict[<span class="string">&#x27;title&#x27;</span>] = title</span><br><span class="line">self.json_dict[<span class="string">&#x27;paragraphs&#x27;</span>] = para_json</span><br><span class="line">self.json_dict[<span class="string">&#x27;filename&#x27;</span>] = filename_json</span><br><span class="line">json_str = json.dumps(self.json_dict, indent=<span class="number">4</span>, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># json_str为str类型,格式为标准json格式</span></span><br></pre></td></tr></table></figure>
+<p><code>json.dump</code>则是直接将字典转化为<code>json</code>格式并写入文件</p>
+<p>相比于<code>json.dumps</code>参数仅是多了一个文件指针</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># js为相比于`json.dump`多的文件指针,默认indent=0</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 写入的json为一行输出,即&#123;&#x27;a&#x27;:&#x27;a.text&#x27;,&#x27;b&#x27;:&#x27;b.text&#x27;&#125;这种单行的形式</span></span><br><span class="line"><span class="comment"># 如果想分行,参数indent不为0可</span></span><br><span class="line"><span class="comment"># ensure_ascii=False则可以写入中文</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"># json.dump -- indent = 4,ensure_ascii=False的效果</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;0&quot;</span>: <span class="string">&quot;2004年五月天《听不到》&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;1&quot;</span>: <span class="string">&quot;参考文献&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;2&quot;</span>: <span class="string">&quot;国药准字H20041484[1]&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>json.load</code>可以读入标准格式的<code>json</code>文件</p>
+<ul>
+<li>文件只有一个项目</li>
+</ul>
+<blockquote>
+<p>此时返回值是<code>dict</code>类型,每一项即为一个键值对,如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/Mess/202205282141004.png" alt="image-20220528214107914"></p>
+</blockquote>
+<ul>
+<li>文件有多个项目</li>
+</ul>
+<blockquote>
+<p>此时返回值是<code>list</code>类型,<code>list</code>的每一项对应<code>json</code>文件的一个项目,如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LemontreeN/picSources@master/Mess/202205282140064.png" alt="image-202205282140064"></p>
+</blockquote>
+<blockquote>
+<p><code>json</code>的标准格式: 形如</p>
+<ul>
+<li><code>json</code>仅有一个项目</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;0&quot;</span>: <span class="string">&quot;0.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;1&quot;</span>: <span class="string">&quot;1.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;2&quot;</span>: <span class="string">&quot;2.txt&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>json有多个项目</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 多个项目之间用逗号隔开,整体用中括号括起来,只有一个项目不需要中括号</span></span><br><span class="line">[&#123;</span><br><span class="line">    <span class="attr">&quot;0&quot;</span>: <span class="string">&quot;0.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;1&quot;</span>: <span class="string">&quot;1.txt&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;2&quot;</span>: <span class="string">&quot;2.txt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;3&quot;</span>: <span class="string">&quot;3.txt&quot;</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;js.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">	data=json.load(fp)</span><br><span class="line"><span class="comment"># 得到的data为list类型,data的一项对应json文件的一条数据</span></span><br></pre></td></tr></table></figure>
+<p><code>json.loads</code>可以把符合规则的<code>str</code>转化为<code>dict</code>类型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = js.readline()</span><br><span class="line">        <span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data = json.loads(data)</span><br><span class="line"><span class="comment"># 得到的data为dict类型,它的key/value同json</span></span><br><span class="line">	title=data.get(<span class="string">&#x27;title&#x27;</span>)</span><br><span class="line"><span class="comment"># 然后便可以用dict的get函数获取内容</span></span><br></pre></td></tr></table></figure>
+<h5 id="一般使用方式">一般使用方式</h5>
+<ul>
+<li><code>dump</code>写入,<code>load</code>读取</li>
+</ul>
+<blockquote>
+<p>如果json文件只有一个项目,那么<code>json.dump</code>写入的是标准格式,直接<code>json.load</code>读取即可</p>
+</blockquote>
+<ul>
+<li>一个json文件中有多个项目的情况</li>
+</ul>
+<blockquote>
+<p>例如一个文件包含了许多篇文章,而每次只处理一篇文章</p>
+</blockquote>
+<blockquote>
+<p>由于<code>json.dump</code>写入文件为一行输出,因此每次写完一个项目,再写入一个<code>'\n'</code></p>
+<p>则读取时即可按行读取,并用<code>json.loads</code>转换为<code>dict</code>,如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">	json.dump(self.json_dict, js, ensure_ascii=<span class="literal">False</span>) <span class="comment"># ensure_ascii=False 写入中文</span></span><br><span class="line">	js.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output/js.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> js.readlines:</span><br><span class="line">        data=json.loads(data)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="BeautifulSoup">BeautifulSoup</h4>
+<h5 id="清洗HTML数据">清洗HTML数据</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">todo = soup.find_all(attrs=&#123;<span class="string">&#x27;class&#x27;</span>: <span class="string">&#x27;class_name&#x27;</span>&#125;)</span><br><span class="line">soup_text = BeautifulSoup(<span class="built_in">str</span>(todo), <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">result = soup_text.get_text()</span><br></pre></td></tr></table></figure>
+<h5 id="在soup-find-all返回的结果中分离不同属性">在<code>soup.find_all</code>返回的结果中分离不同属性</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">soup = BeautifulSoup(page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">hrefs = soup.find_all(<span class="string">&#x27;a&#x27;</span>, href=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 以href为例</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> hrefs:</span><br><span class="line">	href = item[<span class="string">&#x27;href&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="多线程">多线程</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(CONFIG.get(<span class="string">&#x27;thread_num&#x27;</span>)):</span><br><span class="line">    thread = threading.Thread(target=content_crawer.craw, args=(j,))</span><br><span class="line">    threads.append(thread)</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.start()</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.join()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意 不能写成</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">       thread.start()</span><br><span class="line">       thread.join()</span><br></pre></td></tr></table></figure>
+<p>这种情况下会变成串行执行,即等同于单线程</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>备忘录</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python爬虫入门</title>
+    <url>/2021/08/25/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<p>[Toc]</p>
+<p>此帖为Python爬虫入门帖</p>
+<p>分为两部分:</p>
+<ul>
+<li>
+<p>简单采集疫情信息</p>
+</li>
+<li>
+<p>批量采集网页数据</p>
+</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">环境准备:</span><br><span class="line"><span class="bullet">    +</span> Python3.9.0</span><br><span class="line"><span class="bullet">	+</span> Pycharm 2021</span><br><span class="line">库:</span><br><span class="line"><span class="bullet">    +</span> request请求库</span><br><span class="line"><span class="bullet">    +</span> BeautifulSoup解析库</span><br><span class="line"><span class="bullet">    +</span> 正则表达式</span><br><span class="line"><span class="bullet">    +</span> json模块</span><br></pre></td></tr></table></figure>
+<h3 id="采集疫情信息">采集疫情信息</h3>
+<h4 id="采集上一天疫情信息-用来了解各个库的用法">采集上一天疫情信息(用来了解各个库的用法)</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 导入 requests请求库</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment"># 导入正则表达式模块</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># 导入json模块</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment"># 导入BeautifulSoup库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.发送Get请求获取主页信息</span></span><br><span class="line">response = requests.get(<span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span>)</span><br><span class="line">home_page = response.content.decode()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.从主页信息中提取最近一日各国疫情数据信息</span></span><br><span class="line">soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">script = soup.find(<span class="built_in">id</span>=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">text = script.string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.获取json格式字符串 </span></span><br><span class="line">json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 4.把json格式字符串转换为Python类型</span></span><br><span class="line">last_day_data = json.loads(json_str)</span><br><span class="line"><span class="comment"># 5.把数据写入相应json文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_data.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    json.dump(last_day_data, fp, ensure_ascii=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="采集数据正文">采集数据正文</h4>
+<blockquote>
+<p>采集内容: 1.最近一日世界各国疫情数据 	2.最近一日中国疫情数据<br>
+3.从1月23日期世界各国疫情数据</p>
+</blockquote>
+<p><strong>上文的代码由于拓展性和可复用性差,因此我们对代码进行重构,提高可拓展性和复用性</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-08-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CoronaVirusSpider</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.home_url = <span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_content_from_url</span>(<span class="params">self, url</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :param url:请求的URL</span></span><br><span class="line"><span class="string">        :return: 响应得到的字符串</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">return</span> response.content.decode()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_home_page</span>(<span class="params">self, home_page, tag_id</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        解析首页内容,获取解析后的Python数据</span></span><br><span class="line"><span class="string">        :param home_page:首页内容</span></span><br><span class="line"><span class="string">        :return: 解析后的Python数据</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">        script = soup.find(<span class="built_in">id</span>=tag_id)</span><br><span class="line">        text = script.string</span><br><span class="line">        json_str = re.findall(<span class="string">r&#x27;\[.+\]&#x27;</span>, text)[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">return</span> json.loads(json_str)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span>(<span class="params">self, data, path</span>):</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            json.dump(data, fp, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集各国最近一天的疫情信息</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取首页内容</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析首页内容,获取最近一天各国疫情数据</span></span><br><span class="line">        last_day_corona_virus = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getListByCountryTypeService2true&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_corona_virus, <span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_corona_virus</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集从1月23号以来各国的疫情数据</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.加载各国疫情数据</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data/last_day_corona_virus.json&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            last_day_corona_virus = json.load(fp)</span><br><span class="line">        corona_virus = []</span><br><span class="line">        <span class="comment"># 2.遍历各国获取统计URL</span></span><br><span class="line">        <span class="keyword">for</span> country <span class="keyword">in</span> tqdm(last_day_corona_virus, <span class="string">&#x27;采集1月23以来各国疫情信息&#x27;</span>):</span><br><span class="line">            <span class="comment"># 3.发送请求,获取各国从1月23号至今的json数据</span></span><br><span class="line">            statistics_data_url = country[<span class="string">&#x27;statisticsData&#x27;</span>]</span><br><span class="line">            statistics_data_json_str = self.get_content_from_url(statistics_data_url)</span><br><span class="line">            <span class="comment"># 4.把Json数据转换为Python数据,添加到列表汇总</span></span><br><span class="line">            statistics_data = json.loads(statistics_data_json_str)[<span class="string">&#x27;data&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            <span class="keyword">for</span> one_day <span class="keyword">in</span> statistics_data:</span><br><span class="line">                one_day[<span class="string">&#x27;provinceName&#x27;</span>] = country[<span class="string">&#x27;provinceName&#x27;</span>]</span><br><span class="line">                one_day[<span class="string">&#x27;countryShortCode&#x27;</span>] = country[<span class="string">&#x27;countryShortCode&#x27;</span>]</span><br><span class="line">            <span class="comment"># print(statistics_data)</span></span><br><span class="line">            corona_virus.extend(statistics_data)</span><br><span class="line">            <span class="comment"># 5.把列表保存为Json文件</span></span><br><span class="line">        self.save(corona_virus, <span class="string">&#x27;data/corona_virus.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_last_day_corona_virus_of_China</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        采集最近1日中国各省疫情数据,方式同上文</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1.发送请求,获取疫情主页</span></span><br><span class="line">        home_page = self.get_content_from_url(self.home_url)</span><br><span class="line">        <span class="comment"># 2.解析主页,获取信息</span></span><br><span class="line">        last_day_china_data = self.parse_home_page(home_page, tag_id=<span class="string">&#x27;getAreaStat&#x27;</span>)</span><br><span class="line">        <span class="comment"># 3.保存数据</span></span><br><span class="line">        self.save(last_day_china_data, <span class="string">&#x27;data/last_day_corona_virus_of_China.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.crawl_last_day_corona_virus()  <span class="comment"># 采集最近1日世界各国疫情数据</span></span><br><span class="line">        <span class="comment"># self.crawl_corona_virus()     # 采集从1月23日起世界各国疫情数据</span></span><br><span class="line">        self.crawl_last_day_corona_virus_of_China() <span class="comment"># 采集最近1日中国各省疫情数据</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    spider = CoronaVirusSpider()</span><br><span class="line">    spider.run()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="批量爬取网页">批量爬取网页</h3>
+<blockquote>
+<p>以爬取今日哈工大新闻页面为例,新闻列表页面的URL格式为<br>
+<code>https://news.hit.edu.cn/zhxw/list +r'\d*'+ .htm</code><br>
+例如<code>https://news.hit.edu.cn/zhxw/list1.htm</code>为新闻第一页</p>
+</blockquote>
+<p>第一步,批量获取所需页面的URL</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">craw_for_urls</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    获取1000+网页的URL</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(CONFIG.get(<span class="string">&#x27;url_file&#x27;</span>), <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> out:</span><br><span class="line">        <span class="keyword">while</span> self.cnt_urls &lt; <span class="number">1000</span>:</span><br><span class="line">            response = requests.get(CONFIG.get(<span class="string">&#x27;base_url&#x27;</span>) + <span class="built_in">str</span>(self.cnt_pages) + <span class="string">&#x27;.htm&#x27;</span>, timeout=<span class="number">100</span>)</span><br><span class="line">            self.cnt_pages += <span class="number">1</span></span><br><span class="line">            home_page = response.content.decode()</span><br><span class="line">            soup = BeautifulSoup(home_page, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">            script = soup.find_all(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">            urls_todo = []</span><br><span class="line">            <span class="keyword">for</span> text <span class="keyword">in</span> script:</span><br><span class="line">                attrs = text.attrs</span><br><span class="line">                urls_todo.append(attrs.get(<span class="string">&#x27;href&#x27;</span>))</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> urls_todo:</span><br><span class="line">                out_url = re.findall(<span class="string">r&#x27;/\d+/\d+/[A-Za-z0-9]+/page.htm&#x27;</span>, i)</span><br><span class="line">                <span class="keyword">if</span> out_url <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                    <span class="keyword">for</span> j <span class="keyword">in</span> out_url:</span><br><span class="line">                        out.write(<span class="string">&#x27;https://news.hit.edu.cn&#x27;</span> + <span class="built_in">str</span>(j) + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">                        self.cnt_urls += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>第二步,从对应URL读取信息并处理</p>
+<h5 id="多线程爬虫和BeautifulSoup技巧">多线程爬虫和BeautifulSoup技巧</h5>
+<p>详见https://lemontreen.github.io/2021/08/11/Python/</p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>爬虫</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows</title>
     <url>/2021/07/20/Windows/</url>
     <content><![CDATA[<p>[Toc]</p>
@@ -1105,42 +1124,6 @@ e&amp;=f
       </categories>
       <tags>
         <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>字典树的Python实现</title>
-    <url>/2021/11/29/Trie/</url>
-    <content><![CDATA[<h4 id="中文分词-存储中文的字典树的Python实现">中文分词:存储中文的字典树的Python实现</h4>
-<blockquote>
-<p>在做NLP分词处理时,为了加快查询速度,我们要用到字典树这种数据结构<br>
-由于汉字字符种类多样,因此常规的26子节点字典树无法满足我们的需求<br>
-下文是一种提前开固定窗口数量利用ord()和hash()进行处理的方式<br>
-动态添加节点的方式暂时咕咕了</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2021-11-25</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">CONFIG = &#123;<span class="string">&#x27;size&#x27;</span>: <span class="number">8000</span>,  <span class="comment">#  子节点数量</span></span><br><span class="line">          <span class="string">&#x27;dic_path&#x27;</span>: <span class="string">&#x27;data/dic.txt&#x27;</span>&#125;  <span class="comment">#  词典路径</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.child = [<span class="literal">None</span>] * CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">        self.isEnd = <span class="literal">False</span></span><br><span class="line">        self.ch = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_node</span>(<span class="params">self, word: <span class="built_in">str</span></span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        为Trie树添加一个节点</span></span><br><span class="line"><span class="string">        :param word:待加入的字符串</span></span><br><span class="line"><span class="string">        :return:None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        node = self</span><br><span class="line">        <span class="keyword">for</span> ch <span class="keyword">in</span> word:</span><br><span class="line">            index = <span class="built_in">ord</span>(ch) % CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> node.child[index]:</span><br><span class="line">                    node.child[index] = Trie()</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    node.ch = ch</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">elif</span> ch == node.child[index].ch:</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index += <span class="number">1</span></span><br><span class="line">        node.count += <span class="number">1</span></span><br><span class="line">        node.isEnd = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search_prefix</span>(<span class="params">self, prefix: <span class="built_in">str</span></span>) -&gt; &#x27;Trie&#x27;:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Trie树前缀搜索</span></span><br><span class="line"><span class="string">        :param prefix:前缀</span></span><br><span class="line"><span class="string">        :return:前缀字符串对应的节点</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        node = self</span><br><span class="line">        <span class="keyword">for</span> ch <span class="keyword">in</span> prefix:</span><br><span class="line">            index = <span class="built_in">ord</span>(ch) % CONFIG.get(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> node.child[index]:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">                <span class="keyword">elif</span> ch == (node.child[index]).ch:</span><br><span class="line">                    node = node.child[index]</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span>(<span class="params">self, word: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        node = self.search_prefix(word)</span><br><span class="line">        <span class="keyword">return</span> node <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> node.isEnd</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">starts_with</span>(<span class="params">self, prefix: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.search_prefix(prefix) <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span>(<span class="params">self, dic_path</span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        根据dic_path建立一颗Trie树</span></span><br><span class="line"><span class="string">        :return:None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(dic_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;gbk&#x27;</span>) <span class="keyword">as</span> dic:</span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> dic:</span><br><span class="line">                word = line[:<span class="built_in">len</span>(line) - <span class="number">1</span>]  <span class="comment"># 去除换行符</span></span><br><span class="line">                <span class="built_in">print</span>(line)</span><br><span class="line">                self.add_node(word)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    trie = Trie()</span><br><span class="line">    trie.build(CONFIG.get(<span class="string">&#x27;dic_path&#x27;</span>))</span><br><span class="line">    sys.exit(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>NLP</category>
-      </categories>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>倒排索引的Python实现</title>
-    <url>/2022/05/26/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/</url>
-    <content><![CDATA[<blockquote>
-<p>在词表不是非常大时全部读入内存建立索引即可,如下</p>
-<p>如果词表特别大,可能导致内存不足出现问题</p>
-<p>可以分批存入索引文件, 修改读取索引的方式即可</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">coding:UTF-8</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2022-5-26</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ltp <span class="keyword">import</span> LTP  <span class="comment"># 分词库</span></span><br><span class="line"></span><br><span class="line">ltp = LTP()</span><br><span class="line"></span><br><span class="line">word_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PreProcessed</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.stop_words = <span class="literal">None</span></span><br><span class="line">        self.cnt = <span class="number">0</span></span><br><span class="line">        self.index_path = <span class="string">&#x27;data/inverted_index.txt&#x27;</span> <span class="comment"># 倒排索引存储路径</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read_stop_words</span>(<span class="params">self, file_path: <span class="built_in">str</span></span>):</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            self.stop_words = <span class="built_in">set</span>(fp.read().split(<span class="string">&#x27;\n&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_index</span>(<span class="params">self, input_path: <span class="built_in">str</span></span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        建立倒排索引并保存到文件中</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(input_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">            line = js.readline()</span><br><span class="line">            <span class="keyword">while</span> line != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">                data = json.loads(line)</span><br><span class="line">                pid = data.get(<span class="string">&#x27;pid&#x27;</span>)</span><br><span class="line">                seg_list = data.get(<span class="string">&#x27;document&#x27;</span>)</span><br><span class="line">                seg = ltp.seg(seg_list)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> item <span class="keyword">in</span> seg[<span class="number">0</span>]:</span><br><span class="line">                    <span class="keyword">for</span> word <span class="keyword">in</span> item:</span><br><span class="line">                        <span class="keyword">if</span> word <span class="keyword">in</span> self.stop_words:</span><br><span class="line">                            <span class="keyword">pass</span></span><br><span class="line">                        <span class="keyword">elif</span> word <span class="keyword">not</span> <span class="keyword">in</span> word_dict:</span><br><span class="line">                            word_dict[word] = <span class="built_in">set</span>()</span><br><span class="line">                            word_dict[word].add(pid)</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            word_dict[word].add(pid)</span><br><span class="line">                line = js.readline()</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(self.index_path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> index_output:</span><br><span class="line">            <span class="keyword">for</span> key, value <span class="keyword">in</span> word_dict.items():</span><br><span class="line">                index_output.write(<span class="built_in">str</span>(key) + <span class="string">&#x27;: &#x27;</span>)</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> value:</span><br><span class="line">                    index_output.write(<span class="built_in">str</span>(i) + <span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                index_output.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read_index</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        从文件中读取索引</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(self.index_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            line = fp.readline()</span><br><span class="line">            <span class="keyword">while</span> line != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">                word, index = line.split(<span class="string">&#x27;: &#x27;</span>)</span><br><span class="line">                pid_list = index[:-<span class="number">2</span>].split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                line = fp.readline()</span><br><span class="line">                word_dict[word] = <span class="built_in">set</span>(pid_list)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    pre = PreProcessed()</span><br><span class="line">    pre.read_stop_words(<span class="string">&#x27;data/stopwords.txt&#x27;</span>) <span class="comment">#  读入停用词</span></span><br><span class="line">    pre.generate_index(<span class="string">&#x27;data/passages_multi_sentences.json&#x27;</span>)  <span class="comment"># 参数为待建立索引的文件</span></span><br><span class="line">    exit(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>NLP</category>
-      </categories>
-      <tags>
-        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -1230,6 +1213,21 @@ cmd输入nvm,如果出现版本号说明安装成功</p>
       <tags>
         <tag>hexo</tag>
         <tag>nvm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>倒排索引的Python实现</title>
+    <url>/2022/05/26/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<blockquote>
+<p>在词表不是非常大时全部读入内存建立索引即可</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">coding:UTF-8</span></span><br><span class="line"><span class="string">author:LemontreeN</span></span><br><span class="line"><span class="string">date:2022-05-08</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">from</span> ltp <span class="keyword">import</span> LTP</span><br><span class="line"></span><br><span class="line">ltp = LTP()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PreProcessed</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.stop_words = <span class="literal">None</span></span><br><span class="line">        self.index_path = <span class="string">&#x27;data/inverted_index.txt&#x27;</span></span><br><span class="line">        self.word_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read_stop_words</span>(<span class="params">self, file_path: <span class="built_in">str</span></span>):</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            self.stop_words = <span class="built_in">set</span>(fp.read().split(<span class="string">&#x27;\n&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_index</span>(<span class="params">self, input_path: <span class="built_in">str</span></span>):</span></span><br><span class="line">        progress_read_index = tqdm.tqdm(<span class="built_in">range</span>(<span class="number">14768</span>), <span class="string">f&#x27;建立索引中,目前进度&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(input_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> js:</span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> js.readlines():</span><br><span class="line">                data = json.loads(line)</span><br><span class="line">                pid = data.get(<span class="string">&#x27;pid&#x27;</span>)</span><br><span class="line">                seg_list = data.get(<span class="string">&#x27;document&#x27;</span>)</span><br><span class="line">                seg = ltp.seg(seg_list)</span><br><span class="line">                <span class="keyword">for</span> item <span class="keyword">in</span> seg[<span class="number">0</span>]:</span><br><span class="line">                    <span class="keyword">for</span> word <span class="keyword">in</span> item:</span><br><span class="line">                        <span class="keyword">if</span> word <span class="keyword">in</span> self.stop_words:</span><br><span class="line">                            <span class="keyword">pass</span></span><br><span class="line">                        <span class="keyword">elif</span> word <span class="keyword">not</span> <span class="keyword">in</span> self.word_dict:</span><br><span class="line">                            self.word_dict[word] = <span class="built_in">set</span>()</span><br><span class="line">                            self.word_dict[word].add(pid)</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            self.word_dict[word].add(pid)</span><br><span class="line">                progress_read_index.update(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(self.index_path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> index_output:</span><br><span class="line">            <span class="keyword">for</span> key, value <span class="keyword">in</span> self.word_dict.items():</span><br><span class="line">                index_output.write(<span class="built_in">str</span>(key) + <span class="string">&#x27;;;;&#x27;</span>) <span class="comment"># 注意此处选取的分隔符不能出现在词表中</span></span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> value:</span><br><span class="line">                    index_output.write(<span class="built_in">str</span>(i) + <span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                index_output.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read_index</span>(<span class="params">self</span>):</span></span><br><span class="line">        progress_read_index = tqdm.tqdm(<span class="built_in">range</span>(<span class="number">535109</span>), <span class="string">f&#x27;读取索引中,目前进度&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(self.index_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            line = fp.readline()</span><br><span class="line">            <span class="keyword">while</span> line != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">                line = line.split(<span class="string">&#x27;;;;&#x27;</span>)</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(line) != <span class="number">2</span>:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&#x27;error&#x27;</span>)</span><br><span class="line">                    <span class="keyword">pass</span></span><br><span class="line">                word, index = line[<span class="number">0</span>], line[<span class="number">1</span>]</span><br><span class="line">                pid_list = index[:-<span class="number">2</span>].split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                line = fp.readline()</span><br><span class="line">                self.word_dict[word] = <span class="built_in">list</span>(pid_list)</span><br><span class="line">                progress_read_index.update(<span class="number">1</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;-----***索引读取完毕***-----&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;输入查询文本,输入 !quit 退出&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        对于只包含 &amp;&amp; 或 || (不同时出现)的简易查询</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        conds = <span class="built_in">input</span>()</span><br><span class="line">        <span class="keyword">while</span> conds != <span class="string">&#x27;!quit&#x27;</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;&amp;&amp;&#x27;</span> <span class="keyword">in</span> conds:</span><br><span class="line">                conds = conds.split(<span class="string">&#x27;&amp;&amp;&#x27;</span>)</span><br><span class="line">                pid_list = self.word_dict.get(conds[<span class="number">0</span>])</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(conds)):</span><br><span class="line">                    merge_list = self.word_dict.get(conds[i])</span><br><span class="line">                    temp_list = []</span><br><span class="line">                    <span class="keyword">for</span> item <span class="keyword">in</span> merge_list:</span><br><span class="line">                        <span class="keyword">if</span> item <span class="keyword">in</span> pid_list:</span><br><span class="line">                            temp_list.append(item)</span><br><span class="line">                    pid_list = temp_list</span><br><span class="line">            <span class="keyword">elif</span> <span class="string">&#x27;||&#x27;</span> <span class="keyword">in</span> conds:</span><br><span class="line">                conds = conds.split(<span class="string">&#x27;||&#x27;</span>)</span><br><span class="line">                pid_list = []</span><br><span class="line">                <span class="keyword">for</span> cond <span class="keyword">in</span> conds:</span><br><span class="line">                    merge_list = self.word_dict.get(cond)</span><br><span class="line">                    <span class="keyword">for</span> item <span class="keyword">in</span> merge_list:</span><br><span class="line">                        <span class="keyword">if</span> item <span class="keyword">not</span> <span class="keyword">in</span> pid_list:</span><br><span class="line">                            pid_list.append(item)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                pid_list = self.word_dict.get(conds)</span><br><span class="line">            <span class="keyword">if</span> pid_list <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;None!&#x27;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                pid_list.sort()</span><br><span class="line">                <span class="built_in">print</span>(pid_list)</span><br><span class="line">            conds = <span class="built_in">input</span>(<span class="string">&#x27;输入查询文本,输入 !quit 退出&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    pre = PreProcessed()</span><br><span class="line">    choice = <span class="built_in">input</span>(<span class="string">&#x27;\n****Inverted Index IR System****\nChoice:\n1. 读取文件建立索引\n2. 使用已有索引查询&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> choice == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">        pre.read_stop_words(<span class="string">&#x27;data/stopwords.txt&#x27;</span>)</span><br><span class="line">        pre.generate_index(<span class="string">&#x27;data/passages_multi_sentences.json&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> choice == <span class="string">&#x27;2&#x27;</span>:</span><br><span class="line">        pre.read_index()</span><br><span class="line">        pre.search()</span><br><span class="line">        exit(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>NLP</category>
+      </categories>
+      <tags>
+        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
