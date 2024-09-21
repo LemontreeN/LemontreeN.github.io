@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>Redis数据结构_7_RedisObject</title>
+      <link href="/2024/09/21/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_7_RedisObject/"/>
+      <url>/2024/09/21/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_7_RedisObject/</url>
+      
+        <content type="html"><![CDATA[<h4 id="RedisObject详解"><a href="#RedisObject详解" class="headerlink" title="RedisObject详解"></a>RedisObject详解</h4><p>[toc]</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis数据结构_6_SkipList</title>
+      <link href="/2024/09/21/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_6_SkipList/"/>
+      <url>/2024/09/21/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_6_SkipList/</url>
+      
+        <content type="html"><![CDATA[<h4 id="SkipList详解"><a href="#SkipList详解" class="headerlink" title="SkipList详解"></a>SkipList详解</h4><p>[toc]</p><p>SkipList是一个链表</p><ul><li>元素按照升序排列</li><li>一个节点可能包含多个级别不同的指针，它们的跨度不同<ul><li>最多允许32级指针</li></ul></li></ul><p><img src="/../../images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_6_SkipList/image-20240921123854120.png" alt="image-20240921123854120"></p><h5 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h5><p>以下是zset中使用的skiplist源码及示例图：</p><p><img src="/../../images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_6_SkipList/image-20240921124750028.png" alt="image-20240921124750028"></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">zskiplist</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> *<span class="title">header</span>, *<span class="title">tail</span>;</span><span class="comment">// 头尾节点指针</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> length;<span class="comment">// 节点数量</span></span><br><span class="line">    <span class="type">int</span> level;<span class="comment">// 最大的索引层级，默认为1</span></span><br><span class="line">&#125; zskiplist;</span><br></pre></td></tr></table></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> &#123;</span></span><br><span class="line">    sds ele;<span class="comment">// 节点存储的值</span></span><br><span class="line">    <span class="type">double</span> score;<span class="comment">// 节点的分数，用于排序和查找</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> *<span class="title">backward</span>;</span><span class="comment">// 前一个节点的指针</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistLevel</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> *<span class="title">forward</span>;</span><span class="comment">// 下一个节点指针</span></span><br><span class="line">        <span class="type">unsigned</span> <span class="type">long</span> span;<span class="comment">// 索引跨度</span></span><br><span class="line">    &#125; level[];<span class="comment">// 多级索引数组</span></span><br><span class="line">&#125; zskiplistNode;</span><br></pre></td></tr></table></figure><h5 id="SkipList特点总结"><a href="#SkipList特点总结" class="headerlink" title="SkipList特点总结"></a>SkipList特点总结</h5><ul><li>是一个双向链表，每个节点都有ele和score值，分别用于存储数据和打分排序查找</li><li>节点按照score排序，score值相同时按照ele字典序</li><li>每个节点可能包含多个指针，层数为1到32</li><li>不同层级指针跨越的距离不同，层级越高跨度越大</li><li>增删改查效率较高，与红黑树类似，但实现简单</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis数据结构_5_QuickList</title>
+      <link href="/2024/09/21/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_5_QuickList/"/>
+      <url>/2024/09/21/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_5_QuickList/</url>
+      
+        <content type="html"><![CDATA[<h4 id="QuickList详解"><a href="#QuickList详解" class="headerlink" title="QuickList详解"></a>QuickList详解</h4><p>[toc]</p><p>ZipList虽然节省空间，但它申请的内存必须是连续的，如果内存占用过多，就会导致申请内存的效率很低。</p><ul><li>所以必须限制ZipList的长度和Entry大小</li></ul><p>假设我们要存储大量数据该怎么办？</p><ul><li>创建多个ZipList分片存储数据</li></ul><p>分片后，数据变得分散，不方便管理和查找怎么办？</p><ul><li>引入<strong>QuickList</strong>，它是一个双端列表，它的每个节点都是一个ZipList（Redis6.2之前），如下图所示<ul><li>Redis6.2之后ZipList被更换为listpack，以下叙述基于Redis6.2之前，即底层是ZipList</li></ul></li></ul><p><img src="/../../images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_5_QuickList/image-20240921115903842.png" alt="image-20240921115903842"></p><p>为了限制ZipList节点的大小，Redis提供了参数list-max-ziiplist-size进行限制</p><ul><li>如果size &gt; 0，则代表了允许存放的entry个数的最大值</li><li>如果size &lt; 0 ，代表Ziplist的最大内存大小为$2^{1-size}kb（-1&lt;&#x3D;size &lt;&#x3D; -5）$，例如size&#x3D;-1时，最大内存大小为2^2&#x3D;4kb<ul><li>默认值为-2</li></ul></li></ul><p>除此之外，QuickList还提供了list-compress-depth控制节点压缩，depth &#x3D; N代表QuickList的首尾各有N个节点不压缩，中间剩余节点压缩</p><ul><li>默认值为0</li></ul><p>以下是<code>list-compress-depth = 1</code>的QuickList示意</p><p><img src="/../../images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_5_QuickList/image-20240921122602982.png" alt="image-20240921122602982"></p><h5 id="QuickList特点总结"><a href="#QuickList特点总结" class="headerlink" title="QuickList特点总结"></a>QuickList特点总结</h5><ul><li>是一个双端列表，节点为ZipList，6.2之后换为listpack</li><li>节点采用ZipList，节省空间</li><li>控制分片大小，解决了连续空间申请的问题</li><li>中间结点可以进行压缩，进一步节省空间</li></ul><h5 id="QuickList源码分析-基于ZipList"><a href="#QuickList源码分析-基于ZipList" class="headerlink" title="QuickList源码分析(基于ZipList)"></a>QuickList源码分析(基于ZipList)</h5><p>Redis-6.0.19</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">quicklist</span> &#123;</span></span><br><span class="line">    quicklistNode *head;<span class="comment">// 头指针</span></span><br><span class="line">    quicklistNode *tail;<span class="comment">// 尾指针</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> count;        <span class="comment">// 总Entry数量</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> len;          <span class="comment">// 总节点ZipList数量</span></span><br><span class="line">    <span class="type">int</span> fill : QL_FILL_BITS;              <span class="comment">// 控制ZipList的上限</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> compress : QL_COMP_BITS; <span class="comment">// 控制QuickList压缩</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> bookmark_count: QL_BM_BITS;<span class="comment">// 内存重分配时使用的书签数量和数组</span></span><br><span class="line">    quicklistBookmark bookmarks[];</span><br><span class="line">&#125; quicklist;</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">quicklistNode</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">quicklistNode</span> *<span class="title">prev</span>;</span><span class="comment">// 前指针</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">quicklistNode</span> *<span class="title">next</span>;</span><span class="comment">// 后指针</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> *zl;<span class="comment">// 当前节点的ZipList指针</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> sz;             <span class="comment">// 当前Ziplist大小，按字节计</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> count : <span class="number">16</span>;     <span class="comment">// 当前Ziplist的Entry数</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> encoding : <span class="number">2</span>;   <span class="comment">// 编码方式：1，ZipList ; 2，LZF压缩模式</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> container : <span class="number">2</span>;  <span class="comment">// 容器类型：1，预留 ; 2，ZipList</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> recompress : <span class="number">1</span>; <span class="comment">// 是否被解压缩：1，解压状态，可能需要重新压缩</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> attempted_compress : <span class="number">1</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> extra : <span class="number">10</span>; <span class="comment">// 预留字段</span></span><br><span class="line">&#125; quicklistNode;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ArrayList详解</title>
       <link href="/2024/09/20/Java%E6%BA%90%E7%A0%81/ArrayList/"/>
       <url>/2024/09/20/Java%E6%BA%90%E7%A0%81/ArrayList/</url>
@@ -39,31 +114,6 @@
       <categories>
           
           <category> Java </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Redis数据结构_5_QuickList</title>
-      <link href="/2024/09/20/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_5_QuickList/"/>
-      <url>/2024/09/20/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_5_QuickList/</url>
-      
-        <content type="html"><![CDATA[<h4 id="QuickList详解"><a href="#QuickList详解" class="headerlink" title="QuickList详解"></a>QuickList详解</h4><p>[toc]</p><p>&#x2F;&#x2F;TODO</p><p>ZipList是一种特殊的双端链表，它是由一系列连续的特殊编码内存块组成，存储类型为字符串或整数。</p><ul><li>可以在任意一端进行压入&#x2F;弹出，且时间复杂度为O(1)</li><li>采用小端字节序存储</li></ul><h5 id="ZipList结构"><a href="#ZipList结构" class="headerlink" title="ZipList结构"></a>ZipList结构</h5><p><img src="/../../images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_4_ZipList/image-20240920152214396.png" alt="image-20240920152214396 "></p><table><thead><tr><th align="center">属性</th><th align="center">类型</th><th align="center">长度</th><th>用途</th></tr></thead><tbody><tr><td align="center">zlbytes</td><td align="center">uint32_t</td><td align="center">4B</td><td>记录整个列表占用的内存数</td></tr><tr><td align="center">zltail</td><td align="center">uint32_t</td><td align="center">4B</td><td>记录尾节点到列表起始地址的字节数，可以快速确定尾节点位置</td></tr><tr><td align="center">zllen</td><td align="center">uint16_t</td><td align="center">2B</td><td>记录列表的entry数量，如果超过表示的最大值，那么为65535，但实际个数需要遍历获得</td></tr><tr><td align="center">entry</td><td align="center">列表节点</td><td align="center">不确定</td><td>列表的各个节点</td></tr><tr><td align="center">zlend</td><td align="center">uint8_t</td><td align="center">1B</td><td>特殊值0xFF，标记了列表的结束</td></tr></tbody></table><ul><li>由于0xFF是结束标志，因此其他entry都不以0xFF开头。</li></ul><h5 id="ZipList-Entry结构"><a href="#ZipList-Entry结构" class="headerlink" title="ZipList Entry结构"></a>ZipList Entry结构</h5><p><em><prevlen> <encoding> <entry-data></em></p><ul><li><p>prevlen：前一节点的总长度，占1或5字节</p><ul><li>如果前一个节点小于254字节，用1个字节保存</li><li>大于等于254字节，用5个字节保存</li></ul></li><li><p>encoding：记录了content的数据类型（字符串或整数）以及entry-data的长度</p><ul><li><p>如果encoding以00,01,10开头，证明存储的是字符串</p><p><img src="/../../images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_4_ZipList/image-20240920155202514.png" alt="image-20240920155202514"></p></li><li><p>11开头存储的就是整数，此时encoding固定占用1个字节</p><p><img src="/../../images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_4_ZipList/image-20240920160539159.png" alt="image-20240920160539159"></p></li></ul></li><li><p>entry-data：保存实际的数据</p></li></ul><p>通过上述文字，我们可以知道zipList的遍历方式：</p><ul><li>从前向后遍历：<code>next_index = base_index + len(prevlen) + len(encoding) + len(entry-data)</code></li><li>从后向前遍历：<code>last_index = base_index - prevlen</code></li></ul><h5 id="ZipList示例"><a href="#ZipList示例" class="headerlink" title="ZipList示例"></a>ZipList示例</h5><h6 id="字符串示例"><a href="#字符串示例" class="headerlink" title="字符串示例"></a>字符串示例</h6><p>假设我们现在存储字符串”ab”和”bc”</p><p>对于字符串ab，由于没有上一个节点，因此prevlen用一个字节保存，为0x00；因为<code>len(&quot;ab&quot;) = 2B &lt;63B</code>，所以encoding为0x02;</p><p>entry-data &#x3D; 0x6162 (0x61 &#x3D; 97, 0x62 &#x3D; 98，是a和b的ASCII值)</p><p>因此第一个节点为0x00 02 61 62，同理可得第二个节点为0x04 02 62 63，如图所示：</p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_4_ZipList/image-20240920155631509.png" alt="image-20240920155631509" style="zoom:67%;" /><p>此时，zllen &#x3D; 2 &#x3D; 0x02 00；</p><p>zltail &#x3D; 14 &#x3D; 0x0e 00 00 00；</p><p>zlbyte &#x3D; 19 &#x3D; 0x13 00 00 00；  <em>注意：ZipList采用小端序存储</em></p><p><img src="/../../images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_4_ZipList/image-20240920160428614.png" alt="image-20240920160428614"></p><h6 id="整数示例"><a href="#整数示例" class="headerlink" title="整数示例"></a>整数示例</h6><p>假设我们现在存储整数2和5.</p><p>对于数字2和5，由于它们都很小，处在0~12中，因此采用整数的最后一种编码，取消entry-data部分。</p><p>第一个数字2没有前结点，prevlen &#x3D; 0 &#x3D; 0x 00；encoding &#x3D; 1111 0011 &#x3D; 0xF3，同理可得第二个节点5编码为 0x 02 f6</p><p>其他zlbytes 、zltail 、 zllen 推算同字符串部分中的推算过程，最终得到的存储结构如下：</p><p><img src="/../../images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_4_ZipList/image-20240920161346893.png" alt="image-20240920161346893"></p><p>可以看出，ZipList各种各样的编码都是为了尽可能节省内存空间。</p><p>也因此，它压缩了空间，使得只能进行正序或逆序遍历来访问节点，所以它不适合存储大量节点，需要对节点数量进行限制。</p><h5 id="ZipList的连锁更新问题"><a href="#ZipList的连锁更新问题" class="headerlink" title="ZipList的连锁更新问题"></a>ZipList的连锁更新问题</h5><p>前文说过ZipList的Entry有prevlen保存前一个节点的长度，且它的大小为1或5个字节。</p><ul><li>如果前一个节点长度小于254字节，那么prevlen为1个字节</li><li>如果前一个节点长度大于等于254字节，那么prevlen为5个字节</li></ul><p>假设现在有N个连续，长度在250-253个字节的entry，此时它们的prevlen都是1个字节保存，如图：</p><p><img src="/../../images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_4_ZipList/image-20240920163545430.png" alt="image-20240920163545430"></p><p>此时，表头插入了一个长度为254字节的entry，它的下一个节点的prevlen部分就会从1个字节变为5个字节，也使得下一个节点的长度+4，达到了254字节，因此下下个节点的prevlen也会从1字节变为5字节，依次类推，最终产生了连锁反应，导致了连续多次的空间拓展。而扩展涉及到内存的申请、分配、数据迁移等，因此涉及了用户态和内核态的切换，严重影响效率。</p><p>这就是<strong>连锁更新问题</strong>，新增和删除都可能导致连锁更新问题的产生。</p><ul><li>当然可以看出，该问题实际发生的概率很低</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> Redis </category>
           
       </categories>
       
