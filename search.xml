@@ -29,11 +29,11 @@
     
     
     <entry>
-      <title>Redis数据类型_2_List</title>
+      <title>Redis数据类型_2_List TODO</title>
       <link href="/2024/09/21/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_2_List/"/>
       <url>/2024/09/21/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_2_List/</url>
       
-        <content type="html"><![CDATA[<h4 id="String详解"><a href="#String详解" class="headerlink" title="String详解"></a>String详解</h4><p>[toc]</p><p>String是Redis中最常用的数据类型之一，它的编码方式如下：</p><ul><li>基本编码方式为<strong>RAW</strong>，基于SDS实现，存储上限为512M</li></ul><p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_1_String/image-20240921144907223.png" alt="image-20240921144907223"></p><ul><li><p>如果SDS的长度小于等于44字节，则会采用<strong>EMBSTR</strong>编码，此时Object head和SDS改为使用连续空间，申请内存时也就只需要一次内存分配，提升效率。</p><p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_1_String/image-20240921145029881.png" alt="image-20240921145029881"></p></li></ul><p>为什么是44字节？</p><p>答：SDS为x字节(x&lt;=44)时，连续空间总长度为 <code>16 (RedisObject) + 1(len) + 1(alloc) + 1(flags) + x + 1(&#39;\0&#39;) = x + 20 &lt;= 64</code>，而Redis底层内存是以$2^n$进行内存分配的，64B恰好是一个分片大小，因此不会产生内存碎片。</p><ul><li>如果存储的字符串是整数值，并且大小在LONG_MAX内，则会采用<strong>INT</strong>编码，直接将数据保存在RedisObject的ptr位置<ul><li>因为ptr刚好是8字节，此时不再需要sds部分</li></ul></li></ul><p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_1_String/image-20240921145811029.png" alt="image-20240921145811029"></p>]]></content>
+        <content type="html"><![CDATA[<h4 id="List详解"><a href="#List详解" class="headerlink" title="List详解"></a>List详解</h4><p>[toc]</p>]]></content>
       
       
       <categories>
