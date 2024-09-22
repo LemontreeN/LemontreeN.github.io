@@ -4,6 +4,106 @@
   
     
     <entry>
+      <title>Redis数据类型_4_ZSet</title>
+      <link href="/2024/09/22/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_5_Hash/"/>
+      <url>/2024/09/22/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_5_Hash/</url>
+      
+        <content type="html"><![CDATA[<h4 id="Hash详解"><a href="#Hash详解" class="headerlink" title="Hash详解"></a>Hash详解</h4><p>[toc]</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis数据类型_4_ZSet</title>
+      <link href="/2024/09/22/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_4_ZSet/"/>
+      <url>/2024/09/22/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_4_ZSet/</url>
+      
+        <content type="html"><![CDATA[<h4 id="ZSet详解"><a href="#ZSet详解" class="headerlink" title="ZSet详解"></a>ZSet详解</h4><p>[toc]</p><p>ZSet - Sorted Set，每一个元素必须指定score值和member值，集合内的元素实际值为member，并按照score值排序。</p><ul><li>member必须唯一(相当于key)</li><li>按照score值排序</li><li>可以根据member查询score</li></ul><p>可以看出，ZSet的特点是键值对存储(member - score对)、键唯一、可排序，因此采用了Dict(HT)编码 + SkipList的结构</p><ul><li>SkipList跳表满足键值存储和可排序，但实现满足键唯一、以及根据member查询score困难</li><li>Dict(HT)是键值对存储、满足键唯一，但不可排序。</li></ul><blockquote><p>由于编码只能写一个，Redis中ZSet的encoding是SkipList</p></blockquote><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// server.h</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">zset</span> &#123;</span></span><br><span class="line">    dict *dict;</span><br><span class="line">    zskiplist *zsl;</span><br><span class="line">&#125; zset;</span><br></pre></td></tr></table></figure><p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_4_ZSet/image-20240922145225898.png" alt="image-20240922145225898"></p><p>可以看出，ZSet是一个很消耗内存的数据类型，因此在数据量不多时，ZSet会采用ZipList(Redis6)或Listpack(Redis7)结构来节约内存。</p><ul><li><p>需要元素数量小于zset_max_ziplist_entries且每个元素都小于zset_max_ziplist_value （Redis6， 7类似）</p></li><li><p>当不满足条件时会自动进行编码转换</p></li></ul><p>ZipList和Listpack本身没有排序功能，且没有键值对的概念，因此需要其他代码辅助实现功能。</p><ul><li>ZipList是连续内存，因此element和score值存储为两个相邻的entry，element在前，score在后。</li><li>score越小越接近队首，按照score值升序排列。</li></ul><p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_4_ZSet/image-20240922150726316.png" alt="image-20240922150726316"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis数据类型_3_Set</title>
+      <link href="/2024/09/22/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_3_Set/"/>
+      <url>/2024/09/22/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_3_Set/</url>
+      
+        <content type="html"><![CDATA[<h4 id="Set详解"><a href="#Set详解" class="headerlink" title="Set详解"></a>Set详解</h4><p>[toc]</p><p>Set是Redis中的单列集合，具有以下特点：</p><ul><li>无序</li><li>元素唯一</li><li>支持交集、差集、并集</li></ul><p>Set的底层是哈希表，也就是Dict数据结构。</p><ul><li>Dict中的key用来存储元素，value一律设为null（Redis6）<ul><li>Redis7中，若元素数量不多，使用listpack</li></ul></li><li>当存储的所有数据都是整数，且元素数量不超过set-max-intset-entries时，Set会采用intset编码，节省内存。<ul><li>当插入元素时Redis会进行检查，如果不满足条件，编码将转换为HT(listpack / intset -&gt; HT)</li></ul></li></ul><h5 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h5><p>以下是基于Redis6的示例图。</p><p>空Set插入三个整数5、10、20。由于插入的都是整数，且数量较少，因此采用intset编码。</p><p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_3_Set/image-20240922143114798.png" alt="image-20240922143114798"></p><p>之后插入了字符串，不满足条件，编码由intset转为HT。</p><p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_3_Set/image-20240922143318545.png" alt="image-20240922143318545"></p><h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ul><li>Redis6：</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// t_set.c</span></span><br><span class="line">robj *<span class="title function_">setTypeCreate</span><span class="params">(sds value)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (isSdsRepresentableAsLongLong(value,<span class="literal">NULL</span>) == C_OK)<span class="comment">// 都是整数且满足条件，使用intset</span></span><br><span class="line">        <span class="keyword">return</span> createIntsetObject();</span><br><span class="line">    <span class="keyword">return</span> createSetObject();<span class="comment">// 否则使用HT</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>Redis7：</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// t_set.c</span></span><br><span class="line">robj *<span class="title function_">setTypeCreate</span><span class="params">(sds value, <span class="type">size_t</span> size_hint)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (isSdsRepresentableAsLongLong(value,<span class="literal">NULL</span>) == C_OK &amp;&amp; size_hint &lt;= server.set_max_intset_entries)</span><br><span class="line">        <span class="keyword">return</span> createIntsetObject();<span class="comment">// 都是整数且满足条件，使用intset</span></span><br><span class="line">    <span class="keyword">if</span> (size_hint &lt;= server.set_max_listpack_entries)<span class="comment">// 否则使用listpack或dict</span></span><br><span class="line">        <span class="keyword">return</span> createSetListpackObject();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* We may oversize the set by using the hint if the hint is not accurate,</span></span><br><span class="line"><span class="comment">     * but we will assume this is acceptable to maximize performance. */</span></span><br><span class="line">    robj *o = createSetObject();</span><br><span class="line">    dictExpand(o-&gt;ptr, size_hint);</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// t_set.c</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">setTypeMaybeConvert</span><span class="params">(robj *<span class="built_in">set</span>, <span class="type">size_t</span> size_hint)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ((<span class="built_in">set</span>-&gt;encoding == OBJ_ENCODING_LISTPACK &amp;&amp; size_hint &gt; server.set_max_listpack_entries)</span><br><span class="line">        || (<span class="built_in">set</span>-&gt;encoding == OBJ_ENCODING_INTSET &amp;&amp; size_hint &gt; server.set_max_intset_entries))</span><br><span class="line">    &#123;</span><br><span class="line">        setTypeConvertAndExpand(<span class="built_in">set</span>, OBJ_ENCODING_HT, size_hint, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis数据类型_2_List</title>
+      <link href="/2024/09/22/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_2_List/"/>
+      <url>/2024/09/22/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_2_List/</url>
+      
+        <content type="html"><![CDATA[<h4 id="List详解"><a href="#List详解" class="headerlink" title="List详解"></a>List详解</h4><p>[toc]</p><p>在Redis3.2之后，它采用QuickList来实现List。</p><p>Redis7之前，QuickList底层是ZipList，7之后底层是listpack。</p><p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_2_List/image-20240922140827310.png" alt="image-20240922140827310"></p><p>PUSH操作底层都是由pushGenericCommand()函数来完成，只是参数不同。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// t_list.c</span></span><br><span class="line"><span class="comment">/* 实现了LPUSH/RPUSH/LPUSHX/RPUSHX. */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">pushGenericCommand</span><span class="params">(client *c, <span class="type">int</span> where, <span class="type">int</span> xx)</span> &#123;<span class="comment">// 如果xx为true，那么仅在key存在时才Push</span></span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line"></span><br><span class="line">    robj *lobj = lookupKeyWrite(c-&gt;db, c-&gt;argv[<span class="number">1</span>]);<span class="comment">// 查找列表对象</span></span><br><span class="line">    <span class="keyword">if</span> (checkType(c,lobj,OBJ_LIST)) <span class="keyword">return</span>;<span class="comment">// 检查类型是否为List</span></span><br><span class="line">    <span class="keyword">if</span> (!lobj) &#123;<span class="comment">// 处理不存在的列表</span></span><br><span class="line">        <span class="keyword">if</span> (xx) &#123;<span class="comment">// 列表不存在且xx为true,返回</span></span><br><span class="line">            addReply(c, shared.czero);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        lobj = createListListpackObject();<span class="comment">// 列表不存在且xx为false，可以插入，创建一个list，初始只有一个listpack</span></span><br><span class="line">        dbAdd(c-&gt;db,c-&gt;argv[<span class="number">1</span>],lobj);<span class="comment">// 添加元素</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    listTypeTryConversionAppend(lobj,c-&gt;argv,<span class="number">2</span>,c-&gt;argc<span class="number">-1</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>);<span class="comment">// 尝试转换为更高效的格式(如果需要的话)</span></span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">2</span>; j &lt; c-&gt;argc; j++) &#123;</span><br><span class="line">        listTypePush(lobj,c-&gt;argv[j],where);</span><br><span class="line">        server.dirty++;<span class="comment">// 脏数据计数器，用于跟踪数据修改</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    addReplyLongLong(c, listTypeLength(lobj));<span class="comment">// 更新状态和回复</span></span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> *event = (where == LIST_HEAD) ? <span class="string">&quot;lpush&quot;</span> : <span class="string">&quot;rpush&quot;</span>;<span class="comment">// 发送通知</span></span><br><span class="line">    signalModifiedKey(c,c-&gt;db,c-&gt;argv[<span class="number">1</span>]);</span><br><span class="line">    notifyKeyspaceEvent(NOTIFY_LIST,event,c-&gt;argv[<span class="number">1</span>],c-&gt;db-&gt;id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>README</title>
       <link href="/2024/09/21/README/"/>
       <url>/2024/09/21/README/</url>
@@ -28,31 +128,6 @@
       <url>/2024/09/21/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_1_String/</url>
       
         <content type="html"><![CDATA[<h4 id="String详解"><a href="#String详解" class="headerlink" title="String详解"></a>String详解</h4><p>[toc]</p><p>String是Redis中最常用的数据类型之一，它的编码方式如下：</p><ul><li>基本编码方式为<strong>RAW</strong>，基于SDS实现，存储上限为512M</li></ul><p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_1_String/image-20240921144907223.png" alt="image-20240921144907223"></p><ul><li><p>如果SDS的长度小于等于44字节，则会采用<strong>EMBSTR</strong>编码，此时Object head和SDS改为使用连续空间，申请内存时也就只需要一次内存分配，提升效率。</p><p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_1_String/image-20240921145029881.png" alt="image-20240921145029881"></p></li></ul><p>为什么是44字节？</p><p>答：SDS为x字节(x&lt;=44)时，连续空间总长度为 <code>16 (RedisObject) + 1(len) + 1(alloc) + 1(flags) + x + 1(&#39;\0&#39;) = x + 20 &lt;= 64</code>，而Redis底层内存是以$2^n$进行内存分配的，64B恰好是一个分片大小，因此不会产生内存碎片。</p><ul><li>如果存储的字符串是整数值，并且大小在LONG_MAX内，则会采用<strong>INT</strong>编码，直接将数据保存在RedisObject的ptr位置<ul><li>因为ptr刚好是8字节，此时不再需要sds部分</li></ul></li></ul><p><img src="../../images/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_1_String/image-20240921145811029.png" alt="image-20240921145811029"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Redis </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Redis数据类型_2_List TODO</title>
-      <link href="/2024/09/21/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_2_List/"/>
-      <url>/2024/09/21/Redis%E6%BA%90%E7%A0%81/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_2_List/</url>
-      
-        <content type="html"><![CDATA[<h4 id="List详解"><a href="#List详解" class="headerlink" title="List详解"></a>List详解</h4><p>[toc]</p>]]></content>
       
       
       <categories>
@@ -190,6 +265,31 @@
         <tags>
             
             <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JVM垃圾回收详解</title>
+      <link href="/2024/09/20/Java%E6%BA%90%E7%A0%81/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/"/>
+      <url>/2024/09/20/Java%E6%BA%90%E7%A0%81/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</url>
+      
+        <content type="html"><![CDATA[<h4 id="JVM垃圾回收详解"><a href="#JVM垃圾回收详解" class="headerlink" title="JVM垃圾回收详解"></a>JVM垃圾回收详解</h4><p>[toc]</p><p>首先要明确的是，JVM垃圾回收器主要工作区域是堆，目前垃圾收集器都采用了分代垃圾回收算法，因此Java堆被划分成了多个不同的区域。</p><p>本文介绍JDK1.8以后的版本：堆分为新生代、老年代，永久代已被元空间(MetaSpace)代替，且不再存在于堆上。</p><h5 id="堆的结构"><a href="#堆的结构" class="headerlink" title="堆的结构"></a>堆的结构</h5><p>事实上，不同的垃圾回收器所使用的堆模型的具体划分是不同的。但总体分为新生代和老年代，新生代分为Eden区和S(Survivor)区。</p><p>以下是传统的</p><ul><li>G1之前，大对象存放在Old区，但G1开始单独划分了Humongous区存放大对象。</li></ul><h5 id="如何判断哪些对象需要回收"><a href="#如何判断哪些对象需要回收" class="headerlink" title="如何判断哪些对象需要回收"></a>如何判断哪些对象需要回收</h5><h6 id="1-引用计数法"><a href="#1-引用计数法" class="headerlink" title="1. 引用计数法"></a>1. 引用计数法</h6><p>就是给对象增加一个引用计数器：</p><ul><li>每有一个地方引用该对象，计数器+1</li><li>每当一个引用失效，计数器-1</li><li>计数器的值为0，说明对象不被引用，可以回收</li></ul><blockquote><p>缺陷：如果有两个对象相互引用，它们的计数器永不为0，也就是说无论是否有用，它们永远都不会被回收。</p></blockquote><h6 id="2-可达性分析"><a href="#2-可达性分析" class="headerlink" title="2. 可达性分析"></a>2. 可达性分析</h6><h5 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h5><ul><li>强引用：</li><li>弱引用：</li><li>虚引用：</li><li>软引用：</li></ul><h5 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h5><h5 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h5><h5 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h5><h5 id="ZGC收集器"><a href="#ZGC收集器" class="headerlink" title="ZGC收集器"></a>ZGC收集器</h5>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JVM </tag>
             
         </tags>
       
